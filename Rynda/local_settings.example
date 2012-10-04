@@ -1,0 +1,5 @@
+# Put site-specific settings here
+
+LOCAL_SETTINGS = True
+from settings import *
+

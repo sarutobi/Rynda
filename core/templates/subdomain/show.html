@@ -1,0 +1,52 @@
+{%extends 'base_editor.html'%}
+{%block content%}
+<div class="g960 needhelppage rounded_all mb35" id="content">
+	<div id="formTotal">
+        <div class="header_container rounded_top">
+            <h3 class="mb0 rounded_top regulartext_header">
+           		Редактировать раздел сайта
+       		</h3>
+        </div>
+    	<form action='/show/subdomain/{{id|default:""}}' method='post'>
+        	<div>
+            	<div class="column g640" id="editingcolumn">
+                	<div class="column_container" id="nh_1_column_container">
+                        {{ form.errors }}
+                        <p>
+                            {{ form.title.errors }}
+                            <label class="label_show" for="id_title">Заголовок:</label>
+                            {{ form.title }}
+                        </p> 
+                        <p>
+                            {{ form.url.errors }}
+                            <label class="label_show" for="id_url">URL:</label>
+                            {{ form.url }}
+                        </p> 
+                       <p>
+                            {{ form.disclaimer.errors }}
+                            <label class="label_show" for="id_disclaimer">Сообщение:</label>
+                            {{ form.disclaimer }}
+                        </p>  
+                        <p>
+                            {{ form.isCurrent.errors }}
+                            <label class="label_show" for="id_isCurrent">Текущий кризис:</label> 
+                            {{ form.isCurrent }} 
+                        </p>    
+                        <p>
+                            {{ form.status.errors }}
+                        	<label for="id_status" class="label_show"> Статус раздела:</label>
+                        		{{ form.status }} 
+
+                        </p>  
+                    </div>
+                </div>
+                <div class="column g240" id="editingcolumn2">
+                 	<div class="column_container" id="nh_2_column_container">    
+                    	<input type="Submit" value="Сохранить" id="addSubmit" class="no_text">
+                    </div>
+                </div>    
+        	</div>
+    	</form>
+     </div>   
+</div>
+{%endblock%}

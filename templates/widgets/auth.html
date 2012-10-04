@@ -1,0 +1,139 @@
+<div id="auth">
+    <!-- Контент модального окна для выбора региона: -->
+    <div style="display: none">
+        <div id="regionModal" class="rounded_all">
+            <div class="regionModal_wrap">Выберите регион, который Вам интересен, пожалуйста:<br /><br />
+            <select name="regionId" id="regionFieldModal">
+                <option value="0" selected>Все регионы</option>
+                {% for r in regions %}
+                    <option value="{{r.id}}">
+                        {{r.name}}
+                    </option>
+                {%endfor%}
+            </select>
+            <div id="regionFindMe"><span class="expandableTitle">Найти, в каком регионе я сейчас</span></div>
+            <div id="findMeMessage" style="display:none"></div>
+            <img id="findMeLoading" src="{{STATIC_URL}}images/white_sm_loader.gif" style="display:none;" alt="" />
+            <div id="regionModalOk" class="pointer">Ок</div>
+            <div id="regionModalCancel" class="pointer">Отмена</div></div>
+        </div>
+    </div>
+    <!-- Контент модального окна для выбора региона - завершён -->
+	<!-- Блок выбора региона пользователя: -->
+    <div id="user_location">
+        <div class="globe_icon pointer" id="region_select_switch"></div>
+        <div class="region_location_div" id="region_select_div" style="display:none;">
+            {% if request.session.ryndaorg_region %}
+            Ваш регион: <span id="userRegionName">{{ userRegion.name }}</span> <br />
+        (<span id="regionSelect" class="expandableTitle">изменить</span>)
+            {%else%}
+            Ваш регион: <span id="userRegionName">вся страна</span> <br />
+        (<span id="regionSelect" class="expandableTitle">выбрать регион</span>)
+            {%endif%}
+        </div>
+    </div>
+    <!-- Блок выбора региона пользователя - завершён -->
+    <!-- Контент модального окна для аутентификации: -->
+    <div style="display: none">
+        <div id="authModal">
+            <form id="loginForm" action="#" method="post">
+                <div>
+                <p>
+                    <label for="loginField">Email:</label><br />
+                    <input tabindex="1" type="text" name="loginField" id="loginField" class="formField login_box_input" />
+                </p>
+                <p>
+                    <div class="login_box_forgot_pass">
+                        <a href="/forgot">Я забыл пароль!</a>
+                    </div>
+                    <label for="passwordField">Пароль:</label><br />
+                    <input  tabindex="2" type="password" name="passwordField" id="passwordField" class="formField login_box_input" />
+
+                </p>
+                <p>
+                    <input tabindex="3" type="checkbox" name="rememberField" id="rememberField" value="1" checked />
+                    <label for="rememberField">Помнить меня</label>
+                </p>
+				<img id="loginLoading" src="/images/white_sm_loader.gif" style="display:none;" alt="" />
+                <div id="loginMessage" class="login_box_message" style="display: none;"></div>
+			<div id="authmodal_button_panel">
+                <input tabindex="4" type="submit" id="loginSubmit" class="login_box_submit" value="ВОЙТИ" />
+                <input tabindex="5" type="reset" id="loginCancel" class="login_box_submit" value="ОТМЕНА" />
+            </div>
+        </div>
+    </form>
+        </div>
+    </div>
+    <!-- Контент модального окна для аутентификации - завершён -->
+    <!-- Контент модального окна для регистрации: -->
+    <div style="display: none">
+        <div id="registerModal">
+            <form id="regForm" action="#" method="post">
+                <div>
+					<span class="attention">
+						Обратите внимание, что поля, помеченные знаком * обязательны для заполнения.
+					</span>
+					
+					<div id="regfio_container">
+						<p>
+							<div id="firstNameError" class="form_error"></div>
+							<label for="firstNameField">*Имя:</label>
+							<input type="text" name="firstNameField" id="firstNameField" class="formField fname_box_input"  />
+						</p>
+						<p>
+						
+							<div id="lastNameError" class="form_error"></div>
+							<label for="lastNameField">*Фамилия:</label>
+							<input type="text" name="lastNameField" id="lastNameField" class="formField lname_box_input"  />
+						</p>
+					</div>
+
+					<div id="reg_mail_pass_container">
+                    <p>
+					
+                        <div id="loginError" class="form_error"></div>
+                        <label for="loginField">*Email:</label>
+                        <input type="text" name="loginField" id="loginField" class="formField login_box_input"  />
+                    </p>
+                    <p>
+                        <div id="passwordError"  class="form_error"></div>
+                        <label for="passwordField">*Пароль:</label>
+                        <input type="password" name="passwordField" id="passwordField" class="formField login_box_input"  />
+                    </p>
+                    <p>
+                        <label for="passwordConfirmField">*Повторите пароль:</label>
+                        <input type="password" name="passwordConfirmField" id="passwordConfirmField" class="formField login_box_input" />
+                    </p>
+					</div>
+                    <label>
+                        <input type="checkbox" id="agreed" class="mb10" value="1" />
+                            Я разрешаю использование и обработку  указанных в анкете данных
+                    </label>
+                    <div id="agreedError" class="validationError" style="display:none;">Вы должны отметить этот пункт, если хотите зарегистрироваться. Иначе мы не имеем права хранить ваши персональные данные, согласно законодательству РФ.</div>
+					<div id="regMessage" class="login_box_message" style="display: none;"></div>
+                    <input type="submit" id="regSubmit" value="ЗАРЕГИСТРИРОВАТЬСЯ" class="login_box_submit" />
+                    <input tabindex="5" type="reset" id="regCancel" class="login_box_submit" value="ОТМЕНА" />
+                    <img id="regLoading" src="/images/white_sm_loader.gif" style="display:none;" alt="" />
+                <div class="attention">Обратите внимание, возможна регистрация через: <?php echo $this->ulogin->get_html();?></div>    
+                </div>
+            </form>
+            
+        </div>
+    </div>
+    <!-- Контент модального окна для регистрации - завершён -->
+    <!-- Блок аутентификации: -->
+    {% if not user.is_authenticated %}
+    <a id="authLogIn" href="/login">Войти в систему</a> | <a id="authRegister" href="/register">Зарегистрироваться</a>
+    {% else %}
+    Вы вошли как {{rynda_user}} |
+    {% if not loginHrefOff %}
+        <a href="/user/{{user.id}}">Моя страница</a>
+    {% else %}Моя страница{%endif%}
+     |
+    <a id="authLogout" href="#">Выйти</a>
+    <!--<img id="authResponseLoading" src="/images/white_sm_loader.gif" alt="" style="display: none;" />-->
+    {%endif%}
+    <!-- Блок аутентификации - завершён -->
+    
+    
+</div>

@@ -1,0 +1,49 @@
+{%extends 'base_editor.html'%}
+{%block content%}
+<div class="g960 needhelppage rounded_all mb35" id="content">
+	<div id="formTotal">
+        <div class="header_container rounded_top">
+            <h3 class="mb0 rounded_top regulartext_header">
+           		Редактировать информационную страницу
+       		</h3>
+        </div>
+    	<form action='/show/infopage/{{id}}' method='post'>
+        	<div>
+            	<div class="column g640" id="editingcolumn">
+                	<div class="column_container" id="nh_1_column_container">
+                        <p>
+                            {{ form.title.errors }}
+                            <label class="label_show" for="id_title">Заголовок:</label>
+                            {{ form.title }}
+                        </p> 
+                        <p>
+                            {{ form.slug.errors }}
+                            <label class="label_show" for="id_slug">Ссылка URL(slug):</label>
+                            {{ form.slug }}
+                        </p> 
+                        
+                        <p>
+                            {{ form.text.errors }}
+                            <label class="label_show" for="id_text">Текст страницы:</label> 
+                            {{ form.text }} 
+                        </p>    
+                        <p>
+                            {{ form.active.errors }}
+                        	<label for="id_active" class="label_show inline">
+                        		{{ form.active }} 
+                                Страница активна?
+                            </label>
+                        	{{ form.msgId }} 
+                        </p>  
+                    </div>
+                </div>
+                <div class="column g240" id="editingcolumn2">
+                 	<div class="column_container" id="nh_2_column_container">    
+                    	<input type="Submit" value="Сохранить" id="addSubmit" class="no_text">
+                    </div>
+                </div>    
+        	</div>
+    	</form>
+     </div>   
+</div>
+{%endblock%}

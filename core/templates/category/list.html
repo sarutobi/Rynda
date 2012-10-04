@@ -1,0 +1,65 @@
+{% extends 'base_list.html' %}
+{%block listfilter%}
+	<div class="clear">&nbsp;</div>
+	<div id="alphabet_index">
+	<div style="float:left; margin:0 8px 0 8px;">
+	<!-- a class="darkRed" href='/list/categories'>Общие категории</a-->
+	</div>
+	{%for p in pages%}
+	<div style="float:left; margin:0 8px 0 8px;">
+	<a class="darkRed {% if p.id == current %}bold{%endif%}" href='/list/categories?p={{p.id}}'>{{p.title}}</a>
+    </div>
+	{%endfor%}
+	</div>
+	<div class="clear">&nbsp;</div>
+{%endblock%}
+
+{% block listcontent %}
+
+<script type="text/javascript" charset="utf-8">
+			$(document).ready(function() {
+			$('#sortable_table').dataTable( {
+		"oLanguage": {
+			"sLengthMenu": "Показывать _MENU_ записей на странице",
+			"sZeroRecords": "Записи не найдены",
+			"sInfo": "Показано с _START_ по _END_ из _TOTAL_ записей",
+			"sProcessing": "Подождите...",
+			"sInfoEmpty": "Записи с 0 до 0 из 0 записей",
+			"sInfoFiltered": "(отфильтровано из _MAX_ записей)",
+			"sSearch": "Поиск:",
+		}
+			"bPaginate": false,
+			"bLengthChange": false,
+			"bFilter": true,
+			"bSort": false,
+			"bInfo": false,
+			"bAutoWidth": false
+	} );
+} );
+			
+</script>
+	
+		<table id="sortable_table" class="display" cellspacing="0" cellpadding="0" border="1" bordercolor="#FFFFFF">
+		<thead class="thead">
+			<tr>
+				<th class="sorting" rowspan="1" colspan="1" style="width: 320px;">Категория</th>
+				<th class="sorting" rowspan="1" colspan="1" style="width: 390px;">Описание</th>
+
+		</thead>
+			<tbody class="tbody">
+			 {% for c in items %}
+				<tr class="category1 {% cycle 'odd' 'even' as rowcolors %}">
+                    <td class="category_table"><a href='/show/category/{{c.id}}'>{{c.name}}</a></td>
+					<td class="category_table">{{c.description|default:'Нет описания'}}</td>
+				</tr> 
+				{%for ch in c.getChildren%}<tr class="{% cycle rowcolors %}">
+					<td class="category_table">&mdash;&nbsp;&mdash;&nbsp;<a href='/show/category/{{ch.id}}'>{{ch.name}}</a></td>
+					<td class="category_table describtion">{{ch.description}}</td>
+				</tr>
+			{%endfor%}
+			{%endfor%}
+			</tbody>	
+		</table>	
+
+   
+{% endblock %}

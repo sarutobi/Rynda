@@ -1,0 +1,187 @@
+<!doctype html>
+<!-- paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/ -->
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js lt-ie9" lang="en"> <![endif]-->
+<!-- Consider adding a manifest.appcache: h5bp.com/d/Offline -->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+
+  <!-- Use the .htaccess and remove these lines to avoid edge case issues.
+       More info: h5bp.com/i/378 -->
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+
+  <title>{%block title%}{%endblock%} Виртуальная рында</title>
+  <meta name="description" content="">
+
+  <!-- Mobile viewport optimized: h5bp.com/viewport -->
+  <meta name="viewport" content="width=device-width">
+
+  <!-- Place favicon.ico and apple-touch-icon.png in the root directory: mathiasbynens.be/notes/touch-icons -->
+
+  <link rel="stylesheet" href="{{STATIC_URL}}css/style.css">
+  <link rel="stylesheet" href="{{STATIC_URL}}css/leaflet.css">
+  
+  <!-- More ideas for your <head> here: h5bp.com/d/head-Tips -->
+
+  <!-- All JavaScript at the bottom, except this Modernizr build.
+       Modernizr enables HTML5 elements & feature detects for optimal performance.
+       Create your own custom Modernizr build: www.modernizr.com/download/ -->
+  <script src="{{STATIC_URL}}js/libs/modernizr-2.5.3.min.js"></script>
+</head>
+<body>
+  <!-- Prompt IE 6 users to install Chrome Frame. Remove this if you support IE 6.
+       chromium.org/developers/how-tos/chrome-frame-getting-started -->
+  <!--[if lt IE 7]><p class=chromeframe>Your browser is <em>ancient!</em> <a href="http://browsehappy.com/">Upgrade to a different browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to experience this site.</p><![endif]-->
+  <header>
+ <div class="auth_panel">
+	<div class="auth_panel_cont">
+    	<div class="mapTabs">
+        <ul class="floatleft no_list tabs">
+        {% for s in subdomains %}
+          {%if forloop.counter0 < 5 %}
+            {%if s.isCurrent%}
+              <li class="tab_active {%if s.isCrysis%}tab_crysis{%endif%}">
+                <span>{{s.title}}</span>
+              </li>
+            {%else%}
+              <li class="{%if s.isCrysis%}tab_crysis{%endif%}"><div align="center" class="tabLink_container">
+                <a href="http://{{s.full_url}}/"
+                   title="Перейти на карту помощи «{{s.title}}»"><div>&nbsp;</div>
+                    <span>{{s.title}}</span>
+				</a>
+				</div>
+              </li>
+            {%endif%}
+          {%comment%}
+          {%elif forloop.counter0 < 14 %}  
+            <li class="mapTabs-button-sub">
+                <a href="#" class="mapTabs-button-sub-click"></a>
+                <ul class="no_list mapTabs-sub display_none">
+                  {%if s.isCurrent%}
+                    <li class="subdomains_li_active {%if s.isCrysis%}li_crysis{%endif%}">
+                        {{s.title}}
+                    </li>
+                  {%else%}
+                    <li class="{%if s.isCrysis%}li_crysis{%endif%}"><nobr>
+                      <a href="http://{{s.full_url}}/"
+                         title="Перейти на карту помощи «{{s.title}}»">
+                            {{s.title}}
+                        </a>
+                    </nobr>
+                    </li>
+                  {%endif%}
+            
+          {%else%}  
+                    <li><a href="/" title="Все карты помощи в нашей системе">Другие карты помощи</a></li>
+                </ul>
+            </li>
+        {%endcomment%}
+        {%endif%}
+        {%endfor%}
+        </ul>
+    </div>
+	{% include "widgets/auth.html" %}
+    </div>
+</div>
+<div id="navigation">
+    <div class="nav_cont"> 
+        <ul class="top_nav_list">
+            <li><a href="/vse" title="Все сообщения в системе">Сообщения</a>
+            	<ul class="nav_list_children">
+                	<li><a href="/vse" title="Все сообщения в системе">Все сообщения</a></li>
+                	<li><a href="/pomogite" title="Сообщения с просьбами о помощи">Просьбы о помощи</a></li>
+                	<li><a href="/pomogu" title="Сообщения, где предлагается помощь">Предложения помощи</a></li>
+                    <li><a href="/pomogite/pomogli" title="Сообщения, по которым помощь нашлась">Помощь нашлась</a></li>
+                    <li><a href="/info" title="Информационные сообщения">Информация</a></li>
+                </ul>
+            </li>
+            <!--<li><a href="#" title="Список карт помощи">Карты помощи</a></li>
+            <li><a href="#" title="Найти сообщения">Поиск</a></li>-->
+			<li><a href="/org" title="Организации">Организации</a>
+                <ul class="nav_list_children">
+                    <li><a href="/org" title="Все организации в системе">Все организации</a></li>
+                {% for o in organizations %}
+                    <li><a href="/org/t/{{o.id}}" title="Все организации типа «{{o.name}}»">{{o.name}}</a></li>
+                {%endfor%}
+                </ul>
+            </li>
+            <li><a href="/info/about" title="О проекте «<?php echo $this->config->item('project_basename');?>»">О проекте</a>
+            	<ul class="nav_list_children">
+                	<li><a href="/info/about" title="О проекте «<?php echo $this->config->item('project_basename');?>»">О проекте</a></li>
+                    <li><a href="/info/team" title="Команда">Команда</a></li>
+                    <li><a href="/info/thanks" title="Благодарности">Благодарности</a></li>
+                    <li><a href="/info/friends" title="Наши друзья">Наши друзья</a></li>
+                    <li><a href="/info/contacts" title="Наши контакты">Свяжитесь с нами</a></li>
+                    <li><a href="/info/media" title="СМИ о &laquo;Рынде&raquo;">СМИ о &laquo;Рынде&raquo;</a></li>
+                </ul>
+            </li>
+        </ul>
+        <div class="clearfix"></div>
+    </div>
+</div>
+  </header>
+
+<div role="main">
+<div class="main">
+	<div class="g960" id="header">
+		<div class="alignright ml40">	
+            {% block buttons %}{%endblock%}
+        </div>
+        <h1><a href="/" class="no_text" title="Rynda.org — портал добровольцев">Rynda</a></h1>
+        <div class="clearfix"></div>        
+    </div>
+    <div class="clear1">&nbsp;</div> 
+    {%block maincontent%}{%endblock%}  
+  
+  <footer>
+    <div id="footer" class="g960">
+        <div class="alignright" id="socnetIcons">
+            <div class="soc_net_label">
+                Мы в социальных сетях:
+            </div>
+            <ul class="no_list floatleft">
+                <li><a href="http://vkontakte.ru/club25595604" title="Виртуальная рында во Вконтакте" class="vk">Вконтакте</a></li>
+                <li><a href="http://www.facebook.com/pages/Ryndaorg/163264230398695?created" title="Виртуальная рында в Фейсбуке" class="fb">Фейсбук</a></li>
+                <li><a href="http://community.livejournal.com/rynda_org/" title="Виртуальная рында в ЖЖ" class="lj">Живой Журнал</a></li>
+                <li><a href="http://twitter.com/#!/Ryndaorg" title="Виртуальная рында в Твиттере" class="tw">Твиттер</a></li>
+                <!--<li><a href="#" title="Лента Виртуальной рынды" class="rss">RSS</a></li>-->
+            </ul>
+        </div>
+        <ul id="footer_nav" class="no_list top_nav_list">
+            <li class="pl0"><a href="/" title="На главную">На главную</a></li>
+            <!--<li><a href="#" title="Список карт помощи">Карты помощи</a></li>-->
+            <!--<li><a href="#" title="Найти сообщения">Поиск</a></li>-->
+            <li><a href="/info/about" title="О проекте «<?php echo $this->config->item('project_basename')?>»">О проекте</a></li>
+            <li><a href="/pomogite/pomogli" title="Сообщения, по которым помощь нашлась">Помощь нашлась</a></li>
+            <li><a href="/org" title="Организации">Организации</a></li>
+            <li><a class="rss_feed" href="http://feeds.rynda.org/<?php $currentSubdomain = getSubdomain(); echo $currentSubdomain ? $currentSubdomain : '';?>">RSS-лента</a></li>
+            <li class="no_bg"><a href="/info/contacts" title="Свяжитесь с нами">Свяжитесь с нами</a></li>
+        </ul>
+        <div class="clearfix mb10">&nbsp;</div>
+        
+       <div class="g960 inside" id="license">© - Платформа «Виртуальная Рында - Атлас помощи», 2011. Лицензия <a href="http://creativecommons.org/licenses/by-nc-sa/3.0/">Creative Commons 3.0 (Атрибуция — Некоммерческое использование — С сохранением условий)</a></div>
+    </div>
+	</div><!-- // Конец MAIN div'а -->
+
+  </footer>
+</div>
+</div>
+  <!-- JavaScript at the bottom for fast page loading -->
+
+  <script src="{{STATIC_URL}}js/libs/jquery-1.8.1.min.js"></script>
+  <script src="{{STATIC_URL}}js/libs/underscore-min.js"></script>
+  <script src="{{STATIC_URL}}js/libs/backbone-min.js"></script>
+  <script src="{{STATIC_URL}}js/libs/leaflet.js"></script>
+  
+  <script src="{{STATIC_URL}}js/rynda.js"></script>
+
+  <!-- scripts concatenated and minified via build script -->
+  
+  <script src="{{STATIC_URL}}js/plugins.js"></script>
+  <script src="{{STATIC_URL}}js/script.js"></script>
+  <!-- end scripts -->
+
+  </body>
+</html>

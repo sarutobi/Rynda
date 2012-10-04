@@ -1,0 +1,23 @@
+.fl {
+    float: left;
+}
+
+.ml(@margin){
+    margin-left: @margin;
+}
+
+.ml10 {
+    .ml(10);
+}
+
+.span(@width, @margin){
+    width: @@width - @margin;
+    margin-left: @margin;
+    float: left;
+    display: inline;
+}
+
+.offset(@width, @margin){
+    margin-left: @width + @margin;
+
+}

@@ -1,0 +1,9 @@
+{%extends 'base_list.html'%}
+{%block listcontent%}
+<table>
+{%for c in content%}
+<tr><td><a href='{{c.link}}' target='blank'><strong>{{c.title}}</strong></a></td><td>{{c.date}}</td></tr>
+<tr><td colspan='2'>{{c.content|removetags:"img a table thead tbody tr td"|safe|truncatewords:20 }}</td></tr>
+{%endfor%}
+</table>
+{%endblock%}

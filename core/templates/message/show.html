@@ -1,0 +1,163 @@
+{% extends 'base_editor.html' %}
+{%block scripts%}
+{{block.super}}
+<script type='text/javascript' src="{{STATIC_URL}}/javascript/fancybox/jquery.fancybox.pack.js"></script>
+<link rel="stylesheet" type="text/css" href="{{STATIC_URL}}/javascript/fancybox/jquery.fancybox.css" />
+<script type='text/javascript' src="{{STATIC_URL}}/javascript/maps.js"></script>
+<script type='text/javascript' src="{{STATIC_URL}}/javascript/common.js"></script>
+
+<script type='text/javascript'>
+var m;
+/** 
+ * Обработка результата запроса обратного геокодирования. Отображает адрес, соотвествующий координатам маркера
+ **/
+function showAddress(data, status){
+    if (status == google.maps.GeocoderStatus.OK){
+        $('#point_address').text(data[0].formatted_address);
+    } else {
+        alert ('Произошла ошибка при определении адреса маркера!\n' + status );
+    }    
+}
+
+/**
+ * Перемещение маркера в случае успешного определения геокоординат адреса
+ **/
+function moveMarker(data, status){
+    if (status == google.maps.GeocoderStatus.OK){
+        coords = data[0].geometry.location;
+        m.map.panTo(coords);
+        m.marker.setPosition(coords);
+        $('#id_lat').val(coords.lat());
+        $('#id_lon').val(coords.lng());
+        $('#point_address').text(data[0].formatted_address);
+    } else {
+        alert ('Произошла ошибка при определении координат\n' + status);
+    }
+}
+$(function(){
+m = GoogleMapper;
+m.key = '{{key}}'; 
+m.createMap('#map_canvas', $('#id_lat').val(),$('#id_lon').val(),'{{form.title.value}}');
+m.getAddress($('#id_lat').val(),$('#id_lon').val(), showAddress);
+$(".fancybox").fancybox();
+});
+
+</script>
+{%endblock%}
+
+
+{% block content %}
+<div class="g960 needhelppage rounded_all mb35" id="content">
+	<div id="formTotal">
+        <div class="header_container rounded_top">
+            <h3 class="mb0 rounded_top regulartext_header">
+           		Редактировать сообщение
+       		</h3>
+        </div>
+        <form action='/show/message/{{id}}' method='post'>
+        	<div>
+            	<div class="column g640" id="editingcolumn">
+                	<div class="column_container" id="nh_1_column_container">
+                        {% for field in form.hidden_fields %}
+                            {{ field }}
+                        {% endfor %}
+                        <div>
+                           <div class='fieldwrapper' style='float: left'>
+                                {{form.subdomain.errors}}
+                                {{ form.subdomain.label_tag }}:<br /> {{ form.subdomain }}
+                           </div>
+                           
+                           <div class='fieldwrapper ml10' style='float: left'>
+                                {{form.messageType.errors}}
+                                *{{ form.messageType.label_tag }}:<br /> {{ form.messageType }}
+                            </div>
+                            
+                            <div class='fieldwrapper ml10' style='float: left'>
+                                *{{ form.status.label_tag }}:<br /> {{ form.status }}
+                            </div>
+                            <div class='clearfix'></div>
+                            <br />
+                            <div class='fieldwrapper' style='valign: top'>
+                                {{ form.title.errors }}
+                                *{{ form.title.label_tag }}:<br /> {{ form.title|safe }}
+                            </div>
+                            <br />
+                            <div class='fieldwrapper' style='valign: top'>
+                                {{ form.message.errors }}
+                                *{{ form.message.label_tag }}*:<br /> {{ form.message }}
+                            </div>
+                            <br />
+                            <div class='fieldwrapper' style='valign: top'>
+                                {{ form.region.errors }}
+                                *{{ form.region.label_tag }}:<br /> {{ form.region }}
+                            </div>
+                            <br />
+                            <div class='fieldwrapper darkGrey' style='valign: top'>
+                                {{ form.address.errors }}
+                                *{{ form.address.label_tag }}:<br /> {{ form.address }}
+                                <a href='#' onclick="m.getCoords($('#id_address').val(),moveMarker);return false;">Установить маркер</a>
+                                <br />
+                                адрес по маркеру: <div id='point_address'></div> 
+                                <div id='map_canvas' style='width:100%;height:256'></div>
+                            </div>
+                            <br />
+                            <div class='fieldwrapper' id='attached_multimedia'>
+                            {% if images %}
+                            {% for i in images %}
+                            <div class='attach alignleft'>
+                            <a class="fancybox" href='{{MEDIA_URL}}{{i.uri}}' target='blank' border='0'><img src='{{MEDIA_URL}}{{i.thumb_uri}}'></a><a href='/remove/image/{{i.id}}'>Удалить</a><br />
+                            </div>
+                            {% endfor %}
+                            <div class='clear'></div>
+                            {%endif%}
+                            <link href='{{STATIC_URL}}/javascript/fileuploader/fileuploader.css' type='text/css' rel=stylesheet'>
+                            <script src='{{STATIC_URL}}/javascript/fileuploader/fileuploader.js' type='text/javascript'></script>
+                                <div id="add_image">Добавить изображение<noscript>Javascript required!</noscript></div>
+                                <script type='text/javascript'>
+                                    var uploader = new qq.FileUploaderBasic({
+                                        button: $('#add_image')[0],
+                                        action: 'ajax/img_upload',
+                                        params: {msg_id: {{id}} },
+                                        onComplete: msgImageUpload
+                                    });
+                                </script>
+                                </div>
+                            </div>
+                             <div class='fieldwrapper darkGrey' style='valign: top'>
+                                {{ form.notes.errors }}
+                                {{ form.notes.label_tag }}:<br /> {{ form.notes }}
+                            </div>
+                            <br />
+<div class='fieldwrapper' style='valign: top'>
+                                {{ form.active.label_tag }}: {{ form.active }}
+                            |
+                                {{ form.important.label_tag }}: {{ form.important }}
+                            </div>
+                        </div>
+            		</div>
+                </div>
+                <div class="column g240" id="editingcolumnmsg2">
+                	<div class="column_container" id="nh_2_column_container"> 
+                    	<div id="messageheader" >
+                        	<ul class="no_list Grey fs10">
+                                <li>Автор: {{sender}}</li>
+                                <li>Сообщение создано: {{ dateAdd|date:'d.m.Y H:i:s' }}</li>
+                                <li>В последний раз редактировалось: {{ dateModify|date:'d.m.Y H:i:s'}}</li>
+                                <li>Отправитель {% if anonymous %}не {% endif %} желает публиковать свои данные на сайте.</li>
+                                <li>Отправитель {% if not feedback %}не {% endif %} желает получать уведомления и комментарии.</li>
+                        	</ul>
+                            <div class="clear">&nbsp;</div>
+                            <div class='fieldwrapper categories_list' style='valign: top'>
+                                {{ form.category.errors }}
+                                *{{ form.category.label_tag }}:<br /> {{ form.category }}
+                            </div>
+                            <div class="clear">&nbsp;</div>
+                        </div>  
+                		<input type="submit" value="Обновить" id="addSubmit" class="no_text mt25">
+                    </div>
+                </div>
+        	</div>
+        </form>
+	</div>   
+</div>   
+{% endblock %}
