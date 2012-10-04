@@ -28,3 +28,12 @@ def list(request):
           'subdomains': Subdomain.objects.all(),
         },
         context_instance=RequestContext(request))
+
+
+def all(request):
+    return render_to_response('all_messages.html',
+        {
+            'messages': Message.objects.filter(status__gt=1).select_related()[:10],
+        },
+        context_instance=RequestContext(request) 
+    )
