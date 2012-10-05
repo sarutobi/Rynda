@@ -747,7 +747,7 @@ border:none; border-bottom:1px solid #adc7cc; border-bottom: none;}
 #user_profile_edit_box .ui-tabs-nav li.ui-state-disabled{border-left:1px solid #fff;}
 #user_profile_edit_box .ui-tabs-nav li.ui-state-disabled a { padding:5px;}
 #user_profile_edit_box .ui-tabs-nav li.ui-state-active { background: url(i/fon-profile-active.png) #e2edef repeat-x;}
-#user_profile_edit_box ..ui-corner-bottom { border:none;}
+#user_profile_edit_box .ui-corner-bottom { border:none;}
 /*#user_profile_edit_box .ui-widget-content { background:none; border:none;}*/
 #user_profile_edit_box .ui-tabs-panel { background:url(i/fon-profile.png) #e3edef repeat-x; border: 1px solid #ADC7CC; border-top:none; border-left-color:#fff;}
 #user_profile_edit_box .ui-tabs-panel p { padding:9px 0;}
@@ -940,7 +940,7 @@ form#regForm.registration div#uLogin {width: 350px;}
 .login_box_container span.attention {bottom: 100px; left: 6px;}
 /*#regForm.registration div {margin-top: 22px; position: relative;}*/
 div.reg_box_form_container form#regForm.registration div input {margin-top: 0; padding: 0 5px; position: relative; right: 0; top: -23px; float: right; width: 216px;  margin-bottom: 0;}
-form#regForm.registration div label {margin-top: 21px;; display: block;}
+form#regForm.registration div label {margin-top: 21px; display: block;}
 form#regForm.registration div label input#agreed {right: 0; top: 0;} 
 form#regForm.registration div input#regSubmit {right: 0; top: 0;}
 form#regForm.registration div label {vertical-align: bottom;}
