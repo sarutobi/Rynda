@@ -40,9 +40,9 @@
                     <select name="category" id="searchCategory">
                         <option value="">Все категории</option>
                     {%for cat in categories%}
-                        {% if cat.getChildren%}
+                        {% if cat.children%}
                             <optgroup label="{{cat.name|capfirst}}">
-                                {%for c in cat.getChildren%}
+                                {%for c in cat.children%}
                                 <option value="{{c.id}}">
                                     {{c.name|capfirst}}
                                 </option>

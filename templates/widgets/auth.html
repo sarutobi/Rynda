@@ -54,7 +54,7 @@
                     <input tabindex="3" type="checkbox" name="rememberField" id="rememberField" value="1" checked />
                     <label for="rememberField">Помнить меня</label>
                 </p>
-				<img id="loginLoading" src="/images/white_sm_loader.gif" style="display:none;" alt="" />
+				<img id="loginLoading" src="{{STATIC_URL}}/images/white_sm_loader.gif" style="display:none;" alt="" />
                 <div id="loginMessage" class="login_box_message" style="display: none;"></div>
 			<div id="authmodal_button_panel">
                 <input tabindex="4" type="submit" id="loginSubmit" class="login_box_submit" value="ВОЙТИ" />
@@ -113,7 +113,7 @@
 					<div id="regMessage" class="login_box_message" style="display: none;"></div>
                     <input type="submit" id="regSubmit" value="ЗАРЕГИСТРИРОВАТЬСЯ" class="login_box_submit" />
                     <input tabindex="5" type="reset" id="regCancel" class="login_box_submit" value="ОТМЕНА" />
-                    <img id="regLoading" src="/images/white_sm_loader.gif" style="display:none;" alt="" />
+                    <img id="regLoading" src="{{STATIC_URL}}/images/white_sm_loader.gif" style="display:none;" alt="" />
                 <div class="attention">Обратите внимание, возможна регистрация через: <?php echo $this->ulogin->get_html();?></div>    
                 </div>
             </form>
