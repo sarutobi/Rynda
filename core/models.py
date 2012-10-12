@@ -22,11 +22,21 @@ class Subdomain(models.Model):
     order = models.IntegerField()
     disclaimer = models.TextField(blank = True, null = True)
 
+
     def __unicode__(self):
         return self.title
 
+
     def name(self):
         return self.title
+
+
+    def full_url(self):
+        if self.url:
+            return "%s.newrynda.org" % self.url
+        else:
+            return "newrynda.org"
+
 
 class Category(models.Model):
     ''' Категория сообщения '''
