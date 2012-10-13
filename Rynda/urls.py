@@ -16,6 +16,7 @@ urlpatterns = patterns('',
     # url(r'^admin/', include(admin.site.urls)),
     url(r'^$', 'message.views.list'),
     url(r'^vse$', 'message.views.all'),
+    ('^info/(?P<slug>[a-z_]+)$', 'core.views.infopages.show_page'),
 )
 
 urlpatterns += patterns('core.views',

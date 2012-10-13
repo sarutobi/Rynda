@@ -7,6 +7,7 @@ from django.template import RequestContext
 
 from core.models import Infopage
 from core.forms import InfoPageForm
+from core.context_processors import subdomains_context, categories_context
 
 def delete(request):
     pass
@@ -19,6 +20,14 @@ def edit(request):
 
 def create(request):
     pass
+
+def show_page(request, slug):
+    page = Infopage.objects.values('title','text').get(slug=slug)
+    return render_to_response('infopage/show_page.html',
+        {'title': page['title'], 'text': page['text'], },
+        context_instance=RequestContext(request,
+            processors=[subdomains_context, categories_context])
+    )
 
 def show(request, id = None):
     if id:

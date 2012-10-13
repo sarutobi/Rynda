@@ -1,0 +1,13 @@
+{%extends 'base_buttons.html' %}
+
+{% block maincontent %}
+<div class="g960 regularpage rounded_all mb35" id="content">
+    <div class="ml160 g640">
+    	<div class="breadcrumbs mb10">
+        	<a title="Главная" href="/">Главная</a> &raquo; {{title}} 
+    	</div>
+        <h2 class="h24 allcaps mb10">{{title}}</h2>
+		{{text|safe}}
+	</div>
+</div>
+{%endblock%}
