@@ -29,7 +29,7 @@ def subdomains_context(request):
 
 def categories_context(request):
     '''Categories hierarchy'''
-    cats = Category.objects.values('id', 'name', 'parentId').all()
+    cats = Category.objects.values('id', 'name', 'parentId').filter(subdomain=None)
     tree = [c for c in cats if c['parentId'] is None]
     for l in tree:
         l['children'] = [c for c in cats if c['parentId'] == l['id']]
