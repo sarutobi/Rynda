@@ -10,7 +10,7 @@
         <form id="mapFilterForm" action="#">
             <div id="mapFormContainer">
                 <div>
-                    <label for="regionId" class="no_display">Регион</label>
+                    <!--label for="regionId" class="no_display">Регион</label-->
                     <select name="regionId" id="searchRegion">
                     <option value="0"
                             data-zoom-level="{{main_map_default_zoom}}"
@@ -28,7 +28,7 @@
                     {%endfor%}
                     </select>
 
-                    <label for="dateAddedFrom" class="no_display">За какое время?</label>
+                    <!--label for="dateAddedFrom" class="no_display">За какое время?</label-->
                     <select name="dateAddedFrom" id="searchDateAddedFrom">
                         <option value="" title="Сообщения, поступившие за все время">За все время</option>
                         <option value="{{today}}" title="Только сообщения, поступившие сегодня">За сегодня</option>
@@ -36,7 +36,7 @@
                         <option value="{{last_week}}" title="Только сообщения, поступившие за последнюю неделю">За неделю</option>
                         <option value="{{weeks3}}" title="Только сообщения, поступившие за последний месяц">За месяц</option>
                     </select>
-                    <label for="category" class="no_display">Категория</label>
+                    <!--label for="category" class="no_display">Категория</label-->
                     <select name="category" id="searchCategory">
                         <option value="">Все категории</option>
                     {%for cat in categories%}
@@ -55,7 +55,7 @@
                         {%endif%}
                     {%endfor%}
                     </select>
-                    <label for="untimed" class="no_display">Как срочно?</label>
+                    <!--label for="untimed" class="no_display">Как срочно?</label-->
                     <select name="untimed" id="searchUntimed">
                         <option value="">Как срочно?</option>
                         <!--<option value="nm">Всё равно</option>-->
