@@ -14,8 +14,8 @@ from core.context_processors import subdomains_context, categories_context
 from message.forms import MessageForm
 
 def list(request):
-    last_requests = Message.objects.filter(messageType=1).values('id', 'title', 'dateAdd')[:5]
-    last_offers = Message.objects.filter(messageType=1,status__gt=1, status__lt=6).values('id', 'title')[:5]
+    last_requests = Message.objects.filter(messageType=1,status__gt=1, status__lt=6).values('id', 'title', 'dateAdd')[:5]
+    last_offers = Message.objects.filter(messageType=2,status__gt=1, status__lt=6).values('id', 'title')[:5]
     last_completed = Message.objects.filter(messageType=1,status=6).values('id', 'title')[:5]
     last_info = Message.objects.filter(messageType=3,status__gt=1,status__lt=6).values('id', 'title')[:5]
     last_feeds = FeedItem.objects.filter(feedId=3).values('id', 'link', 'title', 'date')[:5]
