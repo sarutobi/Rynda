@@ -17,6 +17,7 @@ urlpatterns = patterns('',
     url(r'^$', 'message.views.list'),
     url(r'^vse$', 'message.views.all'),
     ('^info/(?P<slug>[a-z_]+)$', 'core.views.infopages.show_page'),
+    ('^pomogite/dobavit', 'message.views.add_request_form'),
 )
 
 urlpatterns += patterns('core.views',
