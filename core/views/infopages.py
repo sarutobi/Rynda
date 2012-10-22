@@ -1,6 +1,6 @@
 #-*- coding: utf-8 -*-
 
-from django.shortcuts import render_to_response
+from django.shortcuts import render_to_response, get_object_or_404
 from django.http import HttpResponseRedirect
 from django.core.urlresolvers import reverse
 from django.template import RequestContext
@@ -22,9 +22,9 @@ def create(request):
     pass
 
 def show_page(request, slug):
-    page = Infopage.objects.values('title','text').get(slug=slug)
+    page = get_object_or_404(Infopage, slug=slug)
     return render_to_response('infopage/show_page.html',
-        {'title': page['title'], 'text': page['text'], },
+        {'title': page.title, 'text': page.text, },
         context_instance=RequestContext(request,
             processors=[subdomains_context, categories_context])
     )

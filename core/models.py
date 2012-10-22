@@ -59,6 +59,8 @@ class Category(models.Model):
     subdomain = models.ForeignKey(Subdomain, null=True, blank=True,
         db_column='subdomain_id', verbose_name='Страница атласа')
 
+    def __unicode__(self):
+        return self.name
 
 class Infopage(models.Model):
     class Meta():
