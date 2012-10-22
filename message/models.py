@@ -76,6 +76,7 @@ class Message(models.Model):
     def __unicode__(self):
         return self.title
 
+
 class MessageNotes(models.Model):
     '''Moderator notes for message'''
     message = models.ForeignKey(Message)
