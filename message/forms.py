@@ -2,7 +2,8 @@
 
 from django import forms
 
-from core.models import Message, MessageType, Region
+from message.models import Message, MessageType
+from core.models import Region
 
 
 class MessageForm(forms.ModelForm):

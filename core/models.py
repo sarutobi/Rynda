@@ -4,8 +4,6 @@ from lxml import etree
 from django.db import models
 from django.db.models import Max, Count
 
-# Create your models here.
-
 
 class Subdomain(models.Model):
     '''Описание субдоменов для работы со страничками атласа'''
@@ -116,137 +114,12 @@ class Location(models.Model):
         return u'%f %f' % (self.latitude, self.longtitude)
 
 
-class MessageType(models.Model):
-    class Meta():
-        db_table = 'message_type'
-
-    name = models.CharField(max_length=100, db_column='name')
-    slug = models.CharField(max_length=100, db_column='slug')
-
-    def __unicode__(self):
-        return self.name
-
-
-class Message(models.Model):
-    MESSAGE_STATUS = ((1, u'Новое'),
-                      (2, u'Не подтверждено'),
-                      (3, u'Подтверждено'),
-                      (4, u'В работе'),
-                      (6, u'Закрыто'))
-
-    ACTIVE = 0
-    IMPORTANT = 1
-    ANONYMOUS = 2
-    FEEDBACK = 3
-
-    class Meta():
-        db_table = 'Message'
-        ordering = ['-dateAdd']
-
-    title = models.CharField(max_length=200, verbose_name='Заголовок')
-    message = models.TextField(verbose_name='Сообщение')
-    dateAdd = models.DateTimeField(auto_now_add=True, db_column='date_add',
-        editable=False)
-    dateModify = models.DateTimeField(auto_now=True, db_column='date_modify',
-        editable=False)
-    locationId = models.ForeignKey(Location, db_column='location_id',
-        null=True)
-    status = models.SmallIntegerField(choices=MESSAGE_STATUS,
-        verbose_name='Статус')
-    flags = models.BigIntegerField()
-    category = models.ManyToManyField(Category, db_table='messagecategories',
-        symmetrical=False, verbose_name='Категории сообщения')
-    subdomain = models.ForeignKey(Subdomain, db_column='subdomain_id',
-        null=True, verbose_name='Страница атласа', blank=True)
-    sender = models.TextField()
-    messageType = models.ForeignKey(MessageType, db_column='message_type',
-        verbose_name='Тип сообщения')
-    notes = models.TextField(verbose_name='Заметки', blank=True, default='')
-
-    def __unicode__(self):
-        return self.title
-
-    def get_sender(self):
-        tree = etree.fromstring(self.sender)
-        fn = tree[0].text or ''
-        pn = tree[1].text or ''
-        ln = tree[2].text or ''
-        email = tree[3].text or ''
-        #XXX Переделать на лямбда-функцию
-        ph = []
-        for e in tree[4:]:
-            if e.tag == 'phone':
-                ph.append(e.text or '')
-        phones = ','.join(ph) or ''
-        return u"%s %s %s, email: %s, тел: %s" % (ln, fn, pn, email, phones)
-
-    def save(self, *args, **kwargs):
-        self.locationId.save()
-        super(Message, self).save(*args, **kwargs)
-
-    def address(self, address=None):
-        if address:
-            self.locationId.name = address
-        else:
-            return self.locationId.name
-
-    def latitude(self, lat=None):
-        if lat:
-            self.locationId.latitude = lat
-        else:
-            return self.locationId.latitude
-
-    def longtitude(self, lon=None):
-        if lon:
-            self.locationId.longtitude = lon
-        else:
-            return self.locationId.longtitude
-
-    def set_flag(self, flag, active):
-        if active:
-            self.flags = set_bit(self.flags, flag)
-        else:
-            self.flags = clear_bit(self.flags, flag)
-
-    def active(self):
-        return (self.flags & 1) == 1
-
-    def important(self):
-        return (self.flags & 2) == 2
-
-    def anonymous(self):
-        return (self.flags & 4) == 0
-
-    def feedback(self):
-        return (self.flags & 8) == 8
-
-    def region(self, region=None):
-        if region:
-            self.locationId.regionId = region
-        else:
-            try:
-                return self.locationId.regionId
-            except:
-                return Region.objects.get(id=50)
-
-    def getImages(self):
-        return Multimedia.objects.filter(message=self.id)
-
-    def haveAttachment(self):
-        a = Multimedia.objects.filter(message=self.id).count()
-        return a > 0
-
-    def is_removed(self):
-        test = self.flags & 0x10
-        return test != 0
-
-
 class Multimedia(models.Model):
     class Meta():
         db_table = 'multimedia'
 
     link_type = models.SmallIntegerField(db_column='type')
-    message = models.ForeignKey(Message, null=True, blank=True)
+    message = models.ForeignKey('message.Message', null=True, blank=True)
     uri = models.CharField(max_length=255)
     thumb_uri = models.CharField(max_length=255)
     checksum = models.CharField(max_length=40)
@@ -276,7 +149,7 @@ class MessageComment(models.Model):
     class Meta:
         db_table = 'in_reply_to'
 
-    message = models.ForeignKey(Message, db_column='message_id')
+    message = models.ForeignKey('message.Message', db_column='message_id')
     comment = models.OneToOneField(Comment, db_column='comment_id',
         related_name='comment')
     reply = models.ForeignKey(Comment, db_column='reply_to',

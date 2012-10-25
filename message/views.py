@@ -4,7 +4,8 @@
 from django.shortcuts import render_to_response
 from django.template import RequestContext
 
-from core.models import Region, Message, Subdomain
+from core.models import Region, Subdomain
+from message.models import Message
 from core.utils import get_categories_tree
 from feed.models import FeedItem
 
@@ -14,9 +15,12 @@ from core.context_processors import subdomains_context, categories_context
 from message.forms import MessageForm
 
 def list(request):
-    last_requests = Message.objects.filter(messageType=1,status__gt=1, status__lt=6).values('id', 'title', 'dateAdd')[:5]
-    last_offers = Message.objects.filter(messageType=2,status__gt=1, status__lt=6).values('id', 'title')[:5]
-    last_completed = Message.objects.filter(messageType=1,status=6).values('id', 'title')[:5]
+    last_requests = Message.objects.filter(messageType=1,status__gt=1,
+        status__lt=6).values('id', 'title', 'date_add')[:5]
+    last_offers = Message.objects.filter(messageType=2,status__gt=1,
+        status__lt=6).values('id', 'title')[:5]
+    last_completed = Message.objects.filter(messageType=1,status=6)\
+        .values('id', 'title')[:5]
     last_info = Message.objects.filter(messageType=3,status__gt=1,status__lt=6).values('id', 'title')[:5]
     last_feeds = FeedItem.objects.filter(feedId=3).values('id', 'link', 'title', 'date')[:5]
     return render_to_response('index.html',
