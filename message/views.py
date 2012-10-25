@@ -18,11 +18,13 @@ def list(request):
     last_requests = Message.objects.filter(messageType=1,status__gt=1,
         status__lt=6).values('id', 'title', 'date_add')[:5]
     last_offers = Message.objects.filter(messageType=2,status__gt=1,
-        status__lt=6).values('id', 'title')[:5]
+        status__lt=6).values('id', 'title','date_add')[:5]
     last_completed = Message.objects.filter(messageType=1,status=6)\
-        .values('id', 'title')[:5]
-    last_info = Message.objects.filter(messageType=3,status__gt=1,status__lt=6).values('id', 'title')[:5]
-    last_feeds = FeedItem.objects.filter(feedId=3).values('id', 'link', 'title', 'date')[:5]
+        .values('id', 'title','date_add')[:5]
+    last_info = Message.objects.filter(messageType=3,status__gt=1,
+        status__lt=6).values('id', 'title','date_add')[:5]
+    last_feeds = FeedItem.objects.filter(feedId=3).values('id','link',
+        'title','date')[:5]
     return render_to_response('index.html',
         { 'regions': Region.objects.all(),
           #'categories': cat_tree,

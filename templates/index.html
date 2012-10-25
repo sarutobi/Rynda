@@ -168,8 +168,8 @@
             {% for r in requests%}
             <li>
               <div class="triple_date">
-                {{r.dateAdd|date:"d.m"}}<br />
-			    <span class="triple_year">{{r.dateAdd|date:"Y"}}</span>
+                {{r.date_add|date:"d.m"}}<br />
+			    <span class="triple_year">{{r.date_add|date:"Y"}}</span>
 		      </div>
               <a class="triple_link" href="/info/s/{{r.id}}" title="Просьба о помощи #{{r.id}}{{r.title}}">
                 {%if r.title%}
@@ -199,8 +199,8 @@
             {% for o in offers %}
             <li>
               <div class="triple_date">
-                {{o.dateAdd|date:"d.m"}}<br />
-			    <span class="triple_year">{{o.dateAdd|date:"Y"}}</span>
+                {{o.date_add|date:"d.m"}}<br />
+			    <span class="triple_year">{{o.date_add|date:"Y"}}</span>
 		      </div>
               <a class="triple_link" href="/info/s/{{o.id}}" title="Просьба о помощи #{{o.id}}{{o.title}}">
                 {%if o.title%}
@@ -231,8 +231,8 @@
              {% for c in completed %}
              <li>
               <div class="triple_date">
-                {{c.dateAdded|date:"d.m"}}<br />
-			    <span class="triple_year">{{c.dateAdded|date:"Y"}}</span>
+                {{c.date_add|date:"d.m"}}<br />
+			    <span class="triple_year">{{c.date_add|date:"Y"}}</span>
 		      </div>
               <a class="triple_link" href="/info/s/{{o.id}}" title="Просьба о помощи #{{c.id}}{{c.title}}">
                 {%if c.title%}
