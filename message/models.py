@@ -9,6 +9,7 @@ class MessageType(models.Model):
         db_table = 'message_type'
 
     name = models.CharField(max_length=100)
+    slug = models.CharField(max_length=100)
     color = models.CharField(max_length=7)
     icon = models.CharField(max_length=200)
 
@@ -68,7 +69,8 @@ class Message(models.Model):
         db_column='date_modify', editable = False)
     expired_date = models.DateTimeField(verbose_name="Expired at",
         blank=True, null=True)
-    user = models.IntegerField(verbose_name="User", editable=False)
+    user = models.IntegerField(verbose_name="User", editable=False,
+        db_column='user_id')
     edit_key = models.CharField(max_length=40)
 
     #Links to core models
