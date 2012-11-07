@@ -1,0 +1,168 @@
+{% extends 'base.html' %}
+
+{% block maincontent%}
+
+<div class="g960" id="content">
+    <!-- Левая панель -->
+    <div class="column" id="vm_1_column">
+    	<div class="breadcrumbs mb10">
+        	<a title="Главная" href="/">Главная</a> &raquo;
+            <a href="/vse" title="Сообщения">Сообщения</a> &raquo;
+            <a href="/pomogu" title="Сообщения типа «предложение помощи»">Предложения помощи</a> &raquo;
+            {{message.messageType}} №{{message.id}} {{message.title}}
+            
+        </div>
+        <h2 class="h24 allcaps mb10">
+        {%if message.status >= 3 %}
+            <div id="messageVerified">{{message.get_status_display}}</div>
+        {%elif message.status == 2%}
+            <div id="messageUnverified">{{message.get_status_display}}</div>
+		{%endif%}	
+            {{message.title}}
+        </h2>
+        {% if user.has_edit_rights %}
+        <a title="Редактировать сообщение в админке" href="http://master.dev-rynda.ru/show/message/<?php echo $message['id'];?>">[Редактировать сообщение]</a>
+        {%endif%}
+        <div class="grey">{{message.date_add|date:"d.m.Y г. H:i (МСК)"}}</div>
+        <div class="vm_main_text rounded_all">{{message.message|safe}}</div>
+        <div class="vm_categories">
+            Категории:
+        {% for c in message.category.all%}
+             {{c.name}}
+        {%endfor%}
+        </div>
+        {% if message.photos %}
+        <div class="vm_pics">
+            {% for p in message.photo %}
+        	<a href="{{p.uri}}" class="photoHref" rel="photo">
+                <img src="{{p.thumb_uri}}" alt="" />
+            </a>
+            {%endfor%}
+        </div>
+        {%endif%}
+    </div>
+    <!-- Левая панель завершена -->
+    
+    <!-- Правая панель -->
+    <div class="column" id="vm_2_column">
+        <ul class="aid_list">
+            <li>
+<!--                <img src="/images/incognito.png" alt="Инкогнито" />-->
+                От:
+                <strong>
+                {% if message.public %}
+                              // Данные об имени частично скрыты (выводится И + первая буква Ф):
+                               (empty($message['firstName']) ? '' : $message['firstName'])
+                              .(empty($message['lastName']) ? '' : ' '.mb_substr($message['lastName'], 0, 1).'.').' '
+                {{else}} 
+                              // Данные об имени открыты (выводится ФИО в виде ссылки на страницу юзера):
+                               ($message['userId'] ? '<a href="/info/u/'.$message['userId'].'">' : '')
+                              .(empty($message['firstName']) ? '' : $message['firstName'])
+                              .(empty($message['patrName']) ? '' : " {$message['patrName']}")
+                              .(empty($message['lastName']) ? '' : " {$message['lastName']}")
+                              .($message['userId'] ? '</a>' : '')
+                {%endif%}
+                </strong>
+    			<br />
+				{% if  not message.public %}
+                <div id="contactsData" style="display:none">
+                {% for p in message.phones %}
+                    <span class="phone-ico mr10"></span>{{p}}<br />
+                {% endfor %}
+					<span class="email-ico mr10"></span>
+                    <a href="mailto:{{ message.email}}">{{message.email}}</a>
+                </div>
+                 <div id="contactsHidden" class="fs1e">
+				{% for p in message.phones%}
+				
+                    <span class="phone-ico mr10"></span>
+                    <span class="vat fs12">{{p}}</span>
+				
+                    <br />
+                {%endfor%}
+					<span class="email-ico mr10"></span>
+                    <span class="vat fs12">XXXXX@user.ru</span>
+                    <div id="showContacts" class="dotted freshGreen mt4">Открыть контактную информацию</div>
+                </div>
+                {% else %}
+                <div>
+                    Пользователь предпочёл скрыть свою контактную информацию.<br /><br />
+                    Чтобы связаться с ним, используйте <a href="#comments">комментарии</a>!
+                </div>
+                {%endif%}
+                <div class="clearfix mb35"></div>
+            </li>
+        </ul>
+        {% if message.locationId.name or message.locationId.regionId %}
+            <strong>На карте:</strong>
+            {{message.locationId.name}} {{message.locationId.regionId}}
+
+        {% endif %}
+
+        {% if message.locationId.latitude or message.locationId.longitude %}
+            <div id="locationMap">
+                <div id="locationMapCanvas" class="mt10" style="width: 410px; height: 250px;"></div>
+            </div>
+            <div id="messageLat" style="display:none;">{{ message.locationId.latitude}}</div>
+            <div id="messageLng" style="display:none;">{{ message.locationId.longitude}}</div>
+        {%endif%}
+        <!-- AddThis Button BEGIN -->
+        <div class="social_networks mt25">
+			<script type="text/javascript">
+                var addthis_config = {ui_language: 'ru'}
+            </script>		
+            <div class="addthis_toolbox addthis_default_style addthis_32x32_style">
+            <a class="addthis_button_vk" title="Запостить во ВКонтакте"></a>
+            <a class="addthis_button_facebook" title="Запостить в Facebook"></a>
+            <a class="addthis_button_twitter" title="Запостить в Twitter"></a>
+            <a class="addthis_button_mymailru" title="Добавить в Мой Мир на Mail.ru"></a>
+            <a class="addthis_button_favorites" title="Сохранить в закладках браузера"></a>
+            <a class="addthis_button_google" title="Сохранить в закладках Google"></a>
+            <a class="addthis_button_livejournal" title="Запостить в ЖЖ"><img alt="LiveJournal" src="/css/i/lj.png" width="32px" height="32px" /></a>
+            <a class="addthis_button_compact" title="Сохранить в..."></a>
+            </div>
+            <script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#username=xa-4d1233ce7f701763"></script>
+        </div>
+        <!-- AddThis Button END -->
+    </div>
+    <!-- Правая панель завершена -->
+	
+	{% comment %}
+    <?php if( !empty($advises) ) {?>
+        <div class="g960 inside" id="nh_actualRecommendations">
+            <!--<div class="more_rec">
+            <a class="orange rynda_icon" href="#">Другие рекомендации</a>
+            </div>-->
+            <h3 class="no_text">Актуальные рекомендации</h3>
+            <div class="clearfix grey_line"></div>
+            <div class="act_rec_cont">
+                <ul id="recommendationsList" class="no_list floatleft">
+                <?php foreach($advises as $advise) {?>
+                    <li>
+    <!--                    <div style="width:135px; height:100px; background:#CCC; float:left; margin-right:20px;">Тут картинка</div>-->
+    <!--                    <a href="/info/s/<?php echo $advise['id'];?>">-->
+                        <h4 class="mb10"><?php echo $advise['title'];?></h4>
+    <!--                    </a>-->
+                        <div>
+                        <?php echo $advise['text'];?>
+                        <br /><br />
+                        Категории: <?php echo formatCategoryList($advise['categories']);?>
+                        <br /><br />
+    <!--                    <a class="orange" href="/info/s/<?php echo $advise['id'];?>">Подробнее &raquo;</a>-->
+                        </div>
+                    </li>
+                <?php }?>
+                </ul>
+                <div class="clearfix"></div>
+            </div>
+            <div class="nh_act_rec_bottom"></div>
+        </div>
+    <?php }?>
+	;?>
+    <div class="clear1">&nbsp;</div>
+    <?php $this->load->view('widgets/commentsBlock', array());?>
+	{% endcomment %}
+</div>
+{%endblock%}
+
+

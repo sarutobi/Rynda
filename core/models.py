@@ -106,7 +106,7 @@ class Location(models.Model):
         db_table = 'Location'
 
     latitude = models.FloatField()
-    longtitude = models.FloatField()
+    longitude = models.FloatField(db_column='longitude')
     regionId = models.ForeignKey(Region, db_column='region_id')
     name = models.CharField(max_length=200)
 

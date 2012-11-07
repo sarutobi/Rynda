@@ -47,10 +47,21 @@ def all(request):
         context_instance=RequestContext(request)
     )
 
+
 def add_request_form(request):
     return render_to_response('request_form.html',
         {
             'form': MessageForm(),
         },
         context_instance=RequestContext(request)
+    )
+
+
+def show_message(request, id):
+    return render_to_response('message_details.html',
+    {
+        'message': Message.objects.get(id=id)
+    },
+    context_instance=RequestContext(request,
+        processors=[subdomains_context,])
     )
