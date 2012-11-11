@@ -20,7 +20,7 @@ def api_root(request, format=None):
 
 
 class MapMessageList(generics.ListAPIView):
-    queryset = Message.approved.select_related('locationId').all()
+    queryset = Message.approved.select_related('location').all()
     serializer_class = MapMessageSerializer
 
 
