@@ -7,17 +7,8 @@
         <span title="<?php echo $listTitle;?>"><?php echo $listTitleShort;?></span>
     </div>
     <div class="inside g340">
-    GGGG
-	{% comment %}
-    <?php $this->load->view('widgets/messagesFilter',
-                            array('messageTypes' => empty($messageTypes) ? array() : $messageTypes,
-                                  'regions' => empty($regions) ? array() : $regions,
-                                  'categories' => empty($categories) ? array() : $categories,
-                                  'filterShowFields' => empty($filterShowFields) ? array() : $filterShowFields,
-                                  'filterPersistVars' => empty($filterPersistVars) ? array() : $filterPersistVars,));
-    ?>
-    {% endcomment %}
-	</div>
+   	{% include 'widgets/filter.html' %}
+    </div>
     <div class="column g560 ml50">
         <div class="header_container rounded_top">
     		<div class="alignright mc_container">
@@ -33,7 +24,7 @@
                 <a href="#" class="dateAddedFrom" id="<?php echo strtotime('-3 day', mktime(0, 0, 0));?>" title="Только сообщения, поступившие за последние 3 дня">За 3 дня</a> |
                 <a href="#" class="dateAddedFrom" id="<?php echo strtotime('-1 week', mktime(0, 0, 0));?>" title="Только сообщения, поступившие за последнюю неделю">За неделю</a> |
                 <a href="#" class="dateAddedFrom" id="<?php echo strtotime('-1 month', mktime(0, 0, 0));?>" title="Только сообщения, поступившие за последний месяц">За месяц</a> |
-                <a href="#" class="dateAddedFrom" id="0" title="Сообщения, поступившие за все время">За все время</a><img id="filterResponseLoading" src="{{STATIC_URL}}/images/white_sm_loader.gif" alt="" style="display: none;" />
+                <a href="#" class="dateAddedFrom" id="0" title="Сообщения, поступившие за все время">За все время</a><img id="filterResponseLoading" src="{{STATIC_URL}}/img/white_sm_loader.gif" alt="" style="display: none;" />
             </div>
             
             <div id="filterResponseMessage"></div>
@@ -65,7 +56,7 @@
                 <br />
                 <br />
                 <span class="darkGrey fs10">
-                    {{m.dateAdd|date:"d.m.Y"}} | <a href="/info/r/{{m.locationId.region_id}}" title="Все сообщения по региону «{{m.locationId.regionId}}»">{{m.locationId.regionId}}</a>
+                    {{m.date_add|date:"d.m.Y"}} | <a href="/info/r/{{m.location.regionId}}" title="Все сообщения по региону «{{m.location.regionId}}»">{{m.location.regionId}}</a>
         {% comment %}    
         <!--            {{if categories.length > 0}} | {{/if}}
                     {{each categories}}

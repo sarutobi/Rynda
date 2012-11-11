@@ -1,0 +1,28 @@
+<div class="expandable">
+    <div class="expandableTitle">Свернуть/развернуть</div>
+    <div class="expandableIsOpened" style="display: none;">
+        <?php echo empty($expandedByDefault) ? 0 : 1;?>
+    </div>
+    <div class="expandableContent">
+        <ul class="no_list form_corrector cat_select" id="categoryListing">
+            {% for cat in categories %}
+            <li id="{{cat.id}}">
+                {% if cat.children %}
+                <div class="categoryGroup">
+                    <div id="childs_of_{{cat.id}}" class="categoryListIcon collapsed">&nbsp;</div>
+                      {{cat.name}}
+                </div>
+                <div class="clearfix"></div>
+                <img class="subCatsLoading" src="/img/white_sm_loader.gif" alt="" style="display: none;" />
+                <ul class="no_list subcategory catChilds" style="display: none;"></ul>
+                {% else %}
+                <label class="cat_label cat_label_child">
+                    <input type="checkbox" name="category[]" value="{{cat.id}}" />
+                    {{cat.name}}
+                </label>
+                {%endif%}
+            </li>
+           {% endfor %} 
+        </ul>
+    </div>
+</div>

@@ -42,9 +42,10 @@ def list(request):
 def all(request):
     return render_to_response('all_messages.html',
         {
-            'messages': Message.objects.select_related().filter(status__gt=1)[:10],
+            'messages': Message.approved.select_related('location', 'messageType', 'location__regionId').all()[:10],
         },
-        context_instance=RequestContext(request)
+        context_instance=RequestContext(request,
+            processors=[subdomains_context, categories_context])
     )
 
 
