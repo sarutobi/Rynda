@@ -4,6 +4,7 @@ from django.conf.urls import patterns, include, url
 # from django.contrib import admin
 # admin.autodiscover()
 
+
 urlpatterns = patterns('',
     # Examples:
     # url(r'^$', 'RyndaRebuild.views.home', name='home'),
@@ -17,9 +18,14 @@ urlpatterns = patterns('',
     url(r'^$', 'message.views.list'),
     url(r'^vse$', 'message.views.all'),
     ('^info/(?P<slug>[a-z_]+)$', 'core.views.infopages.show_page'),
+    ('^info/s/(?P<id>\d+)$', 'message.views.show_message'),
     ('^pomogite/dobavit', 'message.views.add_request_form'),
 )
 
 urlpatterns += patterns('core.views',
 
+)
+
+urlpatterns += patterns('',
+    (r'^api/', include('api.urls')),
 )
