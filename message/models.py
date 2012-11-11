@@ -3,6 +3,12 @@ from django.db import models
 
 from core.models import Location, Category, Subdomain
 
+
+class ApprovedMessages(models.Manager):
+    def get_query_set(self):
+        return super(ApprovedMessages, self).get_query_set()\
+            .filter(status__gt=1)
+
 class MessageType(models.Model):
     '''Message types'''
     class Meta():
@@ -37,8 +43,12 @@ class Message(models.Model):
         db_table = 'Message'
         ordering = ['-date_add']
 
+    #Managers
+    objects = models.Manager()
+    approved = ApprovedMessages()
+
     #Mandatory fields
-    title = models.CharField(max_length=200, verbose_name='Заголовок')
+    title = models.CharField(max_length=200, verbose_name='Заголовок', null=True)
     message = models.TextField(verbose_name='Сообщение')
     #XXX Legacy, will be purged completely
     sender = models.TextField()
@@ -70,11 +80,11 @@ class Message(models.Model):
     expired_date = models.DateTimeField(verbose_name="Expired at",
         blank=True, null=True)
     user = models.IntegerField(verbose_name="User", editable=False,
-        db_column='user_id')
-    edit_key = models.CharField(max_length=40)
+        db_column='user_id', blank=True, null=True)
+    edit_key = models.CharField(max_length=40, blank=True, null=True)
 
     #Links to core models
-    locationId = models.ForeignKey(Location, db_column='location_id',
+    location = models.ForeignKey(Location, db_column='location_id',
         null=True)
     category = models.ManyToManyField(Category, db_table='messagecategories',
         symmetrical=False, verbose_name='Категории сообщения')
