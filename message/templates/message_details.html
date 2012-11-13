@@ -93,13 +93,13 @@
                 <div class="clearfix mb35"></div>
             </li>
         </ul>
-        {% if message.locationId.name or message.locationId.regionId %}
+        {% if message.location.name or message.location.regionId %}
             <strong>На карте:</strong>
             {{message.locationId.name}} {{message.locationId.regionId}}
 
         {% endif %}
 
-        {% if message.locationId.latitude or message.locationId.longitude %}
+        {% if message.location.latitude or message.location.longitude %}
             <div id="locationMap">
                 <div id="locationMapCanvas" class="mt10" style="width: 410px; height: 250px;"></div>
             </div>
