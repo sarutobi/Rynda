@@ -4,6 +4,9 @@ from django import forms
 
 from core.models import *
 
+from message.models import Message, MessageType
+
+
 class InfoPageForm(forms.ModelForm):
     class Meta():
         model = Infopage
