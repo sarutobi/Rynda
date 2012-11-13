@@ -42,7 +42,8 @@ class Category(models.Model):
         ordering = ['order']
 
     parentId = models.ForeignKey('self', default=0, db_column='parent_id',
-        verbose_name='Родительская категория', blank=True, null=True)
+        verbose_name='Родительская категория', blank=True, null=True,
+        related_name='parent')
     name = models.CharField(max_length=200, db_column='name',
         verbose_name='Наименование категории')
     description = models.TextField(null=True, db_column='description',
