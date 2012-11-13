@@ -6,7 +6,6 @@ from django.template import RequestContext
 
 from core.models import Region, Subdomain
 from message.models import Message
-from core.utils import get_categories_tree
 from feed.models import FeedItem
 
 from utils.tree import to_tree
@@ -47,6 +46,28 @@ def all(request):
         context_instance=RequestContext(request,
             processors=[subdomains_context, categories_context])
     )
+
+
+def requests(request):
+    return render_to_response('all_messages.html',
+        {
+            'messages': Message.approved.select_related('location',\
+            'messageType', 'location__regionId').filter(messageType=1)[:10],
+        },
+        context_instance=RequestContext(request,
+            processors=[subdomains_context, categories_context])
+    )
+
+def offer(request):
+    return render_to_response('all_messages.html',
+        {
+            'messages': Message.approved.select_related('location',\
+            'messageType', 'location__regionId').filter(messageType=2)[:10],
+        },
+        context_instance=RequestContext(request,
+            processors=[subdomains_context, categories_context])
+    )
+
 
 
 def add_request_form(request):
