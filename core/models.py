@@ -61,6 +61,7 @@ class Category(models.Model):
     def __unicode__(self):
         return self.name
 
+
 class Infopage(models.Model):
     class Meta():
         db_table = 'information_page'
@@ -112,7 +113,7 @@ class Location(models.Model):
     name = models.CharField(max_length=200)
 
     def __unicode__(self):
-        return u'%f %f' % (self.latitude, self.longtitude)
+        return u'%f %f' % (self.latitude, self.longitude)
 
 
 class Multimedia(models.Model):
