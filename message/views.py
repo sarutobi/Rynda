@@ -3,6 +3,7 @@
 
 from django.shortcuts import render_to_response
 from django.template import RequestContext
+from django.views.generic.detail import DetailView
 
 from core.models import Region, Subdomain
 from message.models import Message
@@ -78,6 +79,18 @@ def add_request_form(request):
         context_instance=RequestContext(request)
     )
 
+
+class MessageView(DetailView):
+    model = Message
+    template_name = "message_details.html"
+    context_object_name = "message"
+
+    def get_context_data(self, **kwargs):
+        context = super(MessageView, self).get_context_data(**kwargs)
+        sc = subdomains_context(self.request)
+        for key in sc.keys():
+            context[key] = sc[key]
+        return context
 
 def show_message(request, id):
     return render_to_response('message_details.html',
