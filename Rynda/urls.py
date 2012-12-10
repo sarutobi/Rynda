@@ -20,6 +20,7 @@ urlpatterns = patterns('',
     url(r'^$', 'message.views.list'),
     url(r'^login$', 'django.contrib.auth.views.login',\
         {'template_name': 'login.html'}),
+    url(r'^logout$', 'message.views.logout_view'),
     url(r'^vse$', 'message.views.all'),
     url(r'^pomogite$', 'message.views.requests'),
     url(r'^pomogu$', 'message.views.offer'),

@@ -1,9 +1,10 @@
 # -*- coding: utf-8 -*-
 # Create your views here.
 
-from django.shortcuts import render_to_response
+from django.shortcuts import redirect, render_to_response
 from django.template import RequestContext
 from django.views.generic.detail import DetailView
+from django.contrib.auth import logout
 
 from core.models import Region, Subdomain
 from message.models import Message
@@ -69,7 +70,9 @@ def offer(request):
             processors=[subdomains_context, categories_context])
     )
 
-
+def logout_view(request):
+    logout(request)
+    return redirect('/')
 
 def add_request_form(request):
     return render_to_response('request_form.html',
