@@ -171,7 +171,7 @@
                 {{r.date_add|date:"d.m"}}<br />
 			    <span class="triple_year">{{r.date_add|date:"Y"}}</span>
 		      </div>
-              <a class="triple_link" href="/info/s/{{r.id}}" title="Просьба о помощи #{{r.id}}{{r.title}}">
+              <a class="triple_link" href="/message/{{r.id}}" title="Просьба о помощи #{{r.id}}{{r.title}}">
                 {%if r.title%}
                     {{r.title}}
                 {%else%}
@@ -202,7 +202,7 @@
                 {{o.date_add|date:"d.m"}}<br />
 			    <span class="triple_year">{{o.date_add|date:"Y"}}</span>
 		      </div>
-              <a class="triple_link" href="/info/s/{{o.id}}" title="Просьба о помощи #{{o.id}}{{o.title}}">
+              <a class="triple_link" href="/message/{{o.id}}" title="Просьба о помощи #{{o.id}}{{o.title}}">
                 {%if o.title%}
                     {{o.title}}
                 {%else%}
@@ -234,7 +234,7 @@
                 {{c.date_add|date:"d.m"}}<br />
 			    <span class="triple_year">{{c.date_add|date:"Y"}}</span>
 		      </div>
-              <a class="triple_link" href="/info/s/{{o.id}}" title="Просьба о помощи #{{c.id}}{{c.title}}">
+              <a class="triple_link" href="/message/{{c.id}}" title="Просьба о помощи #{{c.id}}{{c.title}}">
                 {%if c.title%}
                     {{c.title}}
                 {%else%}
@@ -274,7 +274,7 @@
                 {{i.dateAdd|date:"d.m"}}<br />
 			    <span class="triple_year">{{i.dateAdd|date:"Y"}}</span>
 		      </div>
-              <a class="triple_link" href="/info/s/{{o.id}}" title="Информационное сообщение #{{i.id}}{{i.title}}">
+              <a class="triple_link" href="/message/{{i.id}}" title="Информационное сообщение #{{i.id}}{{i.title}}">
                 {%if i.title%}
                     {{i.title}}
                 {%else%}
