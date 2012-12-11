@@ -1,6 +1,6 @@
 from django.conf.urls import patterns, include, url
 
-from message.views import MessageView
+from message.views import MessageView, CreateRequest
 
 # Uncomment the next two lines to enable the admin:
 # from django.contrib import admin
@@ -27,7 +27,7 @@ urlpatterns = patterns('',
     url(r'message/(?P<pk>\d+)$', MessageView.as_view()),
     ('^info/(?P<slug>[a-z_]+)$', 'core.views.infopages.show_page'),
     #('^info/s/(?P<id>\d+)$', 'message.views.show_message'),
-    ('^pomogite/dobavit', 'message.views.add_request_form'),
+    ('^pomogite/dobavit', CreateRequest.as_view()),
 )
 
 urlpatterns += patterns('core.views',

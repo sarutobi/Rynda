@@ -4,6 +4,8 @@
 from django.shortcuts import redirect, render_to_response
 from django.template import RequestContext
 from django.views.generic.detail import DetailView
+from django.views.generic.edit import CreateView
+
 from django.contrib.auth import logout
 
 from core.models import Region, Subdomain
@@ -13,7 +15,7 @@ from feed.models import FeedItem
 from utils.tree import to_tree
 
 from core.context_processors import subdomains_context, categories_context
-from message.forms import MessageForm
+from message.forms import RequestForm
 
 def list(request):
     last_requests = Message.objects.filter(messageType=1,status__gt=1,
@@ -81,6 +83,12 @@ def add_request_form(request):
         },
         context_instance=RequestContext(request)
     )
+
+
+class CreateRequest(CreateView):
+    template_name = "request_form.html"
+    model = Message
+    form_class = RequestForm
 
 
 class MessageView(DetailView):
