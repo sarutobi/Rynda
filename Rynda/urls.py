@@ -1,7 +1,5 @@
 from django.conf.urls import patterns, include, url
 
-from message.views import MessageView, CreateRequest
-
 # Uncomment the next two lines to enable the admin:
 # from django.contrib import admin
 # admin.autodiscover()
@@ -21,13 +19,8 @@ urlpatterns = patterns('',
     url(r'^login$', 'django.contrib.auth.views.login',\
         {'template_name': 'login.html'}),
     url(r'^logout$', 'message.views.logout_view'),
-    url(r'^vse$', 'message.views.all'),
-    url(r'^pomogite$', 'message.views.requests'),
-    url(r'^pomogu$', 'message.views.offer'),
-    url(r'message/(?P<pk>\d+)$', MessageView.as_view()),
+    url(r'^message/', include('message.urls')),
     ('^info/(?P<slug>[a-z_]+)$', 'core.views.infopages.show_page'),
-    #('^info/s/(?P<id>\d+)$', 'message.views.show_message'),
-    ('^pomogite/dobavit', CreateRequest.as_view()),
 )
 
 urlpatterns += patterns('core.views',
