@@ -20,6 +20,7 @@ urlpatterns = patterns('',
         {'template_name': 'login.html'}),
     url(r'^logout$', 'message.views.logout_view'),
     url(r'^message/', include('message.urls')),
+    url(r'^user/', include('users.urls')),
     ('^info/(?P<slug>[a-z_]+)$', 'core.views.infopages.show_page'),
 )
 
