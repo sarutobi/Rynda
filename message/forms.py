@@ -12,7 +12,9 @@ class RequestForm(forms.ModelForm):
         exclude = ('messageType', 'flags', 'status', 'date_add', 'last_edit',
             'expired_date','location', 'sender', 'subdomain', 'edit_key',
             'notes', 'user', '')
-        widgets = {'category':forms.CheckboxSelectMultiple(), }
+        widgets = {'category':forms.CheckboxSelectMultiple(),
+            'message': forms.Textarea(attrs={'rows': 5, 'cols': 5})
+        }
 
     lat = forms.FloatField(widget=forms.HiddenInput)
     lon = forms.FloatField(widget=forms.HiddenInput)
