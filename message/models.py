@@ -53,7 +53,9 @@ class Message(models.Model):
     #XXX Legacy, will be purged completely
     sender = models.TextField()
     #XXX Should be entered after data conversion
-    contact = models.CharField(max_length=200, verbose_name="Author",
+    contact_first_name = models.CharField(max_length=200, verbose_name="First name",
+        blank=True, null=True)
+    contact_last_name = models.CharField(max_length=200, verbose_name="Last name",
         blank=True, null=True)
     contact_mail = models.CharField(max_length=200, blank=True,
         null=True, verbose_name="Email(s)")
