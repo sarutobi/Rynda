@@ -162,7 +162,7 @@
 {% endif%}
 	
     <div class="column triple_column mr25">
-        <a href="/pomogite"><h3 class="mb0 helpneeded rounded_top no_text">Просьбы о помощи</h3></a>
+        <a href="/message/pomogite"><h3 class="mb0 helpneeded rounded_top no_text">Просьбы о помощи</h3></a>
         <div class="triple_container" id="mp1">
           <ul id="requestsList" class="no_list triplelist">
             {% for r in requests%}
@@ -182,7 +182,7 @@
             </li>
             {%endfor%}
           </ul>
-          <a id="requestsMore" href="/pomogite" class="alignright green triple_more_info" title="Все просьбы  о помощи &raquo;"><strong>Другие просьбы о помощи&#8230;</strong></a>
+          <a id="requestsMore" href="/message/pomogite" class="alignright green triple_more_info" title="Все просьбы  о помощи &raquo;"><strong>Другие просьбы о помощи&#8230;</strong></a>
           <div id="requestsNotFound" style="display:none">
           		<ul class="no_list triplelist">
           			<li>Просьб о помощи не найдено — <a href="/pomogite/dobavit">добавить свою</a></li>
@@ -193,7 +193,7 @@
     </div>
     
     <div class="column triple_column mr25">
-        <a href="/pomogu"><h3 class="mb0 helpprovided no_text rounded_top">Предложения помощи</h3></a>
+        <a href="/message/pomogu"><h3 class="mb0 helpprovided no_text rounded_top">Предложения помощи</h3></a>
         <div class="triple_container" id="mp2">
             <ul id="offersList" class="no_list triplelist">
             {% for o in offers %}
@@ -213,7 +213,7 @@
             </li>
             {%endfor%}
             </ul>
-            <a id="offersMore" href="/pomogu" class="alignright green triple_more_info" title="Все предложения помощи &raquo;"><strong>Другие предложения помощи&#8230;</strong></a>
+            <a id="offersMore" href="/message/pomogu" class="alignright green triple_more_info" title="Все предложения помощи &raquo;"><strong>Другие предложения помощи&#8230;</strong></a>
             <div id="offersNotFound" style="display:none">
             	<ul class="no_list triplelist">
             		<li>Предложений помощи не найдено — <a href="/pomogu/dobavit">добавить своё</a></li>
@@ -224,7 +224,7 @@
     </div>
     
     <div class="column triple_column">
-        <a href="/pomogite/pomogli"><h3 class="mb0 helpgiven no_text rounded_top">Помощь нашлась</h3></a>
+        <a href="/message/pomogite/pomogli"><h3 class="mb0 helpgiven no_text rounded_top">Помощь нашлась</h3></a>
         <div class="triple_container" id="mp4">
             {%if completed %}
             <ul id="helpedList" class="no_list triplelist">
@@ -245,7 +245,7 @@
             </li>
             {%endfor%}
             </ul>
-            <a id="helpedMore" style="display: none;" href="/pomogite/pomogli" class="alignright green triple_more_info" title="Все успешные сообщения &raquo;">
+            <a id="helpedMore" style="display: none;" href="/message/pomogite/pomogli" class="alignright green triple_more_info" title="Все успешные сообщения &raquo;">
                 <strong>Другие успешные сообщения&#8230;</strong>
             </a>
             {%else%}
