@@ -466,5 +466,12 @@
     </li>
 </script>
 {%endcomment%}
+{% endblock %}
 
+{% block scripts %}
+<script type='text/javascript'>
+$(function(){
+    sameheight($('.triple_container'));
+} )
+</script>
 {%endblock%}

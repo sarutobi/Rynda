@@ -15,6 +15,18 @@
     window.Rynda = Rynda;
 })();
 
+function sameheight(group){
+    var tallest = 0;
+    group.each(function(){
+        var h = $(this).height();
+        if (tallest < h){
+            tallest = h;
+        }
+    });
+    group.height(tallest);
+}
+
+
 var cloudmade = new L.TileLayer(
     'http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
     { maxZoom: 18,
