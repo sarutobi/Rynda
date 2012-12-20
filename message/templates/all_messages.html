@@ -1,13 +1,58 @@
-{% extends 'base_buttons.html' %}
+{% extends 'base_list.html' %}
 
-{% block maincontent %}
+{% block listfilter%}
+    {% include 'widgets/filter.html' %}
+{% endblock %}
+
+{% block listcontent %}
+{% for m in messages %}
+<li>
+    {%if m.messageType.slug == 'request'%}
+    <a href="/info/s/{{m.id}}" title="Просьба о помощи #{{m.id}}{% if m.title %}: {{m.title}} {%endif%}" class="darkGrey list_number">#{{m.id}}</a>
+    <div class="list_content">
+        <a href="/info/s/{{m.id}}" class="darkRed" title="Просьба о помощи №{{m.id}}{%if m.title%}: {{m.title}} {%endif%}">
+            <strong>Просьба о помощи #{{m.id}}{%if m.title%}: {{m.title}} {%endif%}</strong>
+        </a>
+    {% elif m.messageType.slug == 'offer' %}
+    <a href="/info/s/{{m.id}}" title="Предложение помощи #${{m.id}}{% if m.title %}: {{m.title}} {% endif %}" class="darkGrey list_number">#{{m.id}}</a>
+    <div class="list_content">
+        <a href="/info/s/{{m.id}}" class="darkRed" title="Предложение помощи №{{m.id}}{% if m.title %}: {{m.title}} {% endif %}">
+            <strong>Предложение помощи #{{m.id}}{% if m.title %}: {{m.title}} {% endif %}</strong>
+        </a>
+    {% elif m.messageType.slug == 'info' %}
+    <a href="/info/s/{{m.id}}" title="Информационное сообщение #{{m.id}}{% if m.title %}: {{m.title}} {% endif %}" class="darkGrey list_number">#{{m.id}}</a>
+    <div class="list_content">
+        <a href="/info/s/{{m.id}}" class="darkRed" title="Информационное сообщение #{{m.id}}{% if m.title %}: {{m.title}} {% endif %}">
+            <strong>Информационное сообщение #{{m.id}}{% if m.title %}: {{m.title}} {% endif %}</strong>
+        </a>
+    {% endif %}    
+    <br />
+    <div class="clearfix mt4"></div>
+    <a href="/info/s/{{m.id}}" class="no_underline" title="Подробные сведения о сообщении">{{ m.message|safe|truncatewords:10 }}</a>
+    <br />
+    <br />
+    <span class="darkGrey fs10">
+        {{m.date_add|date:"d.m.Y"}} | <a href="/info/r/{{m.location.regionId}}" title="Все сообщения по региону «{{m.location.regionId}}»">{{m.location.regionId}}</a>
+{% comment %}    
+<!--            {{if categories.length > 0}} | {{/if}}
+        {{each categories}}
+            <a href="/info/c/${$value.id}" class="orange" title="Все сообщения категории «${$value.name}»">${$value.name}</a>{{if $index < $data.categories.length - 1}}, {{/if}}
+        {{/each}}-->
+{% endcomment %}
+    </span>
+    </div>
+    <div class="clearfix"></div>
+</li>
+{%endfor%}
+
+{%endblock %}
+
 <div class="g960" id="content">
     <div class="breadcrumbs mb10">
         <a title="Главная" href="/">Главная</a> &raquo;
         <span title="<?php echo $listTitle;?>"><?php echo $listTitleShort;?></span>
     </div>
     <div class="inside g340">
-   	{% include 'widgets/filter.html' %}
     </div>
     <div class="column g560 ml50">
         <div class="header_container rounded_top">
@@ -89,4 +134,3 @@
     <div class="clearfix "></div>
 </div>
 
-{%endblock%}
