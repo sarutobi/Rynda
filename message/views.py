@@ -16,6 +16,8 @@ from utils.tree import to_tree
 
 from core.context_processors import subdomains_context, categories_context
 from core.mixins import SubdomainContextMixin
+from core.views import RyndaDetailView
+
 from message.forms import RequestForm
 
 def list(request):
@@ -94,7 +96,7 @@ class CreateRequest(SubdomainContextMixin, CreateView):
         return initial
 
 
-class MessageView(DetailView, SubdomainContextMixin):
+class MessageView(RyndaDetailView):
     model = Message
     template_name = "message_details.html"
     context_object_name = "message"
