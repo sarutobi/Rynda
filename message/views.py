@@ -15,6 +15,7 @@ from feed.models import FeedItem
 from utils.tree import to_tree
 
 from core.context_processors import subdomains_context, categories_context
+from core.mixins import SubdomainContextMixin
 from message.forms import RequestForm
 
 def list(request):
@@ -76,32 +77,34 @@ def logout_view(request):
     logout(request)
     return redirect('/')
 
-def add_request_form(request):
-    return render_to_response('request_form.html',
-        {
-            'form': MessageForm(),
-        },
-        context_instance=RequestContext(request)
-    )
 
-
-class CreateRequest(CreateView):
+class CreateRequest(SubdomainContextMixin, CreateView):
     template_name = "request_form.html"
     model = Message
     form_class = RequestForm
 
+    def get_initial(self):
+        '''Returns default values if user is authenticated'''
+        initial = {}
+        if self.request.user.is_authenticated():
+            u = self.request.user
+            initial['contact_first_name'] = u.first_name
+            initial['contact_last_name'] = u.last_name
+            initial['contact_mail'] = u.get_profile().email
+        return initial
 
-class MessageView(DetailView):
+
+class MessageView(DetailView, SubdomainContextMixin):
     model = Message
     template_name = "message_details.html"
     context_object_name = "message"
 
-    def get_context_data(self, **kwargs):
-        context = super(MessageView, self).get_context_data(**kwargs)
-        sc = subdomains_context(self.request)
-        for key in sc.keys():
-            context[key] = sc[key]
-        return context
+    #def get_context_data(self, **kwargs):
+    #    context = super(MessageView, self).get_context_data(**kwargs)
+    #    sc = subdomains_context(self.request)
+    #    for key in sc.keys():
+    #        context[key] = sc[key]
+    #    return context
 
 def show_message(request, id):
     return render_to_response('message_details.html',
