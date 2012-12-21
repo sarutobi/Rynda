@@ -3,6 +3,8 @@
 from datetime import datetime
 
 from django.db import models
+from django.contrib.auth.models import User
+
 
 class Group(models.Model):
     class Meta():
@@ -23,6 +25,7 @@ class Users(models.Model):
         ordering = ['created']
 
     id = models.IntegerField(db_column = 'id', primary_key = True)
+    user = models.OneToOneField(User)
     groupId = models.ForeignKey(Group, db_column = 'group_id')
     ipAddr = models.CharField(max_length = 16, db_column = 'ip_address')
     username = models.CharField(max_length = 15, db_column = 'username')
