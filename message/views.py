@@ -13,7 +13,7 @@ from feed.models import FeedItem
 from utils.tree import to_tree
 
 from core.context_processors import subdomains_context, categories_context
-from core.mixins import SubdomainContextMixin
+from core.mixins import SubdomainContextMixin, CategoryMixin
 from core.views import RyndaCreateView, RyndaDetailView, RyndaListView
 
 from message.forms import RequestForm
@@ -78,7 +78,7 @@ def logout_view(request):
     return redirect('/')
 
 
-class CreateRequest(RyndaCreateView):
+class CreateRequest(CategoryMixin, RyndaCreateView):
     template_name = "request_form.html"
     model = Message
     form_class = RequestForm
