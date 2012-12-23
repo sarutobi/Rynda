@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from core.context_processors import subdomains_context, categories_context
-
+from core.models import Category
 
 class SubdomainContextMixin(object):
     '''Subdomain context mixin'''
@@ -56,3 +56,17 @@ class PaginatorMixin(object):
                 if n < num_pages]
         return {'first':first, 'window':window, 'last':last,
             'has_prev':has_prev, 'has_next':has_next}
+
+
+class CategoryMixin(object):
+    '''Category mixin'''
+    def get_context_data(self, **kwargs):
+        context = super(CategoryMixin, self).get_context_data(**kwargs)
+        cats = Category.objects.values('id', 'name', 'parentId').filter(subdomain=None)
+        tree = [c for c in cats if c['parentId'] is None]
+        for l in tree:
+            l['children'] = [c for c in cats if c['parentId'] == l['id']]
+        context['categories'] = tree
+        return context
+
+
