@@ -5,22 +5,22 @@
 {% endblock %}
 
 {% block listcontent %}
-{% for m in messages %}
+{% for m in object_list %}
 <li>
     {%if m.messageType.slug == 'request'%}
-    <a href="/info/s/{{m.id}}" title="Просьба о помощи #{{m.id}}{% if m.title %}: {{m.title}} {%endif%}" class="darkGrey list_number">#{{m.id}}</a>
+    <a href="/message/{{m.id}}" title="Просьба о помощи #{{m.id}}{% if m.title %}: {{m.title}} {%endif%}" class="darkGrey list_number">#{{m.id}}</a>
     <div class="list_content">
-        <a href="/info/s/{{m.id}}" class="darkRed" title="Просьба о помощи №{{m.id}}{%if m.title%}: {{m.title}} {%endif%}">
+        <a href="/message/{{m.id}}" class="darkRed" title="Просьба о помощи №{{m.id}}{%if m.title%}: {{m.title}} {%endif%}">
             <strong>Просьба о помощи #{{m.id}}{%if m.title%}: {{m.title}} {%endif%}</strong>
         </a>
     {% elif m.messageType.slug == 'offer' %}
-    <a href="/info/s/{{m.id}}" title="Предложение помощи #${{m.id}}{% if m.title %}: {{m.title}} {% endif %}" class="darkGrey list_number">#{{m.id}}</a>
+    <a href="/message/{{m.id}}" title="Предложение помощи #${{m.id}}{% if m.title %}: {{m.title}} {% endif %}" class="darkGrey list_number">#{{m.id}}</a>
     <div class="list_content">
         <a href="/info/s/{{m.id}}" class="darkRed" title="Предложение помощи №{{m.id}}{% if m.title %}: {{m.title}} {% endif %}">
             <strong>Предложение помощи #{{m.id}}{% if m.title %}: {{m.title}} {% endif %}</strong>
         </a>
     {% elif m.messageType.slug == 'info' %}
-    <a href="/info/s/{{m.id}}" title="Информационное сообщение #{{m.id}}{% if m.title %}: {{m.title}} {% endif %}" class="darkGrey list_number">#{{m.id}}</a>
+    <a href="/message/{{m.id}}" title="Информационное сообщение #{{m.id}}{% if m.title %}: {{m.title}} {% endif %}" class="darkGrey list_number">#{{m.id}}</a>
     <div class="list_content">
         <a href="/info/s/{{m.id}}" class="darkRed" title="Информационное сообщение #{{m.id}}{% if m.title %}: {{m.title}} {% endif %}">
             <strong>Информационное сообщение #{{m.id}}{% if m.title %}: {{m.title}} {% endif %}</strong>
@@ -47,90 +47,60 @@
 
 {%endblock %}
 
-<div class="g960" id="content">
-    <div class="breadcrumbs mb10">
-        <a title="Главная" href="/">Главная</a> &raquo;
-        <span title="<?php echo $listTitle;?>"><?php echo $listTitleShort;?></span>
-    </div>
-    <div class="inside g340">
-    </div>
-    <div class="column g560 ml50">
-        <div class="header_container rounded_top">
-    		<div class="alignright mc_container">
-            	<div id="export_csv" class="csv pointer no_text" title="Экспорт списка в CSV">Экспорт списка</div>
-            	Всего: <span id="itemsCount" style="display:none;"></span>
-                
-            </div>
-            <h3 class="mb0 rounded_top regulartext_header"><?php echo $listTitleShort;?></h3>
-		</div>  
-        <div class="message_list" id="mp1">
-        	<div class="date_select mb10">
-                <a href="#" class="dateAddedFrom" id="<?php echo mktime(0, 0, 0);?>" title="Только сообщения, поступившие сегодня">За сегодня</a> |
-                <a href="#" class="dateAddedFrom" id="<?php echo strtotime('-3 day', mktime(0, 0, 0));?>" title="Только сообщения, поступившие за последние 3 дня">За 3 дня</a> |
-                <a href="#" class="dateAddedFrom" id="<?php echo strtotime('-1 week', mktime(0, 0, 0));?>" title="Только сообщения, поступившие за последнюю неделю">За неделю</a> |
-                <a href="#" class="dateAddedFrom" id="<?php echo strtotime('-1 month', mktime(0, 0, 0));?>" title="Только сообщения, поступившие за последний месяц">За месяц</a> |
-                <a href="#" class="dateAddedFrom" id="0" title="Сообщения, поступившие за все время">За все время</a><img id="filterResponseLoading" src="{{STATIC_URL}}/img/white_sm_loader.gif" alt="" style="display: none;" />
-            </div>
-            
-            <div id="filterResponseMessage"></div>
-            <ul id="itemsList" class="no_list datelist grayDivider">
-            {% for m in messages %}
-            <li>
-                {%if m.messageType.slug == 'request'%}
-                <a href="/info/s/{{m.id}}" title="Просьба о помощи #{{m.id}}{% if m.title %}: {{m.title}} {%endif%}" class="darkGrey list_number">#{{m.id}}</a>
-                <div class="list_content">
-                    <a href="/info/s/{{m.id}}" class="darkRed" title="Просьба о помощи №{{m.id}}{%if m.title%}: {{m.title}} {%endif%}">
-                        <strong>Просьба о помощи #{{m.id}}{%if m.title%}: {{m.title}} {%endif%}</strong>
-                    </a>
-                {% elif m.messageType.slug == 'offer' %}
-                <a href="/info/s/{{m.id}}" title="Предложение помощи #${{m.id}}{% if m.title %}: {{m.title}} {% endif %}" class="darkGrey list_number">#{{m.id}}</a>
-                <div class="list_content">
-                    <a href="/info/s/{{m.id}}" class="darkRed" title="Предложение помощи №{{m.id}}{% if m.title %}: {{m.title}} {% endif %}">
-                        <strong>Предложение помощи #{{m.id}}{% if m.title %}: {{m.title}} {% endif %}</strong>
-                    </a>
-                {% elif m.messageType.slug == 'info' %}
-                <a href="/info/s/{{m.id}}" title="Информационное сообщение #{{m.id}}{% if m.title %}: {{m.title}} {% endif %}" class="darkGrey list_number">#{{m.id}}</a>
-                <div class="list_content">
-                    <a href="/info/s/{{m.id}}" class="darkRed" title="Информационное сообщение #{{m.id}}{% if m.title %}: {{m.title}} {% endif %}">
-                        <strong>Информационное сообщение #{{m.id}}{% if m.title %}: {{m.title}} {% endif %}</strong>
-                    </a>
-                {% endif %}    
-                <br />
-                <div class="clearfix mt4"></div>
-                <a href="/info/s/{{m.id}}" class="no_underline" title="Подробные сведения о сообщении">{{ m.message|safe|truncatewords:10 }}</a>
-                <br />
-                <br />
-                <span class="darkGrey fs10">
-                    {{m.date_add|date:"d.m.Y"}} | <a href="/info/r/{{m.location.regionId}}" title="Все сообщения по региону «{{m.location.regionId}}»">{{m.location.regionId}}</a>
-        {% comment %}    
-        <!--            {{if categories.length > 0}} | {{/if}}
-                    {{each categories}}
-                        <a href="/info/c/${$value.id}" class="orange" title="Все сообщения категории «${$value.name}»">${$value.name}</a>{{if $index < $data.categories.length - 1}}, {{/if}}
-                    {{/each}}-->
-        {% endcomment %}
-                </span>
-                </div>
-                <div class="clearfix"></div>
-            </li>
-            {%endfor%}
-        </ul>
-            <div class="clearfix"></div>
-            <div id="paginationBlock" class="paginaton mb10">
-                
-                <div id="paginationPages" data-current-page="1" class="alignleft list_pagination_div"></div>
-                <div class="alignright"><span class="darkGrey">Сообщений на странице:</span> 
-                    <select id="paginationItemsPerPage" name="paginationItemsPerPage">
-                        <option value="10" selected="selected">10</option>
-                        <option value="25">25</option>
-                        <option value="50">50</option>
-                        <option value="100">100</option>
-                        <option value="0">Все</option>
-                    </select>
-                </div>
-                <div class="clearfix "></div>
-            </div>
-       </div>
-    </div>
-    <div class="clearfix "></div>
+{% block paginator %}
+
+<div id="paginationPages" data-current-page="{{paginator.number}}" class="alignleft list_pagination_div">
+{% if page_obj.has_prev %}
+    <a class='page' href='/message/page/{{page_obj.previous_page_number}}'>Назад</a>
+{%else%}
+    <span class='page'>Назад</span>
+{%endif%}
+
+{%if paginator_line.first%}
+    {% for p in paginator_line.first %}
+        {%if p != page_obj.number%}
+            <a class='page' href='/message/page/{{p}}'>{{p}}</a>
+        {%else%}
+            <span class='current_page'>{{p}}</span>
+        {%endif%}
+    {%endfor%}
+    ...
+{%endif%}
+{% for p in paginator_line.window %}
+    {%if p != page_obj.number%}
+        <a class='page' href='/message/page/{{p}}'>{{p}}</a>
+    {%else%}
+        <span class='current_page'>{{p}}</span>
+    {%endif%}
+{%endfor%}
+
+{%if paginator_line.last%}
+    ...
+    {% for p in paginate.last %}
+        {%if p != page_obj.number%}
+            <a class='page' href='/message/page/{{p}}'>{{p}}</a>
+        {%else%}
+            <span class='current_page'>{{p}}</span>
+        {%endif%}
+    {%endfor%}
+{%endif%}
+
+{%if page_obj.has_next%}
+    <a class='page' href='/message/page/{{page_obj.next_page_number}}'>Вперед</a>
+{%else%}
+    <span class='page'>Вперед</span>
+{%endif%}
 </div>
+
+<div class="alignright"><span class="darkGrey">Сообщений на странице:</span>
+    <select id="paginationItemsPerPage" name="paginationItemsPerPage">
+        <option value="10" selected="selected">10</option>
+        <option value="25">25</option>
+        <option value="50">50</option>
+        <option value="100">100</option>
+        <option value="0">Все</option>
+    </select>
+</div>
+<div class="clearfix "></div>
+{% endblock %}
 

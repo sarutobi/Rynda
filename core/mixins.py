@@ -16,7 +16,7 @@ class SubdomainContextMixin(object):
 class PaginatorMixin(object):
     '''Paginator line mixin. Best use with list-based mixins'''
 
-    def paginator(num_pages, page = 1, adj_pages = 2, outside_range = 3):
+    def paginator(self, num_pages, page = 1, adj_pages = 2, outside_range = 3):
         page = int(page)
         num_pages = int(num_pages)
         if page > num_pages:
