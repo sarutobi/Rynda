@@ -3,8 +3,6 @@
 
 from django.shortcuts import redirect, render_to_response
 from django.template import RequestContext
-from django.views.generic.detail import DetailView
-from django.views.generic.edit import CreateView
 
 from django.contrib.auth import logout
 
@@ -16,7 +14,7 @@ from utils.tree import to_tree
 
 from core.context_processors import subdomains_context, categories_context
 from core.mixins import SubdomainContextMixin
-from core.views import RyndaDetailView
+from core.views import RyndaCreateView, RyndaDetailView, RyndaListView
 
 from message.forms import RequestForm
 
@@ -80,7 +78,7 @@ def logout_view(request):
     return redirect('/')
 
 
-class CreateRequest(SubdomainContextMixin, CreateView):
+class CreateRequest(RyndaCreateView):
     template_name = "request_form.html"
     model = Message
     form_class = RequestForm
@@ -101,18 +99,16 @@ class MessageView(RyndaDetailView):
     template_name = "message_details.html"
     context_object_name = "message"
 
-    #def get_context_data(self, **kwargs):
-    #    context = super(MessageView, self).get_context_data(**kwargs)
-    #    sc = subdomains_context(self.request)
-    #    for key in sc.keys():
-    #        context[key] = sc[key]
-    #    return context
 
-def show_message(request, id):
-    return render_to_response('message_details.html',
-    {
-        'message': Message.objects.get(id=id)
-    },
-    context_instance=RequestContext(request,
-        processors=[subdomains_context,])
-    )
+class MessageList(RyndaListView):
+    queryset = Message.approved.select_related('location', 'messageType', 'location__regionId').all()
+    paginate_by = 10
+    template_name = 'all_messages.html'
+    context_object_name = 'messages'
+
+    def get_context_data(self, **kwargs):
+        context = super(MessageList, self).get_context_data(**kwargs)
+        print context['page_obj'].number
+        sc = self.paginator(context['paginator'].num_pages, page=context['page_obj'].number)
+        context['paginator_line'] = sc
+        return context
