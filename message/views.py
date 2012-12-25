@@ -94,6 +94,11 @@ class CreateRequest(CategoryMixin, RyndaCreateView):
         return initial
 
 
+class CreateOffer(CategoryMixin, RyndaCreateView):
+    template_name = "offer_form.html"
+    model = Message
+    form_class = RequestForm
+
 class MessageView(RyndaDetailView):
     model = Message
     template_name = "message_details.html"
