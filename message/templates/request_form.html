@@ -178,16 +178,18 @@
                     <!-- Выбор категорий -->
                     <h3>4. Отметьте категории Вашей проблемы:</h3>
                     <div class="list_style_corrector">
-                    <ul>
+                    <ul class="no_list form_corrector cat_select">
+                    {{form.category}}
+                        {%comment%}
                         {% for c in categories %}
                             <li>
                             {{c.name}}
                             {%if c.children %}
-                            <ul>
+                            <ul class="no_list">
                                 {% for l in c.children %}
                                 <li>
-                                    <label for="id_category_{{forloop.parentloop.counter0}}">
-                                    <input type="checkbox" value="{{l.id}}" id="id_category_{{forloop.parentloop.counter0}}" name="category">
+                                    <label class="label_show" for="id_category_{{forloop.parentloop.counter0}}{{forloop.counter0}}">
+                                    <input type="checkbox" value="{{l.id}}" id="id_category_{{forloop.parentloop.counter0}}{{forloop.counter0}}" name="category">
                                     {{l.name}}
                                     </label>
                                 </li>
@@ -196,6 +198,7 @@
                             {%endif%}
                             </li>
                         {%endfor%}
+                        {%endcomment%}
                     </ul>
                     </div>
                     <div id="categoryError" class="validationError" style="display:none;"></div>

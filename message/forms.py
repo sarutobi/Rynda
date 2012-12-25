@@ -3,8 +3,8 @@
 from django import forms
 
 from message.models import Message, MessageType
-from core.models import Region
-
+from core.models import Region, Category
+from core.widgets import CategoryTree
 
 class RequestForm(forms.ModelForm):
     class Meta():
@@ -12,13 +12,16 @@ class RequestForm(forms.ModelForm):
         exclude = ('messageType', 'flags', 'status', 'date_add', 'last_edit',
             'expired_date','location', 'sender', 'subdomain', 'edit_key',
             'notes', 'user', '')
-        widgets = {'category':forms.CheckboxSelectMultiple(),
+        widgets = {'category': CategoryTree(tree=Category.objects.
+            filter(subdomain=None).values('id', 'name', 'parentId')),
             'message': forms.Textarea(attrs={'rows': 5, 'cols': 5})
         }
 
     lat = forms.FloatField(widget=forms.HiddenInput)
     lon = forms.FloatField(widget=forms.HiddenInput)
     region = forms.ModelChoiceField(Region.objects.all(), label='Регион')
+    #category = forms.ModelChoiceField(Category.objects.filter(subdomain=None)
+    #    .exclude(parentId=None),widget=CategoryWidget())
 #    messageType = forms.ModelChoiceField(MessageType.objects.filter(id__lt=5), label='Тип сообщения')
     #msgType = forms.ChoiceField(choices = Message.MESSAGE_TYPE, label = 'Тип сообщения')
     address = forms.CharField(label='Адрес')
