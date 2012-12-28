@@ -21,7 +21,7 @@ urlpatterns = patterns('',
     url(r'^logout$', 'message.views.logout_view'),
     url(r'^message/', include('message.urls')),
     url(r'^user/', include('users.urls')),
-    ('^info/(?P<slug>[a-z_]+)$', 'core.views.infopages.show_page'),
+    ('^info/(?P<slug>[a-z_]+)$', 'core.views.show_page'),
 )
 
 urlpatterns += patterns('core.views',
