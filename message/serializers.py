@@ -16,4 +16,4 @@ class MapMessageSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Message
-        fields = ['id', 'title', 'lat', 'lon',]
+        fields = ['id', 'title', 'lat', 'lon', 'messageType']
