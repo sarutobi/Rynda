@@ -40,7 +40,7 @@ class Message(models.Model):
                       (6, u'Закрыто'))
 
     class Meta():
-        db_table = 'Message'
+        #db_table = 'Message'
         ordering = ['-date_add']
 
     #Managers
