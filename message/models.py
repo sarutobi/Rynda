@@ -50,9 +50,6 @@ class Message(models.Model):
     #Mandatory fields
     title = models.CharField(max_length=200, verbose_name='Заголовок', null=True)
     message = models.TextField(verbose_name='Сообщение')
-    #XXX Legacy, will be purged completely
-    sender = models.TextField()
-    #XXX Should be entered after data conversion
     contact_first_name = models.CharField(max_length=200, verbose_name="First name",
         blank=True, null=True)
     contact_last_name = models.CharField(max_length=200, verbose_name="Last name",
@@ -71,8 +68,6 @@ class Message(models.Model):
     #Moderator's fields
     flags = models.BigIntegerField()
     status = models.SmallIntegerField(choices=MESSAGE_STATUS, verbose_name='Статус')
-    #XXX Legacy field, will be purged
-    notes = models.TextField(verbose_name='Заметки', blank=True, default='')
 
     #Internal fields    
     date_add = models.DateTimeField(auto_now_add=True,
@@ -84,6 +79,8 @@ class Message(models.Model):
     user = models.IntegerField(verbose_name="User", editable=False,
         db_column='user_id', blank=True, null=True)
     edit_key = models.CharField(max_length=40, blank=True, null=True)
+    sender_ip = models.IPAddressField(blank=True, null=True, editable=False,
+        verbose_name="Sender IP")
 
     #Links to core models
     location = models.ForeignKey(Location, db_column='location_id',
