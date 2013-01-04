@@ -79,7 +79,7 @@ def logout_view(request):
 
 
 class CreateRequest(CategoryMixin, RyndaCreateView):
-    template_name = "request_form.html"
+    template_name = "request_form_simple.html"
     model = Message
     form_class = RequestForm
 
