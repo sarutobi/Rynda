@@ -20,7 +20,20 @@ class RyndaDetailView(SubdomainContextMixin, DetailView):
 
 
 class RyndaListView(SubdomainContextMixin, PaginatorMixin, ListView ):
-    pass
+    paginator_url = None
+
+    def get_paginator_url(self):
+        if self.paginator_url is None:
+            raise Exception(
+              "You MUST define paginator_url or overwrite get_paginator_url()")
+        return self.paginator_url
+
+    def get_context_data(self, **kwargs):
+        context = super(RyndaListView, self).get_context_data(**kwargs)
+        context['paginator_url'] = self.get_paginator_url()
+        sc = self.paginator(context['paginator'].num_pages, page=context['page_obj'].number)
+        context['paginator_line'] = sc
+        return context
 
 
 def show_page(request, slug):
