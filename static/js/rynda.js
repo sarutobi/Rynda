@@ -63,9 +63,14 @@ Rynda.map = (function(){
         });
     }
 
+    function toggleMap(){
+        $(this.map.getContainer()).toggle();
+    }
+
     return  {
         fetch: fetch,
-        createMap: createMap
+        createMap: createMap,
+        toggleMap: toggleMap
     }
 })();
 
