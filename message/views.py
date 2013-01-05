@@ -110,10 +110,5 @@ class MessageList(RyndaListView):
     paginate_by = 10
     template_name = 'all_messages.html'
     context_object_name = 'messages'
+    paginator_url = '/message/page/'
 
-    def get_context_data(self, **kwargs):
-        context = super(MessageList, self).get_context_data(**kwargs)
-        print context['page_obj'].number
-        sc = self.paginator(context['paginator'].num_pages, page=context['page_obj'].number)
-        context['paginator_line'] = sc
-        return context
