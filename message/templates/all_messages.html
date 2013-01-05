@@ -48,50 +48,6 @@
 {%endblock %}
 
 {% block paginator %}
-
-<div id="paginationPages" data-current-page="{{paginator.number}}" class="alignleft list_pagination_div">
-{% if page_obj.has_prev %}
-    <a class='page' href='/message/page/{{page_obj.previous_page_number}}'>Назад</a>
-{%else%}
-    <span class='page'>Назад</span>
-{%endif%}
-
-{%if paginator_line.first%}
-    {% for p in paginator_line.first %}
-        {%if p != page_obj.number%}
-            <a class='page' href='/message/page/{{p}}'>{{p}}</a>
-        {%else%}
-            <span class='current_page'>{{p}}</span>
-        {%endif%}
-    {%endfor%}
-    ...
-{%endif%}
-{% for p in paginator_line.window %}
-    {%if p != page_obj.number%}
-        <a class='page' href='/message/page/{{p}}'>{{p}}</a>
-    {%else%}
-        <span class='current_page'>{{p}}</span>
-    {%endif%}
-{%endfor%}
-
-{%if paginator_line.last%}
-    ...
-    {% for p in paginate.last %}
-        {%if p != page_obj.number%}
-            <a class='page' href='/message/page/{{p}}'>{{p}}</a>
-        {%else%}
-            <span class='current_page'>{{p}}</span>
-        {%endif%}
-    {%endfor%}
-{%endif%}
-
-{%if page_obj.has_next%}
-    <a class='page' href='/message/page/{{page_obj.next_page_number}}'>Вперед</a>
-{%else%}
-    <span class='page'>Вперед</span>
-{%endif%}
-</div>
-
 <div class="alignright"><span class="darkGrey">Сообщений на странице:</span>
     <select id="paginationItemsPerPage" name="paginationItemsPerPage">
         <option value="10" selected="selected">10</option>
