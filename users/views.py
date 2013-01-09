@@ -1,10 +1,12 @@
 # -*- coding: utf-8 -*-
 
+from django.shortcuts import render_to_response
+from django.contrib.auth.models import User
 from django.views.generic.detail import DetailView
 
-from django.contrib.auth.models import User
+from core.views import RyndaFormView, RyndaListView
 
-from core.views import RyndaListView
+from users.forms import SimpleRegistrationForm
 
 
 class UserDetail(DetailView):
@@ -19,3 +21,13 @@ class UserList(RyndaListView):
     paginator_url = '/user/page/'
     paginate_by = 10
 
+
+class CreateUser(RyndaFormView):
+    template_name = 'registerform_simple.html'
+    model = User
+    form_class = SimpleRegistrationForm
+
+def create_user(request):
+    return render_to_response('registerform_simple.html',
+        {'form': SimpleRegistrationForm(),}
+    )

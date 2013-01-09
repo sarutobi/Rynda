@@ -1,4 +1,8 @@
+# -*- coding: utf-8 -*-
+
 from django.conf.urls import patterns, include, url
+
+from users.views import CreateUser
 
 # Uncomment the next two lines to enable the admin:
 # from django.contrib import admin
@@ -16,10 +20,12 @@ urlpatterns = patterns('',
     # Uncomment the next line to enable the admin:
     # url(r'^admin/', include(admin.site.urls)),
     url(r'^$', 'message.views.list'),
+    url(r'^t/(?P<slug>[a-z_0-9-]+)$', 'message.views.list'),
+    url(r'^register$', CreateUser.as_view()),
     url(r'^login$', 'django.contrib.auth.views.login',\
         {'template_name': 'login.html'}),
     url(r'^logout$', 'message.views.logout_view'),
-    url(r'^message/', include('message.urls')),
+    url(r'^t/(?P<slug>)message/', include('message.urls')),
     url(r'^user/', include('users.urls')),
     ('^info/(?P<slug>[a-z_]+)$', 'core.views.show_page'),
 )

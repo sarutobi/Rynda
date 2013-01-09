@@ -1,0 +1,17 @@
+{% extends 'base.html'%}
+
+{% block maincontent %}
+<form action="" method="post">
+{%csrf_token%}
+{{form.email.errors}}
+{{form.email.label_tag}}
+{{form.email}}
+{{form.password1.errors}}
+{{form.password1.label_tag}}
+{{form.password1}}
+{{form.password2.errors}}
+{{form.password2.label_tag}}
+{{form.password2}}
+<input type="submit">
+</form>
+{% endblock %}
