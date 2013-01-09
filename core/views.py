@@ -3,7 +3,7 @@
 from django.shortcuts import render_to_response, get_object_or_404
 
 from django.views.generic.detail import DetailView
-from django.views.generic.edit import CreateView
+from django.views.generic.edit import CreateView, FormView
 from django.views.generic.list import ListView
 from django.template import RequestContext
 
@@ -14,10 +14,8 @@ from core.context_processors import subdomains_context, categories_context
 class RyndaCreateView(SubdomainContextMixin, CreateView):
     pass
 
-
 class RyndaDetailView(SubdomainContextMixin, DetailView):
     pass
-
 
 class RyndaListView(SubdomainContextMixin, PaginatorMixin, ListView ):
     paginator_url = None
@@ -35,6 +33,9 @@ class RyndaListView(SubdomainContextMixin, PaginatorMixin, ListView ):
         context['paginator_line'] = sc
         return context
 
+
+class RyndaFormView(SubdomainContextMixin, FormView):
+    pass
 
 def show_page(request, slug):
     page = get_object_or_404(Infopage, slug=slug)
