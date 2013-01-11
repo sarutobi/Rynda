@@ -1,0 +1,44 @@
+<div class="mapTabs">
+    <ul class="floatleft no_list tabs">
+    <li></li>
+    {% for s in visible_subs %}
+        {%if s.url == current_sub %}
+              <li class="tab_active {%if s.isCurrent%}tab_crysis{%endif%}">
+                <span>{{s.title}}{{forloop.counter}}</span>
+              </li>
+        {%else%}
+              <li class="{%if s.isCurrent%}tab_crysis{%endif%}"><div align="center" class="tabLink_container">
+                <a href="http://{{base_url}}/t/{%if s.url%}{{s.url}}{%else%}all{%endif%}"
+                   title="Перейти на карту помощи «{{s.title}}»"><div>&nbsp;</div>
+                    <span>{{s.title}}</span>
+				</a>
+				</div>
+              </li>
+        {%endif%}
+    {%endfor%}
+    {% if hidden_subs %}
+        <li class="mapTabs-button-sub">
+            <a href="#" class="mapTabs-button-sub-click"></a>
+            <ul class="no_list mapTabs-sub">
+            {%for s in hidden_subs %}
+                {%if s.url == current_sub%}
+                <li class="subdomains_li_active {%if s.isCurrent%}li_crysis{%endif%}">
+                    {{s.title}}
+                </li>
+                {%else%}
+                <li class="{%if s.isCurrent%}li_crysis{%endif%}"><nobr>
+                    <a href="http://{%if s.url%}{{s.url}}.{%endif%}{{base_url}}/"
+                     title="Перейти на карту помощи «{{s.title}}»">
+                        {{s.title}}
+                    </a>
+                    </nobr>
+                </li>
+                {%endif%}
+            
+            <!--li><a href="/" title="Все карты помощи в нашей системе">Другие карты помощи</a></li-->
+            {%endfor%}
+            </ul>
+        </li>
+    {% endif %}
+    </ul>
+</div>
