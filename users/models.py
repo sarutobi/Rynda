@@ -21,31 +21,21 @@ from django.db.models.signals import post_save
 class Users(models.Model):
     '''Описание одного пользователя соцсети Рында'''
     class Meta():
-#        db_table = 'users'
         ordering = ['user']
 
-    #id = models.AutoField(db_column = 'id', primary_key = True)
     user = models.OneToOneField(User)
-#    groupId = models.ForeignKey(Group, db_column = 'group_id')
-    ipAddr = models.CharField(max_length = 16, db_column = 'ip_address')
-#    username = models.CharField(max_length = 15, db_column = 'username')
-#    password = models.CharField(max_length = 40, db_column = 'password')
-#    salt = models.CharField(max_length = 40, db_column = 'salt', null = True)
+#    ipAddr = models.CharField(max_length = 16, db_column = 'ip_address')
 #    email = models.EmailField(max_length = 100, db_column = 'email')
     activCode = models.CharField(max_length = 40, db_column = 'activation_code', null = True)
     forgotCode = models.CharField(max_length = 40, db_column = 'forgotten_password_code', null = True)
     rememberCode = models.CharField(max_length = 40, db_column = 'remember_code', null = True)
-#    created = models.IntegerField(db_column = 'created_on')
-#    lastLogin = models.IntegerField(db_column = 'last_login', null = True)
-#    active = models.NullBooleanField(db_column = 'active', null = True)
-#    first_name = models.CharField(max_length=50, db_column='first_name')
 #    last_name = models.CharField(max_length=50, db_column='last_name')
-    forgotten_time = models.IntegerField(db_column='forgotten_password_time')
-    ref_type = models.IntegerField(db_column='ref_type', default=0)
+#    forgotten_time = models.IntegerField(db_column='forgotten_password_time')
+#    ref_type = models.IntegerField(db_column='ref_type', default=0)
     flags = models.IntegerField(db_column='flags', default=0)
     phones = models.CharField(max_length=255, blank=True)
     about_me = models.TextField()
-    my_photo = models.IntegerField()
+#     my_photo = models.IntegerField()
     birthday = models.DateField()
     gender = models.IntegerField(default=0)
 
