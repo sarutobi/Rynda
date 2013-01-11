@@ -1,6 +1,7 @@
 {% extends 'base.html'%}
 
 {% block maincontent %}
+{{form.errors}}
 <form action="" method="post">
 {%csrf_token%}
 {{form.email.errors}}
