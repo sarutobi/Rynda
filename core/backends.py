@@ -20,6 +20,7 @@ class IonAuth(object):
         '''
         Implement the ion auth validation algorytm
         '''
+        import pdb; pdb.set_trace()
         if not username or not password:
             return None
         try:
