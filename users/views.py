@@ -8,6 +8,7 @@ from core.views import RyndaFormView, RyndaListView
 from core.backends import IonAuth
 from users.forms import SimpleRegistrationForm
 from users.models import Users
+from templated_emails.utils import send_templated_email
 
 class UserDetail(DetailView):
     model = User
@@ -28,7 +29,6 @@ class CreateUser(RyndaFormView):
     success_url = '/'
 
     def form_valid(self, form):
-        #print self.request.META['HTTP_HOST']
         user = User()
         auth = IonAuth()
         ce = form.cleaned_data
@@ -38,15 +38,24 @@ class CreateUser(RyndaFormView):
         user.username = ce['email']
         user.password = auth.password_hash(ce['password1'])
         user.save()
-        #profile = Users.objects.create(user=user, ipAddr=self.request.META['REMOTE_ADDR'])
-        #profile.user = user
-        #profile.email = ce['email']
-        #profile.ipAddr = vself.request.META['REMOTE_ADDR']
-        #profile.save()
+        pr = user.get_profile()
+        pr.activCode = auth.generate_code()
+        pr.save()
+        send_templated_email([user], 'emails/registration_confirm',
+            {'user': user, 'site_url': self.request.META['SERVER_NAME'],
+             'activation_code': pr.activCode,
+            }
+        )
         return redirect(self.success_url)
 
 
-def create_user(request):
-    return render_to_response('registerform_simple.html',
-        {'form': SimpleRegistrationForm(),}
-    )
+def activate_profile(request, pk, key):
+    user = User.objects.get(id=pk)
+    p = user.get_profile()
+    if p.activCode == key:
+        user.is_active = True
+        user.save()
+        p.activCode = ''
+        p.save()
+        redirect('/login')
+    redirect('/')

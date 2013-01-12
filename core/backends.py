@@ -33,7 +33,7 @@ class IonAuth(object):
             user = User.objects.get(email=username)
         except Exception:
             return None
-        if not user.is_active():
+        if not user.is_active:
             return None
         check = self.password_hash(password,
             salt=user.password[:self.SALT_LENGTH])
@@ -61,4 +61,12 @@ class IonAuth(object):
         hasher.update(password)
         return "%s%s" % (salt, hasher.hexdigest()[:-self.SALT_LENGTH])
 
-
+    def generate_code(self):
+        '''
+        Generate activation or frogot password code
+        '''
+        hasher = hashlib.sha1()
+        hasher.update(self.gen_salt())
+        s = hasher.digest()
+        hasher.update('%s%s%s' %(s, self.gen_salt(), s))
+        return hasher.hexdigest()
