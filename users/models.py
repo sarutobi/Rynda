@@ -26,39 +26,32 @@ class Users(models.Model):
     user = models.OneToOneField(User)
 #    ipAddr = models.CharField(max_length = 16, db_column = 'ip_address')
 #    email = models.EmailField(max_length = 100, db_column = 'email')
-    activCode = models.CharField(max_length = 40, db_column = 'activation_code', null = True)
-    forgotCode = models.CharField(max_length = 40, db_column = 'forgotten_password_code', null = True)
-    rememberCode = models.CharField(max_length = 40, db_column = 'remember_code', null = True)
+    activCode = models.CharField(max_length = 40,
+        db_column = 'activation_code', null = True)
+    forgotCode = models.CharField(max_length = 40,
+        db_column = 'forgotten_password_code', null = True)
+    rememberCode = models.CharField(max_length = 40,
+        db_column = 'remember_code', null = True)
 #    last_name = models.CharField(max_length=50, db_column='last_name')
-#    forgotten_time = models.IntegerField(db_column='forgotten_password_time')
+    forgotten_time = models.DateTimeField(db_column='forgotten_password_time', null=True)
 #    ref_type = models.IntegerField(db_column='ref_type', default=0)
     flags = models.IntegerField(db_column='flags', default=0)
     phones = models.CharField(max_length=255, blank=True)
-    about_me = models.TextField()
+    about_me = models.TextField(default='')
 #     my_photo = models.IntegerField()
-    birthday = models.DateField()
+    birthday = models.DateField(null=True)
     gender = models.IntegerField(default=0)
 
 #    def __unicode__(self):
 #        return self.username
 
-#    def firstName(self):
-#        return self.first_name
 
-#    def lastName(self):
-#        return self.last_name
 
-#    def last_login(self):
-#        return datetime.fromtimestamp(self.lastLogin)
+def create_user_profile(sender, instance, created, **kwargs):
+    if created:
+        Users.objects.create(user=instance)
 
-#    def registered(self):
-#        return datetime.fromtimestamp(self.created)
-
-#def create_user_profile(sender, instance, created, **kwargs):
-#    if created:
-#        Users.objects.create(user=instance)
-
-#post_save.connect(create_user_profile, sender=User)
+post_save.connect(create_user_profile, sender=User)
 
 
 #class MetaUser(models.Model):
