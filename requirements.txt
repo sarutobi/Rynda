@@ -1,0 +1,7 @@
+Django
+South
+djangorestframework
+lxml
+py-bcrypt
+python-dateutil
+templated-emails
