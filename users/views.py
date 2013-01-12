@@ -32,8 +32,10 @@ class CreateUser(RyndaFormView):
         user = User()
         auth = IonAuth()
         ce = form.cleaned_data
+        user.first_name = ce['first_name']
+        user.last_name = ce['last_name']
         user.email = ce['email']
-        user.username = (ce['email'])
+        user.username = ce['email']
         user.password = auth.password_hash(ce['password1'])
         user.save()
         #profile = Users.objects.create(user=user, ipAddr=self.request.META['REMOTE_ADDR'])
