@@ -18,7 +18,7 @@ class IonAuth(object):
         Backend implementation
         '''
         try:
-            return User.objects.get(pk=user_id)
+            return User.objects.get(pk=user_id, is_active=True)
         except User.DoesNotExist:
             return None
 
@@ -32,6 +32,8 @@ class IonAuth(object):
         try:
             user = User.objects.get(email=username)
         except Exception:
+            return None
+        if not user.is_active():
             return None
         check = self.password_hash(password,
             salt=user.password[:self.SALT_LENGTH])
