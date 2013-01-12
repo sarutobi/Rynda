@@ -1,16 +1,22 @@
 # -*- coding: utf-8 -*-
 
 import hashlib
+import time
+from random import random
 
 from django.contrib.auth.models import User
-from users.models import Users
+
 
 class IonAuth(object):
     '''
     Authentication against the codeigniter "ion auth" library
     '''
+    SALT_LENGTH = 10
 
     def get_user(self, user_id):
+        '''
+        Backend implementation
+        '''
         try:
             return User.objects.get(pk=user_id)
         except User.DoesNotExist:
@@ -18,21 +24,39 @@ class IonAuth(object):
 
     def authenticate(self, username=None, password=None):
         '''
+        Backend implementation.
         Implement the ion auth validation algorytm
         '''
-        import pdb; pdb.set_trace()
         if not username or not password:
             return None
         try:
-            u = Users.objects.get(email=username)
+            user = User.objects.get(email=username)
         except Exception:
             return None
-        salt = u.password[:10]
+        check = self.password_hash(password,
+            salt=user.password[:self.SALT_LENGTH])
+        if user.password != check:
+            return None
+        return user
+
+    def gen_salt(self):
+        '''
+        Generate password salt, similar to ion auth.
+        '''
+        hasher = hashlib.md5()
+        hasher.update("%f" % random())
+        hasher.update("%d" %time.time())
+        return hasher.hexdigest()[:self.SALT_LENGTH]
+
+    def password_hash(self, password, salt=None):
+        '''
+        Hashes plain password by ion auth algorythm
+        '''
+        if salt is None:
+            salt = self.gen_salt()
         hasher = hashlib.sha1()
         hasher.update(salt)
         hasher.update(password)
-        check = "%s%s" % (salt, hasher.hexdigest()[:-10])
-        if u.password != check:
-            return None
-        return User.objects.get(id=u.id)
+        return "%s%s" % (salt, hasher.hexdigest()[:-self.SALT_LENGTH])
+
 

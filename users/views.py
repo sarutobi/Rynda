@@ -5,7 +5,7 @@ from django.contrib.auth.models import User
 from django.views.generic.detail import DetailView
 
 from core.views import RyndaFormView, RyndaListView
-
+from core.backends import IonAuth
 from users.forms import SimpleRegistrationForm
 from users.models import Users
 
@@ -24,17 +24,17 @@ class UserList(RyndaListView):
 
 class CreateUser(RyndaFormView):
     template_name = 'registerform_simple.html'
-    #model = User
     form_class = SimpleRegistrationForm
     success_url = '/'
 
     def form_valid(self, form):
         #print self.request.META['HTTP_HOST']
         user = User()
+        auth = IonAuth()
         ce = form.cleaned_data
         user.email = ce['email']
-        user.login = ce['email']
-        user.set_password(ce['password1'])
+        user.username = (ce['email'])
+        user.password = auth.password_hash(ce['password1'])
         user.save()
         #profile = Users.objects.create(user=user, ipAddr=self.request.META['REMOTE_ADDR'])
         #profile.user = user
