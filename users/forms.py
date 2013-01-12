@@ -1,7 +1,9 @@
 # -*- coding: utf-8 -*-
 
-from users.models import Users
 from django import forms
+from django.contrib.auth.models import User
+
+from users.models import Users
 
 
 class SimpleRegistrationForm(forms.Form):
@@ -21,7 +23,7 @@ class SimpleRegistrationForm(forms.Form):
         return self.cleaned_data
 
     def clean_email(self):
-        existing = Users.objects.filter(email__iexact=self.cleaned_data['email'])
+        existing = User.objects.filter(email__iexact=self.cleaned_data['email'])
         if existing.exists():
             raise forms.ValidationError("This email already registered")
         return self.cleaned_data['email']
