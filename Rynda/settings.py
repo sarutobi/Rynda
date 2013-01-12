@@ -127,6 +127,7 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'rest_framework',
     'south',
+    'templated_emails',
     'users',
     'message',
     'core',
