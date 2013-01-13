@@ -47,14 +47,12 @@
                 {%endfor%}
                 </ul>
             </li>
-            <li><a href="/info/about" title="О проекте «Виртуальная рында»">О проекте</a>
+            <li><!--a href="/info/about" title="О проекте «Виртуальная рында»">О проекте</a-->
+                <span>О проекте</span>
             	<ul class="nav_list_children">
-                	<li><a href="/info/about" title="О проекте «Виртуальная рында»">О проекте</a></li>
-                    <li><a href="/info/team" title="Команда">Команда</a></li>
-                    <li><a href="/info/thanks" title="Благодарности">Благодарности</a></li>
-                    <li><a href="/info/friends" title="Наши друзья">Наши друзья</a></li>
-                    <li><a href="/info/contacts" title="Наши контакты">Свяжитесь с нами</a></li>
-                    <li><a href="/info/media" title="СМИ о &laquo;Рынде&raquo;">СМИ о &laquo;Рынде&raquo;</a></li>
+                {% for p in pages %}
+                	<li><a href="/info/{{p.slug}}" title="{{p.title}}">{{p.title}}</a></li>
+                {% endfor %}
                 </ul>
             </li>
         </ul>
