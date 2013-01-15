@@ -6,7 +6,8 @@ from django.views.generic.detail import DetailView
 
 from core.views import RyndaFormView, RyndaListView
 from core.backends import IonAuth
-from users.forms import SimpleRegistrationForm
+from users.forms import SimpleRegistrationForm, ForgotPasswordForm,\
+    ResetPasswordForm
 from users.models import Users
 from templated_emails.utils import send_templated_email
 
@@ -47,6 +48,31 @@ class CreateUser(RyndaFormView):
             }
         )
         return redirect(self.success_url)
+
+
+class ForgotPassword(RyndaFormView):
+    template_name = 'forgotpassword_form.html'
+    form_class = ForgotPasswordForm
+
+    def form_valid(self, form):
+        user = User.objects.get(email=form.cleaned_data['email'])
+        auth = IonAuth()
+        profile = user.get_profile()
+        profile.forgotCode = auth.generate_code()
+        profile.save()
+        send_templated_email([user], 'emails/forgot_password',
+            {'user': user, 'forgot_code': profile.forgotCode,
+            'site_url': self.request.META['SERVER_NAME'],
+            }
+        )
+        return redirect(self.success_url)
+
+class ResetPassport(RyndaFormView):
+    template_name = 'resetpassword_form.html'
+    form_class = ResetPasswordForm
+
+    def form_valid(self, form):
+        pass
 
 
 def activate_profile(request, pk, key):
