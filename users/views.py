@@ -53,6 +53,7 @@ class CreateUser(RyndaFormView):
 class ForgotPassword(RyndaFormView):
     template_name = 'forgotpassword_form.html'
     form_class = ForgotPasswordForm
+    success_url = '/'
 
     def form_valid(self, form):
         user = User.objects.get(email=form.cleaned_data['email'])
