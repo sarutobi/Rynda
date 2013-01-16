@@ -170,6 +170,9 @@ LOGGING = {
         },
     }
 }
+
+LOGIN_REDIRECT_URL = '/'
+
 try:
     LOCAL_SETTINGS
 except NameError:
