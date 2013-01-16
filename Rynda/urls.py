@@ -25,6 +25,7 @@ urlpatterns = patterns('',
     url(r'^login$', 'django.contrib.auth.views.login',\
         {'template_name': 'login.html'}),
     url(r'^logout$', 'message.views.logout_view'),
+    url(r'^message/', include('message.urls')),
     url(r'^t/(?P<slug>)message/', include('message.urls')),
     url(r'^user/', include('users.urls')),
     ('^info/(?P<slug>[a-z_]+)$', 'core.views.show_page'),
