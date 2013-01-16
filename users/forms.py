@@ -8,7 +8,7 @@ from users.models import Users
 
 class SimpleRegistrationForm(forms.Form):
     '''
-    Simple registration form, request only user email and password.
+    Simple registration form, request only user name, email and password.
     '''
     first_name = forms.CharField(required=True, max_length=30,
         label="First Name")
@@ -41,3 +41,26 @@ class SimpleRegistrationForm(forms.Form):
         if existing.exists():
             raise forms.ValidationError("This email already registered")
         return self.cleaned_data['email']
+
+
+class ForgotPasswordForm(forms.Form):
+    '''
+    Reset password form. Ask users email and, if this email is registered,
+    send remember code to this email.
+    '''
+    email = forms.EmailField(required=True, label='')
+
+    def clean_email(self):
+        user = User.objects.filter(email=self.cleaned_data['email'])
+        if not user.exists():
+            raise forms.ValidationError('This email isn\'t registered')
+        return self.cleaned_data['email']
+
+
+class ResetPasswordForm(forms.Form):
+    '''
+    Validate resetting password code.
+    '''
+    email = forms.EmailField(required=True, label='')
+    code = forms.CharField(required=True, max_length=40, label='')
+
