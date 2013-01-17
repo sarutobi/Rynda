@@ -113,12 +113,21 @@
   <script src="{{STATIC_URL}}js/libs/underscore-min.js"></script>
   <script src="{{STATIC_URL}}js/libs/backbone-min.js"></script>
   <script src="{{STATIC_URL}}js/libs/leaflet.js"></script>
+  <script src="{{STATIC_URL}}js/messi.min.js"></script>
   <script src="{{STATIC_URL}}js/rynda.js"></script>
 
   <!-- scripts concatenated and minified via build script -->
   
   <script src="{{STATIC_URL}}js/plugins.js"></script>
   <script src="{{STATIC_URL}}js/script.js"></script>
+  {% if messages %}
+  <script type='text/javascript'>
+  //Show popup message
+  $(function(){
+    new Messi('{% for message in messages %} {{ message }} {% endfor %}');
+  });
+  </script>
+  {% endif %}
   {% block scripts %}{% endblock %}
   <!-- end scripts -->
 
