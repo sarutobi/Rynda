@@ -61,6 +61,6 @@ class ResetPasswordForm(forms.Form):
     '''
     Validate resetting password code.
     '''
-    email = forms.EmailField(required=True, label='')
+    #email = forms.EmailField(required=True, label='')
     code = forms.CharField(required=True, max_length=40, label='')
 

@@ -16,6 +16,7 @@ class UserDetail(DetailView):
     template_name = 'user_profile.html'
     context_object_name = 'u'
 
+
 class UserList(RyndaListView):
     template_name = 'userlist.html'
     context_object_name = 'users'
@@ -68,13 +69,27 @@ class ForgotPassword(RyndaFormView):
         )
         return redirect(self.success_url)
 
-class ResetPassport(RyndaFormView):
+
+class ResetPassword(RyndaFormView):
     template_name = 'resetpassword_form.html'
     form_class = ResetPasswordForm
+    success_url = '/'
 
     def form_valid(self, form):
-        pass
-
+        profile = Users.objects.get(forgotCode=form.cleaned_data['code'])
+        user = profile.user
+        profile.forgotCode = ''
+        auth = IonAuth()
+        passwd = auth.generate_code()[:6]
+        user.password = auth.password_hash(passwd)
+        profile.save()
+        user.save()
+        send_templated_email([user], 'emails/new_password',
+            {'user': user, 'password': passwd,
+            'base_url': self.request.META['SERVER_NAME'],
+            }
+        )
+        return redirect(self.success_url)
 
 def activate_profile(request, pk, key):
     user = User.objects.get(id=pk)
