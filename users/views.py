@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from django.shortcuts import redirect, render_to_response
+from django.contrib import messages
 from django.contrib.auth.models import User
 from django.views.generic.detail import DetailView
 
@@ -67,6 +68,8 @@ class ForgotPassword(RyndaFormView):
             'site_url': self.request.META['SERVER_NAME'],
             }
         )
+        messages.success(self.request, 
+            "На указанный адрес почты отправлено письмо с инструкциями")
         return redirect(self.success_url)
 
 
