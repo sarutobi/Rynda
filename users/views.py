@@ -64,8 +64,10 @@ class ForgotPassword(RyndaFormView):
         profile.forgotCode = auth.generate_code()
         profile.save()
         send_templated_email([user], 'emails/forgot_password',
-            {'user': user, 'forgot_code': profile.forgotCode,
-            'site_url': self.request.META['SERVER_NAME'],
+            {
+             'user': user,
+             'forgot_code': profile.forgotCode,
+             'site_url': self.request.META['SERVER_NAME'],
             }
         )
         messages.success(self.request, 
