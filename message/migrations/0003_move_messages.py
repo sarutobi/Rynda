@@ -7,6 +7,9 @@ from django.db import models, connection
 class Migration(DataMigration):
 
     def forwards(self, orm):
+        pass
+
+    def forwards_(self, orm):
         "Write your forwards methods here."
         # Note: Remember to use orm['appname.ModelName'] rather than "from appname.models..."
         sql = '''insert into message_message (id, title, message, date_add, date_modify, subdomain_id, location_id, user_id,
@@ -22,6 +25,7 @@ class Migration(DataMigration):
         cursor = connection.cursor()
         cursor.execute(sql)
         cursor.execute('''select setval('message_message_id_seq', (select max(id) from message_message))''')
+
     def backwards(self, orm):
         "Write your backwards methods here."
 
