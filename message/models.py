@@ -9,6 +9,7 @@ class ApprovedMessages(models.Manager):
         return super(ApprovedMessages, self).get_query_set()\
             .filter(status__gt=1)
 
+
 class MessageType(models.Model):
     '''Message types'''
     class Meta():
@@ -40,7 +41,6 @@ class Message(models.Model):
                       (6, u'Закрыто'))
 
     class Meta():
-        #db_table = 'Message'
         ordering = ['-date_add']
 
     #Managers
@@ -48,28 +48,29 @@ class Message(models.Model):
     approved = ApprovedMessages()
 
     #Mandatory fields
-    title = models.CharField(max_length=200, verbose_name='Заголовок', null=True)
+    title = models.CharField(max_length=200, verbose_name='Заголовок', blank=True)
     message = models.TextField(verbose_name='Сообщение')
     contact_first_name = models.CharField(max_length=200, verbose_name="First name",
-        blank=True, null=True)
+        blank=True)
     contact_last_name = models.CharField(max_length=200, verbose_name="Last name",
-        blank=True, null=True)
+        blank=True)
     contact_mail = models.CharField(max_length=200, blank=True,
-        null=True, verbose_name="Email(s)")
+        verbose_name="Email(s)")
     contact_phone = models.CharField(max_length=200,blank=True,
-        null=True, verbose_name="Phone(s)")
+        verbose_name="Phone(s)")
     messageType = models.ForeignKey(MessageType, db_column='message_type',
-        verbose_name='Тип сообщения')
+        verbose_name='Тип сообщения', blank=True, null=True)
 
     #Optional fields
     source = models.CharField(max_length=255, verbose_name="Source",
-        null=True, blank=True)
+        blank=True)
 
     #Moderator's fields
-    flags = models.BigIntegerField()
-    status = models.SmallIntegerField(choices=MESSAGE_STATUS, verbose_name='Статус')
+    flags = models.BigIntegerField(default=0, blank=True)
+    status = models.SmallIntegerField(choices=MESSAGE_STATUS,
+        verbose_name='Статус', default=1, blank=True)
 
-    #Internal fields    
+    #Internal fields
     date_add = models.DateTimeField(auto_now_add=True,
         db_column='date_add', editable=False)
     last_edit = models.DateTimeField(auto_now=True,
@@ -77,18 +78,19 @@ class Message(models.Model):
     expired_date = models.DateTimeField(verbose_name="Expired at",
         blank=True, null=True)
     user = models.IntegerField(verbose_name="User", editable=False,
-        db_column='user_id', blank=True, null=True)
-    edit_key = models.CharField(max_length=40, blank=True, null=True)
+        db_column='user_id', null=True, blank=True)
+    edit_key = models.CharField(max_length=40, blank=True)
     sender_ip = models.IPAddressField(blank=True, null=True, editable=False,
         verbose_name="Sender IP")
 
     #Links to core models
     location = models.ForeignKey(Location, db_column='location_id',
-        null=True)
+        null=True, blank=True)
     category = models.ManyToManyField(Category, db_table='messagecategories',
-        symmetrical=False, verbose_name='Категории сообщения')
+        symmetrical=False, verbose_name='Категории сообщения', null=True,
+        blank=True)
     subdomain = models.ForeignKey(Subdomain, db_column='subdomain_id',
-        null=True, verbose_name='Страница атласа', blank=True)
+        null=True, blank=True, verbose_name='Страница атласа')
 
     def __unicode__(self):
         return self.title
