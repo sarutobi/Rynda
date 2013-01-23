@@ -6,8 +6,19 @@ from message.models import Message, MessageType
 from core.models import Region, Category
 from core.widgets import CategoryTree
 
+
+class SimpleRequestForm(forms.ModelForm):
+    '''Simple request form'''
+    class Meta:
+        model = Message
+
+    def __init__(self, *args, **kwargs):
+        super(SimpleRequestForm, self).__init__(*args, **kwargs)
+        self.fields['messageType'].initial = 1
+
+
 class RequestForm(forms.ModelForm):
-    class Meta():
+    class Meta:
         model = Message
         exclude = ('messageType', 'flags', 'status', 'date_add', 'last_edit',
             'expired_date','location', 'sender', 'subdomain', 'edit_key',

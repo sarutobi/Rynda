@@ -15,12 +15,14 @@ from utils.tree import to_tree
 from core.context_processors import subdomains_context, categories_context
 from core.mixins import SubdomainContextMixin, CategoryMixin
 from core.views import RyndaCreateView, RyndaDetailView, RyndaListView
+from core.utils import url_filter
+from message.forms import RequestForm, SimpleRequestForm
 
-from message.forms import RequestForm
 
-def list(request):
-    last_requests = Message.objects.filter(messageType=1,status__gt=1,
-        status__lt=6).values('id', 'title', 'date_add')[:5]
+
+def list(request, slug='all'):
+    last_requests = url_filter(Message.objects.filter(messageType=1,status__gt=1,
+        status__lt=6).values('id', 'title', 'date_add'), slug)[:5]
     last_offers = Message.objects.filter(messageType=2,status__gt=1,
         status__lt=6).values('id', 'title','date_add')[:5]
     last_completed = Message.objects.filter(messageType=1,status=6)\
@@ -81,7 +83,7 @@ def logout_view(request):
 class CreateRequest(CategoryMixin, RyndaCreateView):
     template_name = "request_form_simple.html"
     model = Message
-    form_class = RequestForm
+    form_class = SimpleRequestForm
 
     def get_initial(self):
         '''Returns default values if user is authenticated'''
@@ -90,7 +92,7 @@ class CreateRequest(CategoryMixin, RyndaCreateView):
             u = self.request.user
             initial['contact_first_name'] = u.first_name
             initial['contact_last_name'] = u.last_name
-            initial['contact_mail'] = u.get_profile().email
+            initial['contact_mail'] = u.email
         return initial
 
 
