@@ -1,5 +1,9 @@
 {% extends 'base_list.html' %}
 
+{% block listfilter %}
+    {% include "widgets/users_filter.html" %}
+{% endblock %}
+
 {% block listcontent %}
 {% for u in users %}
 <li>
