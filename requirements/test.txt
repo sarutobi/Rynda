@@ -1,0 +1,4 @@
+-r _base.txt
+factory-boy==1.2.0
+django-discover-runner==0.2.2
+

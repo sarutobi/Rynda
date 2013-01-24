@@ -1,6 +1,0 @@
-Django
-South
-djangorestframework
-lxml
-python-dateutil
-templated-emails
