@@ -2,7 +2,7 @@
 
 import unittest
 
-from .utils import generate_string
+from utils import generate_string
 
 class TestGenerateString(unittest.TestCase):
     '''Test string generator function'''
