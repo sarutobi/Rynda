@@ -2,5 +2,5 @@
 import string
 import random
 
-def generate_string(str_len=6, src=string.ascii_lower):
+def generate_string(str_len=6, src=string.ascii_lowercase):
     return "".join(random.choice(src) for x in xrange(str_len))
