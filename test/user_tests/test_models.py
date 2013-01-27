@@ -6,7 +6,7 @@ from test.factories import UserFactory
 from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 
-from users.models import create_user_profile, Users
+from users.models import create_new_user, Users
 
 
 class UserTest(unittest.TestCase):
@@ -26,14 +26,19 @@ class UserTest(unittest.TestCase):
     def test_user_generator(self):
         pass
 
+    def test_create_new_user(self):
+        self.assertEqual(0, User.objects.all().count())
+        create_new_user(
+            first_name = self.user.first_name,
+            last_name = self.user.last_name,
+            email = self.user.email,
+            password='123'
+        )
+        self.assertEqual(1, User.objects.all().count())
+        u = User.objects.get(email=self.user.email)
+        self.assertEqual(u.first_name, self.user.first_name)
+        self.assertEqual(u.last_name, self.user.last_name)
+        self.assertTrue(u.check_password('123'))
+        self.assertFalse(u.is_staff)
+        self.assertFalse(u.is_active)
 
-class UserProfileTest(unittest.TestCase):
-    '''User profile test'''
-    def test_post_save_signal(self):
-        # Disconnect post_save signal from user model (for test purposing only)
-        post_save.disconnect(create_user_profile, sender=User)
-        sender = User
-        user = UserFactory.create()
-        create_user_profile(sender, user, True)
-        cnt = Users.objects.all().count()
-        self.assertEqual(1, cnt)
