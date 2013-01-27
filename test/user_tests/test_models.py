@@ -1,12 +1,13 @@
 # coding: utf-8
 
 import unittest
-from factories import UserFactory
+from test.factories import UserFactory
 
 from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 
 from users.models import create_user_profile, Users
+
 
 class UserTest(unittest.TestCase):
     '''User-specific tests'''
