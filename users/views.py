@@ -7,10 +7,9 @@ from django.views.generic.detail import DetailView
 
 from core.views import RyndaFormView, RyndaListView
 from core.backends import IonAuth
-from users.forms import SimpleRegistrationForm, ForgotPasswordForm,\
-    ResetPasswordForm
-from users.models import Users
-from templated_emails.utils import send_templated_email
+from users.forms import (SimpleRegistrationForm, ForgotPasswordForm,
+    ResetPasswordForm)
+from users.models import create_new_user
 
 class UserDetail(DetailView):
     model = User
@@ -27,27 +26,22 @@ class UserList(RyndaListView):
 
 
 class CreateUser(RyndaFormView):
+    '''
+    New user regiatration.
+    If registration form is valid, create a new deactivated user,
+    new user profile (via signal) and send activation email to user.
+    '''
     template_name = 'registerform_simple.html'
     form_class = SimpleRegistrationForm
     success_url = '/'
 
     def form_valid(self, form):
-        user = User()
-        auth = IonAuth()
         ce = form.cleaned_data
-        user.first_name = ce['first_name']
-        user.last_name = ce['last_name']
-        user.email = ce['email']
-        user.username = ce['email']
-        user.password = auth.password_hash(ce['password1'])
-        user.save()
-        pr = user.get_profile()
-        pr.activCode = auth.generate_code()
-        pr.save()
-        send_templated_email([user], 'emails/registration_confirm',
-            {'user': user, 'site_url': self.request.META['SERVER_NAME'],
-             'activation_code': pr.activCode,
-            }
+        create_new_user(
+            first_name = ce['first_name']
+            last_name = ce['last_name']
+            email = ce['email']
+            password = ce['password1']
         )
         return redirect(self.success_url)
 

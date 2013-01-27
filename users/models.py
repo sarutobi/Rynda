@@ -6,6 +6,10 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.db.models.signals import post_save
 
+from templated_emails.utils import send_templated_email
+
+from core.backends import IonAuth
+
 #class Group(models.Model):
 #    class Meta():
 #        db_table = 'groups'
@@ -46,23 +50,28 @@ class Users(models.Model):
 #        return self.username
 
 
+def create_new_user(first_name, last_name, password, email):
+    auth = IonAuth()
+    user = User(
+        first_name = first_name,
+        last_name = last_name,
+        email = email,
+        username = email,
+        is_staff=False,
+        is_active=False
+    )
+    user.set_password(password),
+    user.save()
+    profile = Users.objects.create(
+        user=user,
+        activCode = auth.generate_code()
+    )
 
-def create_user_profile(sender, instance, created, **kwargs):
-    if created:
-        Users.objects.create(user=instance)
 
-post_save.connect(create_user_profile, sender=User)
+def notify_new_user(user, code):
+    send_templated_email([user], 'emails/registration_confirm',
+            {'user': user, 'site_url': self.request.META['SERVER_NAME'],
+             'activation_code': code,
+            }
+        )
 
-
-#class MetaUser(models.Model):
-#    class Meta():
-#        db_table = 'meta'
-#
-#    id = models.IntegerField(db_column = 'id', primary_key = True)
-#    user = models.OneToOneField(Users, db_column = 'user_id')
-#    firstName = models.CharField(max_length = 50, db_column = 'first_name')
-#    lastName = models.CharField(max_length = 50, db_column = 'last_name')
-#    flags = models.IntegerField(db_column = 'flags')
-#
-#    def __unicode__(self):
-#        return "%s %s" % (self.lastName, self.firstName)
