@@ -39,6 +39,9 @@ class IonAuth(object):
             salt=user.password[:self.SALT_LENGTH])
         if user.password != check:
             return None
+        #Rehash user password to standart Django 
+        user.set_password(password)
+        user.save()
         return user
 
     def gen_salt(self):

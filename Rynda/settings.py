@@ -139,7 +139,11 @@ INSTALLED_APPS = (
     # 'django.contrib.admindocs',
 )
 
-AUTHENTICATION_BACKENDS = ('core.backends.IonAuth',)
+AUTHENTICATION_BACKENDS = (
+    'core.backends.IonAuth',
+    'django.contrib.auth.backends.ModelBackend',
+)
+
 AUTH_PROFILE_MODULE = 'users.users'
 
 # A sample logging configuration. The only tangible logging
