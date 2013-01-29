@@ -1,13 +1,11 @@
 # coding: utf-8
 
 import unittest
-from test.factories import UserFactory
 
 from django.contrib.auth.models import User
-from django.db.models.signals import post_save
 
-from core.backends import IonAuth
 from users.models import create_new_user, Users
+from test.factories import UserFactory
 
 
 class UserTest(unittest.TestCase):
@@ -42,28 +40,6 @@ class UserTest(unittest.TestCase):
         self.assertTrue(u.check_password('123'))
         self.assertFalse(u.is_staff)
         self.assertFalse(u.is_active)
+        u.delete()
 
-
-class AuthTest(unittest.TestCase):
-    '''Authorization tests'''
-    def test_ion_auth(self):
-        self.assertEquals(40, len(self.user.password))
-        
-    def setUp(self):
-        self.user = UserFactory.build(
-            password = IonAuth().password_hash('123')
-        )
-
-    def tearDown(self):
-        self.user = None
-
-    def test_password_rewrite(self):
-        self.user.save()
-        ion_pass = self.user.password
-        ion = IonAuth()
-        u2 = ion.authenticate(self.user.email, '123')
-        self.assertIsNotNone(u2)
-        self.assertFalse(u2.is_anonymous())
-        self.assertNotEqual(self.user.password, u2.password)
-        self.user.delete()
 
