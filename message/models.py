@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
 from django.db import models
+from django.core.exceptions import ValidationError
+from django.core.validators import validate_email
 
 from core.models import Location, Category, Subdomain
 
@@ -55,8 +57,8 @@ class Message(models.Model):
     contact_last_name = models.CharField(max_length=200, verbose_name="Last name",
         blank=True)
     contact_mail = models.CharField(max_length=200, blank=True,
-        verbose_name="Email(s)")
-    contact_phone = models.CharField(max_length=200,blank=True,
+        verbose_name="Email(s)", validators=[validate_email])
+    contact_phone = models.CharField(max_length=200, blank=True,
         verbose_name="Phone(s)")
     messageType = models.ForeignKey(MessageType, db_column='message_type',
         verbose_name='Тип сообщения', blank=True, null=True)
@@ -109,8 +111,12 @@ class Message(models.Model):
         phones = ','.join(ph) or ''
         return u"%s %s %s, email: %s, тел: %s" % (ln, fn, pn, email, phones)
 
+    def clean(self):
+        if not self.contact_mail and not self.contact_phone:
+            raise ValidationError("You must provide email or phone!")
+
     def save(self, *args, **kwargs):
-        self.locationId.save()
+        self.full_clean()
         super(Message, self).save(*args, **kwargs)
 
     def address(self, address=None):
