@@ -50,49 +50,66 @@ class Message(models.Model):
     approved = ApprovedMessages()
 
     #Mandatory fields
-    title = models.CharField(max_length=200, verbose_name='Заголовок', blank=True)
+    title = models.CharField(max_length=200,
+                             verbose_name='Заголовок',
+                             blank=True)
     message = models.TextField(verbose_name='Сообщение')
-    contact_first_name = models.CharField(max_length=200, verbose_name="First name",
-        blank=True)
-    contact_last_name = models.CharField(max_length=200, verbose_name="Last name",
-        blank=True)
-    contact_mail = models.CharField(max_length=200, blank=True,
-        verbose_name="Email(s)", validators=[validate_email])
-    contact_phone = models.CharField(max_length=200, blank=True,
-        verbose_name="Phone(s)")
-    messageType = models.ForeignKey(MessageType, db_column='message_type',
-        verbose_name='Тип сообщения', blank=True, null=True)
+    contact_first_name = models.CharField(max_length=200,
+                                          verbose_name="First name")
+    contact_last_name = models.CharField(max_length=200,
+                                         verbose_name="Last name")
+    contact_mail = models.CharField(max_length=200,
+                                    blank=True,
+                                    verbose_name="Email(s)",
+                                    validators=[validate_email])
+    contact_phone = models.CharField(max_length=200,
+                                     blank=True,
+                                     verbose_name="Phone(s)")
+    messageType = models.ForeignKey(MessageType,
+                                    db_column='message_type',
+                                    verbose_name='Тип сообщения',
+                                    blank=True, null=True)
 
     #Optional fields
-    source = models.CharField(max_length=255, verbose_name="Source",
-        blank=True)
+    source = models.CharField(max_length=255,
+                              verbose_name="Source",
+                              blank=True)
 
     #Moderator's fields
     flags = models.BigIntegerField(default=0, blank=True)
     status = models.SmallIntegerField(choices=MESSAGE_STATUS,
-        verbose_name='Статус', default=1, blank=True)
+                                      verbose_name='Статус',
+                                      default=1, blank=True)
 
     #Internal fields
     date_add = models.DateTimeField(auto_now_add=True,
-        db_column='date_add', editable=False)
+                                    db_column='date_add',
+                                    editable=False)
     last_edit = models.DateTimeField(auto_now=True,
-        db_column='date_modify', editable = False)
+                                     db_column='date_modify',
+                                     editable=False)
     expired_date = models.DateTimeField(verbose_name="Expired at",
-        blank=True, null=True)
+                                        blank=True, null=True)
     user = models.IntegerField(verbose_name="User", editable=False,
-        db_column='user_id', null=True, blank=True)
+                               db_column='user_id',
+                               null=True, blank=True)
     edit_key = models.CharField(max_length=40, blank=True)
-    sender_ip = models.IPAddressField(blank=True, null=True, editable=False,
-        verbose_name="Sender IP")
+    sender_ip = models.IPAddressField(blank=True, null=True,
+                                      editable=False,
+                                      verbose_name="Sender IP")
 
     #Links to core models
     location = models.ForeignKey(Location, db_column='location_id',
-        null=True, blank=True)
-    category = models.ManyToManyField(Category, db_table='messagecategories',
-        symmetrical=False, verbose_name='Категории сообщения', null=True,
-        blank=True)
+                                 null=True, blank=True)
+    category = models.ManyToManyField(Category,
+                                      db_table='messagecategories',
+                                      symmetrical=False,
+                                      verbose_name='Категории сообщения',
+                                      null=True,
+                                      blank=True)
     subdomain = models.ForeignKey(Subdomain, db_column='subdomain_id',
-        null=True, blank=True, verbose_name='Страница атласа')
+                                  null=True, blank=True,
+                                  verbose_name='Страница атласа')
 
     def __unicode__(self):
         return self.title
