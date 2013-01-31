@@ -25,8 +25,51 @@ class TestSimpleRequestForm(unittest.TestCase):
             'message': lorem_ipsum(),
             'contact_first_name': self.user.first_name,
             'contact_last_name': self.user.last_name,
-            'contact_mail': self.user.email
+            'contact_mail': self.user.email,
+            'address': lorem_ipsum(words_count=4),
         }
         form = SimpleRequestForm(data)
         self.assertTrue(form.is_bound)
         self.assertTrue(form.is_valid())
+
+
+class TestRequiredFields(unittest.TestCase):
+
+    def setUp(self):
+        self.user = UserFactory.build()
+        self.data = {
+            'message': lorem_ipsum(),
+            'contact_first_name': self.user.first_name,
+            'contact_last_name': self.user.last_name,
+            'contact_mail': self.user.email,
+            'address': lorem_ipsum(words_count=4),
+        }
+
+    def tearDown(self):
+        self.user = None
+        self.data = None
+
+    def test_lost_address(self):
+        self.data['address'] = ''
+        form = SimpleRequestForm(self.data)
+        self.assertTrue(form.is_bound)
+        self.assertFalse(form.is_valid())
+
+    def test_lost_message(self):
+        self.data['message'] = ''
+        form = SimpleRequestForm(self.data)
+        self.assertTrue(form.is_bound)
+        self.assertFalse(form.is_valid())
+
+    def test_lost_first_name(self):
+        self.data['contact_first_name'] = ''
+        form = SimpleRequestForm(self.data)
+        self.assertTrue(form.is_bound)
+        self.assertFalse(form.is_valid())
+
+    def test_lost_last_name(self):
+        self.data['contact_last_name'] = ''
+        form = SimpleRequestForm(self.data)
+        self.assertTrue(form.is_bound)
+        self.assertFalse(form.is_valid())
+
