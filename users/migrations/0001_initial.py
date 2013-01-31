@@ -10,19 +10,16 @@ class Migration(SchemaMigration):
     def forwards(self, orm):
         # Adding model 'Users'
         db.create_table('users_users', (
-            ('id', self.gf('django.db.models.fields.IntegerField')(primary_key=True, db_column='id')),
+            ('id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
             ('user', self.gf('django.db.models.fields.related.OneToOneField')(to=orm['auth.User'], unique=True)),
-            ('ipAddr', self.gf('django.db.models.fields.CharField')(max_length=16, db_column='ip_address')),
             ('activCode', self.gf('django.db.models.fields.CharField')(max_length=40, null=True, db_column='activation_code')),
             ('forgotCode', self.gf('django.db.models.fields.CharField')(max_length=40, null=True, db_column='forgotten_password_code')),
             ('rememberCode', self.gf('django.db.models.fields.CharField')(max_length=40, null=True, db_column='remember_code')),
-            ('forgotten_time', self.gf('django.db.models.fields.IntegerField')(db_column='forgotten_password_time')),
-            ('ref_type', self.gf('django.db.models.fields.IntegerField')(default=0, db_column='ref_type')),
+            ('forgotten_time', self.gf('django.db.models.fields.DateTimeField')(null=True, db_column='forgotten_password_time')),
             ('flags', self.gf('django.db.models.fields.IntegerField')(default=0, db_column='flags')),
             ('phones', self.gf('django.db.models.fields.CharField')(max_length=255, blank=True)),
-            ('about_me', self.gf('django.db.models.fields.TextField')()),
-            ('my_photo', self.gf('django.db.models.fields.IntegerField')()),
-            ('birthday', self.gf('django.db.models.fields.DateField')()),
+            ('about_me', self.gf('django.db.models.fields.TextField')(default='')),
+            ('birthday', self.gf('django.db.models.fields.DateField')(null=True)),
             ('gender', self.gf('django.db.models.fields.IntegerField')(default=0)),
         ))
         db.send_create_signal('users', ['Users'])
@@ -72,18 +69,15 @@ class Migration(SchemaMigration):
         },
         'users.users': {
             'Meta': {'ordering': "['user']", 'object_name': 'Users'},
-            'about_me': ('django.db.models.fields.TextField', [], {}),
+            'about_me': ('django.db.models.fields.TextField', [], {'default': "''"}),
             'activCode': ('django.db.models.fields.CharField', [], {'max_length': '40', 'null': 'True', 'db_column': "'activation_code'"}),
-            'birthday': ('django.db.models.fields.DateField', [], {}),
+            'birthday': ('django.db.models.fields.DateField', [], {'null': 'True'}),
             'flags': ('django.db.models.fields.IntegerField', [], {'default': '0', 'db_column': "'flags'"}),
             'forgotCode': ('django.db.models.fields.CharField', [], {'max_length': '40', 'null': 'True', 'db_column': "'forgotten_password_code'"}),
-            'forgotten_time': ('django.db.models.fields.IntegerField', [], {'db_column': "'forgotten_password_time'"}),
+            'forgotten_time': ('django.db.models.fields.DateTimeField', [], {'null': 'True', 'db_column': "'forgotten_password_time'"}),
             'gender': ('django.db.models.fields.IntegerField', [], {'default': '0'}),
-            'id': ('django.db.models.fields.IntegerField', [], {'primary_key': 'True', 'db_column': "'id'"}),
-            'ipAddr': ('django.db.models.fields.CharField', [], {'max_length': '16', 'db_column': "'ip_address'"}),
-            'my_photo': ('django.db.models.fields.IntegerField', [], {}),
+            'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
             'phones': ('django.db.models.fields.CharField', [], {'max_length': '255', 'blank': 'True'}),
-            'ref_type': ('django.db.models.fields.IntegerField', [], {'default': '0', 'db_column': "'ref_type'"}),
             'rememberCode': ('django.db.models.fields.CharField', [], {'max_length': '40', 'null': 'True', 'db_column': "'remember_code'"}),
             'user': ('django.db.models.fields.related.OneToOneField', [], {'to': "orm['auth.User']", 'unique': 'True'})
         }
