@@ -3,21 +3,20 @@
 
 from django.shortcuts import redirect, render_to_response
 from django.template import RequestContext
-
 from django.contrib.auth import logout
 
+from core.context_processors import subdomains_context, categories_context
 from core.models import Region, Subdomain
-from message.models import Message
+from core.mixins import SubdomainContextMixin, CategoryMixin
+from core.views import RyndaCreateView, RyndaDetailView, RyndaListView
+from core.utils import url_filter
+
 from feed.models import FeedItem
 
 from utils.tree import to_tree
 
-from core.context_processors import subdomains_context, categories_context
-from core.mixins import SubdomainContextMixin, CategoryMixin
-from core.views import RyndaCreateView, RyndaDetailView, RyndaListView
-from core.utils import url_filter
-from message.forms import RequestForm, SimpleRequestForm
-
+from message.models import Message
+from message.forms import SimpleRequestForm
 
 
 def list(request, slug='all'):
@@ -65,6 +64,7 @@ def requests(request):
             processors=[subdomains_context, categories_context])
     )
 
+
 def offer(request):
     return render_to_response('all_messages.html',
         {
@@ -74,6 +74,7 @@ def offer(request):
         context_instance=RequestContext(request,
             processors=[subdomains_context, categories_context])
     )
+
 
 def logout_view(request):
     logout(request)
@@ -99,7 +100,8 @@ class CreateRequest(CategoryMixin, RyndaCreateView):
 class CreateOffer(CategoryMixin, RyndaCreateView):
     template_name = "offer_form.html"
     model = Message
-    form_class = RequestForm
+    form_class = SimpleRequestForm
+
 
 class MessageView(RyndaDetailView):
     model = Message
