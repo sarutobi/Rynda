@@ -5,7 +5,6 @@ import unittest
 from django.core.exceptions import ValidationError
 
 from factories import MessageFactory
-from message.models import Message
 
 
 class TestMessage(unittest.TestCase):
@@ -21,7 +20,7 @@ class TestMessage(unittest.TestCase):
 
     def test_message(self):
         self.assertIsNotNone(self.message.pk)
-    
+
     def test_no_message_contacts(self):
         m = MessageFactory.build(contact_phone=None)
         m.contact_mail = None
@@ -31,7 +30,7 @@ class TestMessage(unittest.TestCase):
         m = None
 
     def test_invalid_email(self):
-        m = MessageFactory.build()
+        m = MessageFactory.build(contact_mail='notamail')
         m.contact_mail = 'notamail'
         with self.assertRaises(ValidationError):
             m.save()
@@ -50,3 +49,9 @@ class TestMessage(unittest.TestCase):
         m.save()
         self.assertIsNotNone(m.pk)
 
+    def test_message_remove(self):
+        message = MessageFactory()
+        self.assertIsNotNone(message.pk)
+        message.delete()
+        self.assertIsNotNone(message)
+        self.assertTrue(message.is_removed())

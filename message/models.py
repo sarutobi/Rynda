@@ -114,6 +114,9 @@ class Message(models.Model):
     def __unicode__(self):
         return self.title
 
+    def delete(self):
+        self.flags = self.flags | self.MESSAGE_DELETED
+
     def get_sender(self):
         tree = etree.fromstring(self.sender)
         fn = tree[0].text or ''
@@ -160,6 +163,9 @@ class Message(models.Model):
         else:
             self.flags = clear_bit(self.flags, flag)
 
+    def is_removed(self):
+        return (self.flags & self.MESSAGE_DELETED) == self.MESSAGE_DELETED
+
     def active(self):
         return (self.flags & 1) == 1
 
@@ -187,10 +193,6 @@ class Message(models.Model):
     def haveAttachment(self):
         a = Multimedia.objects.filter(message=self.id).count()
         return a > 0
-
-    def is_removed(self):
-        test = self.flags & 0x10
-        return test != 0
 
 
 class MessageNotes(models.Model):
