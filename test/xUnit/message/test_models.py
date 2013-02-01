@@ -52,6 +52,14 @@ class TestMessage(unittest.TestCase):
     def test_message_remove(self):
         message = MessageFactory()
         self.assertIsNotNone(message.pk)
-        message.delete()
+        message.remove()
         self.assertIsNotNone(message)
         self.assertTrue(message.is_removed())
+
+    def test_message_restore(self):
+        message = MessageFactory()
+        message.remove()
+        self.assertTrue(message.is_removed())
+        message.restore()
+        self.assertFalse(message.is_removed())
+

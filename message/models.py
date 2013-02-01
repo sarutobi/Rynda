@@ -114,8 +114,12 @@ class Message(models.Model):
     def __unicode__(self):
         return self.title
 
-    def delete(self):
+    def remove(self):
         self.flags = self.flags | self.MESSAGE_DELETED
+
+    def restore(self):
+        mask = ~self.MESSAGE_DELETED
+        self.flags = self.flags & mask
 
     def get_sender(self):
         tree = etree.fromstring(self.sender)
