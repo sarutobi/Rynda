@@ -1,11 +1,20 @@
 # Django settings for Rynda project.
 
-
 import os
 
+from django.core.exceptions import ImproperlyConfigured
 
-SITE_ROOT = os.path.realpath(os.path.dirname(os.path.dirname(__file__)))
-DEBUG = True
+
+def get_env_var(name):
+    try:
+        return os.env[name]
+    except KeyError:
+        raise ImproperlyConfigured("Set the %s env variable" % name)
+
+here = lambda *x: os.path.join(os.path.abspath(os.path.dirname(__file__)), *x)
+
+SITE_ROOT = here('..', '..')
+DEBUG = False
 TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (
@@ -176,12 +185,3 @@ LOGGING = {
 }
 
 LOGIN_REDIRECT_URL = '/'
-
-try:
-    LOCAL_SETTINGS
-except NameError:
-    try:
-        from local_settings import *
-    except:
-        pass
-
