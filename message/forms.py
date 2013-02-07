@@ -16,26 +16,38 @@ class SimpleRequestForm(forms.ModelForm):
         super(SimpleRequestForm, self).__init__(*args, **kwargs)
         self.fields['messageType'].initial = 1
 
+    address = forms.CharField()
 
-class RequestForm(forms.ModelForm):
-    class Meta:
-        model = Message
-        exclude = ('messageType', 'flags', 'status', 'date_add', 'last_edit',
-            'expired_date','location', 'sender', 'subdomain', 'edit_key',
-            'notes', 'user', '')
-        widgets = {'category': CategoryTree(tree=Category.objects.
-            filter(subdomain=None).values('id', 'name', 'parentId')),
-            'message': forms.Textarea(attrs={'rows': 5, 'cols': 5})
-        }
+    def clean_status(self):
+        status = self.cleaned_data['status']
+        if status is None:
+            return self.fields['status'].initial
+        return status
 
-    lat = forms.FloatField(widget=forms.HiddenInput)
-    lon = forms.FloatField(widget=forms.HiddenInput)
-    region = forms.ModelChoiceField(Region.objects.all(), label='Регион')
+    def clean_flags(self):
+        flags = self.cleaned_data['flags']
+        if flags is None:
+            return self.fields['flags'].initial
+        return flags
+#class RequestForm(forms.ModelForm):
+#    class Meta:
+#        model = Message
+#        exclude = ('messageType', 'flags', 'status', 'date_add', 'last_edit',
+#            'expired_date','location', 'sender', 'subdomain', 'edit_key',
+#            'notes', 'user', '')
+#        widgets = {'category': CategoryTree(tree=Category.objects.
+#            filter(subdomain=None).values('id', 'name', 'parentId')),
+#            'message': forms.Textarea(attrs={'rows': 5, 'cols': 5})
+#        }
+#
+#    lat = forms.FloatField(widget=forms.HiddenInput)
+#    lon = forms.FloatField(widget=forms.HiddenInput)
+#    region = forms.ModelChoiceField(Region.objects.all(), label='Регион')
     #category = forms.ModelChoiceField(Category.objects.filter(subdomain=None)
     #    .exclude(parentId=None),widget=CategoryWidget())
 #    messageType = forms.ModelChoiceField(MessageType.objects.filter(id__lt=5), label='Тип сообщения')
     #msgType = forms.ChoiceField(choices = Message.MESSAGE_TYPE, label = 'Тип сообщения')
-    address = forms.CharField(label='Адрес')
+#    address = forms.CharField(label='Адрес')
 #    active = forms.BooleanField(label='Сообщение активно',required=False) #Флаг может быть в состоянии on/off
 #    important = forms.BooleanField(label='Сообщение важно', required=False)#Флаг может быть в состоянии on/off
 
