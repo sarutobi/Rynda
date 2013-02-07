@@ -2,7 +2,7 @@
 from django.db import models
 from django.core.exceptions import ValidationError
 from django.core.validators import validate_email
-
+from django.utils.translation import ugettext_lazy as _
 from core.models import Location, Category, Subdomain
 
 
@@ -17,10 +17,10 @@ class MessageType(models.Model):
     class Meta():
         db_table = 'message_type'
 
-    name = models.CharField(max_length=100)
-    slug = models.CharField(max_length=100)
-    color = models.CharField(max_length=7)
-    icon = models.CharField(max_length=200)
+    name = models.CharField(max_length=100, verbose_name=_("name"))
+    slug = models.CharField(max_length=100, verbose_name=_("slug"))
+    color = models.CharField(max_length=7, verbose_name=_("color"))
+    icon = models.CharField(max_length=200, verbose_name=_("icon"))
 
     def __unicode__(self):
         return self.name
@@ -36,11 +36,11 @@ class Message(models.Model):
     MESSAGE_DELETED = 0x10L
     LOCATION_VALID = 0x20L
 
-    MESSAGE_STATUS = ((1, u'Новое'),
-                      (2, u'Не подтверждено'),
-                      (3, u'Подтверждено'),
-                      (4, u'В работе'),
-                      (6, u'Закрыто'))
+    MESSAGE_STATUS = ((1, _('new')),
+                      (2, _('unverified')),
+                      (3, _('verified')),
+                      (4, _('pending')),
+                      (6, _('closed')))
 
     class Meta():
         ordering = ['-date_add']
@@ -50,44 +50,54 @@ class Message(models.Model):
     approved = ApprovedMessages()
 
     #Mandatory fields
-    title = models.CharField(max_length=200,
-                             verbose_name='Заголовок',
-                             blank=True)
-    message = models.TextField(verbose_name='Сообщение')
-    contact_first_name = models.CharField(max_length=200,
-                                          verbose_name="First name")
-    contact_last_name = models.CharField(max_length=200,
-                                         verbose_name="Last name")
-    contact_mail = models.CharField(max_length=200,
-                                    blank=True,
-                                    verbose_name="Email(s)",
-                                    validators=[validate_email])
-    contact_phone = models.CharField(max_length=200,
-                                     blank=True,
-                                     verbose_name="Phone(s)")
-    messageType = models.ForeignKey(MessageType,
-                                    db_column='message_type',
-                                    verbose_name='Тип сообщения',
-                                    blank=True, null=True)
+    title = models.CharField(
+        max_length=200,
+        verbose_name=_('title'),
+        blank=True)
+    message = models.TextField(verbose_name=_('message'))
+    contact_first_name = models.CharField(
+        max_length=200,
+        verbose_name=_("first name"))
+    contact_last_name = models.CharField(
+        max_length=200,
+        verbose_name=_("last name"))
+    contact_mail = models.CharField(
+        max_length=200,
+        blank=True,
+        verbose_name=_("email(s)"),
+        validators=[validate_email])
+    contact_phone = models.CharField(
+        max_length=200,
+        blank=True,
+        verbose_name=_("phone(s)"))
+    messageType = models.ForeignKey(
+        MessageType,
+        db_column='message_type',
+        verbose_name=_('message type'),
+        blank=True, null=True)
 
     #Optional fields
-    source = models.CharField(max_length=255,
-                              verbose_name="Source",
-                              blank=True)
+    source = models.CharField(
+        max_length=255,
+        verbose_name=_("source"),
+        blank=True)
 
     #Moderator's fields
     flags = models.BigIntegerField(default=0, blank=True)
-    status = models.SmallIntegerField(choices=MESSAGE_STATUS,
-                                      verbose_name='Статус',
-                                      default=1, blank=True)
+    status = models.SmallIntegerField(
+        choices=MESSAGE_STATUS,
+        verbose_name=_('status'),
+        default=1, blank=True, null=True)
 
     #Internal fields
-    date_add = models.DateTimeField(auto_now_add=True,
-                                    db_column='date_add',
-                                    editable=False)
-    last_edit = models.DateTimeField(auto_now=True,
-                                     db_column='date_modify',
-                                     editable=False)
+    date_add = models.DateTimeField(
+        auto_now_add=True,
+        db_column='date_add',
+        editable=False)
+    last_edit = models.DateTimeField(
+        auto_now=True,
+        db_column='date_modify',
+        editable=False)
     expired_date = models.DateTimeField(verbose_name="Expired at",
                                         blank=True, null=True)
     user = models.IntegerField(verbose_name="User", editable=False,
