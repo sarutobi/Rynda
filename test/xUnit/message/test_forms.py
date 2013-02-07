@@ -4,7 +4,7 @@ import unittest
 
 from message.forms import SimpleRequestForm
 from test.utils import lorem_ipsum, generate_string
-from test.factories import UserFactory
+from test.factories import UserFactory, MessageFactory
 
 
 class TestSimpleRequestForm(unittest.TestCase):
@@ -31,6 +31,12 @@ class TestSimpleRequestForm(unittest.TestCase):
         form = SimpleRequestForm(data)
         self.assertTrue(form.is_bound)
         self.assertTrue(form.is_valid())
+        msg = form.save()
+        self.assertIsNotNone(msg)
+        self.assertIsNotNone(msg.pk)
+        self.assertEqual(1, msg.status)
+        self.assertEqual(0, msg.flags)
+        msg.delete()
 
 
 class TestRequiredFields(unittest.TestCase):
