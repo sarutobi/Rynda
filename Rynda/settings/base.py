@@ -139,6 +139,7 @@ INSTALLED_APPS = (
     'templated_emails',
     'users',
     'message',
+    'geozones',
     'core',
     'feed',
     'api',
