@@ -2,9 +2,10 @@
 
 import unittest
 
+from message.models import MessageType
 from message.forms import SimpleRequestForm
-from test.utils import lorem_ipsum, generate_string
-from test.factories import UserFactory, MessageFactory
+from test.utils import lorem_ipsum
+from test.factories import UserFactory
 
 
 class TestSimpleRequestForm(unittest.TestCase):
@@ -23,6 +24,7 @@ class TestSimpleRequestForm(unittest.TestCase):
     def test_send_data(self):
         data = {
             'message': lorem_ipsum(),
+            'messageType': MessageType.TYPE_REQUEST,
             'contact_first_name': self.user.first_name,
             'contact_last_name': self.user.last_name,
             'contact_mail': self.user.email,
@@ -31,11 +33,12 @@ class TestSimpleRequestForm(unittest.TestCase):
         form = SimpleRequestForm(data)
         self.assertTrue(form.is_bound)
         self.assertTrue(form.is_valid())
-        msg = form.save()
+        msg = form.save(commit=True)
         self.assertIsNotNone(msg)
         self.assertIsNotNone(msg.pk)
         self.assertEqual(1, msg.status)
         self.assertEqual(0, msg.flags)
+        self.assertEqual(1, msg.messageType)
         msg.delete()
 
 
@@ -45,6 +48,7 @@ class TestRequiredFields(unittest.TestCase):
         self.user = UserFactory.build()
         self.data = {
             'message': lorem_ipsum(),
+            'messageType': MessageType.TYPE_REQUEST,
             'contact_first_name': self.user.first_name,
             'contact_last_name': self.user.last_name,
             'contact_mail': self.user.email,
