@@ -2,13 +2,20 @@
 
 from django import forms
 
+from django.core.exceptions import ValidationError
+from django.utils.translation import ugettext as _
+
 from message.models import Message, MessageType
-from core.models import Region, Category
+from core.models import Location, Region, Category
 from core.widgets import CategoryTree
 
 
 class SimpleRequestForm(forms.ModelForm):
-    '''Simple request form'''
+    '''
+    Simple request form. This form is combined with model and flat form.
+    It is possible to make this form only flat, 'cause this form functionality
+    is cross-model.
+    '''
     class Meta:
         model = Message
 
@@ -16,7 +23,12 @@ class SimpleRequestForm(forms.ModelForm):
         super(SimpleRequestForm, self).__init__(*args, **kwargs)
         self.fields['messageType'].initial = MessageType.TYPE_REQUEST
 
-    address = forms.CharField()
+    # Location fields
+    address = forms.CharField(required=True)
+    latitude = forms.FloatField(widget=forms.HiddenInput)
+    longitude = forms.FloatField(widget=forms.HiddenInput)
+    # XXX How to drop this ?
+    region = forms.ModelChoiceField(Region.objects.all(), label=_("region"))
 
     def clean_status(self):
         status = self.cleaned_data['status']
@@ -33,6 +45,17 @@ class SimpleRequestForm(forms.ModelForm):
     def clean_messageType(self):
         return MessageType.TYPE_REQUEST
 
+    def clean_address(self):
+        address = self.cleaned_data['address']
+        if address is None:
+            raise ValidationError(_("You must provide an address"))
+        return address
+
+    def save(self, *args, **kwargs):
+        l = Location(name=self.cleaned_data['address'])
+        l.save()
+        self.instance.location = l
+        return super(SimpleRequestForm, self).save(*args, **kwargs)
 #class RequestForm(forms.ModelForm):
 #    class Meta:
 #        model = Message
