@@ -1,8 +1,13 @@
 # -*- coding: utf-8 -*-
+
 from django.db import models
+
 from django.core.exceptions import ValidationError
 from django.core.validators import validate_email
 from django.utils.translation import ugettext_lazy as _
+
+from django.contrib.auth.models import User
+
 from core.models import Location, Category, Subdomain
 
 
@@ -218,10 +223,16 @@ class Message(models.Model):
 class MessageNotes(models.Model):
     '''Moderator notes for message'''
     message = models.ForeignKey(Message)
-    user = models.IntegerField()
-    note = models.TextField()
-    date_add = models.DateTimeField(auto_now_add=True, editable=False)
-    last_edit = models.DateTimeField(auto_now=True, editable=False)
+    user = models.ForeignKey(User, editable=False, verbose_name=_("author"))
+    note = models.TextField(verbose_name=_("note"))
+    date_add = models.DateTimeField(
+        auto_now_add=True,
+        editable=False,
+        verbose_name=_("created at"))
+    last_edit = models.DateTimeField(
+        auto_now=True,
+        editable=False,
+        verbose_name=_("last edit"))
 
     def __unicode__(self):
         return "Note from %s" % self.user
