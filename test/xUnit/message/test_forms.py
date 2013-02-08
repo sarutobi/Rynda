@@ -2,6 +2,8 @@
 
 import unittest
 
+from core.factories import RegionFactory
+
 from message.models import MessageType
 from message.forms import SimpleRequestForm
 from test.utils import lorem_ipsum
@@ -13,8 +15,22 @@ class TestSimpleRequestForm(unittest.TestCase):
     def setUp(self):
         self.form = SimpleRequestForm()
         self.user = UserFactory.build()
+        self.region = RegionFactory()
+        self.data = {
+            'title': lorem_ipsum(words_count=3),
+            'message': lorem_ipsum(),
+            'messageType': MessageType.TYPE_REQUEST,
+            'contact_first_name': self.user.first_name,
+            'contact_last_name': self.user.last_name,
+            'contact_mail': self.user.email,
+            'address': lorem_ipsum(words_count=4),
+            'region': self.region,
+            'latitude': 42.2333,
+            'longitude': 37.4442,
+        }
 
     def tearDown(self):
+        self.region = None
         self.form = None
         self.user = None
 
@@ -22,15 +38,7 @@ class TestSimpleRequestForm(unittest.TestCase):
         self.assertEqual(1, self.form.fields['messageType'].initial)
 
     def test_send_data(self):
-        data = {
-            'message': lorem_ipsum(),
-            'messageType': MessageType.TYPE_REQUEST,
-            'contact_first_name': self.user.first_name,
-            'contact_last_name': self.user.last_name,
-            'contact_mail': self.user.email,
-            'address': lorem_ipsum(words_count=4),
-        }
-        form = SimpleRequestForm(data)
+        form = SimpleRequestForm(self.data)
         self.assertTrue(form.is_bound)
         self.assertTrue(form.is_valid())
         msg = form.save(commit=True)
@@ -46,6 +54,7 @@ class TestRequiredFields(unittest.TestCase):
 
     def setUp(self):
         self.user = UserFactory.build()
+        self.region = RegionFactory.build()
         self.data = {
             'message': lorem_ipsum(),
             'messageType': MessageType.TYPE_REQUEST,
