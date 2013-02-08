@@ -1,8 +1,9 @@
 # -*- coding: utf-8 -*-
-from lxml import etree
 
 from django.db import models
 from django.db.models import Max, Count
+
+from geozones.models import Region
 
 
 class Subdomain(models.Model):
@@ -79,7 +80,7 @@ class City(models.Model):
     class Meta():
         db_table = 'City'
 
-    region_id = models.ForeignKey('Region', db_column='region_id')
+    region_id = models.ForeignKey(Region, db_column='region_id')
     name = models.CharField(max_length=200)
     latitude = models.FloatField()
     longtitude = models.FloatField()
@@ -87,33 +88,6 @@ class City(models.Model):
     def __unicode__(self):
         return self.name
 
-
-class Region(models.Model):
-    class Meta():
-        db_table = 'Region'
-        ordering = ['order']
-
-    name = models.CharField(max_length=200)
-    cityId = models.ForeignKey(City, db_column='city_id')
-    slug = models.SlugField()
-    zoomLvl = models.SmallIntegerField(db_column='zoom_lvl')
-    order = models.IntegerField()
-
-    def __unicode__(self):
-        return self.name
-
-
-class Location(models.Model):
-    class Meta():
-        db_table = 'Location'
-
-    latitude = models.FloatField()
-    longitude = models.FloatField(db_column='longitude')
-    regionId = models.ForeignKey(Region, db_column='region_id')
-    name = models.CharField(max_length=200)
-
-    def __unicode__(self):
-        return u'%f %f' % (self.latitude, self.longitude)
 
 
 class Multimedia(models.Model):
