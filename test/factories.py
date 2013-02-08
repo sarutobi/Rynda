@@ -2,10 +2,11 @@
 
 import string
 import factory
+import random
 
 from django.contrib.auth.models import User
 
-from message.models import Message
+from message.models import Message, MessageType
 from test.utils import generate_string, lorem_ipsum
 
 
@@ -37,3 +38,5 @@ class MessageFactory(factory.Factory):
         ).lower())
     contact_phone = generate_string(str_len=10, src=string.digits)
     user = factory.SubFactory(UserFactory)
+    messageType = random.randint(
+        MessageType.TYPE_REQUEST, MessageType.TYPE_INFO)
