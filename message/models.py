@@ -97,28 +97,35 @@ class Message(models.Model):
         auto_now=True,
         db_column='date_modify',
         editable=False)
-    expired_date = models.DateTimeField(verbose_name="Expired at",
-                                        blank=True, null=True)
-    user = models.IntegerField(verbose_name="User", editable=False,
-                               db_column='user_id',
-                               null=True, blank=True)
+    expired_date = models.DateTimeField(
+        verbose_name=_("expired at"),
+        blank=True, null=True)
+    user = models.IntegerField(
+        verbose_name=_("User"),
+        editable=False,
+        db_column='user_id',
+        null=True, blank=True)
     edit_key = models.CharField(max_length=40, blank=True)
-    sender_ip = models.IPAddressField(blank=True, null=True,
-                                      editable=False,
-                                      verbose_name="Sender IP")
+    sender_ip = models.IPAddressField(
+        blank=True, null=True,
+        editable=False,
+        verbose_name=_("sender IP"))
 
     #Links to core models
-    location = models.ForeignKey(Location, db_column='location_id',
-                                 null=True, blank=True)
-    category = models.ManyToManyField(Category,
-                                      db_table='messagecategories',
-                                      symmetrical=False,
-                                      verbose_name='Категории сообщения',
-                                      null=True,
-                                      blank=True)
-    subdomain = models.ForeignKey(Subdomain, db_column='subdomain_id',
-                                  null=True, blank=True,
-                                  verbose_name='Страница атласа')
+    location = models.ForeignKey(
+        Location, db_column='location_id',
+        null=True, blank=True)
+    category = models.ManyToManyField(
+        Category,
+        db_table='messagecategories',
+        symmetrical=False,
+        verbose_name=_("message categories"),
+        null=True,
+        blank=True)
+    subdomain = models.ForeignKey(
+        Subdomain, db_column='subdomain_id',
+        null=True, blank=True,
+        verbose_name=_('subdomain'))
 
     def __unicode__(self):
         return self.title
@@ -130,19 +137,19 @@ class Message(models.Model):
         mask = ~self.MESSAGE_DELETED
         self.flags = self.flags & mask
 
-    def get_sender(self):
-        tree = etree.fromstring(self.sender)
-        fn = tree[0].text or ''
-        pn = tree[1].text or ''
-        ln = tree[2].text or ''
-        email = tree[3].text or ''
+   # def get_sender(self):
+   #     tree = etree.fromstring(self.sender)
+   #     fn = tree[0].text or ''
+   #     pn = tree[1].text or ''
+   #     ln = tree[2].text or ''
+   #     email = tree[3].text or ''
         #XXX Переделать на лямбда-функцию
-        ph = []
-        for e in tree[4:]:
-            if e.tag == 'phone':
-                ph.append(e.text or '')
-        phones = ','.join(ph) or ''
-        return u"%s %s %s, email: %s, тел: %s" % (ln, fn, pn, email, phones)
+   #     ph = []
+   #     for e in tree[4:]:
+   #         if e.tag == 'phone':
+   #             ph.append(e.text or '')
+   #     phones = ','.join(ph) or ''
+   #     return u"%s %s %s, email: %s, тел: %s" % (ln, fn, pn, email, phones)
 
     def clean(self):
         if not self.contact_mail and not self.contact_phone:
@@ -152,60 +159,60 @@ class Message(models.Model):
         self.full_clean()
         super(Message, self).save(*args, **kwargs)
 
-    def address(self, address=None):
-        if address:
-            self.locationId.name = address
-        else:
-            return self.locationId.name
+    #def address(self, address=None):
+    #    if address:
+    #        self.locationId.name = address
+    #    else:
+    #        return self.locationId.name
 
-    def latitude(self, lat=None):
-        if lat:
-            self.locationId.latitude = lat
-        else:
-            return self.locationId.latitude
+    #def latitude(self, lat=None):
+    #    if lat:
+    #        self.locationId.latitude = lat
+    #    else:
+    #        return self.locationId.latitude
 
-    def longtitude(self, lon=None):
-        if lon:
-            self.locationId.longtitude = lon
-        else:
-            return self.locationId.longtitude
+    #def longtitude(self, lon=None):
+    #    if lon:
+    #        self.locationId.longtitude = lon
+    #    else:
+    #        return self.locationId.longtitude
 
-    def set_flag(self, flag, active):
-        if active:
-            self.flags = set_bit(self.flags, flag)
-        else:
-            self.flags = clear_bit(self.flags, flag)
+    #def set_flag(self, flag, active):
+    #    if active:
+    #        self.flags = set_bit(self.flags, flag)
+    #    else:
+    #        self.flags = clear_bit(self.flags, flag)
 
     def is_removed(self):
         return (self.flags & self.MESSAGE_DELETED) == self.MESSAGE_DELETED
 
-    def active(self):
-        return (self.flags & 1) == 1
+    #def active(self):
+    #    return (self.flags & 1) == 1
 
-    def important(self):
-        return (self.flags & 2) == 2
+    #def important(self):
+    #    return (self.flags & 2) == 2
 
-    def anonymous(self):
-        return (self.flags & 4) == 0
+    #def anonymous(self):
+    #    return (self.flags & 4) == 0
 
-    def feedback(self):
-        return (self.flags & 8) == 8
+    #def feedback(self):
+    #    return (self.flags & 8) == 8
 
-    def region(self, region=None):
-        if region:
-            self.locationId.regionId = region
-        else:
-            try:
-                return self.locationId.regionId
-            except:
-                return Region.objects.get(id=50)
+    #def region(self, region=None):
+    #    if region:
+    #        self.locationId.regionId = region
+    #    else:
+    #        try:
+    #            return self.locationId.regionId
+    #        except:
+    #            return Region.objects.get(id=50)
 
-    def getImages(self):
-        return Multimedia.objects.filter(message=self.id)
+    #def getImages(self):
+    #    return Multimedia.objects.filter(message=self.id)
 
-    def haveAttachment(self):
-        a = Multimedia.objects.filter(message=self.id).count()
-        return a > 0
+    #def haveAttachment(self):
+    #    a = Multimedia.objects.filter(message=self.id).count()
+    #    return a > 0
 
 
 class MessageNotes(models.Model):
