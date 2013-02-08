@@ -14,7 +14,7 @@ class SimpleRequestForm(forms.ModelForm):
 
     def __init__(self, *args, **kwargs):
         super(SimpleRequestForm, self).__init__(*args, **kwargs)
-        self.fields['messageType'].initial = 1
+        self.fields['messageType'].initial = MessageType.TYPE_REQUEST
 
     address = forms.CharField()
 
@@ -29,6 +29,10 @@ class SimpleRequestForm(forms.ModelForm):
         if flags is None:
             return self.fields['flags'].initial
         return flags
+
+    def clean_messageType(self):
+        return MessageType.TYPE_REQUEST
+
 #class RequestForm(forms.ModelForm):
 #    class Meta:
 #        model = Message
