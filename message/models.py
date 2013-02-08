@@ -12,18 +12,18 @@ class ApprovedMessages(models.Manager):
             .filter(status__gt=1)
 
 
-class MessageType(models.Model):
+class MessageType():
     '''Message types'''
-    class Meta():
-        db_table = 'message_type'
 
-    name = models.CharField(max_length=100, verbose_name=_("name"))
-    slug = models.CharField(max_length=100, verbose_name=_("slug"))
-    color = models.CharField(max_length=7, verbose_name=_("color"))
-    icon = models.CharField(max_length=200, verbose_name=_("icon"))
+    TYPE_REQUEST = 1
+    TYPE_RESPONSE = 2
+    TYPE_INFO = 3
 
-    def __unicode__(self):
-        return self.name
+    TYPES_CHOICE = (
+        (TYPE_REQUEST, _("request")),
+        (TYPE_RESPONSE, _("response")),
+        (TYPE_INFO, _("informatial"))
+    )
 
 
 class Message(models.Model):
@@ -70,11 +70,10 @@ class Message(models.Model):
         max_length=200,
         blank=True,
         verbose_name=_("phone(s)"))
-    messageType = models.ForeignKey(
-        MessageType,
+    messageType = models.IntegerField(
+        choices=MessageType.TYPES_CHOICE,
         db_column='message_type',
-        verbose_name=_('message type'),
-        blank=True, null=True)
+        verbose_name=_('message type'),)
 
     #Optional fields
     source = models.CharField(
