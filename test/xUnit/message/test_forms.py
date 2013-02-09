@@ -2,7 +2,7 @@
 
 import unittest
 
-from core.factories import RegionFactory
+from geozones.factories import RegionFactory
 
 from message.models import MessageType
 from message.forms import SimpleRequestForm
