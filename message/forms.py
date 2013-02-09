@@ -6,8 +6,9 @@ from django.core.exceptions import ValidationError
 from django.utils.translation import ugettext as _
 
 from message.models import Message, MessageType
-from core.models import Location, Region, Category
+from core.models import Category
 from core.widgets import CategoryTree
+from geozones.models import Location, Region
 
 
 class SimpleRequestForm(forms.ModelForm):
@@ -52,7 +53,7 @@ class SimpleRequestForm(forms.ModelForm):
         return address
 
     def save(self, *args, **kwargs):
-        l = Location(name=self.cleaned_data['address'])
+        l = Location(description=self.cleaned_data['address'])
         l.save()
         self.instance.location = l
         return super(SimpleRequestForm, self).save(*args, **kwargs)
