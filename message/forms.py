@@ -53,7 +53,10 @@ class SimpleRequestForm(forms.ModelForm):
         return address
 
     def save(self, *args, **kwargs):
-        l = Location(description=self.cleaned_data['address'])
+        l = Location(
+            description=self.cleaned_data['address'],
+            latitude=self.cleaned_data['latitude'],
+            longitude=self.cleaned_data['longitude'])
         l.save()
         self.instance.location = l
         return super(SimpleRequestForm, self).save(*args, **kwargs)
