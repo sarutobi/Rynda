@@ -3,7 +3,7 @@
 import factory
 import random
 
-from .models import City, Region
+from .models import City
 
 
 class CityFactory(factory.Factory):
@@ -13,13 +13,3 @@ class CityFactory(factory.Factory):
     latitude = random.uniform(-90.0, 90.0)
     longtitude = random.uniform(-180.0, 180.0)
     #region_id = factory.Sequence(lambda n: n)
-
-
-class RegionFactory(factory.Factory):
-    FACTORY_FOR = Region
-
-    name = factory.Sequence(lambda n: "Region_%s" % n)
-    cityId = factory.SubFactory(CityFactory)
-    slug = factory.LazyAttribute(lambda a: a.name.lower())
-    zoomLvl = random.randint(1, 10)
-    order = factory.Sequence(lambda n: n)
