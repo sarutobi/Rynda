@@ -24,7 +24,7 @@ class TestSimpleRequestForm(unittest.TestCase):
             'contact_last_name': self.user.last_name,
             'contact_mail': self.user.email,
             'address': lorem_ipsum(words_count=4),
-            'region': self.region,
+            'region': self.region.pk,
             'latitude': 42.2333,
             'longitude': 37.4442,
         }
