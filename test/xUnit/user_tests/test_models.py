@@ -11,7 +11,10 @@ from test.factories import UserFactory
 class UserTest(unittest.TestCase):
     '''User-specific tests'''
     def setUp(self):
-        self.user = UserFactory.build()
+        self.user = UserFactory.build(
+            first_name='Boy',
+            last_name='Factory'
+        )
 
     def tearDown(self):
         self.user = None
@@ -22,15 +25,12 @@ class UserTest(unittest.TestCase):
         self.assertEqual('Factory', self.user.last_name)
         self.assertEqual('boy_factory@example.com', self.user.email)
 
-    def test_user_generator(self):
-        pass
-
     def test_create_new_user(self):
         self.assertEqual(0, User.objects.all().count())
         create_new_user(
-            first_name = self.user.first_name,
-            last_name = self.user.last_name,
-            email = self.user.email,
+            first_name=self.user.first_name,
+            last_name=self.user.last_name,
+            email=self.user.email,
             password='123'
         )
         self.assertEqual(1, User.objects.all().count())
@@ -41,5 +41,3 @@ class UserTest(unittest.TestCase):
         self.assertFalse(u.is_staff)
         self.assertFalse(u.is_active)
         u.delete()
-
-
