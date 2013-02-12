@@ -6,6 +6,7 @@ import hashlib
 import string
 
 from django.db import models
+from django.conf import settings
 from django.contrib.auth.models import User
 
 from templated_emails.utils import send_templated_email
@@ -101,3 +102,11 @@ def notify_new_user(user, code):
          'activation_code': code, }
     )
 
+
+def activate_user(user, code):
+    encoder = UserAuthCode(settings.SECRET_KEY)
+    if encoder.is_valid(user, code):
+        user.is_active = True
+        user.save()
+        return True
+    return False
