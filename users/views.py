@@ -38,10 +38,10 @@ class CreateUser(RyndaFormView):
     def form_valid(self, form):
         ce = form.cleaned_data
         create_new_user(
-            first_name = ce['first_name']
-            last_name = ce['last_name']
-            email = ce['email']
-            password = ce['password1']
+            first_name = ce['first_name'],
+            last_name = ce['last_name'],
+            email = ce['email'],
+            password = ce['password1'],
         )
         return redirect(self.success_url)
 
