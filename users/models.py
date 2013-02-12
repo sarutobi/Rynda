@@ -52,7 +52,7 @@ class UserAuthCode(object):
         return digest == self.digest(user, salt)
 
 
-class Users(models.Model):
+class Profile(models.Model):
     '''
     User profile
     '''
