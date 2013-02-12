@@ -3,21 +3,25 @@
 from django import forms
 from django.contrib.auth.models import User
 
-from users.models import Users
+from users.models import Profile
 
 
 class SimpleRegistrationForm(forms.Form):
     '''
     Simple registration form, request only user name, email and password.
     '''
-    first_name = forms.CharField(required=True, max_length=30,
+    first_name = forms.CharField(
+        max_length=30,
         label="First Name")
-    last_name = forms.CharField(required=True, max_length=30,
+    last_name = forms.CharField(
+        max_length=30,
         label="Last Name")
-    email = forms.EmailField(required=True, label="Email")
-    password1 = forms.CharField(max_length=128, widget=forms.PasswordInput(),
+    email = forms.EmailField(label="Email")
+    password1 = forms.CharField(
+        max_length=128, widget=forms.PasswordInput(),
         label="Password")
-    password2 = forms.CharField(max_length=128, widget=forms.PasswordInput(),
+    password2 = forms.CharField(
+        max_length=128, widget=forms.PasswordInput(),
         label="Password(retype)")
 
     def clean(self):
@@ -37,7 +41,8 @@ class SimpleRegistrationForm(forms.Form):
         return self.cleaned_data['last_name']
 
     def clean_email(self):
-        existing = User.objects.filter(email__iexact=self.cleaned_data['email'])
+        existing = User.objects.filter(
+            email__iexact=self.cleaned_data['email'])
         if existing.exists():
             raise forms.ValidationError("This email already registered")
         return self.cleaned_data['email']

@@ -96,7 +96,7 @@ def create_new_user(first_name, last_name, password, email):
     )
     user.set_password(password),
     user.save()
-    profile = Users.objects.create(
+    profile = Profile.objects.create(
         user=user,
         activCode=auth.generate_code()
     )

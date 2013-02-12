@@ -4,7 +4,7 @@ import unittest
 
 from django.contrib.auth.models import User
 
-from users.models import create_new_user, Users
+from users.models import create_new_user, Profile
 from test.factories import UserFactory
 
 
