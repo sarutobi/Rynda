@@ -21,11 +21,38 @@ class TestMessage(unittest.TestCase):
         self.user.delete()
         self.message = None
 
-    def test_message(self):
+    def test_message_unicode(self):
+        self.assertEqual(self.message.title, "%s" % self.message)
+
+    def test_message_save(self):
         self.message.save()
         self.assertIsNotNone(self.message.pk)
 
+    def test_message_remove(self):
+        self.message.remove()
+        self.assertTrue(self.message.is_removed())
+
+    def test_message_restore(self):
+        self.message.remove()
+        self.assertTrue(self.message.is_removed())
+        self.message.restore()
+        self.assertFalse(self.message.is_removed())
+
+
+class TestMessageCleanData(unittest.TestCase):
+    '''
+    Test message cleaf functionality.
+    '''
+    def setUp(self):
+        self.user = UserFactory()
+        self.message = MessageFactory.build(user=self.user.pk)
+
+    def tearDown(self):
+        self.message = None
+        self.user.delete()
+
     def catch_wrong_data(self):
+        ''' Common test missed data'''
         with self.assertRaises(ValidationError):
             self.message.save()
             self.message.delete()
@@ -50,16 +77,6 @@ class TestMessage(unittest.TestCase):
         self.message.save()
         self.assertIsNotNone(self.message.pk)
         self.message.delete()
-
-    def test_message_remove(self):
-        self.message.remove()
-        self.assertTrue(self.message.is_removed())
-
-    def test_message_restore(self):
-        self.message.remove()
-        self.assertTrue(self.message.is_removed())
-        self.message.restore()
-        self.assertFalse(self.message.is_removed())
 
 
 class TestUserMessage(unittest.TestCase):
