@@ -4,7 +4,8 @@ import unittest
 
 from django.core.exceptions import ValidationError
 
-from factories import MessageFactory, UserFactory
+from message.factories import MessageFactory
+from test.factories import UserFactory
 
 
 class TestMessage(unittest.TestCase):
