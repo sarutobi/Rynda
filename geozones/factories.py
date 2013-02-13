@@ -22,5 +22,5 @@ class LocationFactory(factory.Factory):
 
     latitude = random.uniform(-90.0, 90.0)
     longitude = random.uniform(-180.0, 180.0)
-    name = factory.Sequence(lambda n: "Location_%s" % n)
-    regionId = factory.SubFactory(RegionFactory)
+    description = factory.Sequence(lambda n: "Location_%s" % n)
+    region = factory.SubFactory(RegionFactory)
