@@ -13,8 +13,6 @@ from core.utils import url_filter
 
 from feed.models import FeedItem
 
-from utils.tree import to_tree
-
 from message.models import Message
 from message.forms import SimpleRequestForm
 
