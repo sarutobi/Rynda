@@ -11,37 +11,47 @@ from core.mixins import SubdomainContextMixin, PaginatorMixin
 from core.models import Infopage
 from core.context_processors import subdomains_context, categories_context
 
+
 class RyndaCreateView(SubdomainContextMixin, CreateView):
     pass
+
 
 class RyndaDetailView(SubdomainContextMixin, DetailView):
     pass
 
-class RyndaListView(SubdomainContextMixin, PaginatorMixin, ListView ):
+
+class RyndaListView(SubdomainContextMixin, PaginatorMixin, ListView):
     paginator_url = None
+    list_title_short = None
 
     def get_paginator_url(self):
         if self.paginator_url is None:
             raise Exception(
-              "You MUST define paginator_url or overwrite get_paginator_url()")
+               "You MUST define paginator_url or overwrite get_paginator_url()")
         return self.paginator_url
 
     def get_context_data(self, **kwargs):
         context = super(RyndaListView, self).get_context_data(**kwargs)
         context['paginator_url'] = self.get_paginator_url()
-        sc = self.paginator(context['paginator'].num_pages, page=context['page_obj'].number)
+        sc = self.paginator(
+            context['paginator'].num_pages,
+            page=context['page_obj'].number)
         context['paginator_line'] = sc
+        context['listTitleShort'] = self.list_title_short
         return context
 
 
 class RyndaFormView(SubdomainContextMixin, FormView):
     pass
 
+
 def show_page(request, slug):
     page = get_object_or_404(Infopage, slug=slug)
-    return render_to_response('infopage/show_page.html',
+    return render_to_response(
+        'infopage/show_page.html',
         {'title': page.title, 'text': page.text, },
-        context_instance=RequestContext(request,
+        context_instance=RequestContext(
+            request,
             processors=[subdomains_context, categories_context])
     )
 
