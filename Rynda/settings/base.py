@@ -137,16 +137,12 @@ INSTALLED_APPS = (
     'rest_framework',
     'south',
     'templated_emails',
-    'users',
     'message',
+    'users',
     'geozones',
     'core',
     'feed',
     'api',
-    # Uncomment the next line to enable the admin:
-    # 'django.contrib.admin',
-    # Uncomment the next line to enable admin documentation:
-    # 'django.contrib.admindocs',
 )
 
 AUTHENTICATION_BACKENDS = (

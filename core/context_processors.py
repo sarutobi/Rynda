@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 #Core context processors for Rynda project
 
-from operator import itemgetter
 from core.models import Subdomain, Category
 
 
