@@ -106,7 +106,8 @@ class Message(models.Model):
     expired_date = models.DateTimeField(
         verbose_name=_("expired at"),
         blank=True, null=True)
-    user = models.IntegerField(
+    user = models.ForeignKey(
+        User,
         verbose_name=_("User"),
         editable=False,
         db_column='user_id',

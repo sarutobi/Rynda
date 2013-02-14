@@ -15,7 +15,6 @@ class TestMessage(unittest.TestCase):
     def setUp(self):
         self.user = UserFactory()
         self.message = MessageFactory.build()
-        self.message.user = self.user.pk
 
     def tearDown(self):
         self.user.delete()
@@ -45,7 +44,7 @@ class TestMessageCleanData(unittest.TestCase):
     '''
     def setUp(self):
         self.user = UserFactory()
-        self.message = MessageFactory.build(user=self.user.pk)
+        self.message = MessageFactory.build()
 
     def tearDown(self):
         self.message = None
@@ -88,6 +87,6 @@ class TestUserMessage(unittest.TestCase):
         self.user = None
 
     def test_user_message(self):
-        msg = MessageFactory(user=self.user.pk)
+        msg = MessageFactory(user=self.user)
         self.assertIsNotNone(msg)
-        self.assertEqual(self.user.pk, msg.user)
+        self.assertEqual(self.user, msg.user)
