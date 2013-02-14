@@ -4,7 +4,7 @@
 <div class="g960" id="content">
     <div class="breadcrumbs mb10">
         <a title="Главная" href="/">Главная</a> &raquo;
-        <span title="{{list_title}}">{{list_title_short}}</span>
+        <span title="{{listTitle}}">{{listTitleShort}}</span>
     </div>
     <div class="inside g340">
         {% block listfilter %}{% endblock %}
@@ -16,7 +16,7 @@
                 Всего: <span id="itemsCount">{{items}}</span>
 
             </div>
-            <h3 class="mb0 rounded_top regulartext_header">{{listTitleShort }}</h3>
+            <h3 class="mb0 rounded_top regulartext_header">{{ listTitleShort }}</h3>
         </div>
         <div class="message_list" id="mp1">
             <div class="date_select mb10">
