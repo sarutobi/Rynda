@@ -28,7 +28,6 @@
         <div>
             <h3>Расскажите о себе</h3>
 
-            <!--input type="hidden" id="messageType" name="messageType" value="<?php echo $messageTypeSlug;?>" /-->
             *{{form.contact_first_name.label_tag}}
             {{form.contact_first_name}}
             <div id="firstNameError" class="validationError">{{form.contact_first_name.errors}}</div>
@@ -40,23 +39,30 @@
             *{{form.contact_mail.label_tag}}
             {{form.contact_mail}}
             <div id="emailError" class="validationError">{{from.contact_mail.error}}</div>
-            <ul id="phonesList">
-              <li>
-                  <label for="contact_phone">*Телефон:</label>
-                  <input type="text" id="contact_phone" class="phone ie6_input_fixer_phone ie6_input_fixer" name="phone[]" tabindex="3" maxlength="30" />
-                  <div class="validationError phoneError"></div>
-              </li>
-            </ul>  
-<label class="label_show">
+            <br />
+            {{ form.contact_phone.label_tag }}
+            {{ form.contact_phone }}
+            <div class="validationError">{{ form.contact_phone.error }}</div>
+            <br /> 
+            <label class="label_show">
                 <input type="checkbox" name="isPrivate" value="1" checked />
                 Не публиковать мои контактные данные (они будут доступны только модераторам)
             </label>
             <div id="contactsError" class="validationError" style="display:none;"></div>
+            <br />
+            {{ form.region.label_tag }}
+            {{ form.region }}
+            <div class="validationError">{{ form.region.error }}</div>
+            <br />
+            {{ form.address.label_tag }}
+            {{ form.address }}
+            <div class="validationError">{{ form.address.error }}</div>
+            <br />
+
         </div>
         </div>
         <input type='submit'>
         </form>
     </div>
-
 </div>
 {% endblock %}
