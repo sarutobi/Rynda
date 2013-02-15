@@ -56,5 +56,3 @@ class Location(models.Model):
 
     def __unicode__(self):
         return u'%f %f' % (self.latitude, self.longitude)
-
-
