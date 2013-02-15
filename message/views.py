@@ -2,7 +2,7 @@
 # Create your views here.
 
 from django.contrib.auth import logout
-from django.core.urlresolvers import reverse
+from django.core.urlresolvers import reverse_lazy
 from django.shortcuts import redirect, render_to_response
 from django.template import RequestContext
 
@@ -84,7 +84,7 @@ class CreateRequest(CategoryMixin, RyndaCreateView):
     template_name = "request_form_simple.html"
     model = Message
     form_class = SimpleRequestForm
-    success_url = '/message/'
+    success_url = reverse_lazy('message_list')
 
 
 def get_initial(self):
