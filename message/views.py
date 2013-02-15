@@ -1,20 +1,21 @@
 # -*- coding: utf-8 -*-
 # Create your views here.
 
+from django.contrib.auth import logout
+from django.core.urlresolvers import reverse
 from django.shortcuts import redirect, render_to_response
 from django.template import RequestContext
-from django.contrib.auth import logout
 
 from core.context_processors import subdomains_context, categories_context
-from core.models import Region, Subdomain
 from core.mixins import SubdomainContextMixin, CategoryMixin
-from core.views import RyndaCreateView, RyndaDetailView, RyndaListView
+from core.models import Region, Subdomain
 from core.utils import url_filter
+from core.views import RyndaCreateView, RyndaDetailView, RyndaListView
 
 from feed.models import FeedItem
 
-from message.models import Message
 from message.forms import SimpleRequestForm
+from message.models import Message
 
 
 def list(request, slug='all'):
@@ -83,8 +84,10 @@ class CreateRequest(CategoryMixin, RyndaCreateView):
     template_name = "request_form_simple.html"
     model = Message
     form_class = SimpleRequestForm
+    success_url = '/message/'
 
-    def get_initial(self):
+
+def get_initial(self):
         '''Returns default values if user is authenticated'''
         initial = {}
         if self.request.user.is_authenticated():

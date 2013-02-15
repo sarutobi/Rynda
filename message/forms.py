@@ -19,17 +19,23 @@ class SimpleRequestForm(forms.ModelForm):
     '''
     class Meta:
         model = Message
+        widgets = {'messageType': forms.HiddenInput, }
 
     def __init__(self, *args, **kwargs):
         super(SimpleRequestForm, self).__init__(*args, **kwargs)
         self.fields['messageType'].initial = MessageType.TYPE_REQUEST
+        self.fields['latitude'].initial = '55.75222'
+        self.fields['longitude'].initial = '37.61556'
 
     # Location fields
     address = forms.CharField(required=True)
-    latitude = forms.FloatField(widget=forms.HiddenInput)
-    longitude = forms.FloatField(widget=forms.HiddenInput)
+    latitude = forms.FloatField(widget=forms.HiddenInput, required=False)
+    longitude = forms.FloatField(widget=forms.HiddenInput, required=False)
     # XXX How to drop this ?
-    region = forms.ModelChoiceField(Region.objects.all(), label=_("region"))
+    region = forms.ModelChoiceField(
+        Region.objects.all(),
+        label=_("region"),
+        required=False)
 
     def clean_status(self):
         status = self.cleaned_data['status']

@@ -15,6 +15,10 @@
         <form id="mainForm" action="" method='post'>
         {% csrf_token%}
         {{form.errors}}
+
+        {% for f in form.hidden_fields %}
+        {{ f }}
+        {% endfor %}
         <div class="column_container width_fixer" id="nh1column">
         <div>
             <h3>Опишите вашу проблему</h3>
@@ -50,6 +54,7 @@
             </label>
             <div id="contactsError" class="validationError" style="display:none;"></div>
             <br />
+            <h3>Местоположение</h3>
             {{ form.region.label_tag }}
             {{ form.region }}
             <div class="validationError">{{ form.region.error }}</div>
