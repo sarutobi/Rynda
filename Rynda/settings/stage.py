@@ -1,6 +1,8 @@
 # coding: utf-8
 
-from .settings import *
+from .base import *
+
+DEBUG = True
 
 DATABASES = {
     'default': {
