@@ -7,9 +7,12 @@ from django.views.generic.detail import DetailView
 
 from core.views import RyndaFormView, RyndaListView
 from core.backends import IonAuth
-from users.forms import (SimpleRegistrationForm, ForgotPasswordForm,
+from users.forms import (
+    SimpleRegistrationForm,
+    ForgotPasswordForm,
     ResetPasswordForm)
 from users.models import create_new_user
+
 
 class UserDetail(DetailView):
     model = User
@@ -38,10 +41,10 @@ class CreateUser(RyndaFormView):
     def form_valid(self, form):
         ce = form.cleaned_data
         create_new_user(
-            first_name = ce['first_name'],
-            last_name = ce['last_name'],
-            email = ce['email'],
-            password = ce['password1'],
+            first_name=ce['first_name'],
+            last_name=ce['last_name'],
+            email=ce['email'],
+            password=ce['password1'],
         )
         return redirect(self.success_url)
 
@@ -64,7 +67,7 @@ class ForgotPassword(RyndaFormView):
              'site_url': self.request.META['SERVER_NAME'],
             }
         )
-        messages.success(self.request, 
+        messages.success(self.request,
             "На указанный адрес почты отправлено письмо с инструкциями")
         return redirect(self.success_url)
 
