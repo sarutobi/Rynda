@@ -14,3 +14,6 @@ class UserFactory(factory.Factory):
         lambda a:
         "{0}_{1}@example.com".format(a.first_name, a.last_name).lower())
     username = factory.Sequence(lambda n: "username_%s" % n)
+    is_active = False
+    is_staff = False
+    is_superuser = False
