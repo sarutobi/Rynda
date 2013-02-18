@@ -12,7 +12,8 @@ class AuthTest(unittest.TestCase):
 
     def setUp(self):
         self.user = UserFactory.build(
-            password = IonAuth().password_hash('123')
+            password=IonAuth().password_hash('123'),
+            is_active=True
         )
 
     def tearDown(self):
