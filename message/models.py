@@ -1,21 +1,17 @@
 # -*- coding: utf-8 -*-
 
-from django.db import models
-
-from django.core.exceptions import ValidationError
-from django.core.validators import validate_email
-from django.utils.translation import ugettext_lazy as _
 
 from django.contrib.auth.models import User
+from django.core.exceptions import ValidationError
+from django.core.validators import validate_email
+from django.db import models
+from django.db.models.query import QuerySet
+from django.utils.translation import ugettext_lazy as _
+
+from model_utils.managers import PassThroughManager
 
 from core.models import Category, Subdomain
 from geozones.models import Location
-
-
-class ApprovedMessages(models.Manager):
-    def get_query_set(self):
-        return super(ApprovedMessages, self).get_query_set()\
-            .filter(status__gt=1)
 
 
 class MessageType():
@@ -30,6 +26,14 @@ class MessageType():
         (TYPE_RESPONSE, _("response")),
         (TYPE_INFO, _("informatial"))
     )
+
+
+class MessageQueryset(QuerySet):
+    def active(self):
+        return self.filter(status__gt=1, status__lt=6)
+
+    def closed(self):
+        return self.filter(status=6)
 
 
 class Message(models.Model):
@@ -52,8 +56,7 @@ class Message(models.Model):
         ordering = ['-date_add']
 
     #Managers
-    objects = models.Manager()
-    approved = ApprovedMessages()
+    objects = PassThroughManager.for_queryset_class(MessageQueryset)()
 
     #Mandatory fields
     title = models.CharField(
