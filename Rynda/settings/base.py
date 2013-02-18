@@ -147,6 +147,7 @@ INSTALLED_APPS = (
 
 AUTHENTICATION_BACKENDS = (
     'core.backends.IonAuth',
+    'core.backends.EmailAuthBackend',
     'django.contrib.auth.backends.ModelBackend',
 )
 
