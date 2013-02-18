@@ -27,5 +27,7 @@ class MessageFactory(factory.Factory):
         ).lower())
     contact_phone = generate_string(str_len=10, src=string.digits)
     user = factory.SubFactory(UserFactory)
-    messageType = random.randint(
-        MessageType.TYPE_REQUEST, MessageType.TYPE_INFO)
+    messageType = random.choice((
+        MessageType.TYPE_REQUEST,
+        MessageType.TYPE_RESPONSE,
+        MessageType.TYPE_INFO))
