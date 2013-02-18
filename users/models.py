@@ -5,8 +5,9 @@ import base64
 import hashlib
 import string
 
-from django.db import models
 from django.conf import settings
+from django.db import models
+from django.db.models.signals import post_save
 from django.contrib.auth.models import User
 
 from templated_emails.utils import send_templated_email
@@ -79,6 +80,13 @@ class Profile(models.Model):
         return "Profile for %s" % self.user.username
 
 
+def create_user_profile(sender, instance, created, **kwargs):
+    if created:
+        Profile.objects.create(user=instance)
+
+post_save.connect(create_user_profile, sender=User)
+
+
 def create_new_user(first_name, last_name, password, email):
     user = User(
         first_name=first_name,
@@ -90,9 +98,9 @@ def create_new_user(first_name, last_name, password, email):
     )
     user.set_password(password),
     user.save()
-    profile = Profile.objects.create(
-        user=user
-    )
+#    profile = Profile.objects.create(
+#        user=user
+#    )
 
 
 def notify_new_user(user, code):
