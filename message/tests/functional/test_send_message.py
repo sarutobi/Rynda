@@ -11,6 +11,7 @@ class TestSendMessage(WebTest):
         self.form = self.app.get('/message/pomogite/dobavit').forms['mainForm']
 
     def tearDown(self):
+        Message.objects.all().delete()
         self.form = None
 
     def test_anonymous_message(self):
@@ -25,8 +26,8 @@ class TestSendMessage(WebTest):
         self.form.submit()
         self.assertEqual(before + 1, Message.objects.count())
 
-    def test_knownuser_message(self):
-        ''' For known user form must pre-fill some fields'''
+    def test_knownuser_form(self):
+        ''' Form for authenticated user contain initial data for some fields'''
         user = UserFactory(is_active=True)
         form = self.app.get(
             '/message/pomogite/dobavit',
@@ -35,3 +36,21 @@ class TestSendMessage(WebTest):
         self.assertEqual(user.last_name, form['contact_last_name'].value)
         self.assertEqual(user.email, form['contact_mail'].value)
         self.assertEqual(user.profile.phones, form['contact_phone'].value)
+        user.delete()
+
+    def test_knownuser_message(self):
+        ''' Authenticated user send message and this message must be
+            linked to user profile'''
+        before = Message.objects.count()
+        user = UserFactory(is_active=True)
+        form = self.app.get(
+            '/message/pomogite/dobavit',
+            user=user.username).forms['mainForm']
+        form['title'] = 'Test message'
+        form['message'] = "This is simple test message"
+        form['address'] = 'Somewhere in the Earth'
+        form.submit()
+        self.assertEqual(before + 1, Message.objects.count())
+        msg = Message.objects.all().select_related().reverse()[0]
+        self.assertEqual(msg.user, user)
+        user.delete()

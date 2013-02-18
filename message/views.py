@@ -95,16 +95,12 @@ class CreateRequest(CategoryMixin, RyndaCreateView):
             initial['contact_phone'] = self.request.user.profile.phones
         return initial
 
-
-def get_initial(self):
-        '''Returns default values if user is authenticated'''
-        initial = {}
+    def form_valid(self, form):
+        instance = form.save(commit=False)
         if self.request.user.is_authenticated():
-            u = self.request.user
-            initial['contact_first_name'] = u.first_name
-            initial['contact_last_name'] = u.last_name
-            initial['contact_mail'] = u.email
-        return initial
+            instance.user = self.request.user
+        instance.save()
+        return redirect(self.success_url)
 
 
 class CreateOffer(CategoryMixin, RyndaCreateView):
