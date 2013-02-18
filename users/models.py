@@ -98,9 +98,12 @@ def create_new_user(first_name, last_name, password, email):
     )
     user.set_password(password),
     user.save()
-#    profile = Profile.objects.create(
-#        user=user
-#    )
+    send_templated_email(
+        [user], 'emails/registration_confirm',
+        {'user': user, 'site_url': 'SERVER_NAME',
+         'activation_code': 'code', }
+    )
+    return user
 
 
 def notify_new_user(user, code):

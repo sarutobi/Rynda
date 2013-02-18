@@ -3,6 +3,7 @@
 import unittest
 
 from django.contrib.auth.models import User
+from django.core import mail
 from django.utils import timezone
 from django.conf import settings
 
@@ -60,26 +61,55 @@ class UserTest(unittest.TestCase):
 
     def test_user(self):
         self.assertNotEqual(None, self.user)
+
+    def test_user_first_name(self):
         self.assertEqual('Boy', self.user.first_name)
+
+    def test_user_last_name(self):
         self.assertEqual('Factory', self.user.last_name)
+
+    def test_user_email(self):
         self.assertEqual('boy_factory@example.com', self.user.email)
 
-    def test_create_new_user(self):
-        self.assertEqual(0, User.objects.all().count())
-        create_new_user(
-            first_name=self.user.first_name,
-            last_name=self.user.last_name,
-            email=self.user.email,
+
+class TestUserCreation(unittest.TestCase):
+    def setUp(self):
+        user = UserFactory.build()
+        self.user = create_new_user(
+            first_name=user.first_name,
+            last_name=user.last_name,
+            email=user.email,
             password='123'
         )
+
+    def tearDown(self):
+        # clear outbox
+        mail.outbox.pop()
+        self.user.delete()
+
+    def test_create_new_user(self):
         self.assertEqual(1, User.objects.all().count())
+
+    def test_user_password(self):
         u = User.objects.get(email=self.user.email)
-        self.assertEqual(u.first_name, self.user.first_name)
-        self.assertEqual(u.last_name, self.user.last_name)
         self.assertTrue(u.check_password('123'))
+
+    def test_user_staff(self):
+        u = User.objects.get(email=self.user.email)
         self.assertFalse(u.is_staff)
+
+    def test_user_active(self):
+        u = User.objects.get(email=self.user.email)
         self.assertFalse(u.is_active)
-        u.delete()
+
+    def test_send_email(self):
+        self.assertEqual(1, len(mail.outbox))
+
+    def test_email_subject(self):
+        self.assertEqual(
+            mail.outbox[0].subject,
+            u'Активация учетной записи'
+        )
 
 
 class TestUserActivation(unittest.TestCase):
