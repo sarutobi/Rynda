@@ -2,4 +2,4 @@
 factory-boy==1.2.0
 django-discover-runner==0.2.2
 WebTest==1.4.3
-
+django-webtest==1.5.6
