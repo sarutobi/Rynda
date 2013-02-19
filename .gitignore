@@ -1,0 +1,5 @@
+.*
+*.pyc
+local_settings.py
+htmlcov
+mailbox

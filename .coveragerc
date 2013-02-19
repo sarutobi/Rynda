@@ -1,0 +1,10 @@
+[run]
+include = 
+    core/*
+    geozones/*
+    message/*
+    users/*
+omit =
+    */migrations/*
+    */tests/*
+
