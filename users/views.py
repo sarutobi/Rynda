@@ -6,11 +6,7 @@ from django.contrib.auth.models import User
 from django.views.generic.detail import DetailView
 
 from core.views import RyndaFormView, RyndaListView
-from core.backends import IonAuth
-from users.forms import (
-    SimpleRegistrationForm,
-    ForgotPasswordForm,
-    ResetPasswordForm)
+from users.forms import SimpleRegistrationForm
 from users.models import create_new_user
 
 
@@ -48,50 +44,6 @@ class CreateUser(RyndaFormView):
         )
         return redirect(self.success_url)
 
-
-class ForgotPassword(RyndaFormView):
-    template_name = 'forgotpassword_form.html'
-    form_class = ForgotPasswordForm
-    success_url = '/'
-
-    def form_valid(self, form):
-        user = User.objects.get(email=form.cleaned_data['email'])
-        auth = IonAuth()
-        profile = user.get_profile()
-        profile.forgotCode = auth.generate_code()
-        profile.save()
-        send_templated_email([user], 'emails/forgot_password',
-            {
-             'user': user,
-             'forgot_code': profile.forgotCode,
-             'site_url': self.request.META['SERVER_NAME'],
-            }
-        )
-        messages.success(self.request,
-            "На указанный адрес почты отправлено письмо с инструкциями")
-        return redirect(self.success_url)
-
-
-class ResetPassword(RyndaFormView):
-    template_name = 'resetpassword_form.html'
-    form_class = ResetPasswordForm
-    success_url = '/'
-
-    def form_valid(self, form):
-        profile = Users.objects.get(forgotCode=form.cleaned_data['code'])
-        user = profile.user
-        profile.forgotCode = ''
-        auth = IonAuth()
-        passwd = auth.generate_code()[:6]
-        user.password = auth.password_hash(passwd)
-        profile.save()
-        user.save()
-        send_templated_email([user], 'emails/new_password',
-            {'user': user, 'password': passwd,
-            'base_url': self.request.META['SERVER_NAME'],
-            }
-        )
-        return redirect(self.success_url)
 
 def activate_profile(request, pk, key):
     user = User.objects.get(id=pk)
