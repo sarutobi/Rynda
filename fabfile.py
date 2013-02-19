@@ -15,3 +15,6 @@ def coverage():
 
 def server():
     local("./manage.py runserver --settings=Rynda.settings.local")
+
+def stage():
+    local("./manage.py runserver 0.0.0.0:8000 --settings=Rynda.settings.stage")
