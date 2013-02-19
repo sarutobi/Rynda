@@ -1,5 +1,6 @@
 # coding: utf-8
 
+import os
 from .base import *
 
 DEBUG = True
@@ -14,3 +15,6 @@ DATABASES = {
         'PORT': '',
     }
 }
+
+EMAIL_BACKEND = 'django.core.mail.backends.filebased.EmailBackend'
+EMAIL_FILE_PATH = os.path.join(SITE_ROOT, 'mailbox')
