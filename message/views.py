@@ -19,7 +19,7 @@ from message.models import Message
 
 
 def list(request, slug='all'):
-    last_requests = url_filter(Message.objects.active().values('id', 'title', 'date_add'), slug)[:5]
+    last_requests = Message.objects.active().values('id', 'title', 'date_add')[:5]
     last_offers = Message.objects.filter(messageType=2,status__gt=1,
         status__lt=6).values('id', 'title','date_add')[:5]
     last_completed = Message.objects.filter(messageType=1,status=6)\
