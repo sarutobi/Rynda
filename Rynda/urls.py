@@ -18,18 +18,8 @@ urlpatterns = patterns('',
 
     # Uncomment the next line to enable the admin:
     url(r'^admin/', include(admin.site.urls)),
-    url(r'^login$', 'django.contrib.auth.views.login',
-        {'template_name': 'login.html'}),
     url(r'^logout$', 'message.views.logout_view'),
-    url(r'^password/reset$', 'django.contrib.auth.views.password_reset',
-        ),
-    url(r'^password/reset/confirm/(?P<uidb36>[0-9A-Za-z]{1,13})-(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,20})/$',
-        'django.contrib.auth.views.password_reset_confirm',),
-    url(r'^password/reset/complete$',
-        'django.contrib.auth.views.password_reset_complete'),
-    url(r'^password/reset/done',
-        'django.contrib.auth.views.password_reset_done', ),
-    url(r'^$', 'message.views.list'),
+        url(r'^$', 'message.views.list'),
     url(r'^t/(?P<slug>[a-z_0-9-]+)$', 'message.views.list'),
     url(r'^register$', CreateUser.as_view()),
     url(r'^message/', include('message.urls')),
@@ -38,6 +28,18 @@ urlpatterns = patterns('',
     ('^info/(?P<slug>[a-z_]+)$', 'core.views.show_page'),
 )
 
+urlpatterns += patterns('django.contrib.auth.views',
+    url(r'^login$', 'login',
+        {'template_name': 'login.html'}),
+    url(r'^password/reset$', 'password_reset',
+        ),
+    url(r'^password/reset/confirm/(?P<uidb36>[0-9A-Za-z]{1,13})-(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,20})/$',
+        'password_reset_confirm',),
+    url(r'^password/reset/complete$',
+        'password_reset_complete'),
+    url(r'^password/reset/done',
+        'password_reset_done', ),
+)
 urlpatterns += patterns('core.views',
 
 )
