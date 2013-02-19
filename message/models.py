@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-
+from django.contrib import admin
 from django.contrib.auth.models import User
 from django.core.exceptions import ValidationError
 from django.core.validators import validate_email
@@ -195,6 +195,21 @@ class Message(models.Model):
 
     def is_removed(self):
         return (self.flags & self.MESSAGE_DELETED) == self.MESSAGE_DELETED
+
+
+class MessageAdmin(admin.ModelAdmin):
+    list_display = (
+        'pk',
+        'title',
+        'subdomain',
+        'messageType',
+        'status',
+        'date_add',
+    )
+    list_display_links = ('pk', 'title')
+    list_filter = ('status',)
+
+admin.site.register(Message, MessageAdmin)
 
     #def active(self):
     #    return (self.flags & 1) == 1
