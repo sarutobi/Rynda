@@ -115,7 +115,7 @@ class MessageView(RyndaDetailView):
 
 
 class MessageList(RyndaListView):
-    queryset = Message.approved.select_related(
+    queryset = Message.objects.active().select_related(
         'location', 'messageType', 'location__regionId').all()
     paginate_by = 10
     template_name = 'all_messages.html'

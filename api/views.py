@@ -11,6 +11,7 @@ from core.models import Category
 from core.serializers import CategorySerializer
 from core.context_processors import categories_context
 
+
 @api_view(['GET'])
 def api_root(request, format=None):
     return Response({
@@ -20,13 +21,13 @@ def api_root(request, format=None):
 
 
 class MapMessageList(generics.ListAPIView):
-    queryset = Message.approved.select_related('location').all()
+    queryset = Message.objects.active().select_related('location').all()
     serializer_class = MapMessageSerializer
 
 
 class MessagesList(generics.ListAPIView):
     #model = Message
-    queryset = Message.approved.all()
+    queryset = Message.objects.active().all()
     serializer_class = MessageSerializer
     paginate_by = 10
 
