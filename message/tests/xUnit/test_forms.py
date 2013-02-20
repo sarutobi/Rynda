@@ -40,7 +40,7 @@ class TestSimpleRequestForm(unittest.TestCase):
     def test_send_data(self):
         form = SimpleRequestForm(self.data)
         self.assertTrue(form.is_bound)
-        self.assertTrue(form.is_valid())
+        self.assertTrue(form.is_valid(), form.errors)
         msg = form.save(commit=True)
         self.assertIsNotNone(msg)
         self.assertIsNotNone(msg.pk)
