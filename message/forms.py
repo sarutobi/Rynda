@@ -22,7 +22,7 @@ class MessageForm(forms.Form):
     contact_phone = forms.CharField(required=False, label=_('phone'))
     messageType = forms.IntegerField(widget=forms.HiddenInput())
     # Location fields
-    address = forms.CharField(required=True)
+    #address = forms.CharField(required=True)
     #latitude = forms.FloatField(widget=forms.HiddenInput, required=False)
     #longitude = forms.FloatField(widget=forms.HiddenInput, required=False)
     location = LocationField()
@@ -31,6 +31,11 @@ class MessageForm(forms.Form):
         Region.objects.all(),
         label=_("region"),
         required=False)
+
+    def clean_location(self):
+        import pdb;pdb.set_trace()
+        location = self.cleaned_data['location']
+        return location
 
     def clean_status(self):
         status = self.cleaned_data['status']

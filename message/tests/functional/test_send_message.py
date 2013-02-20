@@ -22,7 +22,7 @@ class TestSendMessage(WebTest):
         self.form['contact_last_name'] = 'User'
         self.form['contact_mail'] = 'me@local.host'
         self.form['contact_phone'] = '123456789'
-        self.form['address'] = 'Somewhere in the Earth'
+        self.form['location_2'] = 'Somewhere in the Earth'
         self.form.submit()
         self.assertEqual(before + 1, Message.objects.count())
 
