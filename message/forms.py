@@ -9,7 +9,7 @@ from message.models import Message, MessageType
 from core.models import Category
 from core.widgets import CategoryTree
 from geozones.models import Location, Region
-
+from geozones.forms import LocationField
 
 class SimpleRequestForm(forms.ModelForm):
     '''
@@ -31,6 +31,7 @@ class SimpleRequestForm(forms.ModelForm):
     address = forms.CharField(required=True)
     latitude = forms.FloatField(widget=forms.HiddenInput, required=False)
     longitude = forms.FloatField(widget=forms.HiddenInput, required=False)
+    location = LocationField()
     # XXX How to drop this ?
     region = forms.ModelChoiceField(
         Region.objects.all(),
