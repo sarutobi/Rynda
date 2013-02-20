@@ -11,26 +11,20 @@ from core.widgets import CategoryTree
 from geozones.models import Location, Region
 from geozones.forms import LocationField
 
-class SimpleRequestForm(forms.ModelForm):
-    '''
-    Simple request form. This form is combined with model and flat form.
-    It is possible to make this form only flat, 'cause this form functionality
-    is cross-model.
-    '''
-    class Meta:
-        model = Message
-        widgets = {'messageType': forms.HiddenInput, }
 
-    def __init__(self, *args, **kwargs):
-        super(SimpleRequestForm, self).__init__(*args, **kwargs)
-        self.fields['messageType'].initial = MessageType.TYPE_REQUEST
-        self.fields['latitude'].initial = '55.75222'
-        self.fields['longitude'].initial = '37.61556'
-
+class MessageForm(forms.Form):
+    # Message fields
+    title = forms.CharField(required=False, label=_('title'))
+    message = forms.CharField(widget=forms.Textarea(), label=_('message'))
+    contact_first_name = forms.CharField(label=_('first name'))
+    contact_last_name = forms.CharField(label=_('last name'))
+    contact_mail = forms.EmailField(label=_('email'))
+    contact_phone = forms.CharField(required=False, label=_('phone'))
+    messageType = forms.IntegerField(widget=forms.HiddenInput())
     # Location fields
     address = forms.CharField(required=True)
-    latitude = forms.FloatField(widget=forms.HiddenInput, required=False)
-    longitude = forms.FloatField(widget=forms.HiddenInput, required=False)
+    #latitude = forms.FloatField(widget=forms.HiddenInput, required=False)
+    #longitude = forms.FloatField(widget=forms.HiddenInput, required=False)
     location = LocationField()
     # XXX How to drop this ?
     region = forms.ModelChoiceField(
@@ -51,7 +45,7 @@ class SimpleRequestForm(forms.ModelForm):
         return flags
 
     def clean_messageType(self):
-        return MessageType.TYPE_REQUEST
+        raise NotImplementedError('You must overwrite this method!')
 
     def clean_address(self):
         address = self.cleaned_data['address']
@@ -59,14 +53,72 @@ class SimpleRequestForm(forms.ModelForm):
             raise ValidationError(_("You must provide an address"))
         return address
 
-    def save(self, *args, **kwargs):
-        l = Location(
-            description=self.cleaned_data['address'],
-            latitude=self.cleaned_data['latitude'],
-            longitude=self.cleaned_data['longitude'])
-        l.save()
-        self.instance.location = l
-        return super(SimpleRequestForm, self).save(*args, **kwargs)
+    #def save(self, *args, **kwargs):
+    #    l = Location(
+    #        description=self.cleaned_data['address'],
+    #        latitude=self.cleaned_data['latitude'],
+    #        longitude=self.cleaned_data['longitude'])
+    #    l.save()
+    #    self.instance.location = l
+    #    return super(SimpleRequestForm, self).save(*args, **kwargs)
+
+
+class SimpleRequestForm(MessageForm):
+    '''
+    Simple request form. This form is combined with model and flat form.
+    It is possible to make this form only flat, 'cause this form functionality
+    is cross-model.
+    '''
+    #class Meta:
+    #    model = Message
+    #    widgets = {'messageType': forms.HiddenInput, }
+
+    def __init__(self, *args, **kwargs):
+        super(SimpleRequestForm, self).__init__(*args, **kwargs)
+        self.fields['messageType'].initial = MessageType.TYPE_REQUEST
+    #    self.fields['latitude'].initial = '55.75222'
+    #    self.fields['longitude'].initial = '37.61556'
+
+    # Location fields
+    #address = forms.CharField(required=True)
+    #latitude = forms.FloatField(widget=forms.HiddenInput, required=False)
+    #longitude = forms.FloatField(widget=forms.HiddenInput, required=False)
+    #location = LocationField()
+    # XXX How to drop this ?
+    #region = forms.ModelChoiceField(
+    #    Region.objects.all(),
+    #    label=_("region"),
+    #    required=False)
+
+    #def clean_status(self):
+    #    status = self.cleaned_data['status']
+    #    if status is None:
+    #        return self.fields['status'].initial
+    #    return status
+
+    #def clean_flags(self):
+    #    flags = self.cleaned_data['flags']
+    #    if flags is None:
+    #        return self.fields['flags'].initial
+    #    return flags
+
+    def clean_messageType(self):
+        return MessageType.TYPE_REQUEST
+
+    #def clean_address(self):
+    #    address = self.cleaned_data['address']
+    #    if address is None:
+    #        raise ValidationError(_("You must provide an address"))
+    #    return address
+
+    #def save(self, *args, **kwargs):
+    #    l = Location(
+    #        description=self.cleaned_data['address'],
+    #        latitude=self.cleaned_data['latitude'],
+    #        longitude=self.cleaned_data['longitude'])
+    #    l.save()
+    #    self.instance.location = l
+    #    return super(SimpleRequestForm, self).save(*args, **kwargs)
 #class RequestForm(forms.ModelForm):
 #    class Meta:
 #        model = Message
