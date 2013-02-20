@@ -10,7 +10,8 @@ from core.context_processors import subdomains_context, categories_context
 from core.mixins import SubdomainContextMixin, CategoryMixin
 from core.models import Region, Subdomain
 from core.utils import url_filter
-from core.views import RyndaCreateView, RyndaDetailView, RyndaListView
+from core.views import (
+    RyndaCreateView, RyndaDetailView, RyndaListView, RyndaFormView)
 
 from feed.models import FeedItem
 
@@ -79,9 +80,9 @@ def logout_view(request):
     return redirect('/')
 
 
-class CreateRequest(CategoryMixin, RyndaCreateView):
+class CreateRequest(CategoryMixin, RyndaFormView):
     template_name = "request_form_simple.html"
-    model = Message
+    #model = Message
     form_class = SimpleRequestForm
     success_url = reverse_lazy('message_list')
 
