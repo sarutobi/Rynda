@@ -11,9 +11,9 @@ class LocationField(forms.MultiValueField):
     def __init__(self, *args, **kwargs):
         self.widget = GeolocationWidget()
         fields = (
-            forms.DecimalField(label=_('latitude')),
-            forms.DecimalField(label=_('llongitude')),
-            forms.CharField(max_length=200, label=_('address'))
+            forms.DecimalField(required=False, label=_('latitude')),
+            forms.DecimalField(required=False, label=_('longitude')),
+            forms.CharField(required=False, max_length=200, label=_('address'))
         )
         super(LocationField, self).__init__(fields, required=True)
 
