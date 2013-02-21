@@ -9,8 +9,8 @@ from test.factories import UserFactory
 
 class TestSendMessage(WebTest):
     def setUp(self):
-        self.form = self.app.get('/message/pomogite/dobavit').forms['mainForm']
         self.region = RegionFactory()
+        self.form = self.app.get('/message/pomogite/dobavit').forms['mainForm']
 
     def tearDown(self):
         Message.objects.all().delete()
@@ -51,7 +51,8 @@ class TestSendMessage(WebTest):
             user=user.username).forms['mainForm']
         form['title'] = 'Test message'
         form['message'] = "This is simple test message"
-        form.submit()
+        form['georegion'] = self.region.pk
+        form.submit().showbrowser()
         self.assertEqual(before + 1, Message.objects.count())
         msg = Message.objects.all().select_related().reverse()[0]
         self.assertEqual(msg.user, user)
