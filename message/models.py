@@ -2,6 +2,7 @@
 
 from django.contrib import admin
 from django.contrib.auth.models import User
+from django.contrib.gis.db import models as geomodels
 from django.core.exceptions import ValidationError
 from django.core.validators import validate_email
 from django.db import models
@@ -36,7 +37,7 @@ class MessageQueryset(QuerySet):
         return self.filter(status=6)
 
 
-class Message(models.Model):
+class Message(geomodels.Model):
     '''Message data'''
     #Flag values
     MESSAGE_ACTIVE = 0x1L
@@ -83,14 +84,18 @@ class Message(models.Model):
         choices=MessageType.TYPES_CHOICE,
         db_column='message_type',
         verbose_name=_('message type'),)
-
-    #Optional fields
+    location = geomodels.PointField(
+        _('location'),
+        geography=True,
+        blank=True, null=True)
+    # Optional fields
+    # Message original source
     source = models.CharField(
         max_length=255,
         verbose_name=_("source"),
         blank=True)
 
-    #Moderator's fields
+    # Moderator's fields
     flags = models.BigIntegerField(default=0, blank=True)
     status = models.SmallIntegerField(
         choices=MESSAGE_STATUS,
@@ -122,8 +127,8 @@ class Message(models.Model):
         verbose_name=_("sender IP"))
 
     #Links to core models
-    location = models.ForeignKey(
-        Location, db_column='location_id',
+    linked_location = models.ForeignKey(
+        Location,
         null=True, blank=True)
     category = models.ManyToManyField(
         Category,
@@ -137,6 +142,10 @@ class Message(models.Model):
         null=True, blank=True,
         verbose_name=_('subdomain'))
 
+    objects = models.Manager()
+    # Gis queries
+    gis = geomodels.GeoManager()
+
     def __unicode__(self):
         return self.title
 
@@ -146,20 +155,6 @@ class Message(models.Model):
     def restore(self):
         mask = ~self.MESSAGE_DELETED
         self.flags = self.flags & mask
-
-   # def get_sender(self):
-   #     tree = etree.fromstring(self.sender)
-   #     fn = tree[0].text or ''
-   #     pn = tree[1].text or ''
-   #     ln = tree[2].text or ''
-   #     email = tree[3].text or ''
-        #XXX Переделать на лямбда-функцию
-   #     ph = []
-   #     for e in tree[4:]:
-   #         if e.tag == 'phone':
-   #             ph.append(e.text or '')
-   #     phones = ','.join(ph) or ''
-   #     return u"%s %s %s, email: %s, тел: %s" % (ln, fn, pn, email, phones)
 
     def clean(self):
         if not self.contact_mail and not self.contact_phone:
