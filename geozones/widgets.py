@@ -10,7 +10,6 @@ class GeolocationWidget(forms.MultiWidget):
         widgets = (
             forms.HiddenInput(),
             forms.HiddenInput(),
-            forms.TextInput(),
         )
         super(GeolocationWidget, self).__init__(widgets, attrs)
 
@@ -24,15 +23,12 @@ class GeolocationWidget(forms.MultiWidget):
                 'longitude': {
                     'html': rendered_widgets[1],
                     'label': _('longitude'), },
-                'address': {
-                    'html': rendered_widgets[2],
-                    'label': _('address'), },
             }
         )
 
     def decompress(self, value):
         if value:
-            return (value.latitude, value.longitude, value.address)
+            return (value.latitude, value.longitude)
         return (None, None, None)
 
     class Media:

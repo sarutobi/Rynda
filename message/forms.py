@@ -5,11 +5,12 @@ from django import forms
 from django.core.exceptions import ValidationError
 from django.utils.translation import ugettext as _
 
-from message.models import Message, MessageType
 from core.models import Category
 from core.widgets import CategoryTree
-from geozones.models import Location, Region
 from geozones.forms import LocationField
+from geozones.models import Location, Region
+from geozones.widgets import GeolocationWidget
+from message.models import Message, MessageType
 
 
 class MessageForm(forms.ModelForm):
@@ -23,6 +24,7 @@ class MessageForm(forms.ModelForm):
             'georegion', 'location')
         widgets = {
             'messageType': forms.HiddenInput(),
+            'location': GeolocationWidget()
         }
 
     def clean_location(self):

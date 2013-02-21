@@ -13,7 +13,6 @@ class LocationField(forms.MultiValueField):
         fields = (
             forms.DecimalField(required=False, label=_('latitude')),
             forms.DecimalField(required=False, label=_('longitude')),
-            forms.CharField(required=False, max_length=200, label=_('address'))
         )
         super(LocationField, self).__init__(fields, required=True)
 
