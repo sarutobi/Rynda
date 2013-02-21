@@ -4,6 +4,7 @@ import factory
 import random
 import string
 
+from geozones.factories import RegionFactory
 from test.utils import generate_string, lorem_ipsum
 from test.factories import UserFactory
 
@@ -31,3 +32,4 @@ class MessageFactory(factory.Factory):
         MessageType.TYPE_REQUEST,
         MessageType.TYPE_RESPONSE,
         MessageType.TYPE_INFO))
+    georegion = factory.SubFactory(RegionFactory)
