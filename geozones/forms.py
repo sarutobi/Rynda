@@ -14,22 +14,10 @@ class LocationField(forms.MultiValueField):
             forms.DecimalField(required=False, label=_('latitude')),
             forms.DecimalField(required=False, label=_('longitude')),
         )
-        super(LocationField, self).__init__(fields, required=True)
+        super(LocationField, self).__init__(fields, required=False)
 
     def compress(self, value_list):
         if value_list:
             return value_list
         return ""
 
-
-class LocationForm(forms.Form):
-    location = LocationField()
-
-    def get_latitude(self):
-        return self.location.fields[0]
-
-    def get_longitude(self):
-        return self.location.fields[1]
-
-    def get_address(self):
-        return self.location.fields[2]

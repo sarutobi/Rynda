@@ -24,6 +24,8 @@ class TestSimpleRequestForm(unittest.TestCase):
             'contact_last_name': self.user.last_name,
             'contact_mail': self.user.email,
             'georegion': self.region.pk,
+            'location_0': 0.0,
+            'location_1': 0.0,
         }
 
     def tearDown(self):

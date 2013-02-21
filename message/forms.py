@@ -27,9 +27,7 @@ class MessageForm(forms.ModelForm):
             'location': GeolocationWidget()
         }
 
-    def clean_location(self):
-        location = self.cleaned_data['location']
-        return location
+    location = LocationField(required=False)
 
     def clean_status(self):
         status = self.cleaned_data['status']
@@ -46,8 +44,16 @@ class MessageForm(forms.ModelForm):
     def clean_messageType(self):
         raise NotImplementedError('You must overwrite this method!')
 
-    #def save(self, *args, **kwargs):
-    #    return super(SimpleRequestForm, self).save(*args, **kwargs)
+    def clean_location(self):
+        location = self.cleaned_data['location']
+        if location is None:
+            return ""
+        elif isinstance(location, list):
+            return 'POINT(%f %f)' % (location[0], location[1])
+        return location
+
+    def save(self, *args, **kwargs):
+        return super(MessageForm, self).save(*args, **kwargs)
 
 
 class SimpleRequestForm(MessageForm):
