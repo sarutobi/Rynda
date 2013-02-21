@@ -2,6 +2,7 @@
 
 from django_webtest import WebTest
 
+from geozones.factories import RegionFactory
 from message.models import Message
 from test.factories import UserFactory
 
@@ -9,9 +10,11 @@ from test.factories import UserFactory
 class TestSendMessage(WebTest):
     def setUp(self):
         self.form = self.app.get('/message/pomogite/dobavit').forms['mainForm']
+        self.region = RegionFactory()
 
     def tearDown(self):
         Message.objects.all().delete()
+        self.region.delete()
         self.form = None
 
     def test_anonymous_message(self):
@@ -22,7 +25,7 @@ class TestSendMessage(WebTest):
         self.form['contact_last_name'] = 'User'
         self.form['contact_mail'] = 'me@local.host'
         self.form['contact_phone'] = '123456789'
-        self.form['location_2'] = 'Somewhere in the Earth'
+        self.form['georegion'] = self.region.pk
         self.form.submit()
         self.assertEqual(before + 1, Message.objects.count())
 
@@ -48,7 +51,6 @@ class TestSendMessage(WebTest):
             user=user.username).forms['mainForm']
         form['title'] = 'Test message'
         form['message'] = "This is simple test message"
-        form['address'] = 'Somewhere in the Earth'
         form.submit()
         self.assertEqual(before + 1, Message.objects.count())
         msg = Message.objects.all().select_related().reverse()[0]

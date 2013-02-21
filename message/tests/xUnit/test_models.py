@@ -4,6 +4,7 @@ import unittest
 
 from django.core.exceptions import ValidationError
 
+from geozones.factories import RegionFactory
 from message.factories import MessageFactory
 from test.factories import UserFactory
 
@@ -14,10 +15,12 @@ class TestMessage(unittest.TestCase):
     '''
     def setUp(self):
         self.user = UserFactory()
-        self.message = MessageFactory.build()
+        self.region = RegionFactory()
+        self.message = MessageFactory.build(georegion=self.region)
 
     def tearDown(self):
         self.user.delete()
+        self.region.delete()
         self.message = None
 
     def test_message_unicode(self):
@@ -26,6 +29,7 @@ class TestMessage(unittest.TestCase):
     def test_message_save(self):
         self.message.save()
         self.assertIsNotNone(self.message.pk)
+        self.message.delete()
 
     def test_message_remove(self):
         self.message.remove()
@@ -44,10 +48,12 @@ class TestMessageCleanData(unittest.TestCase):
     '''
     def setUp(self):
         self.user = UserFactory()
-        self.message = MessageFactory.build()
+        self.region = RegionFactory()
+        self.message = MessageFactory.build(georegion=self.region)
 
     def tearDown(self):
         self.message = None
+        self.region.delete()
         self.user.delete()
 
     def catch_wrong_data(self):

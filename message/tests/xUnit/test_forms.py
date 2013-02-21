@@ -23,8 +23,7 @@ class TestSimpleRequestForm(unittest.TestCase):
             'contact_first_name': self.user.first_name,
             'contact_last_name': self.user.last_name,
             'contact_mail': self.user.email,
-            'location': (42.2333, 37.4442, lorem_ipsum(words_count=4),),
-            'region': self.region.pk,
+            'georegion': self.region.pk,
         }
 
     def tearDown(self):
@@ -37,7 +36,6 @@ class TestSimpleRequestForm(unittest.TestCase):
 
     def test_send_data(self):
         form = SimpleRequestForm(self.data)
-        import pdb;pdb.set_trace()
         self.assertTrue(form.is_bound)
         self.assertTrue(form.is_valid(), form.errors)
         msg = form.save(commit=True)
