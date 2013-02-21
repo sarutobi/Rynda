@@ -12,7 +12,7 @@ from django.utils.translation import ugettext_lazy as _
 from model_utils.managers import PassThroughManager
 
 from core.models import Category, Subdomain
-from geozones.models import Location
+from geozones.models import Region, Location
 
 
 class MessageType():
@@ -84,6 +84,7 @@ class Message(geomodels.Model):
         choices=MessageType.TYPES_CHOICE,
         db_column='message_type',
         verbose_name=_('message type'),)
+    georegion = models.ForeignKey(Region, verbose_name=_('region'))
     location = geomodels.PointField(
         _('location'),
         geography=True,
@@ -142,7 +143,6 @@ class Message(geomodels.Model):
         null=True, blank=True,
         verbose_name=_('subdomain'))
 
-    objects = models.Manager()
     # Gis queries
     gis = geomodels.GeoManager()
 
