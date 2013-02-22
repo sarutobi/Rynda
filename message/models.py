@@ -30,6 +30,11 @@ class MessageType():
 
 
 class MessageQueryset(QuerySet):
+    def list(self):
+        ''' Ask only few fields for listing'''
+        return self.values(
+            'id', 'title', 'message', 'messageType', 'georegion', 'date_add')
+
     def active(self):
         return self.filter(status__gt=1, status__lt=6)
 
