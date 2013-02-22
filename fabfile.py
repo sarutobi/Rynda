@@ -3,7 +3,7 @@
 from fabric.api import *
 
 
-def test(app=None):
+def test(app=''):
     command = "./manage.py test --settings=Rynda.settings.test %s" % app
     local(command)
 
