@@ -7,19 +7,20 @@
 {% block listcontent %}
 {% for m in object_list %}
 <li>
-    {%if m.messageType.slug == 'request'%}
+    {{ m.messageType }}
+    {%if m.messageType == 1 %}
     <a href="/message/{{m.id}}" title="Просьба о помощи #{{m.id}}{% if m.title %}: {{m.title}} {%endif%}" class="darkGrey list_number">#{{m.id}}</a>
     <div class="list_content">
         <a href="/message/{{m.id}}" class="darkRed" title="Просьба о помощи №{{m.id}}{%if m.title%}: {{m.title}} {%endif%}">
             <strong>Просьба о помощи #{{m.id}}{%if m.title%}: {{m.title}} {%endif%}</strong>
         </a>
-    {% elif m.messageType.slug == 'offer' %}
+    {% elif m.messageType == 2 %}
     <a href="/message/{{m.id}}" title="Предложение помощи #${{m.id}}{% if m.title %}: {{m.title}} {% endif %}" class="darkGrey list_number">#{{m.id}}</a>
     <div class="list_content">
         <a href="/info/s/{{m.id}}" class="darkRed" title="Предложение помощи №{{m.id}}{% if m.title %}: {{m.title}} {% endif %}">
             <strong>Предложение помощи #{{m.id}}{% if m.title %}: {{m.title}} {% endif %}</strong>
         </a>
-    {% elif m.messageType.slug == 'info' %}
+    {% elif m.messageType == 3 %}
     <a href="/message/{{m.id}}" title="Информационное сообщение #{{m.id}}{% if m.title %}: {{m.title}} {% endif %}" class="darkGrey list_number">#{{m.id}}</a>
     <div class="list_content">
         <a href="/info/s/{{m.id}}" class="darkRed" title="Информационное сообщение #{{m.id}}{% if m.title %}: {{m.title}} {% endif %}">
@@ -32,7 +33,7 @@
     <br />
     <br />
     <span class="darkGrey fs10">
-        {{m.date_add|date:"d.m.Y"}} | <a href="/info/r/{{m.location.regionId}}" title="Все сообщения по региону «{{m.location.regionId}}»">{{m.location.regionId}}</a>
+        {{m.date_add|date:"d.m.Y"}} | <a href="/info/r/{{ m.georegion }}" title="Все сообщения по региону «{{ m.georegion }}»">{{ m.georegion }}</a>
 {% comment %}    
 <!--            {{if categories.length > 0}} | {{/if}}
         {{each categories}}
