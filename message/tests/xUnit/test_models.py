@@ -96,3 +96,22 @@ class TestUserMessage(unittest.TestCase):
         msg = MessageFactory(user=self.user)
         self.assertIsNotNone(msg)
         self.assertEqual(self.user, msg.user)
+
+
+class TestMessageLocation(unittest.TestCase):
+    def setUp(self):
+        self.message = MessageFactory()
+
+    def tearDown(self):
+        user = self.message.user
+        self.message.delete()
+        user.delete()
+
+    def test_location_latitude(self):
+        self.assertIsNotNone(self.message.location.x)
+
+    def test_location_longitude(self):
+        self.assertIsNotNone(self.message.location.y)
+
+    def test_location(self):
+        self.assertIsNotNone(self.message.location)

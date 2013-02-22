@@ -61,6 +61,8 @@ class TestRequiredFields(unittest.TestCase):
             'contact_last_name': self.user.last_name,
             'contact_mail': self.user.email,
             'address': lorem_ipsum(words_count=4),
+            'location_0': 25.0,
+            'location_1': 50.0,
         }
 
     def tearDown(self):
