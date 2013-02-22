@@ -27,10 +27,9 @@ class GeolocationWidget(forms.MultiWidget):
         )
 
     def decompress(self, value):
-#        import pdb;pdb.set_trace()
         if value:
-            return (value.latitude, value.longitude)
-        return (None, None)
+            return (value.y, value.x)
+        return (0.0, 0.0)
 
     class Media:
         js = (
