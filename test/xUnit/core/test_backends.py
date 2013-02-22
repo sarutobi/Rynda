@@ -43,13 +43,26 @@ class EmailBackendTest(unittest.TestCase):
         )
         self.user.set_password('test')
         self.user.save()
+        self.auth = EmailAuthBackend()
 
     def tearDown(self):
         self.user.delete()
 
     def test_authenticate(self):
-        auth = EmailAuthBackend()
-        user = auth.authenticate(username='test@example.com', password='test')
+        user = self.auth.authenticate(
+            username='test@example.com', password='test')
         self.assertIsNotNone(user)
         self.assertEqual(user, self.user)
 
+    def test_wrong_username(self):
+        user = self.auth.authenticate(
+            username='evil_hacker', password='passwd')
+        self.assertIsNone(user)
+
+    def test_get_user(self):
+        user = self.auth.get_user(self.user.pk)
+        self.assertEqual(user, self.user)
+
+    def test_wrong_id(self):
+        user = self.auth.get_user(self.user.pk + 1)
+        self.assertIsNone(user)

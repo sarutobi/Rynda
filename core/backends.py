@@ -88,13 +88,3 @@ class IonAuth(object):
         hasher.update(salt)
         hasher.update(password)
         return "%s%s" % (salt, hasher.hexdigest()[:-self.SALT_LENGTH])
-
-    def generate_code(self):
-        '''
-        Generate activation or frogot password code
-        '''
-        hasher = hashlib.sha1()
-        hasher.update(self.gen_salt())
-        s = hasher.digest()
-        hasher.update('%s%s%s' %(s, self.gen_salt(), s))
-        return hasher.hexdigest()
