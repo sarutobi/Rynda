@@ -15,8 +15,10 @@ class Region(models.Model):
     * TODO: make nested regions
     * TODO: link message to nested regions
     '''
-    class Meta():
+    class Meta:
         ordering = ['order']
+        verbose_name = _('region')
+        verbose_name_plural = _('regions')
 
     # Region number
     name = models.CharField(max_length=200, verbose_name=_("region name"))
@@ -34,6 +36,7 @@ class Region(models.Model):
 
 admin.site.register(Region)
 
+
 class Location(models.Model):
     '''
     Geolocation
@@ -44,6 +47,10 @@ class Location(models.Model):
     * Description - textual name of POI or it's human-readable address
     * Optional link to georegion. If this link exists
     '''
+    class Meta:
+        verbose_name = _('location')
+        verbose_name_plural = _('locations')
+
     # Geocoordinates
     latitude = models.FloatField()
     longitude = models.FloatField(db_column='longitude')
