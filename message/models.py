@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 
-from django.contrib import admin
 from django.contrib.auth.models import User
 from django.contrib.gis.db import models as geomodels
 from django.core.exceptions import ValidationError
@@ -197,19 +196,6 @@ class Message(geomodels.Model):
         return (self.flags & self.MESSAGE_DELETED) == self.MESSAGE_DELETED
 
 
-class MessageAdmin(admin.ModelAdmin):
-    list_display = (
-        'pk',
-        'title',
-        'subdomain',
-        'messageType',
-        'status',
-        'date_add',
-    )
-    list_display_links = ('pk', 'title')
-    list_filter = ('status',)
-
-admin.site.register(Message, MessageAdmin)
 
     #def active(self):
     #    return (self.flags & 1) == 1
