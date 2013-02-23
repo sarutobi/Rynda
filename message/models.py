@@ -59,6 +59,9 @@ class Message(geomodels.Model):
 
     class Meta():
         ordering = ['-date_add']
+        get_latest_by = 'date_add'
+        verbose_name = _('message')
+        verbose_name_plural = _('messages')
 
     #Managers
     objects = PassThroughManager.for_queryset_class(MessageQueryset)()
