@@ -17,9 +17,10 @@ urlpatterns = patterns('',
     # url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
 
     # Uncomment the next line to enable the admin:
+    url('^admin-tools/', include('admin_tools.urls')),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^logout$', 'message.views.logout_view'),
-        url(r'^$', 'message.views.list'),
+    url(r'^$', 'message.views.list'),
     url(r'^t/(?P<slug>[a-z_0-9-]+)$', 'message.views.list'),
     url(r'^register$', CreateUser.as_view()),
     url(r'^message/', include('message.urls')),
