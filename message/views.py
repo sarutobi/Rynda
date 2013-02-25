@@ -8,7 +8,7 @@ from django.template import RequestContext
 
 from core.context_processors import subdomains_context, categories_context
 from core.mixins import SubdomainContextMixin, CategoryMixin
-from core.models import Region, Subdomain
+from core.models import Subdomain
 from core.utils import url_filter
 from core.views import (
     RyndaCreateView, RyndaDetailView, RyndaListView, RyndaFormView)
