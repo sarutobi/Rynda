@@ -24,7 +24,7 @@ class TestMessagesList(WebTest):
 class TestMessagePaginator(WebTest):
     def setUp(self):
         for x in xrange(50):
-            MessageFactory(status=2)
+            MessageFactory(status=2, user=None)
         self.page = self.app.get('/message/')
 
     def tearDown(self):
