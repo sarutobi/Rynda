@@ -110,7 +110,18 @@ class Message(geomodels.Model):
         blank=True)
 
     # Moderator's fields
-    flags = models.BigIntegerField(default=0, blank=True)
+    flags = models.BigIntegerField(default=0)
+    is_active = models.BooleanField(
+        default=False, verbose_name=_('active'))
+    is_important = models.BooleanField(
+        default=False, verbose_name=_('important'))
+    is_anonymous = models.BooleanField(
+        default=True, verbose_name=_('hide contacts'))
+    is_removed = models.BooleanField(
+        default=False, verbose_name=_('removed'))
+    allow_feedback = models.BooleanField(
+        default=True, verbose_name=_('allow feedback'))
+
     status = models.SmallIntegerField(
         choices=MESSAGE_STATUS,
         verbose_name=_('status'),
@@ -162,13 +173,6 @@ class Message(geomodels.Model):
     def __unicode__(self):
         return self.title
 
-    def remove(self):
-        self.flags = self.flags | self.MESSAGE_DELETED
-
-    def restore(self):
-        mask = ~self.MESSAGE_DELETED
-        self.flags = self.flags & mask
-
     def clean(self):
         if not self.contact_mail and not self.contact_phone:
             raise ValidationError("You must provide email or phone!")
@@ -176,63 +180,6 @@ class Message(geomodels.Model):
     def save(self, *args, **kwargs):
         self.full_clean()
         super(Message, self).save(*args, **kwargs)
-
-    #def address(self, address=None):
-    #    if address:
-    #        self.locationId.name = address
-    #    else:
-    #        return self.locationId.name
-
-    #def latitude(self, lat=None):
-    #    if lat:
-    #        self.locationId.latitude = lat
-    #    else:
-    #        return self.locationId.latitude
-
-    #def longtitude(self, lon=None):
-    #    if lon:
-    #        self.locationId.longtitude = lon
-    #    else:
-    #        return self.locationId.longtitude
-
-    #def set_flag(self, flag, active):
-    #    if active:
-    #        self.flags = set_bit(self.flags, flag)
-    #    else:
-    #        self.flags = clear_bit(self.flags, flag)
-
-    def is_removed(self):
-        return (self.flags & self.MESSAGE_DELETED) == self.MESSAGE_DELETED
-
-
-
-    #def active(self):
-    #    return (self.flags & 1) == 1
-
-    #def important(self):
-    #    return (self.flags & 2) == 2
-
-    #def anonymous(self):
-    #    return (self.flags & 4) == 0
-
-    #def feedback(self):
-    #    return (self.flags & 8) == 8
-
-    #def region(self, region=None):
-    #    if region:
-    #        self.locationId.regionId = region
-    #    else:
-    #        try:
-    #            return self.locationId.regionId
-    #        except:
-    #            return Region.objects.get(id=50)
-
-    #def getImages(self):
-    #    return Multimedia.objects.filter(message=self.id)
-
-    #def haveAttachment(self):
-    #    a = Multimedia.objects.filter(message=self.id).count()
-    #    return a > 0
 
 
 class MessageNotes(models.Model):
