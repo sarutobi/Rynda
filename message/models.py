@@ -78,11 +78,10 @@ class Message(geomodels.Model):
     contact_last_name = models.CharField(
         max_length=200,
         verbose_name=_("last name"))
-    contact_mail = models.CharField(
+    contact_mail = models.EmailField(
         max_length=200,
         blank=True,
-        verbose_name=_("email(s)"),
-        validators=[validate_email])
+        verbose_name=_("email(s)"))
     contact_phone = models.CharField(
         max_length=200,
         blank=True,
