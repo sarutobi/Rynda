@@ -1,4 +1,5 @@
 <div id="auth">
+    {% comment %}
     <!-- Контент модального окна для выбора региона: -->
     <div style="display: none">
         <div id="regionModal" class="rounded_all">
@@ -19,7 +20,8 @@
         </div>
     </div>
     <!-- Контент модального окна для выбора региона - завершён -->
-	<!-- Блок выбора региона пользователя: -->
+	{% endcomment %}
+    <!-- Блок выбора региона пользователя: -->
     <div id="user_location">
         <div class="globe_icon pointer" id="region_select_switch"></div>
         <div class="region_location_div" id="region_select_div" style="display:none;">
@@ -33,6 +35,7 @@
         </div>
     </div>
     <!-- Блок выбора региона пользователя - завершён -->
+    {% comment %}
     <!-- Контент модального окна для аутентификации: -->
     <div style="display: none">
         <div id="authModal">
@@ -121,6 +124,7 @@
         </div>
     </div>
     <!-- Контент модального окна для регистрации - завершён -->
+    {% endcomment %}
     <!-- Блок аутентификации: -->
     {% if not user.is_authenticated %}
     <a id="authLogIn" href="/login">Войти в систему</a> | <a id="authRegister" href="/register">Зарегистрироваться</a>
@@ -131,9 +135,6 @@
     {% else %}Моя страница{%endif%}
      |
     <a id="authLogout" href="/logout" class="auth_text">Выйти</a>
-    <!--<img id="authResponseLoading" src="/images/white_sm_loader.gif" alt="" style="display: none;" />-->
-    {%endif%}
+    {% endif %}
     <!-- Блок аутентификации - завершён -->
-    
-    
 </div>
