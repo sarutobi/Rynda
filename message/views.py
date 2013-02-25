@@ -12,7 +12,7 @@ from core.models import Subdomain
 from core.utils import url_filter
 from core.views import (
     RyndaCreateView, RyndaDetailView, RyndaListView, RyndaFormView)
-
+from geozones.models import Region
 from feed.models import FeedItem
 
 from message.forms import SimpleRequestForm
@@ -29,8 +29,9 @@ def list(request, slug='all'):
         status__lt=6).values('id', 'title','date_add')[:5]
     last_feeds = FeedItem.objects.filter(feedId=3).values('id','link',
         'title','date')[:5]
-    return render_to_response('index.html',
-        { 'regions': Region.objects.all(),
+    return render_to_response(
+        'index.html',
+        {'regions': Region.objects.all(),
           #'categories': cat_tree,
           'requests': last_requests,
           'offers': last_offers,
