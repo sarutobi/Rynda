@@ -14,3 +14,4 @@ wsgiref==0.1.2
 django-model-utils==1.2.0
 django-widget-tweaks==1.1.2
 django-admin-tools==0.4.1
+django-filter==0.5.4
