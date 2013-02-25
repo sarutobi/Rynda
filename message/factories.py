@@ -36,7 +36,7 @@ class MessageFactory(factory.Factory):
     user = factory.SubFactory(UserFactory)
     messageType = random.choice((
         MessageType.TYPE_REQUEST,
-        MessageType.TYPE_RESPONSE,
+        MessageType.TYPE_OFFER,
         MessageType.TYPE_INFO))
     georegion = factory.SubFactory(RegionFactory)
     location = factory.LazyAttribute(lambda n: point_gen(n))
