@@ -29,6 +29,7 @@ class TestSimpleRequestForm(unittest.TestCase):
         }
 
     def tearDown(self):
+        self.region.delete()
         self.region = None
         self.form = None
         self.user = None
@@ -53,43 +54,57 @@ class TestRequiredFields(unittest.TestCase):
 
     def setUp(self):
         self.user = UserFactory.build()
-        self.region = RegionFactory.build()
+        self.region = RegionFactory()
         self.data = {
             'message': lorem_ipsum(),
             'messageType': MessageType.TYPE_REQUEST,
             'contact_first_name': self.user.first_name,
             'contact_last_name': self.user.last_name,
             'contact_mail': self.user.email,
-            'address': lorem_ipsum(words_count=4),
+            'contact_phone': '12345678',
+            #'address': lorem_ipsum(words_count=4),
+            'georegion': self.region.pk,
             'location_0': 25.0,
             'location_1': 50.0,
         }
 
     def tearDown(self):
+        self.region.delete()
         self.user = None
         self.data = None
 
-    def test_lost_address(self):
-        self.data['address'] = ''
-        form = SimpleRequestForm(self.data)
-        self.assertTrue(form.is_bound)
-        self.assertFalse(form.is_valid())
+    #def test_lost_address(self):
+    #    self.data['address'] = ''
+    #    form = SimpleRequestForm(self.data)
+    #    self.assertFalse(form.is_valid())
 
     def test_lost_message(self):
         self.data['message'] = ''
         form = SimpleRequestForm(self.data)
-        self.assertTrue(form.is_bound)
         self.assertFalse(form.is_valid())
 
     def test_lost_first_name(self):
         self.data['contact_first_name'] = ''
         form = SimpleRequestForm(self.data)
-        self.assertTrue(form.is_bound)
         self.assertFalse(form.is_valid())
 
     def test_lost_last_name(self):
         self.data['contact_last_name'] = ''
         form = SimpleRequestForm(self.data)
-        self.assertTrue(form.is_bound)
         self.assertFalse(form.is_valid())
 
+    def test_lost_contacts(self):
+        self.data['contact_mail'] = ''
+        self.data['contact_phone'] = ''
+        form = SimpleRequestForm(self.data)
+        self.assertFalse(form.is_valid())
+
+    def test_lost_email(self):
+        self.data['contact_mail'] = ''
+        form = SimpleRequestForm(self.data)
+        self.assertTrue(form.is_valid(), form.errors)
+
+    def test_lost_phone(self):
+        self.data['contact_phone'] = ''
+        form = SimpleRequestForm(self.data)
+        self.assertTrue(form.is_valid())
