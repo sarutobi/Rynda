@@ -10,7 +10,7 @@ class Subdomain(models.Model):
         (1, u'Активен'),)
 
     class Meta():
-        db_table = 'subdomain'
+        #db_table = 'subdomain'
         ordering = ['order']
 
     url = models.CharField(max_length=50, blank=True, null=True)
@@ -36,7 +36,7 @@ class Subdomain(models.Model):
 class Category(models.Model):
     ''' Категория сообщения '''
     class Meta():
-        db_table = "Category"
+        #db_table = "Category"
         ordering = ['order']
 
     parentId = models.ForeignKey(
@@ -70,7 +70,8 @@ class Category(models.Model):
 
 class Infopage(models.Model):
     class Meta():
-        db_table = 'information_page'
+        pass
+        #db_table = 'information_page'
 
     title = models.CharField(max_length=255, db_column='title')
     text = models.TextField(db_column='text')
