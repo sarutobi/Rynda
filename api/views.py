@@ -21,7 +21,7 @@ def api_root(request, format=None):
 
 
 class MapMessageList(generics.ListAPIView):
-    queryset = Message.objects.active().select_related('location').all()
+    queryset = Message.objects.active().all()
     serializer_class = MapMessageSerializer
 
 

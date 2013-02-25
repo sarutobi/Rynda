@@ -11,8 +11,8 @@ class MessageSerializer(serializers.ModelSerializer):
 
 
 class MapMessageSerializer(serializers.ModelSerializer):
-    lat = serializers.Field(source='location.latitude')
-    lon = serializers.Field(source='location.longitude')
+    lat = serializers.Field(source='location.y')
+    lon = serializers.Field(source='location.x')
 
     class Meta:
         model = Message
