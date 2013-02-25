@@ -168,6 +168,7 @@ AUTHENTICATION_BACKENDS = (
     'django.contrib.auth.backends.ModelBackend',
 )
 
+ADMIN_TOOLS_THEMING_CSS = 'admin_tools/css/theming.css'
 AUTH_PROFILE_MODULE = 'users.users'
 
 # A sample logging configuration. The only tangible logging
