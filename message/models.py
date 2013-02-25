@@ -18,12 +18,12 @@ class MessageType():
     '''Message types'''
 
     TYPE_REQUEST = 1
-    TYPE_RESPONSE = 2
+    TYPE_OFFER = 2
     TYPE_INFO = 3
 
     TYPES_CHOICE = (
         (TYPE_REQUEST, _("request")),
-        (TYPE_RESPONSE, _("response")),
+        (TYPE_OFFER, _("response")),
         (TYPE_INFO, _("informatial"))
     )
 
@@ -39,6 +39,12 @@ class MessageQueryset(QuerySet):
 
     def closed(self):
         return self.filter(status=6)
+
+    def type_is(self, m_type):
+        return self.filter(messageType=m_type)
+
+    def subdomain_is(self, subdomain):
+        return self.filter(subdomain__slug=subdomain)
 
 
 class Message(geomodels.Model):

@@ -16,19 +16,20 @@ from geozones.models import Region
 from feed.models import FeedItem
 
 from message.forms import SimpleRequestForm
-from message.models import Message
+from message.models import Message, MessageType
 
 
 def list(request, slug='all'):
-    last_requests = Message.objects.active().values('id', 'title', 'date_add')[:5]
-    last_offers = Message.objects.filter(messageType=2,status__gt=1,
-        status__lt=6).values('id', 'title','date_add')[:5]
-    last_completed = Message.objects.filter(messageType=1,status=6)\
-        .values('id', 'title','date_add')[:5]
-    last_info = Message.objects.filter(messageType=3,status__gt=1,
-        status__lt=6).values('id', 'title','date_add')[:5]
-    last_feeds = FeedItem.objects.filter(feedId=3).values('id','link',
-        'title','date')[:5]
+    last_requests = Message.objects.active().type_is(
+        MessageType.TYPE_REQUEST).values('id', 'title', 'date_add')[:5]
+    last_offers = Message.objects.active().type_is(
+        MessageType.TYPE_OFFER).values('id', 'title', 'date_add')[:5]
+    last_completed = Message.objects.active().type_is(
+        MessageType.TYPE_REQUEST).closed().values('id', 'title', 'date_add')[:5]
+    last_info = Message.objects.active().type_is(
+        MessageType.TYPE_INFO).values('id', 'title', 'date_add')[:5]
+    last_feeds = FeedItem.objects.filter(feedId=3).values(
+        'id', 'link', 'title', 'date')[:5]
     return render_to_response(
         'index.html',
         {'regions': Region.objects.all(),
