@@ -2,6 +2,14 @@
 
 from fabric.api import *
 
+REQUIREMENT_SET = {
+    'base': 'Rynda/requirements/_base.txt',
+    'ci': 'Rynda/requirements/ci.txt',
+    'dev': 'Rynda/requirements/develop.txt',
+    'prod': 'Rynda/requirements/production.txt',
+    'test': 'Rynda/requirement/test.txt',
+}
+
 
 def test(app=''):
     command = "./manage.py test --settings=Rynda.settings.test %s" % app
@@ -20,3 +28,8 @@ def server():
 
 def stage():
     local("./manage.py runserver 0.0.0.0:8000 --settings=Rynda.settings.stage")
+
+
+def requirements(settings='base'):
+    req = REQUIREMENT_SET.get(settings, REQUIREMENT_SET.get('base'))
+    local('pip install -r %s' % req)
