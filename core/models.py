@@ -21,7 +21,7 @@ class Subdomain(models.Model):
     isCurrent = models.BooleanField(db_column='is_current')
     status = models.SmallIntegerField(choices=SUBDOMAIN_STATUS)
     order = models.IntegerField()
-    disclaimer = models.TextField(blank=True, null=True)
+    disclaimer = models.TextField(blank=True)
 
     def __unicode__(self):
         return self.title
@@ -58,6 +58,7 @@ class Category(models.Model):
     order = models.SmallIntegerField(db_column='order')
     subdomain = models.ForeignKey(Subdomain, null=True, blank=True,
         db_column='subdomain_id', verbose_name='Страница атласа')
+    group = models.INtegerField(null=True, blank=True)
 
     def __unicode__(self):
         return self.name
