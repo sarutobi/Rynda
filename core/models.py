@@ -1,6 +1,8 @@
 # coding: utf-8
 
 from django.db import models
+from django.contrib.contenttypes.models import ContentType
+from django.contrib.contenttypes import generic
 
 
 class Subdomain(models.Model):
@@ -66,6 +68,14 @@ class Category(models.Model):
 
     def __unicode__(self):
         return self.name
+
+
+class CategoryLinks(models.Model):
+    ''' Links categories for generic models'''
+    category = models.ForeignKey(Category)
+    content_type = models.ForeignKey(ContentType)
+    object_id = models.PositiveIntegerField()
+    content_object = generic.GenericForeignKey('content_type', 'object_id')
 
 
 class Infopage(models.Model):
