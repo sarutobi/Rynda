@@ -1,5 +1,17 @@
 [
     {
+        "pk": 0, 
+        "model": "geozones.region", 
+        "fields": {
+            "name": "Unknown", 
+            "zoom": 4, 
+            "longitude": 0.0, 
+            "slug": "unknown", 
+            "latitude": 0.0, 
+            "order": 0
+        }
+    }, 
+    {
         "pk": 77, 
         "model": "geozones.region", 
         "fields": {
