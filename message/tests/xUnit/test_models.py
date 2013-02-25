@@ -32,14 +32,14 @@ class TestMessage(unittest.TestCase):
         self.message.delete()
 
     def test_message_remove(self):
-        self.message.remove()
-        self.assertTrue(self.message.is_removed())
+        self.message.is_removed = True
+        self.assertTrue(self.message.is_removed)
 
     def test_message_restore(self):
-        self.message.remove()
-        self.assertTrue(self.message.is_removed())
-        self.message.restore()
-        self.assertFalse(self.message.is_removed())
+        self.message.is_removed = True
+        self.assertTrue(self.message.is_removed)
+        self.message.is_removed = False
+        self.assertFalse(self.message.is_removed)
 
 
 class TestMessageCleanData(unittest.TestCase):

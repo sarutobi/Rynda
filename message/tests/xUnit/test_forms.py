@@ -46,7 +46,6 @@ class TestSimpleRequestForm(unittest.TestCase):
         self.assertIsNotNone(msg)
         self.assertIsNotNone(msg.pk)
         self.assertEqual(1, msg.status)
-        self.assertEqual(0, msg.flags)
         self.assertEqual(1, msg.messageType)
         msg.delete()
 
