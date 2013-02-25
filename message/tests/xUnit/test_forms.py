@@ -14,7 +14,7 @@ class TestSimpleRequestForm(unittest.TestCase):
 
     def setUp(self):
         self.form = SimpleRequestForm()
-        self.user = UserFactory.build()
+        self.user = UserFactory()
         self.region = RegionFactory()
         self.data = {
             'title': lorem_ipsum(words_count=3),
@@ -26,13 +26,14 @@ class TestSimpleRequestForm(unittest.TestCase):
             'georegion': self.region.pk,
             'location_0': 0.0,
             'location_1': 0.0,
+            'address': lorem_ipsum(words_count=4)
         }
 
     def tearDown(self):
         self.region.delete()
         self.region = None
         self.form = None
-        self.user = None
+        self.user.delete()
 
     def test_form_type(self):
         self.assertEqual(1, self.form.fields['messageType'].initial)
@@ -62,7 +63,7 @@ class TestRequiredFields(unittest.TestCase):
             'contact_last_name': self.user.last_name,
             'contact_mail': self.user.email,
             'contact_phone': '12345678',
-            #'address': lorem_ipsum(words_count=4),
+            'address': lorem_ipsum(words_count=4),
             'georegion': self.region.pk,
             'location_0': 25.0,
             'location_1': 50.0,

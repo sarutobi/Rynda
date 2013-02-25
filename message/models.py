@@ -95,6 +95,7 @@ class Message(geomodels.Model):
         _('location'),
         geography=True,
         blank=True, null=True)
+    address = models.CharField(max_length=200, verbose_name=_('address'))
     # Optional fields
     # Message original source
     source = models.CharField(

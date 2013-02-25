@@ -21,7 +21,7 @@ class MessageForm(forms.ModelForm):
             'title', 'message', 'messageType',
             'contact_first_name', 'contact_last_name',
             'contact_mail', 'contact_phone',
-            'georegion', 'location')
+            'georegion', 'location', 'address')
         widgets = {
             'messageType': forms.HiddenInput(),
             'location': GeolocationWidget()

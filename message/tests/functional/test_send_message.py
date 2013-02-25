@@ -26,6 +26,7 @@ class TestSendMessage(WebTest):
         self.form['contact_mail'] = 'me@local.host'
         self.form['contact_phone'] = '123456789'
         self.form['georegion'] = self.region.pk
+        self.form['address'] = 'Some address string'
         self.form.submit()
         self.assertEqual(before + 1, Message.objects.count())
 
@@ -52,6 +53,7 @@ class TestSendMessage(WebTest):
         form['title'] = 'Test message'
         form['message'] = "This is simple test message"
         form['georegion'] = self.region.pk
+        form['address'] = 'Some address'
         form.submit()
         self.assertEqual(before + 1, Message.objects.count())
         msg = Message.objects.all().select_related().reverse()[0]
