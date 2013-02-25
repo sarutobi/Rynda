@@ -50,12 +50,12 @@ class MessageQueryset(QuerySet):
 class Message(geomodels.Model):
     '''Message data'''
     #Flag values
-    MESSAGE_ACTIVE = 0x1L
-    MESSAGE_IMPORTANT = 0x2L
-    MESSAGE_NONANONYMOUS = 0x4L
-    ALLOW_FEEDBACK = 0x8L
-    MESSAGE_DELETED = 0x10L
-    LOCATION_VALID = 0x20L
+    #MESSAGE_ACTIVE = 0x1L
+    #MESSAGE_IMPORTANT = 0x2L
+    #MESSAGE_NONANONYMOUS = 0x4L
+    #ALLOW_FEEDBACK = 0x8L
+    #MESSAGE_DELETED = 0x10L
+    #LOCATION_VALID = 0x20L
 
     MESSAGE_STATUS = ((1, _('new')),
                       (2, _('unverified')),
@@ -110,7 +110,7 @@ class Message(geomodels.Model):
         blank=True)
 
     # Moderator's fields
-    flags = models.BigIntegerField(default=0)
+    #flags = models.BigIntegerField(default=0)
     is_active = models.BooleanField(
         default=False, verbose_name=_('active'))
     is_important = models.BooleanField(
