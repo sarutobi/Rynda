@@ -9,7 +9,7 @@ class UserFactory(factory.Factory):
     FACTORY_FOR = User
 
     first_name = "Boy"
-    last_name = "Factory"
+    last_name = factory.Sequence(lambda n: "Factory_%s" % n)
     email = factory.LazyAttribute(
         lambda a:
         "{0}_{1}@example.com".format(a.first_name, a.last_name).lower())
