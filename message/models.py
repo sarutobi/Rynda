@@ -25,7 +25,7 @@ class MessageType():
 
     TYPES_CHOICE = (
         (TYPE_REQUEST, _("request")),
-        (TYPE_OFFER, _("response")),
+        (TYPE_OFFER, _("offer")),
         (TYPE_INFO, _("informatial"))
     )
 
