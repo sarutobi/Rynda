@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 #Core context processors for Rynda project
 
-from core.models import Subdomain, Category
+from .models import Subdomain, Category
 
 
 def subdomains_context(request):
