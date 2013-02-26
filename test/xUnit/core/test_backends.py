@@ -35,6 +35,13 @@ class AuthTest(unittest.TestCase):
         self.assertNotEqual(self.user.password, u2.password)
         self.user.delete()
 
+    def test_inactive_user(self):
+        user = UserFactory(is_active=False)
+        ion = IonAuth()
+        u2 = ion.authenticate(username=user.username, password='123')
+        self.assertIsNone(u2)
+        user.delete()
+
 
 class EmailBackendTest(unittest.TestCase):
     def setUp(self):
