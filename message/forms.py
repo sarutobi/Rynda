@@ -30,12 +30,6 @@ class MessageForm(forms.ModelForm):
 
     location = LocationField(required=False)
 
-    def clean_status(self):
-        status = self.cleaned_data['status']
-        if status is None:
-            return self.fields['status'].initial
-        return status
-
     def clean_messageType(self):
         raise NotImplementedError('You must overwrite this method!')
 
