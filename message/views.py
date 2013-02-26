@@ -16,7 +16,7 @@ from geozones.models import Region
 from feed.models import FeedItem
 
 from message.forms import SimpleRequestForm
-from message.models import Message, MessageType
+from message.models import Message, MessageType, MessageSideFilter
 
 
 def list(request, slug='all'):
@@ -124,3 +124,11 @@ class MessageList(RyndaListView):
     context_object_name = 'messages'
     paginator_url = '/message/page/'
     list_title_short = 'Список сообщений'
+
+    def get_context_data(self, **kwargs):
+        context = super(MessageList, self).get_context_data(**kwargs)
+        context['filter'] = MessageSideFilter(self.request.GET, self.queryset)
+        return context
+
+    def get_queryset(self):
+        return MessageSideFilter(self.request.GET, self.queryset)

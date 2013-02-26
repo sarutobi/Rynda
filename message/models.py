@@ -8,6 +8,8 @@ from django.db import models
 from django.db.models.query import QuerySet
 from django.utils.translation import ugettext_lazy as _
 
+import django_filters
+
 from model_utils.managers import PassThroughManager
 
 from core.models import Category, Subdomain
@@ -180,6 +182,12 @@ class Message(geomodels.Model):
     def save(self, *args, **kwargs):
         self.full_clean()
         super(Message, self).save(*args, **kwargs)
+
+
+class MessageSideFilter(django_filters.FilterSet):
+    class Meta:
+        model = Message
+        fields = ['georegion', 'subdomain', 'messageType']
 
 
 class MessageNotes(models.Model):
