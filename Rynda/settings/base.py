@@ -154,6 +154,7 @@ INSTALLED_APPS = (
     #
     'django.contrib.admin',
     'django.contrib.gis',
+    'django_filters',
     'rest_framework',
     'south',
     'templated_emails',
