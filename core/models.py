@@ -3,16 +3,16 @@
 from django.db import models
 from django.contrib.contenttypes.models import ContentType
 from django.contrib.contenttypes import generic
+from django.utils.translation import ugettext_lazy as _
 
 
 class Subdomain(models.Model):
     '''One atlas page'''
     SUBDOMAIN_STATUS = (
-        (0, u'Неактивен'),
-        (1, u'Активен'),)
+        (0, _('inactive')),
+        (1, _('active')))
 
-    class Meta():
-        #db_table = 'subdomain'
+    class Meta:
         ordering = ['order']
 
     url = models.CharField(max_length=50, blank=True, null=True)
@@ -37,33 +37,32 @@ class Subdomain(models.Model):
 
 class Category(models.Model):
     ''' Категория сообщения '''
-    class Meta():
-        #db_table = "Category"
+    class Meta:
         ordering = ['order']
 
     parentId = models.ForeignKey(
         'self', default=0, db_column='parent_id',
-        verbose_name='Родительская категория', blank=True, null=True,
+        verbose_name=_('parent category'), blank=True, null=True,
         related_name='parent')
     name = models.CharField(
         max_length=200, db_column='name',
-        verbose_name='Наименование категории')
+        verbose_name=_('name'))
     description = models.TextField(
         blank=True, db_column='description',
-        verbose_name='Описание категории')
+        verbose_name=_('description'))
     color = models.CharField(
         max_length=7, db_column='color',
-        default='#000000', verbose_name='Цвет категории')
+        default='#000000', verbose_name=_('color'))
     slug = models.SlugField(
         max_length=255, db_column='slug',
-        verbose_name='Имя для ссылки', blank=True)
+        verbose_name=_('slug'), blank=True)
     icon = models.CharField(
         max_length=255, null=True, blank=True,
-        db_column='icon', verbose_name='Иконка')
+        db_column='icon', verbose_name=_('icon'))
     order = models.SmallIntegerField(db_column='order')
     subdomain = models.ForeignKey(
         Subdomain, null=True, blank=True,
-        db_column='subdomain_id', verbose_name='Страница атласа')
+        db_column='subdomain_id', verbose_name=_('subdomain'))
     group = models.IntegerField(null=True, blank=True)
 
     def __unicode__(self):
@@ -79,14 +78,15 @@ class CategoryLinks(models.Model):
 
 
 class Infopage(models.Model):
-    class Meta():
+    class Meta:
         pass
-        #db_table = 'information_page'
 
-    title = models.CharField(max_length=255, db_column='title')
-    text = models.TextField(db_column='text')
-    active = models.BooleanField(default=False)
-    slug = models.SlugField(max_length=255)
+    title = models.CharField(
+        max_length=255, db_column='title',
+        verbose_name=_('title'))
+    text = models.TextField(db_column='text', verbose_name=_('text'))
+    active = models.BooleanField(default=False, verbose_name=_('is active'))
+    slug = models.SlugField(max_length=255, verbose_name=_('slug'))
 
     def __unicode__(self):
         return self.title
