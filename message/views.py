@@ -9,7 +9,6 @@ from django.template import RequestContext
 from core.context_processors import subdomains_context, categories_context
 from core.mixins import SubdomainContextMixin, CategoryMixin
 from core.models import Subdomain
-from core.utils import url_filter
 from core.views import (
     RyndaCreateView, RyndaDetailView, RyndaListView, RyndaFormView)
 from geozones.models import Region
@@ -42,38 +41,6 @@ def list(request, slug='all'):
         context_instance=RequestContext(
             request,
             processors=[subdomains_context, categories_context]))
-
-
-#def all(request):
-#    return render_to_response('all_messages.html',
-#        {
-#            'messages': Message.approved.select_related('location', 'messageType', 'location__regionId').all()[:10],
-#        },
-#        context_instance=RequestContext(request,
-#            processors=[subdomains_context, categories_context])
-#    )
-
-
-#def requests(request):
-#    return render_to_response('all_messages.html',
-#        {
-#            'messages': Message.approved.select_related('location',\
-#            'messageType', 'location__regionId').filter(messageType=1)[:10],
-#        },
-#        context_instance=RequestContext(request,
-#            processors=[subdomains_context, categories_context])
-#    )
-
-
-#def offer(request):
-#    return render_to_response('all_messages.html',
-#        {
-#            'messages': Message.approved.select_related('location',\
-#            'messageType', 'location__regionId').filter(messageType=2)[:10],
-#        },
-#        context_instance=RequestContext(request,
-#            processors=[subdomains_context, categories_context])
-#    )
 
 
 def logout_view(request):
