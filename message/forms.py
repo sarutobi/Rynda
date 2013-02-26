@@ -18,9 +18,10 @@ class MessageForm(forms.ModelForm):
     class Meta:
         model = Message
         fields = (
-            'title', 'message', 'messageType',
+            'title', 'message', 'messageType', 'subdomain',
             'contact_first_name', 'contact_last_name',
             'contact_mail', 'contact_phone',
+            'is_anonymous', 'allow_feedback',
             'georegion', 'location', 'address')
         widgets = {
             'messageType': forms.HiddenInput(),
@@ -28,18 +29,6 @@ class MessageForm(forms.ModelForm):
         }
 
     location = LocationField(required=False)
-
-    def clean_status(self):
-        status = self.cleaned_data['status']
-        if status is None:
-            return self.fields['status'].initial
-        return status
-
-    def clean_flags(self):
-        flags = self.cleaned_data['flags']
-        if flags is None:
-            return self.fields['flags'].initial
-        return flags
 
     def clean_messageType(self):
         raise NotImplementedError('You must overwrite this method!')

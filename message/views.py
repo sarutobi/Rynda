@@ -16,7 +16,7 @@ from geozones.models import Region
 from feed.models import FeedItem
 
 from message.forms import SimpleRequestForm
-from message.models import Message, MessageType
+from message.models import Message, MessageType, MessageSideFilter
 
 
 def list(request, slug='all'):
@@ -32,49 +32,48 @@ def list(request, slug='all'):
         'id', 'link', 'title', 'date')[:5]
     return render_to_response(
         'index.html',
-        {'regions': Region.objects.all(),
-          #'categories': cat_tree,
-          'requests': last_requests,
-          'offers': last_offers,
-          'completed': last_completed,
-          'info': last_info,
-          'news': last_feeds,
-        },
-        context_instance=RequestContext(request,
-            processors=[subdomains_context, categories_context])
-        )
+        {'regions': Region.objects.filter(id__gt=0),
+         #'categories': cat_tree,
+         'requests': last_requests,
+         'offers': last_offers,
+         'completed': last_completed,
+         'info': last_info,
+         'news': last_feeds, },
+        context_instance=RequestContext(
+            request,
+            processors=[subdomains_context, categories_context]))
 
 
-def all(request):
-    return render_to_response('all_messages.html',
-        {
-            'messages': Message.approved.select_related('location', 'messageType', 'location__regionId').all()[:10],
-        },
-        context_instance=RequestContext(request,
-            processors=[subdomains_context, categories_context])
-    )
+#def all(request):
+#    return render_to_response('all_messages.html',
+#        {
+#            'messages': Message.approved.select_related('location', 'messageType', 'location__regionId').all()[:10],
+#        },
+#        context_instance=RequestContext(request,
+#            processors=[subdomains_context, categories_context])
+#    )
 
 
-def requests(request):
-    return render_to_response('all_messages.html',
-        {
-            'messages': Message.approved.select_related('location',\
-            'messageType', 'location__regionId').filter(messageType=1)[:10],
-        },
-        context_instance=RequestContext(request,
-            processors=[subdomains_context, categories_context])
-    )
+#def requests(request):
+#    return render_to_response('all_messages.html',
+#        {
+#            'messages': Message.approved.select_related('location',\
+#            'messageType', 'location__regionId').filter(messageType=1)[:10],
+#        },
+#        context_instance=RequestContext(request,
+#            processors=[subdomains_context, categories_context])
+#    )
 
 
-def offer(request):
-    return render_to_response('all_messages.html',
-        {
-            'messages': Message.approved.select_related('location',\
-            'messageType', 'location__regionId').filter(messageType=2)[:10],
-        },
-        context_instance=RequestContext(request,
-            processors=[subdomains_context, categories_context])
-    )
+#def offer(request):
+#    return render_to_response('all_messages.html',
+#        {
+#            'messages': Message.approved.select_related('location',\
+#            'messageType', 'location__regionId').filter(messageType=2)[:10],
+#        },
+#        context_instance=RequestContext(request,
+#            processors=[subdomains_context, categories_context])
+#    )
 
 
 def logout_view(request):
@@ -84,7 +83,7 @@ def logout_view(request):
 
 class CreateRequest(CategoryMixin, RyndaFormView):
     template_name = "request_form_simple.html"
-    #model = Message
+    model = Message
     form_class = SimpleRequestForm
     success_url = reverse_lazy('message_list')
 
@@ -124,3 +123,11 @@ class MessageList(RyndaListView):
     context_object_name = 'messages'
     paginator_url = '/message/page/'
     list_title_short = 'Список сообщений'
+
+    def get_context_data(self, **kwargs):
+        context = super(MessageList, self).get_context_data(**kwargs)
+        context['filter'] = MessageSideFilter(self.request.GET, self.queryset)
+        return context
+
+    def get_queryset(self):
+        return MessageSideFilter(self.request.GET, self.queryset)

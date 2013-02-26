@@ -3,22 +3,15 @@
 </div>
 <div class="greyFilter" id="messages_filter">
 	<div class="filter_corner"></div>
-    <form id="filterForm" action="#">
-        <select name="filterTypeId" id="filterTypeId" class="filterbox">
-            <option value="">Все типы сообщений</option>
-        {% for t in messageTypes %}
-            <option value="{{t.id}}">{{t.name}}</option>
-        {% endfor %}
-        </select>
-
-        if(in_array('region', $filterShowFields) && !empty($regions)) {?>
-        <select name="filterRegion" id="filterRegion">
-            <option value="">Все регионы</option>
-        <?php foreach((array)$regions as $region) {?>
-            <option value="<?php echo $region['id'];?>" <?php echo $this->input->cookie('ryndaorg_region') == $region['id'] ? 'selected' : '';?>><?php echo $region['name'];?></option>
-        <?php }?>
-        </select>
-        <?php }?>
+    <form id="filterForm" action="" method='get'>
+        {{ filter.form.messageType.label }} <br />
+        {{ filter.form.messageType }} <br />
+        
+        {{ filter.form.georegion.label }} <br>
+        {{ filter.form.georegion }} <br />
+        
+        {{ filter.form.subdomain.label }} <br />
+        {{ filter.form.subdomain }} <br />
         <!-- <select name="submap"></select><label for="submap">Тип карты</label> -->
         <?php if(in_array('category', $filterShowFields) && !empty($categories)) {?>
 		<h4 class="mt10">Категории</h4>
@@ -33,10 +26,7 @@
             <option value="1">Несрочные</option>
         </select>
         <div class="clearfix"></div>
-        <?php }?>
-        <?php if(in_array('searchString', $filterShowFields)) {?>
         <input type="text" name="filterString" id="filterString" placeholder="Введите здесь текст для поиска" />
-        <?php }?>
         <div class="clearfix mt10"></div>
         <input type="submit" id="filterSubmit"  name="filterSubmit" value="Обновить поиск" />
         {% comment %}

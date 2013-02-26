@@ -7,16 +7,21 @@ from test.factories import UserFactory
 from core.backends import IonAuth, EmailAuthBackend
 
 
-class AuthTest(unittest.TestCase):
+class IonTest(unittest.TestCase):
     '''Authorization tests'''
 
     def setUp(self):
+        self.ion = IonAuth()
         self.user = UserFactory.build(
             is_active=True
         )
-        self.user.password = IonAuth().password_hash('123')
+        self.user.password = self.ion.password_hash('123')
+        self.active_user = UserFactory(is_active=True)
+        self.inactive_user = UserFactory(is_active=False)
 
     def tearDown(self):
+        self.active_user.delete()
+        self.inactive_user.delete()
         self.user = None
 
     def test_ion_auth(self):
@@ -28,12 +33,25 @@ class AuthTest(unittest.TestCase):
         rehash password to django-specific password hash.
         '''
         self.user.save()
-        ion = IonAuth()
-        u2 = ion.authenticate(username=self.user.email, password='123')
+        u2 = self.ion.authenticate(username=self.user.email, password='123')
         self.assertIsNotNone(u2)
         self.assertFalse(u2.is_anonymous())
         self.assertNotEqual(self.user.password, u2.password)
         self.user.delete()
+
+    def test_inactive_user(self):
+        u2 = self.ion.authenticate(
+            username=self.inactive_user.email, password='123')
+        self.assertIsNone(u2)
+
+    def test_unexists_user(self):
+        u2 = self.ion.authenticate(username="someuser", password='123')
+        self.assertIsNone(u2)
+
+    def test_wrong_password(self):
+        u2 = self.ion.authenticate(
+            username=self.active_user.email, password='1234')
+        self.assertIsNone(u2)
 
 
 class EmailBackendTest(unittest.TestCase):
