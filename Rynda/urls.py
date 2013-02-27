@@ -17,16 +17,16 @@ urlpatterns = patterns('',
     # url(r'^admin/doc/', include('django.contrib.admindocs.urls')),
 
     # Uncomment the next line to enable the admin:
-    url('^admin-tools/', include('admin_tools.urls')),
-    url(r'^admin/', include(admin.site.urls)),
-    url(r'^logout$', 'message.views.logout_view'),
     url(r'^$', 'message.views.list'),
-    url(r'^t/(?P<slug>[a-z_0-9-]+)$', 'message.views.list'),
-    url(r'^register$', CreateUser.as_view()),
+    url(r'^admin/', include(admin.site.urls)),
+    url(r'^admin-tools/', include('admin_tools.urls')),
+    url(r'^info/(?P<slug>[a-z_]+)$', 'core.views.show_page'),
+    url(r'^logout$', 'message.views.logout_view'),
     url(r'^message/', include('message.urls')),
+    url(r'^register$', CreateUser.as_view()),
+    url(r'^t/(?P<slug>[a-z_0-9-]+)$', 'message.views.list'),
     url(r'^t/(?P<slug>)message/', include('message.urls')),
     url(r'^user/', include('users.urls')),
-    ('^info/(?P<slug>[a-z_]+)$', 'core.views.show_page'),
 )
 
 urlpatterns += patterns('django.contrib.auth.views',
