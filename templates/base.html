@@ -28,6 +28,8 @@
 </div>
 <div id="navigation">
     <div class="nav_cont"> 
+    {% block navigation %}{% endblock %}
+    {% comment %}
         <ul class="top_nav_list">
             <li><a href="/message/" title="Все сообщения в системе">Сообщения</a>
             	<ul class="nav_list_children">
@@ -57,6 +59,7 @@
                 </ul>
             </li>
         </ul>
+    {% endcomment %}
         <div class="clearfix"></div>
     </div>
 </div>
