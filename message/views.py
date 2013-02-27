@@ -15,7 +15,9 @@ from geozones.models import Region
 from feed.models import FeedItem
 
 from message.forms import SimpleRequestForm
-from message.models import Message, MessageType, MessageSideFilter
+from message.models import (
+    Message, MessageType,
+    MessageSideFilter, MessageIndexFilter)
 
 
 def list(request, slug='all'):
@@ -30,14 +32,16 @@ def list(request, slug='all'):
     last_feeds = FeedItem.objects.filter(feedId=3).values(
         'id', 'link', 'title', 'date')[:5]
     return render_to_response(
-        'index.html',
-        {'regions': Region.objects.filter(id__gt=0),
-         #'categories': cat_tree,
-         'requests': last_requests,
-         'offers': last_offers,
-         'completed': last_completed,
-         'info': last_info,
-         'news': last_feeds, },
+        'index.html', {
+            'regions': Region.objects.filter(id__gt=0),
+            #'categories': cat_tree,
+            'filter': MessageIndexFilter(
+                request.GET, Message.objects.active().list().all()),
+            'requests': last_requests,
+            'offers': last_offers,
+            'completed': last_completed,
+            'info': last_info,
+            'news': last_feeds, },
         context_instance=RequestContext(
             request,
             processors=[subdomains_context, categories_context]))

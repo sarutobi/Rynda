@@ -190,6 +190,14 @@ class MessageSideFilter(django_filters.FilterSet):
         fields = ['georegion', 'subdomain', 'messageType']
 
 
+class MessageIndexFilter(django_filters.FilterSet):
+    class Meta:
+        model = Message
+        fields = ['georegion', 'subdomain', 'messageType', 'date_add']
+
+    date_add = django_filters.DateRangeFilter()
+
+
 class MessageNotes(models.Model):
     '''Moderator notes for message'''
     message = models.ForeignKey(Message)
