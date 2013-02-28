@@ -7,7 +7,7 @@ from django.core.exceptions import ImproperlyConfigured
 
 def get_env_var(name):
     try:
-        return os.env[name]
+        return os.environ[name]
     except KeyError:
         raise ImproperlyConfigured("Set the %s env variable" % name)
 
