@@ -1,5 +1,7 @@
 # coding: utf-8
 
+import os
+
 from .base import *
 
 DEBUG = TEMPLATE_DEBUG = True
@@ -14,4 +16,4 @@ DATABASES = {
         'PORT': '',
     }
 }
-
+STATIC_ROOT = os.path.join(get_env_var('STATIC_ROOT'), 'rynda', 'static')
