@@ -14,6 +14,7 @@ class EmailAuthBackend(object):
     Allows a user to sign in using an email/password pair rather than
     a username/password pair.
     """
+    supports_inactive_users = False
 
     def authenticate(self, username=None, password=None):
         """ Authenticate a user based on email address as the user name. """
@@ -36,6 +37,7 @@ class IonAuth(object):
     '''
     Authentication against the codeigniter "ion auth" library
     '''
+    supports_inactive_users = False
     SALT_LENGTH = 10
 
     def get_user(self, user_id):
