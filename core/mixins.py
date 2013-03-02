@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
 
 from core.context_processors import subdomains_context, categories_context
-from core.models import Category
+from core.models import Category, CategoryGroup
+
 
 class SubdomainContextMixin(object):
     '''Subdomain context mixin'''
@@ -12,6 +13,7 @@ class SubdomainContextMixin(object):
         for key in sc.keys():
             context[key] = sc[key]
         return context
+
 
 class PaginatorMixin(object):
     '''Paginator line mixin. Best use with list-based mixins'''
@@ -62,10 +64,11 @@ class CategoryMixin(object):
     '''Category mixin'''
     def get_context_data(self, **kwargs):
         context = super(CategoryMixin, self).get_context_data(**kwargs)
-        cats = Category.objects.values('id', 'name', 'parentId').filter(subdomain=None)
-        tree = [c for c in cats if c['parentId'] is None]
+        cats = CategoryGroup.objects.values('id', 'name').all()
+        tree = [c for c in cats]
         for l in tree:
-            l['children'] = [c for c in cats if c['parentId'] == l['id']]
+            l['children'] = [c for c in Category.objects.values(
+                'id', 'name').filter(group=l['id'])]
         context['categories'] = tree
         return context
 
