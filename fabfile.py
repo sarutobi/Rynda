@@ -30,6 +30,6 @@ def local_stage():
     local("./manage.py runserver 0.0.0.0:8000 --settings=Rynda.settings.local_stage")
 
 
-def requirements(settings='base'):
+def reqs(settings='base'):
     req = REQUIREMENT_SET.get(settings, REQUIREMENT_SET.get('base'))
     local('pip install -r %s' % req)
