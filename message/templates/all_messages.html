@@ -7,7 +7,6 @@
 {% block listcontent %}
 {% for m in object_list %}
 <li>
-    {{ m.messageType }}
     {%if m.messageType == 1 %}
     <a href="/message/{{m.id}}" title="Просьба о помощи #{{m.id}}{% if m.title %}: {{m.title}} {%endif%}" class="darkGrey list_number">#{{m.id}}</a>
     <div class="list_content">
