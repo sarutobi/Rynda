@@ -40,10 +40,6 @@ class Category(models.Model):
     class Meta:
         ordering = ['order']
 
-    parentId = models.ForeignKey(
-        'self', default=0, db_column='parent_id',
-        verbose_name=_('parent category'), blank=True, null=True,
-        related_name='parent')
     name = models.CharField(
         max_length=200, db_column='name',
         verbose_name=_('name'))
@@ -63,7 +59,7 @@ class Category(models.Model):
     subdomain = models.ForeignKey(
         Subdomain, null=True, blank=True,
         db_column='subdomain_id', verbose_name=_('subdomain'))
-    group = models.IntegerField(null=True, blank=True)
+    group = models.ForeignKey("CategoryGroup", null=True, blank=True)
 
     def __unicode__(self):
         return self.name
@@ -75,6 +71,20 @@ class CategoryLinks(models.Model):
     content_type = models.ForeignKey(ContentType)
     object_id = models.PositiveIntegerField()
     content_object = generic.GenericForeignKey('content_type', 'object_id')
+
+
+class CategoryGroup(models.Model):
+    '''Grouping categories. One category must be in one group.'''
+    class Meta:
+        ordering = ['order']
+
+    name = models.CharField(
+        max_length=200,
+        verbose_name=_('category group name'))
+    order = models.IntegerField()
+
+    def __unicode__(self):
+        return _("Category group %s") % self.name
 
 
 class Infopage(models.Model):
