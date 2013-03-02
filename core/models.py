@@ -65,14 +65,6 @@ class Category(models.Model):
         return self.name
 
 
-class CategoryLinks(models.Model):
-    ''' Links categories for generic models'''
-    category = models.ForeignKey(Category)
-    content_type = models.ForeignKey(ContentType)
-    object_id = models.PositiveIntegerField()
-    content_object = generic.GenericForeignKey('content_type', 'object_id')
-
-
 class CategoryGroup(models.Model):
     '''Grouping categories. One category must be in one group.'''
     class Meta:
