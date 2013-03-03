@@ -64,6 +64,11 @@ class Category(models.Model):
     def __unicode__(self):
         return self.name
 
+    def unlink(self):
+        '''Remove link to category group'''
+        self.group = None
+        self.save()
+
 
 class CategoryGroup(models.Model):
     '''Grouping categories. One category must be in one group.'''
@@ -77,6 +82,11 @@ class CategoryGroup(models.Model):
 
     def __unicode__(self):
         return _("Category group %s") % self.name
+
+    def add_category(self, category):
+        '''Add category to group '''
+        category.group = self
+        category.save()
 
 
 class Infopage(models.Model):
