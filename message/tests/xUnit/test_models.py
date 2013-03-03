@@ -144,3 +144,9 @@ class TestMessageCategories(unittest.TestCase):
         self.message.category.add(self.category)
         self.assertEqual(len(self.message.category.all()), before + 1)
 
+    def test_remove_category(self):
+        self.message.category.add(self.category)
+        before = self.message.category.count()
+        self.message.category.remove(self.category)
+        self.assertNotIn(self.category, self.message.category.all())
+        self.assertEqual(self.message.category.count(), before - 1)
