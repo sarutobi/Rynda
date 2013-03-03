@@ -4,8 +4,10 @@ import unittest
 
 from django.core.exceptions import ValidationError
 
+from core.factories import CategoryFactory
 from geozones.factories import RegionFactory
 from message.factories import MessageFactory
+from message.models import Message
 from test.factories import UserFactory
 
 
@@ -115,3 +117,30 @@ class TestMessageLocation(unittest.TestCase):
 
     def test_location(self):
         self.assertIsNotNone(self.message.location)
+
+
+class TestMessageCategories(unittest.TestCase):
+    def setUp(self):
+        self.message = MessageFactory(user=None)
+        self.category = CategoryFactory()
+
+    def tearDown(self):
+        self.message.delete()
+        self.category.delete()
+
+    def test_add_category(self):
+        before = len(self.message.category.all())
+        self.message.category.add(self.category)
+        self.assertEqual(len(self.message.category.all()), before + 1)
+
+    def test_added_category_stored(self):
+        self.message.category.add(self.category)
+        m = Message.objects.get(id=self.message.pk)
+        self.assertIn(self.category, m.category.all())
+
+    def test_added_category_twice(self):
+        before = len(self.message.category.all())
+        self.message.category.add(self.category)
+        self.message.category.add(self.category)
+        self.assertEqual(len(self.message.category.all()), before + 1)
+
