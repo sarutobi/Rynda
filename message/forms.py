@@ -21,6 +21,7 @@ class MessageForm(forms.ModelForm):
             'title', 'message', 'messageType', 'subdomain',
             'contact_first_name', 'contact_last_name',
             'contact_mail', 'contact_phone',
+            'category',
             'is_anonymous', 'allow_feedback',
             'georegion', 'location', 'address')
         widgets = {

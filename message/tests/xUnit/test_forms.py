@@ -2,9 +2,11 @@
 
 import unittest
 
+from core.factories import CategoryFactory
+
 from geozones.factories import RegionFactory
 
-from message.models import MessageType
+from message.models import MessageType, Category
 from message.forms import SimpleRequestForm
 from test.utils import lorem_ipsum
 from test.factories import UserFactory
@@ -50,8 +52,38 @@ class TestSimpleRequestForm(unittest.TestCase):
         msg.delete()
 
 
-class TestRequiredFields(unittest.TestCase):
+class TestRequestCategory(unittest.TestCase):
+    def setUp(self):
+        self.cats = list()
+        for x in xrange(5):
+            self.cats.append(CategoryFactory())
+        self.user = UserFactory.build()
+        self.region = RegionFactory()
+        self.data = {
+            'message': lorem_ipsum(),
+            'messageType': MessageType.TYPE_REQUEST,
+            'contact_first_name': self.user.first_name,
+            'contact_last_name': self.user.last_name,
+            'contact_mail': self.user.email,
+            'contact_phone': '12345678',
+            'address': lorem_ipsum(words_count=4),
+            'georegion': self.region.pk,
+            'location_0': 25.0,
+            'location_1': 50.0,
+            'category': [x.pk for x in self.cats],
+        }
 
+    def tearDown(self):
+        Category.objects.all().delete()
+
+    def test_message_with_cats(self):
+        form = SimpleRequestForm(self.data)
+        self.assertTrue(form.is_valid())
+        msg = form.save()
+        self.assertEqual(5, msg.category.all().count())
+
+
+class TestRequiredFields(unittest.TestCase):
     def setUp(self):
         self.user = UserFactory.build()
         self.region = RegionFactory()
