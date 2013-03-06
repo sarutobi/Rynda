@@ -5,7 +5,7 @@ from django import forms
 from django.core.exceptions import ValidationError
 from django.utils.translation import ugettext as _
 
-from core.models import Category
+from core.models import CategoryGroup
 from core.widgets import CategoryTree
 from geozones.forms import LocationField
 from geozones.models import Location, Region
@@ -26,7 +26,8 @@ class MessageForm(forms.ModelForm):
             'georegion', 'location', 'address')
         widgets = {
             'messageType': forms.HiddenInput(),
-            'location': GeolocationWidget()
+            'location': GeolocationWidget(),
+            'category': CategoryTree(cat_groups=CategoryGroup.objects.all()),
         }
 
     location = LocationField(required=False)
