@@ -5,17 +5,15 @@
 {% endblock %}
 
 {% block navigation %}
-<form id="mapFilterForm" action="#">
-    <div id="mapFormContainer">
-        <div>
-            {% for f in filter.form %}
-                {{ f }}
-            {% endfor %}
-            <div id="reset" class="mainpagecancel">Сбросить форму</div>
-            <div class="clearfix"></div>
+    <div >
+        <div class='ml10 alignleft'>Отображать:</div>
+        <div class='ml10 alignleft'>Россия</div>
+        <div class='ml10 alignleft'>Разделы(все)</div>
+        <div class='ml10 alignleft'>Категории(5 из 21)</div>
+        <div class='ml10 alignleft'>За все время</div>
+        <div class="clearfix"></div>
         </div>
     </div>
-</form>
 {% endblock %}
 
 {%block maincontent%}
