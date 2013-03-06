@@ -193,7 +193,7 @@ class MessageSideFilter(django_filters.FilterSet):
 class MessageIndexFilter(django_filters.FilterSet):
     class Meta:
         model = Message
-        fields = ['georegion', 'subdomain', 'messageType', 'date_add']
+        fields = ['georegion', 'subdomain', 'date_add']
 
     date_add = django_filters.DateRangeFilter()
 
