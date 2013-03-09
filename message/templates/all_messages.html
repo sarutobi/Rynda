@@ -16,13 +16,13 @@
     {% elif m.messageType == 2 %}
     <a href="/message/{{m.id}}" title="Предложение помощи #${{m.id}}{% if m.title %}: {{m.title}} {% endif %}" class="darkGrey list_number">#{{m.id}}</a>
     <div class="list_content">
-        <a href="/info/s/{{m.id}}" class="darkRed" title="Предложение помощи №{{m.id}}{% if m.title %}: {{m.title}} {% endif %}">
+        <a href="/message/{{ m.id }}" class="darkRed" title="Предложение помощи №{{m.id}}{% if m.title %}: {{m.title}} {% endif %}">
             <strong>Предложение помощи #{{m.id}}{% if m.title %}: {{m.title}} {% endif %}</strong>
         </a>
     {% elif m.messageType == 3 %}
     <a href="/message/{{m.id}}" title="Информационное сообщение #{{m.id}}{% if m.title %}: {{m.title}} {% endif %}" class="darkGrey list_number">#{{m.id}}</a>
     <div class="list_content">
-        <a href="/info/s/{{m.id}}" class="darkRed" title="Информационное сообщение #{{m.id}}{% if m.title %}: {{m.title}} {% endif %}">
+        <a href="/message/{{ m.id }}" class="darkRed" title="Информационное сообщение #{{m.id}}{% if m.title %}: {{m.title}} {% endif %}">
             <strong>Информационное сообщение #{{m.id}}{% if m.title %}: {{m.title}} {% endif %}</strong>
         </a>
     {% endif %}    
