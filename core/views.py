@@ -47,9 +47,11 @@ class RyndaFormView(SubdomainContextMixin, FormView):
 
 def show_page(request, slug):
     page = get_object_or_404(Infopage, slug=slug)
+    pages = Infopage.objects.filter(
+        active=True).exclude(slug=slug).values('slug', 'title')
     return render_to_response(
         'infopage/show_page.html',
-        {'title': page.title, 'text': page.text, },
+        {'title': page.title, 'text': page.text, 'pages': pages, },
         context_instance=RequestContext(
             request,
             processors=[subdomains_context, categories_context])
@@ -58,9 +60,12 @@ def show_page(request, slug):
 
 def index_info(request):
     page = get_object_or_404(Infopage, default=True)
+    pages = Infopage.objects.filter(
+        active=True,
+        default=False).values('slug', 'title')
     return render_to_response(
         'infopage/show_page.html',
-        {'title': page.title, 'text': page.text, },
+        {'title': page.title, 'text': page.text, 'pages': pages, },
         context_instance=RequestContext(
             request,
             processors=[subdomains_context, categories_context])
