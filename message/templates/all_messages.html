@@ -28,11 +28,11 @@
     {% endif %}    
     <br />
     <div class="clearfix mt4"></div>
-    <a href="/info/s/{{m.id}}" class="no_underline" title="Подробные сведения о сообщении">{{ m.message|safe|truncatewords:10 }}</a>
+    <a href="/message/{{m.id}}" class="no_underline" title="Подробные сведения о сообщении">{{ m.message|safe|truncatewords:10 }}</a>
     <br />
     <br />
     <span class="darkGrey fs10">
-        {{m.date_add|date:"d.m.Y"}} | <a href="/info/r/{{ m.georegion }}" title="Все сообщения по региону «{{ m.georegion }}»">{{ m.georegion }}</a>
+        {{m.date_add|date:"d.m.Y"}} | <a href="/message/?region={{ m.georegion }}" title="Все сообщения по региону «{{ m.georegion }}»">{{ m.georegion }}</a>
 {% comment %}    
 <!--            {{if categories.length > 0}} | {{/if}}
         {{each categories}}
