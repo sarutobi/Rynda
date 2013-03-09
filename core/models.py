@@ -97,6 +97,8 @@ class Infopage(models.Model):
     text = models.TextField(db_column='text', verbose_name=_('text'))
     active = models.BooleanField(default=False, verbose_name=_('is active'))
     slug = models.SlugField(max_length=255, verbose_name=_('slug'))
+    default = models.BooleanField(
+        default=False, verbose_name=_('default page'))
 
     def __unicode__(self):
         return self.title
