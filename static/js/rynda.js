@@ -67,10 +67,21 @@ Rynda.map = (function(){
         $(this.map.getContainer()).toggle();
     }
 
+    function centerMap(centerPos){
+        this.map.panTo(centerPos);
+    }
+
+    function addMarker(markerPos){
+        var m = new L.Marker(markerPos);
+        m.addTo(this.map);
+    }
+
     return  {
         fetch: fetch,
         createMap: createMap,
-        toggleMap: toggleMap
+        toggleMap: toggleMap,
+        centerMap: centerMap,
+        addMarker: addMarker
     }
 })();
 
