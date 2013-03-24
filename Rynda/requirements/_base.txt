@@ -13,5 +13,6 @@ templated-emails==0.6.9
 wsgiref==0.1.2
 django-model-utils==1.2.0
 django-widget-tweaks==1.1.2
-django-admin-tools==0.4.1
+django-admin-tools==0.5.1
 django-filter==0.5.4
+django-social-auth==0.7.22
