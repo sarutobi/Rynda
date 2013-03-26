@@ -68,13 +68,22 @@
 <div role="main">
 <div class="main">
 	<div class="g960" id="header">
-		<div class="alignright ml40">	
-            {% block buttons %}{%endblock%}
+            <div class="alignright ml40">	
+                {% block buttons %}{%endblock%}
+            </div>
+            <h1><a href="/" class="no_text" title="Rynda.org — портал добровольцев">Rynda</a></h1>
+            <div class="clearfix"></div>        
         </div>
-        <h1><a href="/" class="no_text" title="Rynda.org — портал добровольцев">Rynda</a></h1>
-        <div class="clearfix"></div>        
-    </div>
     <div class="clear1">&nbsp;</div> 
+    <div>
+        <ul class="no_list floatleft">
+            <li><a href="http://vkontakte.ru/club25595604" title="Виртуальная рында во Вконтакте" class="vk">Вконтакте</a></li>
+            <li><a href="http://www.facebook.com/pages/Ryndaorg/163264230398695?created" title="Виртуальная рында в Фейсбуке" class="fb">Фейсбук</a></li>
+            <li><a href="http://community.livejournal.com/rynda_org/" title="Виртуальная рында в ЖЖ" class="lj">Живой Журнал</a></li>
+            <li><a href="http://twitter.com/#!/Ryndaorg" title="Виртуальная рында в Твиттере" class="tw">Твиттер</a></li>
+            <!--<li><a href="#" title="Лента Виртуальной рынды" class="rss">RSS</a></li>-->
+        </ul>
+    </div>
     {%block maincontent%}{%endblock%}  
   
   <footer>
