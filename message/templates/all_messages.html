@@ -1,5 +1,9 @@
 {% extends 'base_list.html' %}
 
+{% block hubs %}
+    {% include "widgets/base_hub.html"  with part='message' %}
+{% endblock %}
+
 {% block listfilter%}
     {% include 'widgets/filter.html' %}
 {% endblock %}

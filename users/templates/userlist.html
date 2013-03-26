@@ -4,6 +4,10 @@
     {% include "widgets/users_filter.html" %}
 {% endblock %}
 
+{% block hubs %}
+    {% include "widgets/base_hub.html"  with part='user' %}
+{% endblock %}
+
 {% block listcontent %}
 {% for u in users %}
 <li>
