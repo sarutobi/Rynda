@@ -12,6 +12,8 @@ class Subdomain(models.Model):
 
     class Meta:
         ordering = ['order']
+        verbose_name = _('map')
+        verbose_name_plural = _('maps')
 
     url = models.CharField(max_length=50, blank=True, null=True)
     title = models.CharField(max_length=50)
@@ -37,6 +39,8 @@ class Category(models.Model):
     ''' Категория сообщения '''
     class Meta:
         ordering = ['order']
+        verbose_name = _('category')
+        verbose_name_plural = _('categories')
 
     name = models.CharField(
         max_length=200, db_column='name',
@@ -72,6 +76,8 @@ class CategoryGroup(models.Model):
     '''Grouping categories. One category must be in one group.'''
     class Meta:
         ordering = ['order']
+        verbose_name = _('category group')
+        verbose_name_plural = _('category groups')
 
     name = models.CharField(
         max_length=200,
@@ -79,7 +85,7 @@ class CategoryGroup(models.Model):
     order = models.IntegerField()
 
     def __unicode__(self):
-        return _("Category group %s") % self.name
+        return self.name
 
     def add_category(self, category):
         '''Add category to group '''
