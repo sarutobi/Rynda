@@ -1,0 +1,96 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2013-04-22 20:12+0400\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
+"%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2)\n"
+
+#: models.py:10
+msgid "inactive"
+msgstr ""
+
+#: models.py:11
+msgid "active"
+msgstr ""
+
+#: models.py:15
+msgid "map"
+msgstr "Карта"
+
+#: models.py:16
+msgid "maps"
+msgstr "Карты"
+
+#: models.py:42
+msgid "category"
+msgstr "Категория"
+
+#: models.py:43
+msgid "categories"
+msgstr "Категории"
+
+#: models.py:47
+msgid "name"
+msgstr "Наименование"
+
+#: models.py:50
+msgid "description"
+msgstr "Описание"
+
+#: models.py:53
+msgid "color"
+msgstr "Цвет"
+
+#: models.py:56 models.py:105
+msgid "slug"
+msgstr ""
+
+#: models.py:59
+msgid "icon"
+msgstr "Иконка"
+
+#: models.py:63
+msgid "subdomain"
+msgstr "карта"
+
+#: models.py:79
+msgid "category group"
+msgstr "Группа категорий"
+
+#: models.py:80
+msgid "category groups"
+msgstr "Группы категорий"
+
+#: models.py:84
+msgid "category group name"
+msgstr "Наименование группы"
+
+#: models.py:102
+msgid "title"
+msgstr "Заголовок"
+
+#: models.py:103
+msgid "text"
+msgstr "Текст"
+
+#: models.py:104
+msgid "is active"
+msgstr "Активно"
+
+#: models.py:107
+msgid "default page"
+msgstr "Страница по умолчанию"
