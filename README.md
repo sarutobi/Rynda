@@ -23,9 +23,9 @@ Installation
 3. Clone repository
 4. cd to cloned repository and execute
 
-> pip install -r Rynda/requirements/&lt;file&gt.txt
+> pip install -r Rynda/requirements/&lt;file&gt;.txt
 
-where &lt;file&gt is one of:
+where &lt;file&gt; is one of:
 
 - develop - for local developement
 - production - for production server
