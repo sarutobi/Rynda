@@ -17,7 +17,7 @@ class TestCategoryGroup(unittest.TestCase):
         self.assertIsNotNone(self.group)
 
     def test_group_unicode(self):
-        expect = "Category group %s" % self.group.name
+        expect = self.group.name
         self.assertEqual(expect, "%s" % self.group)
 
     def test_appeng_category(self):
