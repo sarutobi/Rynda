@@ -27,7 +27,7 @@ class MessageForm(forms.ModelForm):
         widgets = {
             'messageType': forms.HiddenInput(),
             'location': GeolocationWidget(),
-            'category': CategoryTree(cat_groups=CategoryGroup.objects.all()),
+            'category': CategoryTree(),
         }
 
     location = LocationField(required=False)

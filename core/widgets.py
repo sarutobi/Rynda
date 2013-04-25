@@ -8,19 +8,21 @@ from django.utils.encoding import force_unicode
 from django.utils.html import conditional_escape
 from django.utils.safestring import mark_safe
 
+from .models import CategoryGroup
+
 #from utils.tree import to_tree
 
 
 class CategoryTree(CheckboxSelectMultiple):
 
-    def __init__(self, attrs=None, cat_groups=None):
-        self.root = cat_groups or ()
+    def __init__(self, attrs=None):
+        #import pdb;pdb.set_trace()
+        self.root = CategoryGroup.objects.all()
         super(CategoryTree, self).__init__(attrs)
 
     def render(self, name, value, attrs=None, choices=()):
         if value is None:
             value = []
-        #import pdb;pdb.set_trace()
         has_id = attrs and 'id' in attrs
         final_attrs = self.build_attrs(attrs, name=name)
         output = [u'']
