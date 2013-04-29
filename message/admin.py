@@ -11,8 +11,9 @@ class MessageAdmin(admin.ModelAdmin):
         js = (
             'js/libs/jquery-1.8.1.min.js',
             'js/libs/leaflet.js',
-            'js/plugins.js',
-            'js/rynda.js',)
+    #        'js/plugins.js',
+            'js/rynda.js',
+        )
     list_display = (
         'pk',
         'title',
@@ -24,19 +25,5 @@ class MessageAdmin(admin.ModelAdmin):
     list_display_links = ('pk', 'title')
     list_filter = ('status',)
     form = MessageForm
-
-    fieldsets = (
-        ('Message', {
-            'fields': ('messageType', 'title', 'message'),
-        }),
-        ('Author', {
-            'fields': ('contact_first_name', 'contact_last_name',
-                       'contact_mail', 'contact_phone')
-        }),
-        ('Geoposition', {
-            'fields': ('georegion', 'address', 'location')
-        })
-
-    )
 
 admin.site.register(Message, MessageAdmin)
