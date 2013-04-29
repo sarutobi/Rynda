@@ -25,7 +25,6 @@ class MessageForm(forms.ModelForm):
             'is_anonymous', 'allow_feedback',
             'georegion', 'location', 'address')
         widgets = {
-            'messageType': forms.HiddenInput(),
             'location': GeolocationWidget(),
             'category': CategoryTree(),
         }
@@ -47,7 +46,17 @@ class MessageForm(forms.ModelForm):
         return super(MessageForm, self).save(*args, **kwargs)
 
 
-class SimpleRequestForm(MessageForm):
+class UserMessageForm(MessageForm):
+    class Meta:
+        model = Message
+        widgets = {
+            'messageType': forms.HiddenInput(),
+            'location': GeolocationWidget(),
+            'category': CategoryTree(),
+        }
+
+
+class SimpleRequestForm(UserMessageForm):
     ''' Simple request form. '''
 
     def __init__(self, *args, **kwargs):
