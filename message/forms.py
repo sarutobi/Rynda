@@ -47,13 +47,15 @@ class MessageForm(forms.ModelForm):
 
 
 class UserMessageForm(MessageForm):
-    class Meta:
-        model = Message
+    class Meta(MessageForm.Meta):
         widgets = {
             'messageType': forms.HiddenInput(),
             'location': GeolocationWidget(),
             'category': CategoryTree(),
         }
+
+    def save(self, *args, **kwargs):
+        return super(UserMessageForm, self).save(*args, **kwargs)
 
 
 class SimpleRequestForm(UserMessageForm):
