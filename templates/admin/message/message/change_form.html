@@ -49,15 +49,13 @@
 
 {% block field_sets %}
 {% for field in adminform.formset.line %}
-  {% if field.label != 'Location' %} 
-  <div class='form-row'>
-  {{ field.label_tag }} {{ field.field }}
-  </div>
-  {% endif %}
+    {% include 'admin/message/mesage/line_field.html' %}
 {% endfor %}
+{% comment %}
 {% for fieldset in adminform %}
   {% include "admin/message/message/fieldset.html" %}
 {% endfor %}
+{% endcomment %}
 {% endblock %}
 
 {% block after_field_sets %}{% endblock %}
