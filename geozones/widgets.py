@@ -39,6 +39,7 @@ class GeolocationWidget(forms.MultiWidget):
         )
         css = {
             'all': (
+                'css/leaflet.css',
                 'geozones/geolocation.css',
                 'geozones/l.geosearch.css', )
         }
