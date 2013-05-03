@@ -1,3 +1,4 @@
+$(document).ready(function(){
 if (jQuery != undefined){
     var django = {
         'jQuery': jQuery
@@ -30,4 +31,5 @@ if (jQuery != undefined){
         new L.Control.GeoSearch({
             provider: new L.GeoSearch.Provider.Google()
         }).addTo(map);
-})(django.jQuery)
+})(django.jQuery);
+});
