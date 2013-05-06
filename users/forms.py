@@ -51,7 +51,7 @@ class SimpleRegistrationForm(forms.Form):
         try:
             validate_email_domain(self.cleaned_data['email'])
         except dns.exception.DNSException, e:
-            raise forms.ValidationError(u"The domain %s could not be found" % domain)
+            raise forms.ValidationError(u"Email seems to be wrong")
         return self.cleaned_data['email']
 
 

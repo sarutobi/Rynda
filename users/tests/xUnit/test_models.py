@@ -69,7 +69,7 @@ class UserTest(unittest.TestCase):
         self.assertEqual('Factory', self.user.last_name)
 
     def test_user_email(self):
-        self.assertEqual('boy_factory@example.com', self.user.email)
+        self.assertEqual('boy_factory@mail.ru', self.user.email)
 
 
 class TestUserCreation(unittest.TestCase):
