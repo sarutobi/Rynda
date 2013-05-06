@@ -159,6 +159,7 @@ INSTALLED_APPS = (
     'south',
     'social_auth',
     'templated_emails',
+    'post_office',
     'message',
     'users',
     'geozones',
@@ -177,6 +178,7 @@ AUTHENTICATION_BACKENDS = (
 
 ADMIN_TOOLS_THEMING_CSS = 'admin_tools/css/theming.css'
 AUTH_PROFILE_MODULE = 'users.users'
+EMAIL_BACKEND = 'post_office.EmailBackend'
 
 # A sample logging configuration. The only tangible logging
 # performed by this configuration is to send an email to
