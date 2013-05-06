@@ -16,3 +16,4 @@ django-widget-tweaks==1.1.2
 django-admin-tools==0.5.1
 django-filter==0.5.4
 django-social-auth==0.7.22
+django-post_office==0.3.1
