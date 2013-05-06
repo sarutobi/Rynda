@@ -1,10 +1,11 @@
 # -*- coding: utf-8 -*-
 
-import dns.resolver, dns.exception
+import dns.exception
 
 from django import forms
 from django.contrib.auth.models import User
 
+from core.utils import validate_email_domain
 from users.models import Profile
 
 
@@ -47,9 +48,8 @@ class SimpleRegistrationForm(forms.Form):
             email__iexact=self.cleaned_data['email'])
         if existing.exists():
             raise forms.ValidationError("This email already registered")
-        domain = self.cleaned_data['email'].split('@')[1]
         try:
-            result = dns.resolver.query(domain, 'MX')
+            validate_email_domain(self.cleaned_data['email'])
         except dns.exception.DNSException, e:
             raise forms.ValidationError(u"The domain %s could not be found" % domain)
         return self.cleaned_data['email']
