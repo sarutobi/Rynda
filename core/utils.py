@@ -17,5 +17,6 @@ def send_templated_email(template_name, user_list):
 
 
 def validate_email_domain(email):
-    domain = email.split('@')[1]
-    dns.resolver.query(domain, 'MX')
+    if email != '':
+        domain = email.split('@')[1]
+        dns.resolver.query(domain, 'MX')
