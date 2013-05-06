@@ -16,7 +16,7 @@ class SimpleRegistrationFormTest(unittest.TestCase):
         self.data = {
             'first_name': 'test',
             'last_name': 'user',
-            'email': 'test_user@example.com',
+            'email': 'test_user@mail.ru',
             'password1': '123',
             'password2': '123'
         }
