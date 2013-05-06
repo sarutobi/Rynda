@@ -1,11 +1,14 @@
 # -*- coding: utf-8 -*-
 
+import dns.exception
+
 from django import forms
 
 from django.core.exceptions import ValidationError
 from django.utils.translation import ugettext as _
 
 from core.models import CategoryGroup
+from core.utils import validate_email_domain
 from core.widgets import CategoryTree
 from geozones.forms import LocationField
 from geozones.models import Location, Region
@@ -41,6 +44,13 @@ class MessageForm(forms.ModelForm):
         elif isinstance(location, list):
             return 'POINT(%f %f)' % (location[0], location[1])
         return location
+
+    def clean_contact_mail(self):
+        try:
+            validate_email_domain(self.cleaned_data['contact_mail'])
+        except dns.exception.DNSException, e:
+            raise forms.ValidationError(u"Email seems to be wrong")
+        return self.cleaned_data['contact_mail']
 
     def save(self, *args, **kwargs):
         return super(MessageForm, self).save(*args, **kwargs)

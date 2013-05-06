@@ -23,7 +23,7 @@ class TestSendMessage(WebTest):
         self.form['message'] = "This is simple test message"
         self.form['contact_first_name'] = 'Dummy'
         self.form['contact_last_name'] = 'User'
-        self.form['contact_mail'] = 'me@local.host'
+        self.form['contact_mail'] = 'me@mail.ru'
         self.form['contact_phone'] = '123456789'
         self.form['georegion'] = self.region.pk
         self.form['address'] = 'Some address string'
