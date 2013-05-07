@@ -62,18 +62,21 @@ class Profile(models.Model):
     user = models.OneToOneField(User)
     forgotCode = models.CharField(
         max_length=40,
+        editable=False,
         db_column='forgotten_password_code', null=True)
     rememberCode = models.CharField(
         max_length=40,
+        editable=False,
         db_column='remember_code', null=True)
     forgotten_time = models.DateTimeField(
         db_column='forgotten_password_time',
+        editable=False,
         null=True)
 #    ref_type = models.IntegerField(db_column='ref_type', default=0)
-    flags = models.IntegerField(db_column='flags', default=0)
+    flags = models.IntegerField(db_column='flags', editable=False, default=0)
     phones = models.CharField(max_length=255, blank=True)
-    about_me = models.TextField(default='')
-    birthday = models.DateField(null=True)
+    about_me = models.TextField(default='', blank=True)
+    birthday = models.DateField(blank=True, null=True)
     gender = models.IntegerField(default=0)
 
     def __unicode__(self):
