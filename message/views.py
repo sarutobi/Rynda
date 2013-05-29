@@ -25,7 +25,7 @@ def list(request, slug='all'):
         MessageType.TYPE_REQUEST).values('id', 'title', 'date_add')[:5]
     last_offers = Message.objects.active().type_is(
         MessageType.TYPE_OFFER).values('id', 'title', 'date_add')[:5]
-    last_completed = Message.objects.active().type_is(
+    last_completed = Message.objects.type_is(
         MessageType.TYPE_REQUEST).closed().values('id', 'title', 'date_add')[:5]
     last_info = Message.objects.active().type_is(
         MessageType.TYPE_INFO).values('id', 'title', 'date_add')[:5]
