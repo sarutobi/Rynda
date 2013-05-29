@@ -1,10 +1,34 @@
 <div class='mapTabs'>
     <ul class="floatleft no_list tabs">
-        <li {% if part == 'base' %}class='tab_active'{% endif %}><div class='tabLink_container'><a href='/'>&nbsp;</a></div></li>
-        <li {% if part == 'message' %}class='tab_active'{% endif %}><div class='tabLink_container'><a href='/message'>Сообщения</a></div></li>
-        <li {% if part == 'organization' %}class='tab_active'{% endif %}><div class='tabLink_container'><a href='/organization'>Организации</a></div></li>
-        <li {% if part == 'user' %}class='tab_active'{% endif %}><div class='tabLink_container'><a href='/user'>Пользователи</a></div></li>
-        <li {% if part == 'about' %}class='tab_active'{% endif %}><div class='tabLink_container'><a href='/info'>О проекте</a></div></li>
+        {% if part == 'base' %}
+        <li class='tab_active'><div class='tabLink_container'>&nbsp;</div></li>
+        {% else %}
+        <li><div class='tabLink_container'><a href='/'>&nbsp;</a></div></li>
+        {% endif %}
+
+        {% if part == 'message' %}
+        <li class='tab_active'><div class='tabLink_container'>Сообщения</div></li>
+        {% else %}
+        <li><div class='tabLink_container'><a href='/message'>Сообщения</a></div></li>
+        {% endif %}
+
+        {% if part == 'organization' %}
+        <li class='tab_active'><div class='tabLink_container'>Организации</div></li>
+        {% else %}
+        <li><div class='tabLink_container'><a href='/organization'>Организации</a></div></li>
+        {% endif %}
+        
+        {% if part == 'user' %}
+        <li class='tab_active'><div class='tabLink_container'>Пользователи</div></li>
+        {% else %}
+        <li><div class='tabLink_container'><a href='/user'>Пользователи</a></div></li>
+        {% endif %}
+       
+        {% if part == 'about' %} 
+        <li class='tab_active'><div class='tabLink_container'>О проекте</div></li>
+        {% else %}
+        <li><div class='tabLink_container'><a href='/info'>О проекте</a></div></li>
+        {% endif %}
     </ul>
 </div>
 
