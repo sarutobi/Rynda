@@ -1,5 +1,9 @@
 {% extends 'base.html'%}
 
+{% block hubs %}
+    {% include "widgets/base_hub.html"  with part='message' %}
+{% endblock %}
+
 {% block maincontent %}
 <div class="g960 needhelppage rounded_all mb35" id="content">
     <div id="formTotal">
