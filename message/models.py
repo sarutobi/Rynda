@@ -187,7 +187,7 @@ class Message(geomodels.Model):
 class MessageSideFilter(django_filters.FilterSet):
     class Meta:
         model = Message
-        fields = ['georegion', 'subdomain', 'messageType']
+        fields = ['georegion', 'subdomain', 'messageType', 'category']
 
 
 class MessageIndexFilter(django_filters.FilterSet):

@@ -13,12 +13,12 @@
         {{ filter.form.subdomain.label }} <br />
         {{ filter.form.subdomain }} <br />
         <!-- <select name="submap"></select><label for="submap">Тип карты</label> -->
-        <?php if(in_array('category', $filterShowFields) && !empty($categories)) {?>
+        <!-- ?php if(in_array('category', $filterShowFields) && !empty($categories)) {?-->
 		<h4 class="mt10">Категории</h4>
-        {% include "widgets/category.html" %}
+        {{ filter.form.category }}
         <div class="clear">&nbsp;</div>
-        <?php }?>
-        <?php if(in_array('isUntimed', $filterShowFields)) {?>
+        <!--?php }?>
+        <?php if(in_array('isUntimed', $filterShowFields)) {?-->
         <select name="untimed" id="filterUntimed">
             <option value="">Как срочно?</option>
             <!--<option value="nm">Всё равно</option>-->
