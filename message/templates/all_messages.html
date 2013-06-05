@@ -36,7 +36,7 @@
     <br />
     <br />
     <span class="darkGrey fs10">
-        {{m.date_add|date:"d.m.Y"}} | <a href="/message/?region={{ m.georegion }}" title="Все сообщения по региону «{{ m.georegion }}»">{{ m.georegion }}</a>
+        {{m.date_add|date:"d.m.Y"}} | <a href="/message/?region={{ m.georegion }}" title="Все сообщения по региону «{{ m.georegion__name }}»">{{ m.georegion__name }}</a>
 {% comment %}    
 <!--            {{if categories.length > 0}} | {{/if}}
         {{each categories}}
