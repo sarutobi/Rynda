@@ -77,3 +77,15 @@ class SimpleRequestForm(UserMessageForm):
 
     def clean_messageType(self):
         return MessageType.TYPE_REQUEST
+
+
+class AdminMessageForm(MessageForm):
+    class Meta(MessageForm.Meta):
+        widgets = {
+            'messageType': forms.Select(),
+            'location': GeolocationWidget(),
+            'category': CategoryTree(),
+        }
+
+    def clean_messageType(self):
+        return self.cleaned_data['message_type']

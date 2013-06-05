@@ -3,7 +3,7 @@
 from django.contrib import admin
 
 from .models import Message
-from .forms import MessageForm
+from .forms import AdminMessageForm
 
 
 class MessageAdmin(admin.ModelAdmin):
@@ -24,6 +24,6 @@ class MessageAdmin(admin.ModelAdmin):
     )
     list_display_links = ('pk', 'title')
     list_filter = ('status',)
-    form = MessageForm
+    form = AdminMessageForm
 
 admin.site.register(Message, MessageAdmin)
