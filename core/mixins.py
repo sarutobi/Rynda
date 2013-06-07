@@ -18,7 +18,7 @@ class SubdomainContextMixin(object):
 class PaginatorMixin(object):
     '''Paginator line mixin. Best use with list-based mixins'''
 
-    def paginator(self, num_pages, page = 1, adj_pages = 2, outside_range = 3):
+    def paginator(self, num_pages, page=1, adj_pages=2, outside_range=3):
         page = int(page)
         num_pages = int(num_pages)
         if page > num_pages:
@@ -32,7 +32,7 @@ class PaginatorMixin(object):
                 has_prev = True
             if page < num_pages:
                 has_next = True
-        #Количество страниц для отображения меньше чем количество 
+        #Количество страниц для отображения меньше чем количество
         #страниц в пейджере
         if (outside_range + adj_pages + 1 + adj_pages + outside_range)\
             >= num_pages:
@@ -40,7 +40,7 @@ class PaginatorMixin(object):
                 'last':[],  'has_prev':has_prev, 'has_next':has_next}
 
         #страница для отображения находится в начальном диапазоне
-        if (outside_range + adj_pages + 1 ) >= page:
+        if (outside_range + adj_pages + 1) >= page:
             first = []
             window = [n for n in range(1, outside_range + 2 + 2 * adj_pages)
                 if n > 0 and n < num_pages]
@@ -56,8 +56,18 @@ class PaginatorMixin(object):
                 num_pages+1)]
             window = [n for n in range(page - adj_pages, page + adj_pages +1)
                 if n < num_pages]
-        return {'first':first, 'window':window, 'last':last,
-            'has_prev':has_prev, 'has_next':has_next}
+        return {'first': first, 'window': window, 'last': last,
+            'has_prev': has_prev, 'has_next': has_next}
+
+
+class QueryStringMixin(object):
+    '''
+    This mixin adds a query string to context.
+    '''
+    def get_context_data(self, **kwargs):
+        context = super(QueryStringMixin, self).get_context_data(**kwargs)
+        context['query_string'] = u'?%s' % self.request.META['QUERY_STRING']
+        return context
 
 
 class CategoryMixin(object):

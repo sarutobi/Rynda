@@ -7,7 +7,7 @@ from django.views.generic.edit import CreateView, FormView
 from django.views.generic.list import ListView
 from django.template import RequestContext
 
-from core.mixins import SubdomainContextMixin, PaginatorMixin
+from core.mixins import SubdomainContextMixin, PaginatorMixin, QueryStringMixin
 from core.models import Infopage
 from core.context_processors import subdomains_context, categories_context
 
@@ -20,7 +20,7 @@ class RyndaDetailView(SubdomainContextMixin, DetailView):
     pass
 
 
-class RyndaListView(SubdomainContextMixin, PaginatorMixin, ListView):
+class RyndaListView(SubdomainContextMixin, QueryStringMixin, PaginatorMixin, ListView):
     paginator_url = None
     list_title_short = None
 
