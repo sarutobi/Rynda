@@ -36,7 +36,7 @@
             <div id="paginationBlock" class="paginaton mb10">
             <div id="paginationPages" data-current-page="{{paginator.number}}" class="alignleft list_pagination_div">
                 {% if page_obj.has_previous %}
-                    <a class='page' href='{{paginator_url}}{{page_obj.previous_page_number}}'>Назад</a>
+                    <a class='page' href='{{paginator_url}}{{page_obj.previous_page_number}}{{ query_string|urlencode }}'>Назад</a>
                 {%else%}
                     <span class='page'>Назад</span>
                 {%endif%}
@@ -44,7 +44,7 @@
                 {%if paginator_line.first%}
                     {% for p in paginator_line.first %}
                         {%if p != page_obj.number%}
-                            <a class='page' href='{{paginator_url}}{{p}}'>{{p}}</a>
+                            <a class='page' href='{{paginator_url}}{{p}}{{ query_string|urlencode }}'>{{p}}</a>
                         {%else%}
                             <span class='current_page'>{{p}}</span>
                         {%endif%}
@@ -53,7 +53,7 @@
                 {%endif%}
                 {% for p in paginator_line.window %}
                     {%if p != page_obj.number%}
-                        <a class='page' href='{{paginator_url}}{{p}}'>{{p}}</a>
+                        <a class='page' href='{{paginator_url}}{{p}}{{ query_string|urlencode }}'>{{p}}</a>
                     {%else%}
                         <span class='current_page'>{{p}}</span>
                     {%endif%}
@@ -63,7 +63,7 @@
                     ...
                     {% for p in paginate.last %}
                         {%if p != page_obj.number%}
-                            <a class='page' href='{{paginator_url}}{{p}}'>{{p}}</a>
+                            <a class='page' href='{{paginator_url}}{{p}}{{ query_string|urlencode }}'>{{p}}</a>
                         {%else%}
                             <span class='current_page'>{{p}}</span>
                         {%endif%}
@@ -71,7 +71,7 @@
                 {%endif%}
 
                 {%if page_obj.has_next%}
-                    <a class='page' href='{{paginator_url}}{{page_obj.next_page_number}}'>Вперед</a>
+                    <a class='page' href='{{paginator_url}}{{page_obj.next_page_number}}{{ query_string|urlencode }}'>Вперед</a>
                 {%else%}
                     <span class='page'>Вперед</span>
                 {%endif%}
