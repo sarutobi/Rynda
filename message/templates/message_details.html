@@ -66,6 +66,7 @@
         </div>
         {% endif %}
     </div>
+    {% include 'external/vk_comments.html' %}
     <!-- Левая панель завершена -->
     
     <!-- Правая панель -->
@@ -164,7 +165,6 @@
     <div class="clear1">&nbsp;</div>
     <?php $this->load->view('widgets/commentsBlock', array());?>
 	{% endcomment %}
-{% include 'external/vk_comments.html' %}
 </div>
 {%endblock%}
 
