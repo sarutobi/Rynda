@@ -209,4 +209,5 @@ LOGGING = {
     }
 }
 
+EXTERNAL = False
 LOGIN_REDIRECT_URL = '/'
