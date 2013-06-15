@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 # Create your views here.
 
+from django.conf import settings
 from django.contrib.auth import logout
 from django.core.urlresolvers import reverse_lazy
 from django.shortcuts import redirect, render_to_response
@@ -85,6 +86,13 @@ class MessageView(RyndaDetailView):
     model = Message
     template_name = "message_details.html"
     context_object_name = "message"
+
+    def get_context_data(self, **kwargs):
+        context = super(RyndaDetailView, self).get_context_data(**kwargs)
+        if self.allow_external():
+            external = {'VK_APP_ID':  settings.VK_APP_ID, }
+            context['external'] = external
+        return context
 
 
 class MessageList(RyndaListView):
