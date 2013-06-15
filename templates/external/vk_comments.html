@@ -1,0 +1,9 @@
+{% if external %}
+<div id='vk_comments'></div>
+<script type='text/javascript'>
+window.onload = function () {
+   VK.init({apiId: {{ external.VK_APP_ID  }} onlyWidgets: true});
+   VK.Widgets.Comments('vk_comments', {width: 500, limit: 15}, 321);
+}
+</script>
+{% endif %}

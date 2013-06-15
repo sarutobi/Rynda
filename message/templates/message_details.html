@@ -20,6 +20,7 @@
     </div>
 </div>
 {% endblock %}
+
 {% block maincontent%}
 
 <div class="g960" id="content">
@@ -163,6 +164,7 @@
     <div class="clear1">&nbsp;</div>
     <?php $this->load->view('widgets/commentsBlock', array());?>
 	{% endcomment %}
+{% include 'external/vk_comments.html' %}
 </div>
 {%endblock%}
 
