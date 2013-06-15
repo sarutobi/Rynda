@@ -7,7 +7,8 @@ from django.views.generic.edit import CreateView, FormView
 from django.views.generic.list import ListView
 from django.template import RequestContext
 
-from core.mixins import SubdomainContextMixin, PaginatorMixin
+from core.mixins import (
+    SubdomainContextMixin, PaginatorMixin, ExternalScriptsMixin)
 from core.models import Infopage
 from core.context_processors import subdomains_context, categories_context
 
@@ -16,7 +17,7 @@ class RyndaCreateView(SubdomainContextMixin, CreateView):
     pass
 
 
-class RyndaDetailView(SubdomainContextMixin, DetailView):
+class RyndaDetailView(SubdomainContextMixin, ExternalScriptsMixin, DetailView):
     pass
 
 

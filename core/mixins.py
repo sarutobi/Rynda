@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
 
+from django.conf import settings
+
 from core.context_processors import subdomains_context, categories_context
 from core.models import Category, CategoryGroup
 
@@ -73,3 +75,7 @@ class CategoryMixin(object):
         return context
 
 
+class ExternalScriptsMixin(object):
+
+    def allow_external(self):
+        return settings.EXTERNAL
