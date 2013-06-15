@@ -17,3 +17,6 @@ DATABASES = {
     }
 }
 STATIC_ROOT = os.path.join(get_env_var('STATIC_ROOT'), 'rynda', 'static')
+
+EXTERNAL = True
+VK_APP_ID = get_env_var('vk_app_id')
