@@ -17,6 +17,24 @@ html,body,div{border:0;margin:0;padding:0;}
 .ml50 {margin-left:60px;}
 .g340{float:left; display:inline; width:340px;}
 
+.row {
+    *zoom:1
+}
+.row:before,
+.row:after {
+    display:table;
+    line-height:0;
+    content:""
+}
+.row:after {
+    clear:both
+}
+
+.one-half {
+	width: 48%;
+	margin-left: 2%;
+	float: left;
+}
 /*typography*/
 
 body{ font-family:Tahoma, Geneva, sans-serif; font-size:12px; background: #edf8f8 url(i/bg.jpg); color:#434343;}
@@ -1452,3 +1470,72 @@ div.jHtmlArea .ToolBar ul li a.forecolor { background-position: -80px -32px;}
 #showContacts {cursor: pointer; width: 52px; font-weight: bold; font-size: 12px;}
 #contactsHidden {font-size: 1.5em;}
 .aid_list li div#contactsHidden div#showContacts {width: 218px;}
+
+/* FORM MESSAGE ADD | polikarpov 21.04.2013 */
+.b-message_add label {
+ display: inline-block;
+ width: 30%;
+}
+.b-message_add input[type="text"],
+.b-message_add select,
+.b-message_add textarea {
+	width: 65%;
+	padding: 5px 4px;
+	margin-bottom: 10px;
+}
+.b-message_add .req {
+	color: #c00;
+	display: inline-block;
+	width: 10px;
+	text-align: center;
+	margin-left: -10px;
+}
+.b-message_add .b-radio {
+	width: 95%;
+}
+.b-message_add .no_list {
+	float: left;
+	width: 33%;
+}
+.b-message_add .no_list label {
+	display: inline-block;
+	width: 95%;
+}
+.b-message_add .no_list input[type="radio"] {
+	display: inline-block;
+	width: 5%;
+}
+.b-message_add input[type="submit"] {
+	border: 0;
+	background: #c00;
+	color: #fff;
+	padding: 12px;
+	font-size: 14px;
+	display: block;
+	text-transform: uppercase;
+	width: 50%;
+	margin: 20px auto 0;
+	-webkit-box-shadow: 0 3px 0 rgb(87, 2, 2);
+	-moz-box-shadow: 0 3px 0 rgb(87, 2, 2);
+	box-shadow: 0 3px 0 rgb(87, 2, 2);
+	-webkit-border-radius: 3px;
+	border-radius: 3px;
+	position: relative;
+	-webkit-transition: all .3s;
+	-moz-transition: all .3s;
+	-ms-transition: all .3s;
+	-o-transition: all .3s;
+	transition: all .3s;
+}
+.b-message_add input[type="submit"]:hover {
+	top:-2px;
+	-webkit-box-shadow: 0 5px 0 rgb(87, 2, 2), 0 5px 5px rgba(0,0,0,.4);
+	-moz-box-shadow: 0 5px 0 rgb(87, 2, 2), 0 5px 5px rgba(0,0,0,.4);
+	box-shadow: 0 5px 0 rgb(87, 2, 2), 0 5px 5px rgba(0,0,0,.4);
+}
+.b-message_add input[type="submit"]:active {
+	top:0px;
+	-webkit-box-shadow: 0 3px 0 rgb(87, 2, 2);
+	-moz-box-shadow: 0 3px 0 rgb(87, 2, 2);
+	box-shadow: 0 3px 0 rgb(87, 2, 2);
+}

@@ -14,7 +14,7 @@ def get_env_var(name):
 here = lambda *x: os.path.join(os.path.abspath(os.path.dirname(__file__)), *x)
 
 SITE_ROOT = here('..', '..')
-DEBUG = False
+DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (
