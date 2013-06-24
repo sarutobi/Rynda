@@ -33,7 +33,7 @@ Rynda.map = (function(){
             }
         );
 
-        this.map = new L.map(domElement,
+        this.map = new L.Map(domElement,
             { center: new L.LatLng(64,95),
               zoom: 4,
               layers:[cloudmade]
@@ -52,13 +52,15 @@ Rynda.map = (function(){
         $.ajax({
             url: '/api/internal/mapmessages/',
             success: function(data){
+                var clusters = new L.markerClusterGroup();
                 _.each(data, function(i){
                 var m = new L.Marker(
                     new L.LatLng(i.lat, i.lon),
                     {title: i.title, icon: new L.Icon({iconUrl: icons[i.messageType]}) }
                 );
-                m.addTo(that.map);
+                clusters.addLayer(m);
                 });
+                that.map.addLayer(clusters);
             }
         });
     }
