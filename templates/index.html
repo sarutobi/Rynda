@@ -422,6 +422,11 @@
 {% endblock %}
 
 {% block scripts %}
+<!-- Leaflet cluster scripts -->
+<script type='text/javascript' src='{{ STATIC_URL }}/js/libs/leaflet.markercluster.js'></script>
+<link rel='stylesheet' href='{{ STATIC_URL }}/css/MarkerCluster.css' />
+<link rel='stylesheet' href='{{ STATIC_URL }}/css/MarkerCluster.Default.css' />
+<!-- [if lte IE 8]><link rel='stylesheet' href='{{ STATIC_URL }}/css/MarkerCluster.Default.ie.css' /><![endif]-->
 <script type='text/javascript' >
 $(function(){
     Rynda.sameheight($('.triple_container'));
