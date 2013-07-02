@@ -1,0 +1,92 @@
+/*1.1. Navigation*/
+#navigation {
+  background: #fcfdfe url(i/navigation.png);
+  height: 52px;
+  color: #8d8c8c;
+}
+.nav_cont {
+  width: 960px;
+  height: auto;
+  margin: 0 auto;
+}
+.top_nav_list {
+  padding-top: 16px;
+}
+.top_map_selector {
+  padding-top: 16px;
+  float: right;
+}
+#navigation ul,
+#footer_nav ul {
+ margin: 0px;
+ //list-style-type: none;
+}
+#footer_nav li {
+  float: left;
+  padding: 0px 8px;
+  background: url(i/top_nav_brdr.png) no-repeat right;
+}
+#navigation li {
+  float: left;
+  padding: 0px 15px 0px 8px;
+  margin-right: 10px;
+  background: url(i/arrowdown.gif) no-repeat right;
+}
+#navigation li a,
+#footer_nav li a {
+  display: block;
+  color: #8d8c8c;
+}
+#navigation li a:hover,
+#footer_nav li a:hover {
+  color: #666666;
+}
+/*Submenu*/
+#navigation ul li ul {
+  display: none;
+  background: none;
+}
+/*ACTIVATE*/
+#navigation li:hover ul,
+#navigation li.hover ul,
+ul.nav_list_children {
+  display: block;
+  position: absolute;
+  z-index: 1000;
+  margin-left: 0px;
+  margin-top: 0px;
+  padding: 0px;
+  width: 150px;
+}
+#navigation li:hover li,
+#navigation li.hover li {
+  background: #FFF;
+  float: none;
+  text-align: left;
+  opacity: .95!important;
+  filter: alpha(opacity=95) !important;
+  -ms-filter: "alpha(opacity=95)" !important;
+  -khtml-opacity: .95!important;
+  -moz-opacity: .95!important;
+  font-weight: bold;
+  border-bottom: 1px solid #e3e3e3;
+  border-left: 1px solid #e3e3e3;
+  border-right: 1px solid #e3e3e3;
+  padding: 10px!important;
+  margin: 0px!important;
+}
+#navigation li:hover li a,
+#navigation li.hover li a {
+  float: none;
+}
+ul.nav_list_children {
+  -webkit-box-shadow: 0px 3px 7px 0px #8f8f8f;
+  -moz-box-shadow: 0px 3px 7px 0px #8f8f8f;
+  box-shadow: 0px 3px 7px 0px #8f8f8f;
+}
+.tabLink_container {
+  display: block;
+  position: relative;
+  width: 100%;
+}
+

@@ -8,16 +8,67 @@
 {% endblock %}
 
 {%block maincontent%}
-<div class="g960" id="content">
     <div class="clearfix"></div>
-    {%if not request.session%}
+    {%if request.session%}
         <a href="http://blog.rynda.org/?p=82"><img src="{{STATIC_URL}}img/start_message.png" style="margin-bottom:-2px" /></a>
     {%endif%}
     <div id="locationMap" class="mainPageMapCont">
         <form id="mapFilterForm" action="#">
             <div id="mapFormContainer">
                 <div>
-                    <span id="toggleMap" style="border:1px solid black;margin-left:10px;padding:5px;font-size:15px;font-weight:bold;cursor:pointer;background-color:#bdd057;color:white;text-decoration-color:white;" data-map-shown="{{request.session.ryndaorg_main_map_shown}}">
+                    <!--label for="regionId" class="no_display">Регион</label-->
+                    <select name="regionId" id="searchRegion">
+                    <option value="0"
+                            data-zoom-level="{{main_map_default_zoom}}"
+                            data-center-lat="{{main_map_default_lat}}"
+                            data-center-lng="{{main_map_default_lng}}"
+                            {%if not request.session.ryndaorg_region%}selected{%endif%}>Все регионы</option>
+                    {% for r in regions%}
+                            <option value="{{r.id}}"
+                                    data-zoom-level="{{r.zoom}}"
+                                    data-center-lat="{{r.lat}}"
+                                    data-center-lng="{{r.lng}}"
+                                    {%if request.session.ryndaorg_region == r.id%}selected{%endif%}>
+                                {{r.name}}
+                            </option>
+                    {%endfor%}
+                    </select>
+
+                    <!--label for="dateAddedFrom" class="no_display">За какое время?</label-->
+                    <select name="dateAddedFrom" id="searchDateAddedFrom">
+                        <option value="" title="Сообщения, поступившие за все время">За все время</option>
+                        <option value="{{today}}" title="Только сообщения, поступившие сегодня">За сегодня</option>
+                        <option value="{{days3}}" title="Только сообщения, поступившие за последние 3 дня">За последние 3 дня</option>
+                        <option value="{{last_week}}" title="Только сообщения, поступившие за последнюю неделю">За неделю</option>
+                        <option value="{{weeks3}}" title="Только сообщения, поступившие за последний месяц">За месяц</option>
+                    </select>
+                    <!--label for="category" class="no_display">Категория</label-->
+                    <select name="category" id="searchCategory">
+                        <option value="">Все категории</option>
+                    {%for cat in categories%}
+                        {% if cat.children%}
+                            <optgroup label="{{cat.name|capfirst}}">
+                                {%for c in cat.children%}
+                                <option value="{{c.id}}">
+                                    {{c.name|capfirst}}
+                                </option>
+                                {%endfor%}
+                            </optgroup>
+                        {% else %}
+                            <option value="{{cat.id}}">
+                                {{cat.name|capfirst}}
+                            </option>
+                        {%endif%}
+                    {%endfor%}
+                    </select>
+                    <!--label for="untimed" class="no_display">Как срочно?</label-->
+                    <select name="untimed" id="searchUntimed">
+                        <option value="">Как срочно?</option>
+                        <!--<option value="nm">Всё равно</option>-->
+                        <option value="0">Срочно</option>
+                        <option value="1">Несрочно</option>
+                    </select>
+                    <span id="toggleMap" onClick="Rynda.map.toggleMap()" style="border:1px solid black;margin-left:10px;padding:5px;font-size:15px;font-weight:bold;cursor:pointer;background-color:#bdd057;color:white;text-decoration-color:white;" data-map-shown="{{request.session.ryndaorg_main_map_shown}}">
                         {%if request.session.ryndaorg_main_map_shown == 1%}Скрыть карту{%else%}Открыть карту{%endif%}
                     </span>
                     <div class="clearfix"></div>
@@ -25,7 +76,8 @@
             </div>
         </form>
         <div id="mapWithoutFilterForm" {%if request.session.ryndaorg_main_map_shown == 0%}style="display:none;"{%endif%}>
-            <div id="locationMapCanvas" style="width: 948px; height: 320px;"></div>
+            <div id="locationMapCanvas" class="span12 row" style="height: 320px;"></div>
+            {% comment %}
             <form id="markerTypesForm" action="#">
                 <div class="map_markers_switcher">
                     <strong>Включить:</strong>
@@ -58,6 +110,7 @@
                     {%endif%}
                 </div>
             </form>
+            {% endcomment %}
             <div id="mapResponseMessage" style="display:none;"></div>
         </div>
     </div>
@@ -81,7 +134,6 @@
                     	<div class="avatar_image-smallcircle"></div>
 					</a>
                 </div>
-                
                
                 <div class="usersList_name">
                     <a href="/user/{{u.userId}}" title="<{{u.firstName}} {{u.lastName}}">
@@ -114,7 +166,7 @@
 </div>
 {% endif%}
 	
-    <div class="column triple_column mr25">
+    <div class="span4 triple_column mr25">
         <a href="/message/pomogite"><h3 class="mb0 helpneeded rounded_top no_text">Просьбы о помощи</h3></a>
         <div class="triple_container" id="mp1">
           <ul id="requestsList" class="no_list triplelist">
@@ -145,7 +197,7 @@
        </div>    
     </div>
     
-    <div class="column triple_column mr25">
+    <div class="span4 triple_column mr25">
         <a href="/message/pomogu"><h3 class="mb0 helpprovided no_text rounded_top">Предложения помощи</h3></a>
         <div class="triple_container" id="mp2">
             <ul id="offersList" class="no_list triplelist">
@@ -176,7 +228,7 @@
         </div>
     </div>
     
-    <div class="column triple_column">
+    <div class="span4 triple_column">
         <a href="/message/pomogite/pomogli"><h3 class="mb0 helpgiven no_text rounded_top">Помощь нашлась</h3></a>
         <div class="triple_container" id="mp4">
             {%if completed %}
@@ -310,7 +362,6 @@
 		<div class="clearfix "></div>	
         <div class="nh_act_rec_bottom mt25"></div>
     </div>
-</div>
 
 {%comment%}
 <script id="mapMarkerPopupTmpl" type="text/x-jquery-tmpl">
@@ -433,6 +484,18 @@ $(function(){
 
     Rynda.map.createMap('locationMapCanvas');
     Rynda.map.fetch();
-})
+    $('.mapTabs-button-sub-click').mouseover(
+        function(){
+            $('.mapTabs-sub').show();
+        }
+    );
+    $('.mapTabs-sub').mouseover(
+        function(){
+            $('.mapTabs-sub').show();
+        }
+    ).mouseout(function(){
+        $('.mapTabs-sub').hide();
+    });
+});
 </script>
 {%endblock%}

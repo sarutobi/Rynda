@@ -1,7 +1,6 @@
 {% extends "base_buttons.html" %}
 
 {% block maincontent %}
-<div class="g960" id="content">
     <div class="breadcrumbs mb10">
         <a title="Главная" href="/">Главная</a> &raquo;
         <span title="{{listTitle}}">{{listTitleShort}}</span>
@@ -9,7 +8,7 @@
     <div class="inside g340">
         {% block listfilter %}{% endblock %}
     </div>
-    <div class="column g560 ml50">
+    <div class="column span8 ml50">
         <div class="header_container rounded_top">
             <div class="alignright mc_container">
                 <div id="export_csv" class="csv pointer no_text" title="Экспорт списка в CSV">Экспорт списка</div>
@@ -82,7 +81,6 @@
         </div>
     </div>
     <div class="clearfix "></div>
-</div>
 {% endblock %}
 {% comment %}
 <script id="listItemTmpl" type="text/x-jquery-tmpl">

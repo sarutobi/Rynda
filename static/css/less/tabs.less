@@ -1,0 +1,112 @@
+/*Tabs*/
+.tabs li {
+    width: 118px;
+    text-align: center;
+    height: 22px;
+    margin-right: 1px;
+    margin-top: 2px;
+    padding-top: 5px;
+    text-align: center;
+    .top_rounded(4px);
+    background: #a4bcc3;
+    float: left;
+    a{
+        color: @white;
+    }
+    &.tab_active{
+        background-color: #fcfdfe !important;
+        height: 24px;
+        padding-top: 6px;
+        margin-left: 0px;
+        margin-top: 1px;
+        color: #6d6d6d;
+        a {
+            color: #6d6d6d;
+        }
+    }
+    &.tab_crysis {
+        background: @activeBackground;
+    }
+    &:first-child{
+        width: 30px;
+        background: url(i/home.png) no-repeat center #a4bcc3;
+        span {
+            display: none;
+        }
+        a {
+            text-decoration: none;
+        }
+    }
+}
+li.tab_active.tab_crysis {
+  color: #ffffff;
+}
+.mapTabs li.mapTabs-button-sub {
+  width: 28px;
+  position: relative;
+  z-index: 10;
+}
+.mapTabs-button-sub > a {
+  display: block;
+  width: 28px;
+  height: 23px;
+  background: url(i/mapTabs-button-sub-image.png) no-repeat center;
+}
+.mapTabs-sub {
+    display: none;
+    background: #A4BCC3;
+    box-shadow: 0 0 4px #555555;
+    opacity: 0.9;
+    padding: 0px;
+    li {
+        margin-top: 0;
+        padding: 0;
+        border-radius: 0px;
+        box-shadow: 0 3px 2px #777777;
+        height: auto;
+        &:first-child {
+            background: #A4BCC3;
+            border-radius: 4px 4px 0 0;
+            text-decoration: underline;
+        }
+        &:last-child {
+            border-radius: 0 0 4px 4px !important;
+        }
+        &:hover {
+            border-radius: 4px;
+            background: #c4d7dd;
+        }
+    }
+}
+
+.mapTabs-sub .mapTabs-sub li a {
+  display: block;
+  padding: 8px 15px 8px 8px;
+  text-decoration: none;
+  font-weight: bold;
+  text-align: left;
+}
+li.mapTabs-button-sub ul.no_list li {
+  border-radius: 0px;
+  margin-top: 0px;
+  padding-top: 0px;
+  min-height: 31px;
+  min-width: 150px;
+}
+/*
+div.mapTabs ul.floatleft > li:first-child {
+  width: 30px;
+  background: url(i/home.png) no-repeat center #a4bcc3;
+}
+div.mapTabs ul.floatleft li:first-child span {
+  display: none;
+}
+div.mapTabs ul.floatleft li:first-child a {
+  text-decoration: none;
+}*/
+div.mapTabs ul.floatleft li a div {
+  width: 50%;
+  position: absolute;
+  left: 25%;
+}
+

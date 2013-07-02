@@ -1,13 +1,59 @@
-.fl {
-    float: left;
+.clearfix {
+  *zoom: 1;
+  &:before,
+  &:after {
+    display: table;
+    content: "";
+  }
+  &:after {
+    clear: both;
+  }
 }
 
+.offset (@columns) {
+  margin-left: (@gridColumnWidth * @columns) + (@gridGutterWidth * (@columns + 1));
+}
+.offsetX (@index) when (@index > 0) {
+  (~".offset@{index}") { .offset(@index); }
+  .offsetX(@index - 1);
+}
+.offsetX (0) {}
+
+.span (@columns) {
+  width: (@gridColumnWidth * @columns) + (@gridGutterWidth * (@columns - 1));
+}
+
+.spanX (@index) when (@index > 0) {
+  (~".span@{index}") { .span(@index); }
+  .spanX(@index - 1);
+}
+.spanX (0) {}
+
+.row {
+  margin-left: @gridGutterWidth * -1;
+  .clearfix();
+}
+
+.top_rounded(@radius: 5px){
+    .rounded(@radius, @radius, 0px, 0px);
+}
+
+.rounded(@tl, @tr, @bl, @br){
+  /*Border radius*/
+  -moz-border-radius-topleft: @tl;
+  -moz-border-radius-topright: @tr;
+  -moz-border-radius-bottomright: @bl;
+  -moz-border-radius-bottomleft: @br;
+  border-top-left-radius: @tl;
+  border-top-right-radius: @tr;
+  border-bottom-right-radius: @bl;
+  border-bottom-left-radius: @br;
+  behavior: url(/css/pie.htc);
+}
+
+//--------
 .ml(@margin){
     margin-left: @margin;
-}
-
-.ml10 {
-    .ml(10);
 }
 
 .span(@width, @margin){
@@ -19,5 +65,4 @@
 
 .offset(@width, @margin){
     margin-left: @width + @margin;
-
 }
