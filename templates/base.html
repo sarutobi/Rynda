@@ -21,13 +21,12 @@
 <body>
 <div id='container'>
   <header>
-    <div class="auth_panel">
-	<div class="auth_panel_cont">
-        {% block hubs %}{% endblock %}
-	{% include "widgets/auth.html" %}
+    <div id="auth_panel">
+      {% block hubs %}{% endblock %}
+	  {% include "widgets/auth.html" %}
     </div>
-</div>
-<div id="navigation">
+
+    <div id="navigation">
     <div class="nav_cont"> 
     {% block navigation %}{% endblock %}
     {% comment %}
