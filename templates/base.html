@@ -19,6 +19,8 @@
   <script src="{{STATIC_URL}}js/libs/less-1.3.3.min.js"></script>  
 </head>
 <body>
+<div id='top_panel'></div>
+<div id='navigation_panel'></div>
 <div id='container'>
   <header>
     <div id="auth_panel">
@@ -27,42 +29,11 @@
     </div>
 
     <div id="navigation">
-    <div class="nav_cont"> 
-    {% block navigation %}{% endblock %}
-    {% comment %}
-        <ul class="top_nav_list">
-            <li><a href="/message/" title="Все сообщения в системе">Сообщения</a>
-            	<ul class="nav_list_children">
-                	<li><a href="/message/" title="Все сообщения в системе">Все сообщения</a></li>
-                	<li><a href="/message/pomogite" title="Сообщения с просьбами о помощи">Просьбы о помощи</a></li>
-                	<li><a href="message/pomogu" title="Сообщения, где предлагается помощь">Предложения помощи</a></li>
-                    <li><a href="/message/pomogite/pomogli" title="Сообщения, по которым помощь нашлась">Помощь нашлась</a></li>
-                    <li><a href="message/info" title="Информационные сообщения">Информация</a></li>
-                </ul>
-            </li>
-            <!--<li><a href="#" title="Список карт помощи">Карты помощи</a></li>
-            <li><a href="#" title="Найти сообщения">Поиск</a></li>-->
-			<li><a href="/org" title="Организации">Организации</a>
-                <ul class="nav_list_children">
-                    <li><a href="/org" title="Все организации в системе">Все организации</a></li>
-                {% for o in organizations %}
-                    <li><a href="/org/t/{{o.id}}" title="Все организации типа «{{o.name}}»">{{o.name}}</a></li>
-                {%endfor%}
-                </ul>
-            </li>
-            <li><!--a href="/info/about" title="О проекте «Виртуальная рында»">О проекте</a-->
-                <span>О проекте</span>
-            	<ul class="nav_list_children">
-                {% for p in pages %}
-                	<li><a href="/info/{{p.slug}}" title="{{p.title}}">{{p.title}}</a></li>
-                {% endfor %}
-                </ul>
-            </li>
-        </ul>
-    {% endcomment %}
+      <div class="nav_cont"> 
+        {% block navigation %}{% endblock %}
         <div class="clearfix"></div>
+      </div>
     </div>
-</div>
   </header>
 
 <div role="main">

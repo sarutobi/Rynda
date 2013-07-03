@@ -1,0 +1,93 @@
+{% extends "admin/change_form.html" %}
+{% load i18n admin_static admin_modify %}
+{% load url from future %}
+{% load admin_urls %}
+
+{% comment %}
+{% block extrahead %}{{ block.super }}
+{% url 'admin:jsi18n' as jsi18nurl %}
+<script type="text/javascript" src="{{ jsi18nurl|default:"../../../jsi18n/" }}"></script>
+{% endblock %}
+{% endcomment %}
+
+{% block field_sets %}
+    {% for f in adminform.form.hidden_fields %}
+    {{ f }}
+    {% endfor %}
+
+<fieldset class="module aligned">
+    <h2>Опишите вашу проблему</h2>
+    <div class='form-row'>
+    {{ adminform.form.title.label_tag }}
+    {{ adminform.form.title }}
+    </div>
+
+    <div class='form-row'>
+    {{ adminform.form.message.label_tag }}
+    {{ adminform.form.message }}
+    </div>
+
+        <div id="messageTextError" class="validationError">{{ adminform.form.message.errors }}</div>
+    </div>
+</fieldset>
+<fieldset class='module aligned'>
+    <h2>Расскажите о себе</h2>
+    <div class='form-row'>
+    {{ adminform.form.contact_first_name.label_tag }}
+    {{ adminform.form.contact_first_name }}
+    </div>
+
+    <div class='form-row'>
+    {{ adminform.form.contact_last_name.label_tag}}
+    {{ adminform.form.contact_last_name}}
+    </div>
+
+    <div class='form-row'>
+    {{ adminform.form.contact_mail.label_tag }}
+    {{ adminform.form.contact_mail }}
+    </div>
+
+    <div class='form-row'>
+    {{ form.contact_phone.label_tag }}
+    {{ form.contact_phone }}
+    </div>
+
+    <label class="label_show">
+        <input type="checkbox" name="isPrivate" value="1" checked />
+    Не публиковать мои контактные данные (они будут доступны только модераторам)
+    </label>
+</fieldset>
+<fieldset class="module aligned">
+    <h2>Местоположение</h2>
+    <div class='form-row'>
+    {{ adminform.form.georegion.label_tag }}
+    {{ adminform.form.georegion }}
+    </div>
+
+    <div class='form-row'>
+    {{ adminform.form.address.label_tag }}
+    {{ adminform.form.address }}
+    </div>
+
+    <div>
+    {{ adminform.form.location }}
+    </div>
+</fieldset>
+
+<fieldset class='module aligned'>
+    <h2>Категории</h2>
+    {{ adminform.form.category }}
+</fieldset>
+
+{% comment %}
+
+{% for field in adminform.formset.line %}
+    {% include 'admin/message/mesage/line_field.html' %}
+{% endfor %}
+{% for fieldset in adminform %}
+  {% include "admin/message/message/fieldset.html" %}
+{% endfor %}
+{% endcomment %}
+{{ media }}
+{% endblock %}
+
