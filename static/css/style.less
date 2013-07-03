@@ -48,16 +48,21 @@
 /*Auth panel*/
 #auth_panel {
   height: 30px;
-  background: #568895 url(i/auth_bg.png) repeat-x;
   font-size: @baseFontSize;
   padding-top: 0px;
   color: #C8E2E9;
   text-align: right;
-    a {
-        color: @white;
-        text-decoration: underline;
-    }
+  margin: 0 auto;
+  a {
+    color: @white;
+    text-decoration: underline;
+  }
+  ul {
+    padding: 0;
+    margin: 0;
+  }
 }
+
 @import "less/tabs.less";
 /*auth*/
 #auth {
@@ -2747,10 +2752,6 @@ input#searchSubmit {
 /*FOOTER*/.rss_feed {
   padding-left: 15px;
   background: url(i/rss.png) no-repeat 0px 2px;
-}
-#footer {
-  font-weight: normal;
-  padding: 14px 0px 30px 0px;
 }
 .soc_net_label {
   float: left;
