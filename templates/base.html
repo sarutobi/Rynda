@@ -29,23 +29,20 @@
     </div>
 
     <div id="navigation">
-      <div class="nav_cont"> 
+      <div class="nav_cont clearfix"> 
         {% block navigation %}{% endblock %}
-        <div class="clearfix"></div>
       </div>
     </div>
   </header>
 
 <div role="main">
 <div class="main">
-	<div class="g960" id="header">
-            <div class="alignright ml40">	
+	<div class="g960 clearfix" id="header">
+            <div class="alignright ml40 clearfix">	
                 {% block buttons %}{%endblock%}
             </div>
             <h1><a href="/" class="no_text" title="Rynda.org — портал добровольцев">Rynda</a></h1>
-            <div class="clearfix"></div>        
     </div>
-    <div class="clearfix"></div> 
     <div>
         <ul class="floatleft">
             <li><a href="http://vkontakte.ru/club25595604" title="Виртуальная рында во Вконтакте" class="vk">Вконтакте</a></li>
@@ -59,18 +56,7 @@
   
   <footer>
     <div id="footer" class="span12">
-        <div class="floatright" id="socnetIcons">
-            <div class="soc_net_label">
-                Мы в социальных сетях:
-            </div>
-            <ul class="no_list floatleft">
-                <li><a href="http://vkontakte.ru/club25595604" title="Виртуальная рында во Вконтакте" class="vk">Вконтакте</a></li>
-                <li><a href="http://www.facebook.com/pages/Ryndaorg/163264230398695?created" title="Виртуальная рында в Фейсбуке" class="fb">Фейсбук</a></li>
-                <li><a href="http://community.livejournal.com/rynda_org/" title="Виртуальная рында в ЖЖ" class="lj">Живой Журнал</a></li>
-                <li><a href="http://twitter.com/#!/Ryndaorg" title="Виртуальная рында в Твиттере" class="tw">Твиттер</a></li>
-                <!--<li><a href="#" title="Лента Виртуальной рынды" class="rss">RSS</a></li>-->
-            </ul>
-        </div>
+        <div class='clearfix'>
         <ul id="footer_nav" class="no_list top_nav_list">
             <li class="pl0"><a href="/" title="На главную">На главную</a></li>
             <!--<li><a href="#" title="Список карт помощи">Карты помощи</a></li>-->
@@ -81,9 +67,8 @@
             <li><a class="rss_feed" href="http://feeds.rynda.org/<?php $currentSubdomain = getSubdomain(); echo $currentSubdomain ? $currentSubdomain : '';?>">RSS-лента</a></li>
             <li class="no_bg"><a href="/info/contacts" title="Свяжитесь с нами">Свяжитесь с нами</a></li>
         </ul>
-        <div class="clearfix mb10">&nbsp;</div>
-        
-       <div class="g960 inside" id="license">© - Платформа «Виртуальная Рында - Атлас помощи», 2011. Лицензия <a href="http://creativecommons.org/licenses/by-nc-sa/3.0/">Creative Commons 3.0 (Атрибуция — Некоммерческое использование — С сохранением условий)</a></div>
+        </div>
+       <div class="g960 inside" id="license">&copy; - Платформа «Виртуальная Рында - Атлас помощи», 2011-2013. Лицензия <a href="http://creativecommons.org/licenses/by-nc-sa/3.0/">Creative Commons 3.0 (Атрибуция — Некоммерческое использование — С сохранением условий)</a></div>
     </div>
 	</div><!-- // Конец MAIN div'а -->
 
