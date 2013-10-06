@@ -25,7 +25,7 @@
   <header>
     <div id="auth_panel">
       {% block hubs %}{% endblock %}
-	  {% include "widgets/auth.html" %}
+      {% include "widgets/auth.html" %}
     </div>
 
     <div id="navigation">
@@ -53,7 +53,10 @@
         </ul>
     </div>
     {%block maincontent%}{%endblock%}  
-  
+
+  <div class="span12 clearfix">
+    <div class='helper'>Каналы связи</div>
+  </div>
   <footer>
     <div id="footer" class="span12">
         <div class='clearfix'>
