@@ -8,7 +8,7 @@
 {% endblock %}
 
 {%block maincontent%}
-<div id="topwidget" class="span12 rounded_all" style="height:156px;background-color:white">
+<div id="topwidget" class="span12 rounded_all labelled" style="height:156px;background-color:white">
   <div class='helper'>Как мы работаем</div>
 </div>
 <div id="locationMap" class="mainPageMapCont clearfix">
@@ -68,10 +68,9 @@
 </div>
 {% endif%}
 {% endcomment %}	
-    <div class="span4">
+    <div class="span4 labelled triple_container clearfix">
         <div class='helper'>Просьбы о помощи</div>
-        <a href="/message/pomogite"><h3 class="mb0 helpneeded rounded_top no_text">Просьбы о помощи</h3></a>
-        <div class="triple_container" id="mp1">
+          {% if requests %}
           <ul id="requestsList" class="no_list triplelist">
             {% for r in requests%}
             <li>
@@ -86,25 +85,23 @@
                     Сообщение {{r.id}}
                 {%endif%}
               </a>
-              <div class="clearfix"></div>
             </li>
             {%endfor%}
           </ul>
           <a id="requestsMore" href="/message/pomogite" class="alignright green triple_more_info" title="Все просьбы  о помощи &raquo;"><strong>Другие просьбы о помощи&#8230;</strong></a>
-          <div id="requestsNotFound" style="display:none">
+          {% else %}
+          <div id="requestsNotFound" class="clearfix">
           		<ul class="no_list triplelist">
           			<li>Просьб о помощи не найдено — <a href="/pomogite/dobavit">добавить свою</a></li>
           		</ul>
           </div>
-          <div class="clearfix"></div>
-       </div>    
+          {% endif %}
     </div>
     
-    <div class="span4">
-        <div class='helper'>Предложения помощи</div>
-        <a href="/message/pomogu"><h3 class="mb0 helpprovided no_text rounded_top">Предложения помощи</h3></a>
-        <div class="triple_container" id="mp2">
-            <ul id="offersList" class="no_list triplelist">
+    <div class="span4 labelled triple_container clearfix">
+        <div class="helper">Предложения помощи</div>
+        {% if offers %}   
+           <ul id="offersList" class="no_list triplelist">
             {% for o in offers %}
             <li>
               <div class="triple_date">
@@ -123,13 +120,13 @@
             {%endfor%}
             </ul>
             <a id="offersMore" href="/message/pomogu" class="alignright green triple_more_info" title="Все предложения помощи &raquo;"><strong>Другие предложения помощи&#8230;</strong></a>
-            <div id="offersNotFound" style="display:none">
+            {% else %}
+            <div id="offersNotFound" class="clearfix">
             	<ul class="no_list triplelist">
             		<li>Предложений помощи не найдено — <a href="/pomogu/dobavit">добавить своё</a></li>
             	</ul>
            	</div>
-            <div class="clearfix"></div>
-        </div>
+            {% endif %}
     </div>
 {% comment %}    
     <div class="span4 clearfix">
@@ -169,12 +166,8 @@
     </div>
 {% endcomment %}
 
-    <div class="span4 clearfix" >
-    <div class='helper'>Информационные сообщения</div>
-    	<a href="/info">
-            <h3 class="mb0 infomessages no_text rounded_top">Информационные сообщения</h3>
-        </a>
-        <div class="triple_container" id="mp5">
+    <div class="span4 labelled triple_container clearfix" >
+        <div class='helper'>Информационные сообщения</div>
             {% if info %}
             <ul id="infoList" class="no_list triplelist">
              {% for i in info %}
@@ -196,14 +189,12 @@
             </ul>
             <br /><a id="infoMore" href="/info" class="alignright green triple_more_info" title="Все информационные сообщения &raquo;"><strong>Другие информационные сообщения &#8230;</strong></a>
             {%else%}
-            <div id="infoNotFound">
+            <div id="infoNotFound" class="clearfix">
             	<ul class="no_list triplelist">
             		<li>Информационных сообщений не найдено</li>
                 </ul>    
             </div>
             {%endif%}
-            <div class="clearfix"></div>
-        </div>
     </div>
 {% comment %}    
     <div class="span4" >
