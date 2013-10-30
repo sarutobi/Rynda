@@ -15,5 +15,5 @@ DATABASES = {
     }
 }
 TEST_RUNNER = 'discover_runner.DiscoverRunner'
-TEST_DISCOVER_ROOT = os.path.join(SITE_ROOT, 'test')
+TEST_DISCOVER_TOP_LEVEL = os.path.join(SITE_ROOT, 'test')
 SOUTH_TESTS_MIGRATE = False
