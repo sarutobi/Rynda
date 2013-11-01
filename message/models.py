@@ -2,8 +2,6 @@
 
 from django.contrib.auth.models import User
 #from django.contrib.gis.db import models as geomodels
-from django.core.exceptions import ValidationError
-from django.core.validators import validate_email
 from django.db import models
 from django.db.models.query import QuerySet
 from django.utils.translation import ugettext_lazy as _
