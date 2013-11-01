@@ -104,7 +104,7 @@ class TestUserMessage(unittest.TestCase):
 
 class TestMessageCategories(unittest.TestCase):
     def setUp(self):
-        self.message = MessageFactory(user=None)
+        self.message = MessageFactory()
         self.category = CategoryFactory()
 
     def tearDown(self):

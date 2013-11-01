@@ -89,8 +89,7 @@ class Message(models.Model):
         User,
         verbose_name=_("User"),
         editable=False,
-        db_column='user_id',
-        null=True, blank=True)
+        db_column='user_id',)
     georegion = models.ForeignKey(Region, verbose_name=_('region'))
     #location = geomodels.PointField(
     #    _('location'),
