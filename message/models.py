@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from django.contrib.auth.models import User
-from django.contrib.gis.db import models as geomodels
+#from django.contrib.gis.db import models as geomodels
 from django.core.exceptions import ValidationError
 from django.core.validators import validate_email
 from django.db import models
@@ -34,7 +34,8 @@ class MessageQueryset(QuerySet):
     def list(self):
         ''' Ask only few fields for listing'''
         return self.values(
-            'id', 'title', 'message', 'messageType', 'georegion', 'date_add', 'georegion__name')
+            'id', 'title', 'message', 'messageType',
+            'georegion', 'date_add', 'georegion__name')
 
     def active(self):
         return self.filter(status__gt=1, status__lt=6)
@@ -49,7 +50,7 @@ class MessageQueryset(QuerySet):
         return self.filter(subdomain__slug=subdomain)
 
 
-class Message(geomodels.Model):
+class Message(models.Model):
     '''Message data'''
     #Flag values
     #MESSAGE_ACTIVE = 0x1L
@@ -80,29 +81,21 @@ class Message(geomodels.Model):
         verbose_name=_('title'),
         blank=True)
     message = models.TextField(verbose_name=_('message'))
-    contact_first_name = models.CharField(
-        max_length=200,
-        verbose_name=_("first name"))
-    contact_last_name = models.CharField(
-        max_length=200,
-        verbose_name=_("last name"))
-    contact_mail = models.EmailField(
-        max_length=200,
-        blank=True,
-        verbose_name=_("email(s)"))
-    contact_phone = models.CharField(
-        max_length=200,
-        blank=True,
-        verbose_name=_("phone(s)"))
     messageType = models.IntegerField(
         choices=MessageType.TYPES_CHOICE,
         db_column='message_type',
         verbose_name=_('message type'),)
+    user = models.ForeignKey(
+        User,
+        verbose_name=_("User"),
+        editable=False,
+        db_column='user_id',
+        null=True, blank=True)
     georegion = models.ForeignKey(Region, verbose_name=_('region'))
-    location = geomodels.PointField(
-        _('location'),
-        geography=True,
-        blank=True, null=True)
+    #location = geomodels.PointField(
+    #    _('location'),
+    #    geography=True,
+    #    blank=True, null=True)
     address = models.CharField(max_length=200, verbose_name=_('address'))
     # Optional fields
     # Message original source
@@ -141,12 +134,6 @@ class Message(geomodels.Model):
     expired_date = models.DateTimeField(
         verbose_name=_("expired at"),
         blank=True, null=True)
-    user = models.ForeignKey(
-        User,
-        verbose_name=_("User"),
-        editable=False,
-        db_column='user_id',
-        null=True, blank=True)
     edit_key = models.CharField(max_length=40, blank=True)
     sender_ip = models.IPAddressField(
         blank=True, null=True,
@@ -170,14 +157,10 @@ class Message(geomodels.Model):
         verbose_name=_('subdomain'))
 
     # Gis queries
-    gis = geomodels.GeoManager()
+    #gis = geomodels.GeoManager()
 
     def __unicode__(self):
         return self.title
-
-    def clean(self):
-        if not self.contact_mail and not self.contact_phone:
-            raise ValidationError("You must provide email or phone!")
 
     def save(self, *args, **kwargs):
         self.full_clean()
