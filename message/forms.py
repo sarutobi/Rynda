@@ -22,8 +22,6 @@ class MessageForm(forms.ModelForm):
         model = Message
         fields = (
             'title', 'message', 'messageType', 'subdomain',
-            'contact_first_name', 'contact_last_name',
-            'contact_mail', 'contact_phone',
             'category',
             'is_anonymous', 'allow_feedback',
             'georegion', 'location', 'address')
@@ -44,13 +42,6 @@ class MessageForm(forms.ModelForm):
         elif isinstance(location, list):
             return 'POINT(%f %f)' % (location[0], location[1])
         return location
-
-    def clean_contact_mail(self):
-        try:
-            validate_email_domain(self.cleaned_data['contact_mail'])
-        except dns.exception.DNSException, e:
-            raise forms.ValidationError(u"Email seems to be wrong")
-        return self.cleaned_data['contact_mail']
 
     def save(self, *args, **kwargs):
         return super(MessageForm, self).save(*args, **kwargs)
