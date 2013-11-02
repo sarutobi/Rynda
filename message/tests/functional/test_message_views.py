@@ -5,6 +5,8 @@ from django_webtest import WebTest
 from message.factories import MessageFactory
 from message.models import Message
 
+from test.factories import UserFactory
+
 
 class TestMessagesList(WebTest):
 
@@ -23,8 +25,9 @@ class TestMessagesList(WebTest):
 
 class TestMessagePaginator(WebTest):
     def setUp(self):
+        self.user = UserFactory()
         for x in xrange(50):
-            MessageFactory(status=2, user=None)
+            MessageFactory(status=2, user=self.user)
         self.page = self.app.get('/message/')
 
     def tearDown(self):
