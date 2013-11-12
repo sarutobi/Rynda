@@ -63,11 +63,18 @@ class Message(models.Model):
     #MESSAGE_DELETED = 0x10L
     #LOCATION_VALID = 0x20L
 
-    MESSAGE_STATUS = ((1, _('new')),
-                      (2, _('unverified')),
-                      (3, _('verified')),
-                      (4, _('pending')),
-                      (6, _('closed')))
+    # Message status
+    NEW = 1
+    UNVERIFIED = 2
+    VERIFIED = 3
+    PENDING = 4
+    CLOSED = 6
+
+    MESSAGE_STATUS = ((NEW, _('new')),
+                      (UNVERIFIED, _('unverified')),
+                      (VERIFIED, _('verified')),
+                      (PENDING, _('pending')),
+                      (CLOSED, _('closed')))
 
     class Meta():
         ordering = ['-date_add']
