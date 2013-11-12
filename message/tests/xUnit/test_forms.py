@@ -67,17 +67,36 @@ class TestUserMessageForm(unittest.TestCase):
 
 class TestFormTypes(unittest.TestCase):
 
+    def setUp(self):
+        self.region = RegionFactory()
+        self.data = {
+            'title': lorem_ipsum(words_count=3),
+            'message': lorem_ipsum(),
+            'georegion': self.region.pk,
+            'messageType': Message.REQUEST,
+        }
+
     def test_request_form(self):
         form = RequestForm()
         self.assertEqual(Message.REQUEST, form.fields['messageType'].initial)
+        self.data['messageType'] = Message.OFFER
+        form = RequestForm(self.data)
+        self.assertTrue(form.is_valid())
+        self.assertEqual(Message.REQUEST, form.cleaned_data['messageType'])
 
     def test_offer_form(self):
         form = OfferForm()
         self.assertEqual(Message.OFFER, form.fields['messageType'].initial)
+        form = OfferForm(self.data)
+        self.assertTrue(form.is_valid())
+        self.assertEqual(Message.OFFER, form.cleaned_data['messageType'])
 
     def test_info_form(self):
         form = InformationForm()
         self.assertEqual(Message.INFO, form.fields['messageType'].initial)
+        form = InformationForm(self.data)
+        self.assertTrue(form.is_valid())
+        self.assertEqual(Message.INFO, form.cleaned_data['messageType'])
 
 
 class TestRequestCategory(unittest.TestCase):
