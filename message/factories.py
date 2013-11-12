@@ -7,20 +7,13 @@ from geozones.factories import RegionFactory
 from test.utils import lorem_ipsum
 from test.factories import UserFactory
 
-from .models import Message, MessageType
+from .models import Message
 
 
 def point_gen(num):
     latitude = random.uniform(-90.0, 90.0)
     longitude = random.uniform(-180.0, 180.0)
     return "POINT(%f %f)" % (longitude, latitude)
-
-
-class MessageTypeFactory(factory.Factory):
-    """Factory for message types"""
-    FACTORY_FOR = MessageType
-
-    name = factory.Sequence(lambda n: "message type %s" % n)
 
 
 class MessageFactory(factory.Factory):
