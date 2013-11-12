@@ -6,9 +6,11 @@ from core.factories import CategoryFactory
 
 from geozones.factories import RegionFactory
 
+
+from message.factories import MessageTypeFactory
+from message.forms import UserMessageForm
 from message.models import MessageType, Category
 
-from message.forms import SimpleRequestForm
 from test.utils import lorem_ipsum
 from test.factories import UserFactory
 
@@ -16,13 +18,14 @@ from test.factories import UserFactory
 class TestSimpleRequestForm(unittest.TestCase):
 
     def setUp(self):
-        self.form = SimpleRequestForm()
+        self.type_request = MessageTypeFactory(name='request')
+        self.form = UserMessageForm(message_type=self.type_request.pk)
         self.user = UserFactory()
         self.region = RegionFactory()
         self.data = {
             'title': lorem_ipsum(words_count=3),
             'message': lorem_ipsum(),
-            'messageType': MessageType.TYPE_REQUEST,
+            'messageType': self.type_request.pk,
             'georegion': self.region.pk,
             'location_0': 0.0,
             'location_1': 0.0,
@@ -37,11 +40,11 @@ class TestSimpleRequestForm(unittest.TestCase):
 
     def test_form_type(self):
         self.assertEqual(
-            MessageType.TYPE_REQUEST,
+            self.type_request.pk,
             self.form.fields['messageType'].initial)
 
     def test_send_data(self):
-        form = SimpleRequestForm(self.data)
+        form = UserMessageForm(self.data, message_type=self.type_request.pk)
         self.assertTrue(form.is_bound)
         self.assertTrue(form.is_valid(), form.errors)
         msg = form.save(commit=False)
@@ -50,7 +53,7 @@ class TestSimpleRequestForm(unittest.TestCase):
         self.assertIsNotNone(msg)
         self.assertIsNotNone(msg.pk)
         self.assertEqual(1, msg.status)
-        self.assertEqual(1, msg.messageType)
+        self.assertEqual(self.type_request.pk, msg.messageType.pk)
         msg.delete()
 
 
@@ -61,9 +64,10 @@ class TestRequestCategory(unittest.TestCase):
             self.cats.append(CategoryFactory())
         self.user = UserFactory()
         self.region = RegionFactory()
+        self.type_request = MessageTypeFactory()
         self.data = {
             'message': lorem_ipsum(),
-            'messageType': MessageType.TYPE_REQUEST,
+            'messageType': self.type_request.pk,
             'user_id': self.user,
             'georegion': self.region.pk,
             'location_0': 25.0,
@@ -76,7 +80,7 @@ class TestRequestCategory(unittest.TestCase):
         Category.objects.all().delete()
 
     def test_message_with_cats(self):
-        form = SimpleRequestForm(self.data)
+        form = UserMessageForm(self.data, message_type=self.type_request.pk)
         self.assertTrue(form.is_valid())
         msg = form.save(commit=False)
         msg.user = self.user
@@ -89,9 +93,10 @@ class TestRequiredFields(unittest.TestCase):
     def setUp(self):
         self.user = UserFactory()
         self.region = RegionFactory()
+        self.type_request = MessageTypeFactory()
         self.data = {
             'message': lorem_ipsum(),
-            'messageType': MessageType.TYPE_REQUEST,
+            'messageType': self.type_request.pk,
             'user': self.user,
             'address': lorem_ipsum(words_count=4),
             'georegion': self.region.pk,
@@ -111,7 +116,7 @@ class TestRequiredFields(unittest.TestCase):
 
     def test_lost_message(self):
         self.data['message'] = ''
-        form = SimpleRequestForm(self.data)
+        form = UserMessageForm(self.data, message_type=self.type_request.pk)
         self.assertFalse(form.is_valid())
 
 #    def test_lost_first_name(self):
