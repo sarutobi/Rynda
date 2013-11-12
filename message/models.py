@@ -14,25 +14,6 @@ from core.models import Category, Subdomain
 from geozones.models import Region, Location
 
 
-class MessageType(models.Model):
-    '''Message types'''
-
-    class Meta():
-        verbose_name = _('message type')
-        verbose_name_plural = _('message types')
-
-    name = models.CharField(max_length=100, verbose_name=_('name'))
-#    TYPE_REQUEST = 1
-#    TYPE_OFFER = 2
-#    TYPE_INFO = 3
-
-#    TYPES_CHOICE = (
-#        (TYPE_REQUEST, _("request")),
-#        (TYPE_OFFER, _("offer")),
-#        (TYPE_INFO, _("informatial"))
-#    )
-
-
 class MessageQueryset(QuerySet):
     def list(self):
         ''' Ask only few fields for listing'''
@@ -94,8 +75,8 @@ class Message(models.Model):
         verbose_name=_('title'),
         blank=True)
     message = models.TextField(verbose_name=_('message'))
-    messageType = models.ForeignKey(
-        MessageType,
+    messageType = models.IntegerField(
+        choices=TYPES_CHOICE,
         db_column='message_type',
         verbose_name=_('message type'),)
     user = models.ForeignKey(
