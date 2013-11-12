@@ -57,15 +57,37 @@ class UserMessageForm(MessageForm):
         return super(UserMessageForm, self).save(*args, **kwargs)
 
 
-#class SimpleRequestForm(UserMessageForm):
-#    ''' Simple request form. '''
-#
-#    def __init__(self, *args, **kwargs):
-#        super(SimpleRequestForm, self).__init__(*args, **kwargs)
-#        self.fields['messageType'].initial = MessageType.TYPE_REQUEST
-#
-#    def clean_messageType(self):
-#        return MessageType.TYPE_REQUEST
+class RequestForm(UserMessageForm):
+    ''' Simple request form. '''
+
+    def __init__(self, *args, **kwargs):
+        super(RequestForm, self).__init__(*args, **kwargs)
+        self.fields['messageType'].initial = Message.REQUEST
+
+    def clean_messageType(self):
+        return Message.REQUEST
+
+
+class OfferForm(UserMessageForm):
+    ''' Simple offer form. '''
+
+    def __init__(self, *args, **kwargs):
+        super(OfferForm, self).__init__(*args, **kwargs)
+        self.fields['messageType'].initial = Message.OFFER
+
+    def clean_messageType(self):
+        return Message.OFFER
+
+
+class InformationForm(UserMessageForm):
+    ''' Simple information form. '''
+
+    def __init__(self, *args, **kwargs):
+        super(InformationForm, self).__init__(*args, **kwargs)
+        self.fields['messageType'].initial = Message.INFO
+
+    def clean_messageType(self):
+        return Message.INFO
 
 
 class AdminMessageForm(MessageForm):

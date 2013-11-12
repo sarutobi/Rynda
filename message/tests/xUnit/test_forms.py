@@ -6,7 +6,8 @@ from django import forms
 
 from core.factories import CategoryFactory
 from geozones.factories import RegionFactory
-from message.forms import MessageForm, UserMessageForm
+from message.forms import (
+    MessageForm, UserMessageForm, RequestForm, OfferForm, InformationForm)
 from message.models import Message, Category
 
 from test.utils import lorem_ipsum
@@ -62,6 +63,21 @@ class TestUserMessageForm(unittest.TestCase):
         self.assertIsInstance(
             self.form.fields['messageType'].widget,
             forms.HiddenInput)
+
+
+class TestFormTypes(unittest.TestCase):
+
+    def test_request_form(self):
+        form = RequestForm()
+        self.assertEqual(Message.REQUEST, form.fields['messageType'].initial)
+
+    def test_offer_form(self):
+        form = OfferForm()
+        self.assertEqual(Message.OFFER, form.fields['messageType'].initial)
+
+    def test_info_form(self):
+        form = InformationForm()
+        self.assertEqual(Message.INFO, form.fields['messageType'].initial)
 
 
 class TestRequestCategory(unittest.TestCase):
