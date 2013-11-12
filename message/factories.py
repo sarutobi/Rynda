@@ -2,10 +2,9 @@
 
 import factory
 import random
-import string
 
 from geozones.factories import RegionFactory
-from test.utils import generate_string, lorem_ipsum
+from test.utils import lorem_ipsum
 from test.factories import UserFactory
 
 from .models import Message, MessageType
@@ -17,6 +16,13 @@ def point_gen(num):
     return "POINT(%f %f)" % (longitude, latitude)
 
 
+class MessageTypeFactory(factory.Factory):
+    """Factory for message types"""
+    FACTORY_FOR = MessageType
+
+    name = factory.Sequence(lambda n: "message type %s" % n)
+
+
 class MessageFactory(factory.Factory):
     '''
     Factory for messages
@@ -25,10 +31,7 @@ class MessageFactory(factory.Factory):
 
     message = lorem_ipsum()
     user = factory.SubFactory(UserFactory)
-    messageType = random.choice((
-        MessageType.TYPE_REQUEST,
-        MessageType.TYPE_OFFER,
-        MessageType.TYPE_INFO))
+    messageType = factory.SubFactory(MessageTypeFactory)
     georegion = factory.SubFactory(RegionFactory)
     #location = factory.LazyAttribute(lambda n: point_gen(n))
     address = factory.Sequence(lambda n: "address string %s" % n)
