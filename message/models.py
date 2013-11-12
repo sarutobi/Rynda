@@ -89,7 +89,7 @@ class Message(models.Model):
     #    _('location'),
     #    geography=True,
     #    blank=True, null=True)
-    address = models.CharField(max_length=200, verbose_name=_('address'))
+#    address = models.CharField(max_length=200, verbose_name=_('address'))
     # Optional fields
     # Message original source
     source = models.CharField(
