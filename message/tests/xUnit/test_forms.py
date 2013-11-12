@@ -6,45 +6,37 @@ from core.factories import CategoryFactory
 
 from geozones.factories import RegionFactory
 
-
-from message.factories import MessageTypeFactory
-from message.forms import UserMessageForm
-from message.models import MessageType, Category
+from message.forms import MessageForm
+from message.models import Message, Category
 
 from test.utils import lorem_ipsum
 from test.factories import UserFactory
 
 
-class TestSimpleRequestForm(unittest.TestCase):
+class TestBaseMessageForm(unittest.TestCase):
 
     def setUp(self):
-        self.type_request = MessageTypeFactory(name='request')
-        self.form = UserMessageForm(message_type=self.type_request.pk)
         self.user = UserFactory()
         self.region = RegionFactory()
         self.data = {
             'title': lorem_ipsum(words_count=3),
             'message': lorem_ipsum(),
-            'messageType': self.type_request.pk,
             'georegion': self.region.pk,
-            'location_0': 0.0,
-            'location_1': 0.0,
-            'address': lorem_ipsum(words_count=4)
+            'messageType': Message.REQUEST,
         }
 
     def tearDown(self):
         self.region.delete()
         self.region = None
-        self.form = None
         self.user.delete()
 
-    def test_form_type(self):
-        self.assertEqual(
-            self.type_request.pk,
-            self.form.fields['messageType'].initial)
+#    def test_form_type(self):
+#        self.assertEqual(
+#            self.type_request.pk,
+#            self.form.fields['messageType'].initial)
 
     def test_send_data(self):
-        form = UserMessageForm(self.data, message_type=self.type_request.pk)
+        form = MessageForm(self.data)
         self.assertTrue(form.is_bound)
         self.assertTrue(form.is_valid(), form.errors)
         msg = form.save(commit=False)
@@ -52,9 +44,14 @@ class TestSimpleRequestForm(unittest.TestCase):
         msg.save()
         self.assertIsNotNone(msg)
         self.assertIsNotNone(msg.pk)
-        self.assertEqual(1, msg.status)
-        self.assertEqual(self.type_request.pk, msg.messageType.pk)
+        self.assertEqual(Message.NEW, msg.status)
+        self.assertEqual(Message.REQUEST, msg.messageType)
         msg.delete()
+
+    def test_lost_message(self):
+        self.data["message"] = ""
+        form = MessageForm(self.data)
+        self.assertFalse(form.is_valid())
 
 
 class TestRequestCategory(unittest.TestCase):
@@ -64,10 +61,10 @@ class TestRequestCategory(unittest.TestCase):
             self.cats.append(CategoryFactory())
         self.user = UserFactory()
         self.region = RegionFactory()
-        self.type_request = MessageTypeFactory()
+#        self.type_request = MessageTypeFactory()
         self.data = {
             'message': lorem_ipsum(),
-            'messageType': self.type_request.pk,
+#            'messageType': self.type_request.pk,
             'user_id': self.user,
             'georegion': self.region.pk,
             'location_0': 25.0,
@@ -79,14 +76,14 @@ class TestRequestCategory(unittest.TestCase):
     def tearDown(self):
         Category.objects.all().delete()
 
-    def test_message_with_cats(self):
-        form = UserMessageForm(self.data, message_type=self.type_request.pk)
-        self.assertTrue(form.is_valid())
-        msg = form.save(commit=False)
-        msg.user = self.user
-        msg.save()
-        form.save_m2m()
-        self.assertEqual(5, msg.category.all().count())
+#    def test_message_with_cats(self):
+#        form = UserMessageForm(self.data, message_type=self.type_request.pk)
+#        self.assertTrue(form.is_valid())
+#        msg = form.save(commit=False)
+#        msg.user = self.user
+#        msg.save()
+#        form.save_m2m()
+#        self.assertEqual(5, msg.category.all().count())
 
 
 class TestRequiredFields(unittest.TestCase):
@@ -114,10 +111,10 @@ class TestRequiredFields(unittest.TestCase):
     #    form = SimpleRequestForm(self.data)
     #    self.assertFalse(form.is_valid())
 
-    def test_lost_message(self):
-        self.data['message'] = ''
-        form = UserMessageForm(self.data, message_type=self.type_request.pk)
-        self.assertFalse(form.is_valid())
+#    def test_lost_message(self):
+#        self.data['message'] = ''
+#        form = UserMessageForm(self.data, message_type=self.type_request.pk)
+#        self.assertFalse(form.is_valid())
 
 #    def test_lost_first_name(self):
 #        self.data['contact_first_name'] = ''
