@@ -2,11 +2,11 @@
 
 import unittest
 
+from django import forms
+
 from core.factories import CategoryFactory
-
 from geozones.factories import RegionFactory
-
-from message.forms import MessageForm
+from message.forms import MessageForm, UserMessageForm
 from message.models import Message, Category
 
 from test.utils import lorem_ipsum
@@ -52,6 +52,16 @@ class TestBaseMessageForm(unittest.TestCase):
         self.data["message"] = ""
         form = MessageForm(self.data)
         self.assertFalse(form.is_valid())
+
+
+class TestUserMessageForm(unittest.TestCase):
+    def setUp(self):
+        self.form = UserMessageForm()
+
+    def test_messagetype_widget(self):
+        self.assertIsInstance(
+            self.form.fields['messageType'].widget,
+            forms.HiddenInput)
 
 
 class TestRequestCategory(unittest.TestCase):
