@@ -55,13 +55,16 @@ class MessageQueryset(QuerySet):
 
 class Message(models.Model):
     '''Message data'''
-    #Flag values
-    #MESSAGE_ACTIVE = 0x1L
-    #MESSAGE_IMPORTANT = 0x2L
-    #MESSAGE_NONANONYMOUS = 0x4L
-    #ALLOW_FEEDBACK = 0x8L
-    #MESSAGE_DELETED = 0x10L
-    #LOCATION_VALID = 0x20L
+    # Message types
+    REQUEST = 1
+    OFFER = 2
+    INFO = 3
+
+    TYPES_CHOICE = (
+        (REQUEST, _("request")),
+        (OFFER, _("offer")),
+        (INFO, _("informatial"))
+    )
 
     # Message status
     NEW = 1
