@@ -1,7 +1,6 @@
-# coding: utf-8
+# -*- coding: utf-8 -*-
 
-import unittest
-
+from django.test import TestCase
 from django.utils.translation import ugettext as _
 
 from users.forms import (SimpleRegistrationForm, ForgotPasswordForm)
@@ -9,7 +8,7 @@ from users.models import Profile
 from test.factories import UserFactory
 
 
-class SimpleRegistrationFormTest(unittest.TestCase):
+class SimpleRegistrationFormTest(TestCase):
     ''' Registration form test'''
 
     def setUp(self):
@@ -81,7 +80,7 @@ class SimpleRegistrationFormTest(unittest.TestCase):
                          form.errors['__all__'])
 
 
-class TestForgotPasswordForm(unittest.TestCase):
+class TestForgotPasswordForm(TestCase):
     '''
     First step reset password functionality - validate email 
     '''
@@ -105,4 +104,3 @@ class TestForgotPasswordForm(unittest.TestCase):
         self.assertFalse(form.is_valid())
         self.assertEqual([_(u'This email isn\'t registered'),],
             form['email'].errors)
-

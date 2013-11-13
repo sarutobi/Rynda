@@ -1,8 +1,7 @@
-# coding: utf-8
-
-import unittest
+# -*- coding: utf-8 -*-
 
 from django.core.exceptions import ValidationError
+from django.test import TestCase
 
 from core.factories import CategoryFactory
 from geozones.factories import RegionFactory
@@ -11,7 +10,7 @@ from message.models import Message
 from test.factories import UserFactory
 
 
-class TestMessage(unittest.TestCase):
+class TestMessage(TestCase):
     ''' Test core message functionality '''
     def setUp(self):
         self.user = UserFactory()
@@ -45,7 +44,7 @@ class TestMessage(unittest.TestCase):
         self.assertFalse(self.message.is_removed)
 
 
-class TestMessageCleanData(unittest.TestCase):
+class TestMessageCleanData(TestCase):
     '''
     Test message cleaf functionality.
     '''
@@ -87,7 +86,7 @@ class TestMessageCleanData(unittest.TestCase):
 #        self.message.delete()
 
 
-class TestUserMessage(unittest.TestCase):
+class TestUserMessage(TestCase):
     def setUp(self):
         self.user = UserFactory()
 
@@ -101,7 +100,7 @@ class TestUserMessage(unittest.TestCase):
 #        self.assertEqual(self.user, msg.user)
 
 
-class TestMessageCategories(unittest.TestCase):
+class TestMessageCategories(TestCase):
     def setUp(self):
         self.message = MessageFactory()
         self.category = CategoryFactory()

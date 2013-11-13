@@ -1,11 +1,11 @@
-# coding: utf-8
+# -*- coding: utf-8 -*-
 
-import unittest
+from django.test import TestCase
 
 from core.factories import CategoryFactory, CategoryGroupFactory
 
 
-class TestCategoryGroup(unittest.TestCase):
+class TestCategoryGroup(TestCase):
 
     def setUp(self):
         self.group = CategoryGroupFactory()
@@ -27,7 +27,7 @@ class TestCategoryGroup(unittest.TestCase):
         cat.delete()
 
 
-class TestCategory(unittest.TestCase):
+class TestCategory(TestCase):
     def setUp(self):
         self.group = CategoryGroupFactory()
 

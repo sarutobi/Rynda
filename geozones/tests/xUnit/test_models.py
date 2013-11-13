@@ -1,11 +1,11 @@
-# coding: utf-8
+# -*- coding: utf-8 -*-
 
-import unittest
+from django.test import TestCase
 
 from geozones.factories import RegionFactory, LocationFactory
 
 
-class TestRegion(unittest.TestCase):
+class TestRegion(TestCase):
     def setUp(self):
         self.region = RegionFactory.build()
 
@@ -19,7 +19,7 @@ class TestRegion(unittest.TestCase):
         )
 
 
-class TestLocation(unittest.TestCase):
+class TestLocation(TestCase):
     def setUp(self):
         self.location = LocationFactory.build()
 

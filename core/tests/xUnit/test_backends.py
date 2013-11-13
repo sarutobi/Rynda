@@ -1,13 +1,13 @@
-# coding: utf-8
+# -*- coding: utf-8 -*-
 
-import unittest
+from django.test import TestCase
 
 from test.factories import UserFactory
 
 from core.backends import IonAuth, EmailAuthBackend
 
 
-class IonTest(unittest.TestCase):
+class IonTest(TestCase):
     '''Authorization tests'''
 
     def setUp(self):
@@ -54,7 +54,7 @@ class IonTest(unittest.TestCase):
         self.assertIsNone(u2)
 
 
-class EmailBackendTest(unittest.TestCase):
+class EmailBackendTest(TestCase):
     def setUp(self):
         self.user = UserFactory.build(
             email='test@example.com',

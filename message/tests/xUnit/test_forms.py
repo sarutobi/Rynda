@@ -1,8 +1,8 @@
-# coding: utf-8
+# -*- coding: utf-8 -*-
 
-import unittest
 
 from django import forms
+from django.test import TestCase
 
 from core.factories import CategoryFactory
 from geozones.factories import RegionFactory
@@ -14,7 +14,7 @@ from test.utils import lorem_ipsum
 from test.factories import UserFactory
 
 
-class TestBaseMessageForm(unittest.TestCase):
+class TestBaseMessageForm(TestCase):
     """Base message form tests"""
     def setUp(self):
         self.user = UserFactory()
@@ -48,7 +48,7 @@ class TestBaseMessageForm(unittest.TestCase):
         self.assertFalse(form.is_valid())
 
 
-class TestUserMessageForm(unittest.TestCase):
+class TestUserMessageForm(TestCase):
     def setUp(self):
         self.form = UserMessageForm()
 
@@ -58,7 +58,7 @@ class TestUserMessageForm(unittest.TestCase):
             forms.HiddenInput)
 
 
-class TestFormTypes(unittest.TestCase):
+class TestFormTypes(TestCase):
 
     def setUp(self):
         self.region = RegionFactory()
@@ -92,7 +92,7 @@ class TestFormTypes(unittest.TestCase):
         self.assertEqual(Message.INFO, form.cleaned_data['messageType'])
 
 
-class TestRequestCategory(unittest.TestCase):
+class TestRequestCategory(TestCase):
     def setUp(self):
         self.cats = list()
         for x in xrange(5):
@@ -122,11 +122,10 @@ class TestRequestCategory(unittest.TestCase):
 #        self.assertEqual(5, msg.category.all().count())
 
 
-class TestRequiredFields(unittest.TestCase):
+class TestRequiredFields(TestCase):
     def setUp(self):
         self.user = UserFactory()
         self.region = RegionFactory()
-        self.type_request = MessageTypeFactory()
         self.data = {
             'message': lorem_ipsum(),
             'messageType': self.type_request.pk,
