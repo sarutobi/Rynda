@@ -10,7 +10,7 @@ import django_filters
 from model_utils.managers import PassThroughManager
 
 from core.models import Category, Subdomain
-from geozones.models import Region, Location
+from geozones.models import Location
 
 
 class MessageQueryset(QuerySet):
@@ -18,7 +18,7 @@ class MessageQueryset(QuerySet):
         ''' Ask only few fields for listing'''
         return self.values(
             'id', 'title', 'message', 'messageType',
-            'date_add', 'georegion__name')
+            'date_add', )
 
     def active(self):
         return self.filter(status__gt=Message.NEW, status__lt=Message.CLOSED)
