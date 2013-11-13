@@ -2,6 +2,8 @@
 
 import factory
 
+from factory import django
+
 from .models import Category, CategoryGroup
 
 
@@ -14,14 +16,14 @@ from .models import Category, CategoryGroup
 #    #region_id = factory.Sequence(lambda n: n)
 
 
-class CategoryGroupFactory(factory.Factory):
+class CategoryGroupFactory(django.DjangoModelFactory):
     FACTORY_FOR = CategoryGroup
 
     name = factory.Sequence(lambda n: "Category group %s" % n)
     order = factory.Sequence(lambda n: n)
 
 
-class CategoryFactory(factory.Factory):
+class CategoryFactory(django.DjangoModelFactory):
     FACTORY_FOR = Category
 
     name = factory.Sequence(lambda n: "Category %s" % n)
