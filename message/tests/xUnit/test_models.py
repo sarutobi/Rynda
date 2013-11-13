@@ -17,7 +17,6 @@ class TestMessage(unittest.TestCase):
         self.user = UserFactory()
         self.region = RegionFactory()
         self.message = MessageFactory(
-            georegion=self.region,
             user=self.user)
 
     def tearDown(self):
