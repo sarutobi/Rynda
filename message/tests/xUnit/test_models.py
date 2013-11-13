@@ -18,12 +18,6 @@ class TestMessage(TestCase):
         self.message = MessageFactory(
             user=self.user)
 
-    def tearDown(self):
-        Message.objects.delete()
-#        self.user.delete()
-#        self.region.delete()
-#        self.message = None
-
     def test_message_unicode(self):
         self.assertEqual(self.message.title, "%s" % self.message)
 
