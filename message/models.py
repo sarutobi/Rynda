@@ -66,10 +66,10 @@ class Message(models.Model):
         verbose_name = _('message')
         verbose_name_plural = _('messages')
 
-    #Managers
+    # Managers
     objects = PassThroughManager.for_queryset_class(MessageQueryset)()
 
-    #Mandatory fields
+    # Mandatory fields
     title = models.CharField(
         max_length=200,
         verbose_name=_('title'),
@@ -84,12 +84,7 @@ class Message(models.Model):
         verbose_name=_("User"),
         editable=False,
         db_column='user_id',)
-#    georegion = models.ForeignKey(Region, verbose_name=_('region'))
-    #location = geomodels.PointField(
-    #    _('location'),
-    #    geography=True,
-    #    blank=True, null=True)
-#    address = models.CharField(max_length=200, verbose_name=_('address'))
+
     # Optional fields
     # Message original source
     source = models.CharField(
@@ -98,7 +93,7 @@ class Message(models.Model):
         blank=True)
 
     # Moderator's fields
-    #flags = models.BigIntegerField(default=0)
+
     is_active = models.BooleanField(
         default=False, verbose_name=_('active'))
     is_important = models.BooleanField(
@@ -113,7 +108,7 @@ class Message(models.Model):
     status = models.SmallIntegerField(
         choices=MESSAGE_STATUS,
         verbose_name=_('status'),
-        default=1, blank=True, null=True)
+        default=NEW, blank=True, null=True)
 
     #Internal fields
     date_add = models.DateTimeField(
@@ -148,9 +143,6 @@ class Message(models.Model):
         Subdomain, db_column='subdomain_id',
         null=True, blank=True,
         verbose_name=_('subdomain'))
-
-    # Gis queries
-    #gis = geomodels.GeoManager()
 
     def __unicode__(self):
         return self.title
