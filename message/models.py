@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 
 from django.contrib.auth.models import User
-#from django.contrib.gis.db import models as geomodels
 from django.db import models
 from django.db.models.query import QuerySet
 from django.utils.translation import ugettext_lazy as _
@@ -19,10 +18,10 @@ class MessageQueryset(QuerySet):
         ''' Ask only few fields for listing'''
         return self.values(
             'id', 'title', 'message', 'messageType',
-            'georegion', 'date_add', 'georegion__name')
+            'date_add', 'georegion__name')
 
     def active(self):
-        return self.filter(status__gt=1, status__lt=6)
+        return self.filter(status__gt=Message.NEW, status__lt=Message.CLOSED)
 
     def closed(self):
         return self.filter(status=6)
@@ -36,6 +35,7 @@ class MessageQueryset(QuerySet):
 
 class Message(models.Model):
     '''Message data'''
+
     # Message types
     REQUEST = 1
     OFFER = 2
@@ -84,7 +84,7 @@ class Message(models.Model):
         verbose_name=_("User"),
         editable=False,
         db_column='user_id',)
-    georegion = models.ForeignKey(Region, verbose_name=_('region'))
+#    georegion = models.ForeignKey(Region, verbose_name=_('region'))
     #location = geomodels.PointField(
     #    _('location'),
     #    geography=True,
@@ -163,13 +163,13 @@ class Message(models.Model):
 class MessageSideFilter(django_filters.FilterSet):
     class Meta:
         model = Message
-        fields = ['georegion', 'subdomain', 'messageType', 'category']
+        fields = ['subdomain', 'messageType', 'category']
 
 
 class MessageIndexFilter(django_filters.FilterSet):
     class Meta:
         model = Message
-        fields = ['georegion', 'subdomain', 'date_add']
+        fields = ['subdomain', 'date_add']
 
     date_add = django_filters.DateRangeFilter()
 
