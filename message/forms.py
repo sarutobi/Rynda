@@ -19,7 +19,7 @@ class MessageForm(forms.ModelForm):
             'title', 'message', 'messageType', 'subdomain',
             'category',
             'is_anonymous', 'allow_feedback',
-            'georegion', 'location', )
+            'location', )
         widgets = {
             'location': GeolocationWidget(),
             'category': CategoryTree(),

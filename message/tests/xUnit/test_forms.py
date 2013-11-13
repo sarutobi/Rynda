@@ -15,19 +15,16 @@ from test.factories import UserFactory
 
 
 class TestBaseMessageForm(unittest.TestCase):
-
+    """Base message form tests"""
     def setUp(self):
         self.user = UserFactory()
-        self.region = RegionFactory()
         self.data = {
             'title': lorem_ipsum(words_count=3),
             'message': lorem_ipsum(),
-            'georegion': self.region.pk,
             'messageType': Message.REQUEST,
         }
 
     def tearDown(self):
-        self.region.delete()
         self.region = None
         self.user.delete()
 
@@ -41,13 +38,9 @@ class TestBaseMessageForm(unittest.TestCase):
         self.assertTrue(form.is_bound)
         self.assertTrue(form.is_valid(), form.errors)
         msg = form.save(commit=False)
-        msg.user = self.user
-        msg.save()
         self.assertIsNotNone(msg)
-        self.assertIsNotNone(msg.pk)
         self.assertEqual(Message.NEW, msg.status)
         self.assertEqual(Message.REQUEST, msg.messageType)
-        msg.delete()
 
     def test_lost_message(self):
         self.data["message"] = ""
@@ -81,7 +74,7 @@ class TestFormTypes(unittest.TestCase):
         self.assertEqual(Message.REQUEST, form.fields['messageType'].initial)
         self.data['messageType'] = Message.OFFER
         form = RequestForm(self.data)
-        self.assertTrue(form.is_valid())
+        self.assertTrue(form.is_valid(), form.errors)
         self.assertEqual(Message.REQUEST, form.cleaned_data['messageType'])
 
     def test_offer_form(self):
@@ -109,9 +102,7 @@ class TestRequestCategory(unittest.TestCase):
 #        self.type_request = MessageTypeFactory()
         self.data = {
             'message': lorem_ipsum(),
-#            'messageType': self.type_request.pk,
             'user_id': self.user,
-            'georegion': self.region.pk,
             'location_0': 25.0,
             'location_1': 50.0,
             'category': [x.pk for x in self.cats],
