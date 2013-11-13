@@ -1,7 +1,9 @@
-# coding: utf-8
+# -*- coding: utf-8 -*-
+
+import random
 
 import factory
-import random
+from factory import fuzzy
 
 from geozones.factories import RegionFactory
 from test.utils import lorem_ipsum
@@ -24,7 +26,8 @@ class MessageFactory(factory.Factory):
 
     message = lorem_ipsum()
     user = factory.SubFactory(UserFactory)
-    messageType = factory.SubFactory(MessageTypeFactory)
+    messageType = fuzzy.FuzzyChoice(
+        (Message.REQUEST, Message.OFFER, Message.INFO))
     georegion = factory.SubFactory(RegionFactory)
     #location = factory.LazyAttribute(lambda n: point_gen(n))
     address = factory.Sequence(lambda n: "address string %s" % n)
