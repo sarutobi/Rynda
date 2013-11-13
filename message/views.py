@@ -15,10 +15,9 @@ from core.views import (
 from geozones.models import Region
 from feed.models import FeedItem
 
-from message.forms import SimpleRequestForm
+from message.forms import RequestForm
 from message.models import (
-    Message, MessageType,
-    MessageSideFilter, MessageIndexFilter)
+    Message, MessageSideFilter, MessageIndexFilter)
 
 
 def list(request, slug='all'):
@@ -56,7 +55,7 @@ def logout_view(request):
 class CreateRequest(CategoryMixin, RyndaFormView):
     template_name = "request_form_simple.html"
     model = Message
-    form_class = SimpleRequestForm
+    form_class = RequestForm
     success_url = reverse_lazy('message_list')
 
     def get_initial(self):
@@ -79,7 +78,7 @@ class CreateRequest(CategoryMixin, RyndaFormView):
 class CreateOffer(CategoryMixin, RyndaCreateView):
     template_name = "offer_form.html"
     model = Message
-    form_class = SimpleRequestForm
+    form_class = RequestForm
 
 
 class MessageView(RyndaDetailView):
