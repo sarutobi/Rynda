@@ -3,9 +3,8 @@
 import random
 
 import factory
-from factory import fuzzy
+from factory import fuzzy, django
 
-from geozones.factories import RegionFactory
 from test.utils import lorem_ipsum
 from test.factories import UserFactory
 
@@ -18,7 +17,7 @@ def point_gen(num):
     return "POINT(%f %f)" % (longitude, latitude)
 
 
-class MessageFactory(factory.Factory):
+class MessageFactory(django.DjangoModelFactory):
     '''
     Factory for messages
     '''
@@ -28,6 +27,6 @@ class MessageFactory(factory.Factory):
     user = factory.SubFactory(UserFactory)
     messageType = fuzzy.FuzzyChoice(
         (Message.REQUEST, Message.OFFER, Message.INFO))
-    georegion = factory.SubFactory(RegionFactory)
+#    georegion = factory.SubFactory(RegionFactory)
     #location = factory.LazyAttribute(lambda n: point_gen(n))
-    address = factory.Sequence(lambda n: "address string %s" % n)
+#    address = factory.Sequence(lambda n: "address string %s" % n)
