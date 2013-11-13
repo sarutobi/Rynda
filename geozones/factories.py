@@ -1,12 +1,14 @@
 # coding: utf-8
 
 import factory
+
+from factory import django
 import random
 
 from .models import Location, Region
 
 
-class RegionFactory(factory.Factory):
+class RegionFactory(django.DjangoModelFactory):
     FACTORY_FOR = Region
 
     name = factory.Sequence(lambda n: "Region_%s" % n)
@@ -17,7 +19,7 @@ class RegionFactory(factory.Factory):
     order = factory.Sequence(lambda n: n)
 
 
-class LocationFactory(factory.Factory):
+class LocationFactory(django.DjangoModelFactory):
     FACTORY_FOR = Location
 
     latitude = random.uniform(-90.0, 90.0)
