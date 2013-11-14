@@ -1,17 +1,18 @@
 # coding: utf-8
 
-import unittest
 
-from django.contrib.auth.models import User
+
 from django.core import mail
-from django.utils import timezone
 from django.conf import settings
+from django.contrib.auth.models import User
+from django.utils import timezone
+from django.test import TestCase
 
 from test.factories import UserFactory
 from users.models import UserAuthCode, create_new_user, activate_user
 
 
-class UserAuthCodeTest(unittest.TestCase):
+class UserAuthCodeTest(TestCase):
 
     def setUp(self):
         self.encoder = UserAuthCode('secret')
@@ -48,7 +49,7 @@ class UserAuthCodeTest(unittest.TestCase):
         self.assertFalse(self.encoder.is_valid(self.user, code))
 
 
-class UserTest(unittest.TestCase):
+class UserTest(TestCase):
     '''User-specific tests'''
     def setUp(self):
         self.user = UserFactory.build(
@@ -72,7 +73,7 @@ class UserTest(unittest.TestCase):
         self.assertEqual('boy_factory@mail.ru', self.user.email)
 
 
-class TestUserCreation(unittest.TestCase):
+class TestUserCreation(TestCase):
     def setUp(self):
         user = UserFactory.build()
         self.user = create_new_user(
@@ -112,7 +113,7 @@ class TestUserCreation(unittest.TestCase):
         )
 
 
-class TestUserActivation(unittest.TestCase):
+class TestUserActivation(TestCase):
     def setUp(self):
         encoder = UserAuthCode(settings.SECRET_KEY)
         self.user = UserFactory(is_active=False)
