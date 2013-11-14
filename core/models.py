@@ -6,9 +6,14 @@ from django.utils.translation import ugettext_lazy as _
 
 class Subdomain(models.Model):
     '''One atlas page'''
+    # Status of page
+    DISABLED = 0
+    ACTIVE = 1
+    ARCHIVED = 2
+
     SUBDOMAIN_STATUS = (
-        (0, _('inactive')),
-        (1, _('active')))
+        (DISABLED, _('disabled')),
+        (ACTIVE, _('active')))
 
     class Meta:
         ordering = ['order']
