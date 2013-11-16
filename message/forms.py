@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 
 from django import forms
-
 from django.core.exceptions import ValidationError
 from django.utils.translation import ugettext as _
 
@@ -100,3 +99,4 @@ class AdminMessageForm(MessageForm):
 
     def clean_messageType(self):
         return self.cleaned_data['message_type']
+

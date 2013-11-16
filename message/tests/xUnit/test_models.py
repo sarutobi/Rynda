@@ -34,16 +34,6 @@ class TestMessage(TestCase):
         self.assertIsNotNone(self.message.pk)
         self.message.delete()
 
-    def test_message_remove(self):
-        self.message.is_removed = True
-        self.assertTrue(self.message.is_removed)
-
-    def test_message_restore(self):
-        self.message.is_removed = True
-        self.assertTrue(self.message.is_removed)
-        self.message.is_removed = False
-        self.assertFalse(self.message.is_removed)
-
 
 class TestMessageCleanData(TestCase):
     '''
