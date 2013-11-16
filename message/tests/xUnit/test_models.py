@@ -21,6 +21,13 @@ class TestMessage(TestCase):
     def test_message_unicode(self):
         self.assertEqual(self.message.title, "%s" % self.message)
 
+    def test_message_flags(self):
+        self.assertFalse(self.message.is_active)
+        self.assertFalse(self.message.is_important)
+        self.assertTrue(self.message.is_anonymous)
+        self.assertFalse(self.message.is_removed)
+        self.assertTrue(self.message.allow_feedback)
+
     def test_message_save(self):
         self.message.save()
         self.assertEqual(1, len(Message.objects.all()))

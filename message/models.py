@@ -34,6 +34,12 @@ class MessageQueryset(QuerySet):
 class Message(models.Model):
     '''Message data'''
 
+    class Meta():
+        ordering = ['-date_add']
+        get_latest_by = 'date_add'
+        verbose_name = _('message')
+        verbose_name_plural = _('messages')
+
     # Message types
     REQUEST = 1
     OFFER = 2
@@ -57,12 +63,6 @@ class Message(models.Model):
                       (VERIFIED, _('verified')),
                       (PENDING, _('pending')),
                       (CLOSED, _('closed')))
-
-    class Meta():
-        ordering = ['-date_add']
-        get_latest_by = 'date_add'
-        verbose_name = _('message')
-        verbose_name_plural = _('messages')
 
     # Managers
     objects = PassThroughManager.for_queryset_class(MessageQueryset)()
