@@ -2,8 +2,8 @@
 
 from django.contrib import admin
 
-from .models import Message
 from .forms import AdminMessageForm
+from .models import Message
 
 
 class MessageAdmin(admin.ModelAdmin):
@@ -11,7 +11,7 @@ class MessageAdmin(admin.ModelAdmin):
         js = (
             'js/libs/jquery-1.8.1.min.js',
             'js/libs/leaflet.js',
-    #        'js/plugins.js',
+            # 'js/plugins.js',
             'js/rynda.js',
         )
     list_display = (

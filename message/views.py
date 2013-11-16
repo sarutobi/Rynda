@@ -7,28 +7,26 @@ from django.core.urlresolvers import reverse_lazy
 from django.shortcuts import redirect, render_to_response
 from django.template import RequestContext
 
-from core.context_processors import subdomains_context, categories_context
-from core.mixins import SubdomainContextMixin, CategoryMixin
+from core.context_processors import categories_context, subdomains_context
+from core.mixins import CategoryMixin, SubdomainContextMixin
 from core.models import Subdomain
-from core.views import (
-    RyndaCreateView, RyndaDetailView, RyndaListView, RyndaFormView)
-from geozones.models import Region
+from core.views import (RyndaCreateView, RyndaDetailView, RyndaFormView,
+                        RyndaListView)
 from feed.models import FeedItem
-
+from geozones.models import Region
 from message.forms import RequestForm
-from message.models import (
-    Message, MessageSideFilter, MessageIndexFilter)
+from message.models import Message, MessageIndexFilter, MessageSideFilter
 
 
 def list(request, slug='all'):
     last_requests = Message.objects.active().type_is(
-        MessageType.TYPE_REQUEST).values('id', 'title', 'date_add')[:5]
+        Message.REQUEST).values('id', 'title', 'date_add')[:5]
     last_offers = Message.objects.active().type_is(
-        MessageType.TYPE_OFFER).values('id', 'title', 'date_add')[:5]
+        Message.OFFER).values('id', 'title', 'date_add')[:5]
     last_completed = Message.objects.type_is(
-        MessageType.TYPE_REQUEST).closed().values('id', 'title', 'date_add')[:5]
+        Message.REQUEST).closed().values('id', 'title', 'date_add')[:5]
     last_info = Message.objects.active().type_is(
-        MessageType.TYPE_INFO).values('id', 'title', 'date_add')[:5]
+        Message.INFO).values('id', 'title', 'date_add')[:5]
     last_feeds = FeedItem.objects.filter(feedId=3).values(
         'id', 'link', 'title', 'date')[:5]
     return render_to_response(

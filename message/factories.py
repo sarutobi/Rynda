@@ -3,10 +3,9 @@
 import random
 
 import factory
-from factory import fuzzy, django
-
-from test.utils import lorem_ipsum
+from factory import django, fuzzy
 from test.factories import UserFactory
+from test.utils import lorem_ipsum
 
 from .models import Message
 
@@ -27,6 +26,3 @@ class MessageFactory(django.DjangoModelFactory):
     user = factory.SubFactory(UserFactory)
     messageType = fuzzy.FuzzyChoice(
         (Message.REQUEST, Message.OFFER, Message.INFO))
-#    georegion = factory.SubFactory(RegionFactory)
-    #location = factory.LazyAttribute(lambda n: point_gen(n))
-#    address = factory.Sequence(lambda n: "address string %s" % n)

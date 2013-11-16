@@ -1,8 +1,7 @@
 # -*- coding: utf-8 -*-
 
-from rest_framework import serializers
-
 from message.models import Message
+from rest_framework import serializers
 
 
 class MessageSerializer(serializers.ModelSerializer):

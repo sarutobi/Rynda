@@ -6,11 +6,9 @@ from django.db.models.query import QuerySet
 from django.utils.translation import ugettext_lazy as _
 
 import django_filters
-
-from model_utils.managers import PassThroughManager
-
 from core.models import Category, Subdomain
 from geozones.models import Location
+from model_utils.managers import PassThroughManager
 
 
 class MessageQueryset(QuerySet):
