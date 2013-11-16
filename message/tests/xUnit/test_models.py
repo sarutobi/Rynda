@@ -34,6 +34,9 @@ class TestMessage(TestCase):
         self.assertIsNotNone(self.message.pk)
         self.message.delete()
 
+    def test_message_status(self):
+        self.assertEquals(self.message.status, Message.NEW)
+
 
 class TestMessageCleanData(TestCase):
     '''
