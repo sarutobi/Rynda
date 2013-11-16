@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 
-from django.core.exceptions import ValidationError
 from django.test import TestCase
 
 from core.factories import CategoryFactory
@@ -36,62 +35,6 @@ class TestMessage(TestCase):
 
     def test_message_status(self):
         self.assertEquals(self.message.status, Message.NEW)
-
-
-class TestMessageCleanData(TestCase):
-    '''
-    Test message cleaf functionality.
-    '''
-    def setUp(self):
-        self.user = UserFactory()
-        self.region = RegionFactory()
-        self.message = MessageFactory.build(georegion=self.region)
-
-#    def tearDown(self):
-#        self.message = None
-#        self.region.delete()
-#        self.user.delete()
-
-    def catch_wrong_data(self):
-        ''' Common test missed data'''
-        with self.assertRaises(ValidationError):
-            self.message.save()
-            self.message.delete()
-
-#    def test_no_message_contacts(self):
-#        self.message.contact_phone = None
-#        self.message.contact_mail = None
-#        self.catch_wrong_data()
-
-#    def test_invalid_email(self):
-#        self.message.contact_mail = 'notamail'
-#        self.catch_wrong_data()
-
-#    def test_phone_contact(self):
-#        self.message.contact_mail = ''
-#        self.message.save()
-#        self.assertIsNotNone(self.message.pk)
-#        self.message.delete()
-
-#    def test_email_contact(self):
-#        self.message.contact_phone = ''
-#        self.message.save()
-#        self.assertIsNotNone(self.message.pk)
-#        self.message.delete()
-
-
-class TestUserMessage(TestCase):
-    def setUp(self):
-        self.user = UserFactory()
-
-#    def tearDown(self):
-#        self.user.delete()
-#        self.user = None
-
-#    def test_user_message(self):
-#        msg = MessageFactory(user=self.user)
-#        self.assertIsNotNone(msg)
-#        self.assertEqual(self.user, msg.user)
 
 
 class TestMessageCategories(TestCase):
