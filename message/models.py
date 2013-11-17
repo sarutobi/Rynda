@@ -77,6 +77,9 @@ class Message(models.Model):
         choices=TYPES_CHOICE,
         db_column='message_type',
         verbose_name=_('message type'),)
+    # This is registered user, and this user can be not the same person,
+    # who need help.
+    # TODO Create a different contact table to store real person, who need help
     user = models.ForeignKey(
         User,
         verbose_name=_("User"),
