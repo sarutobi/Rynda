@@ -9,9 +9,6 @@ class TestRegion(TestCase):
     def setUp(self):
         self.region = RegionFactory.build()
 
-    def tearDown(self):
-        self.region = None
-
     def test_unicode(self):
         self.assertEqual(
             "%s" % self.region,
@@ -20,14 +17,11 @@ class TestRegion(TestCase):
 
 
 class TestLocation(TestCase):
+    """ Tests for location model """
     def setUp(self):
-        self.location = LocationFactory.build()
-
-    def tearDown(self):
-        self.location = None
+        self.region = RegionFactory()
+        self.location = LocationFactory(region=self.region)
 
     def test_unicode(self):
         self.assertEqual(
-            "%s" % self.location,
-            "%f %f" % (self.location.latitude, self.location.longitude)
-        )
+            "%s" % self.location, self.location.name)

@@ -51,6 +51,7 @@ class Location(models.Model):
         verbose_name = _('location')
         verbose_name_plural = _('locations')
 
+    name = models.CharField(max_length=250, verbose_name=_("name"))
     # Geocoordinates
     latitude = models.FloatField()
     longitude = models.FloatField(db_column='longitude')
@@ -63,4 +64,4 @@ class Location(models.Model):
     description = models.CharField(max_length=200)
 
     def __unicode__(self):
-        return u'%f %f' % (self.latitude, self.longitude)
+        return self.name

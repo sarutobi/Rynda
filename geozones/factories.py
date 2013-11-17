@@ -22,6 +22,7 @@ class RegionFactory(django.DjangoModelFactory):
 class LocationFactory(django.DjangoModelFactory):
     FACTORY_FOR = Location
 
+    name = factory.Sequence(lambda n: "Item %s" % n)
     latitude = random.uniform(-90.0, 90.0)
     longitude = random.uniform(-180.0, 180.0)
     description = factory.Sequence(lambda n: "Location_%s" % n)
