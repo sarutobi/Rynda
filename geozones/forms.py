@@ -3,6 +3,7 @@
 from django import forms
 from django.utils.translation import ugettext_lazy as _
 
+from .models import Location
 from .widgets import GeolocationWidget
 
 
@@ -21,3 +22,7 @@ class LocationField(forms.MultiValueField):
             return value_list
         return ""
 
+
+class LocationForm(forms.ModelForm):
+    class Meta():
+        model = Location
