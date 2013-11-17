@@ -18,9 +18,11 @@ class TestMessage(TestCase):
             user=self.user)
 
     def test_message_unicode(self):
+        """ Test for message __unicode__ method"""
         self.assertEqual(self.message.title, "%s" % self.message)
 
     def test_message_flags(self):
+        """ Testing message default flags """
         self.assertFalse(self.message.is_active)
         self.assertFalse(self.message.is_important)
         self.assertTrue(self.message.is_anonymous)
@@ -28,12 +30,14 @@ class TestMessage(TestCase):
         self.assertTrue(self.message.allow_feedback)
 
     def test_message_save(self):
+        """ Test for double save messages """
         self.message.save()
         self.assertEqual(1, len(Message.objects.all()))
         self.assertIsNotNone(self.message.pk)
         self.message.delete()
 
     def test_message_status(self):
+        """ Test for default message status """
         self.assertEquals(self.message.status, Message.NEW)
 
 
