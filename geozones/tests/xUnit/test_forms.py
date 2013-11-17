@@ -18,3 +18,8 @@ class TestLocationForm(TestCase):
         form = LocationForm(data=self.data)
         self.assertTrue(form.is_bound)
         self.assertTrue(form.is_valid())
+
+    def test_no_region(self):
+        self.data['region'] = None
+        form = LocationForm(data=self.data)
+        self.assertFalse(form.is_valid())
