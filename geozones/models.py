@@ -1,7 +1,6 @@
 # coding: utf-8
 from django.contrib import admin
 from django.db import models
-
 from django.utils.translation import ugettext_lazy as _
 
 
@@ -21,7 +20,8 @@ class Region(models.Model):
         verbose_name_plural = _('regions')
 
     # Region number
-    name = models.CharField(max_length=200, verbose_name=_("region name"))
+    name = models.CharField(
+        max_length=200, verbose_name=_("region name"))
     # Region slug
     slug = models.SlugField(_("slug"))
     # Region center coordinates
@@ -51,7 +51,8 @@ class Location(models.Model):
         verbose_name = _('location')
         verbose_name_plural = _('locations')
 
-    name = models.CharField(max_length=250, verbose_name=_("name"))
+    name = models.CharField(
+        max_length=250, default='Location', verbose_name=_("name"))
     # Geocoordinates
     latitude = models.FloatField()
     longitude = models.FloatField(db_column='longitude')
