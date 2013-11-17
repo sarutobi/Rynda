@@ -46,10 +46,6 @@ class TestMessageCategories(TestCase):
         self.message = MessageFactory()
         self.category = CategoryFactory()
 
-    def tearDown(self):
-        self.message.delete()
-        self.category.delete()
-
     def test_add_category(self):
         before = len(self.message.category.all())
         self.message.category.add(self.category)
