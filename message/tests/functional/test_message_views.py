@@ -2,6 +2,7 @@
 
 from django_webtest import WebTest
 
+from django.core.urlresolvers import reverse
 from message.factories import MessageFactory
 from message.models import Message
 
@@ -39,3 +40,14 @@ class TestMessagePaginator(WebTest):
 
     def test_page_count(self):
         self.page.mustcontain('1', '2', '3', '4', '5')
+
+
+class TestMessageCreation(WebTest):
+    """ Test message creation """
+    def setUp(self):
+        self.user = UserFactory()
+
+    def test_creation_form(self):
+        form = self.app.get(reverse("create-request")).form
+        self.assertEquals("", form.action)
+        self.assertEquals(form.method.upper(), 'POST')
