@@ -29,5 +29,3 @@ def server():
     local("./manage.py runserver --settings=Rynda.settings.local")
 
 
-def local_stage():
-    local("./manage.py runserver 0.0.0.0:8000 --settings=Rynda.settings.local_stage")
