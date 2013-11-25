@@ -1,19 +1,23 @@
-# coding: utf-8
+# -*- coding: utf-8 -*-
+
 from django.contrib import admin
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 
 
 class Region(models.Model):
-    '''
-    Region
-    ======
+
+    """
+    A geographic region.
+
     Common regional zones. All messages can be grouped by this territorial
     cluster.
-    * TODO: use django-mptt
-    * TODO: make nested regions
-    * TODO: link message to nested regions
-    '''
+    TODO: use django-mptt
+    TODO: make nested regions
+    TODO: link message to nested regions
+
+    """
+
     class Meta:
         ordering = ['order']
         verbose_name = _('region')
@@ -38,15 +42,18 @@ admin.site.register(Region)
 
 
 class Location(models.Model):
-    '''
-    Geolocation
-    ===========
+
+    """
+    Geolocation or POI.
+
     This data represent POI(Point Of Interest).
     Object contain small piece of data:
     * Geocoordinates - latitude and longitude
     * Description - textual name of POI or it's human-readable address
     * Optional link to georegion. If this link exists
-    '''
+
+    """
+
     class Meta:
         verbose_name = _('location')
         verbose_name_plural = _('locations')
@@ -60,7 +67,7 @@ class Location(models.Model):
     region = models.ForeignKey(
         Region,
         verbose_name=_("region"),
-        null=True, blank=True)
+    )
     # Short description or address
     description = models.CharField(max_length=200)
 
