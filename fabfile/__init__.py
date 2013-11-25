@@ -2,6 +2,8 @@
 
 from fabric.api import *
 
+import local
+
 # Localhost virtualenvwrapper activation
 LOCAL_VIRT_ACTIVATE = 'source ~/.zshrc'
 
@@ -17,13 +19,6 @@ REQUIREMENT_SET = {
 }
 
 
-@task
-def test(app=''):
-    with prefix(LOCAL_VIRT_ACTIVATE), prefix(VIRT_COMMAND):
-        command = "./manage.py test --settings=Rynda.settings.test %s" % app
-        local(command, shell='/bin/zsh')
-
-
 def coverage():
     local("coverage run manage.py test --settings=Rynda.settings.test")
     local("coverage html")
@@ -36,10 +31,3 @@ def server():
 
 def local_stage():
     local("./manage.py runserver 0.0.0.0:8000 --settings=Rynda.settings.local_stage")
-
-
-@task
-def local_requirements(settings='base'):
-    req = REQUIREMENT_SET.get(settings, REQUIREMENT_SET.get('base'))
-    with prefix(VIRT_ACTIVATE), prefix(VIRT_COMMAND):
-        local('pip install -r %s' % req)
