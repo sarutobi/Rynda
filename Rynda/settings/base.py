@@ -118,7 +118,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     'django.contrib.messages.context_processors.messages',
     # required by django-admin-tools
     'django.core.context_processors.request',
-    'Rynda.core.context_processors.production_context',
+    'core.context_processors.production_context',
 )
 MIDDLEWARE_CLASSES = (
     'django.middleware.common.CommonMiddleware',
