@@ -2,11 +2,19 @@
 
 from fabric.api import *
 
+import fabfile
+
 # Localhost virtualenvwrapper activation
 LOCAL_VIRT_ACTIVATE = 'source ~/.zshrc'
 
 # Project settings
 VIRT_COMMAND = 'workon rynda'
+
+
+@task
+def server():
+    with prefix(LOCAL_VIRT_ACTIVATE), prefix(VIRT_COMMAND):
+        local("./manage.py runserver --settings=Rynda.settings.local")
 
 
 @task
@@ -18,9 +26,9 @@ def test(app=''):
 
 @task
 def requirements(settings='base'):
-    req = REQUIREMENT_SET.get(settings, REQUIREMENT_SET.get('base'))
-    with prefix(VIRT_ACTIVATE), prefix(VIRT_COMMAND):
-        local('pip install -r %s' % req)
+    req = fabfile.REQUIREMENT_SET.get(settings, fabfile.REQUIREMENT_SET.get('base'))
+    with prefix(LOCAL_VIRT_ACTIVATE), prefix(VIRT_COMMAND):
+        local('pip install -r %s' % req, shell='/bin/zsh')
 
 
 @task
