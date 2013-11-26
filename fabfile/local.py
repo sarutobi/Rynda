@@ -1,5 +1,7 @@
 # -*- coding: utf-8 -*-
 
+from functools import wraps
+
 from fabric.api import *
 
 import fabfile
@@ -11,17 +13,31 @@ LOCAL_VIRT_ACTIVATE = 'source ~/.zshrc'
 VIRT_COMMAND = 'workon rynda'
 
 
+def inside_virtualenv(func):
+    """ Decorator for virtualenv """
+    @wraps(func)
+    def inner(*args, **kwargs):
+        with prefix(LOCAL_VIRT_ACTIVATE), prefix(VIRT_COMMAND):
+            return func(*args, **kwargs)
+    return inner
+
+
 @task
+def manage(command='help'):
+    local("python manage.py " + command, shell='/bin/zsh')
+
+
+@task
+@inside_virtualenv
 def server():
-    with prefix(LOCAL_VIRT_ACTIVATE), prefix(VIRT_COMMAND):
-        local("./manage.py runserver --settings=Rynda.settings.local")
+    manage("runserver --settings=Rynda.settings.local")
 
 
 @task
+@inside_virtualenv
 def test(app=''):
-    with prefix(LOCAL_VIRT_ACTIVATE), prefix(VIRT_COMMAND):
-        command = "./manage.py test --settings=Rynda.settings.test %s" % app
-        local(command, shell='/bin/zsh')
+    command = "test --settings=Rynda.settings.test %s" % app
+    manage(command)
 
 
 @task
@@ -33,5 +49,4 @@ def requirements(settings='base'):
 
 @task
 def stage():
-    with prefix(LOCAL_VIRT_ACTIVATE), prefix(VIRT_COMMAND):
-        local("./manage.py runserver 0.0.0.0:8000 --settings=Rynda.settings.local_stage")
+    manage("runserver 0.0.0.0:8000 --settings=Rynda.settings.local_stage")
