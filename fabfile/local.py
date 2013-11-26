@@ -41,10 +41,19 @@ def test(app=''):
 
 
 @task
-def requirements(settings='base'):
-    req = fabfile.REQUIREMENT_SET.get(settings, fabfile.REQUIREMENT_SET.get('base'))
-    with prefix(LOCAL_VIRT_ACTIVATE), prefix(VIRT_COMMAND):
-        local('pip install -r %s' % req, shell='/bin/zsh')
+def pip(req_file='', upgrade=False):
+    if upgrade:
+        key = "-U"
+    else:
+        key = ""
+    command = 'pip install -r %(file)s %(key)s' % {'file': req_file, 'key': key}
+    local(command, shell='/bin/zsh')
+
+
+@task
+@inside_virtualenv
+def install_req(req_file='', upgrade=False):
+    pip(req_file, upgrade)
 
 
 @task
