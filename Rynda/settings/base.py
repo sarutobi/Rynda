@@ -17,6 +17,8 @@ SITE_ROOT = here('..', '..')
 DEBUG = False
 TEMPLATE_DEBUG = DEBUG
 
+PRODUCTION = False
+
 ADMINS = (
     # ('Your Name', 'your_email@example.com'),
 )
@@ -116,6 +118,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     'django.contrib.messages.context_processors.messages',
     # required by django-admin-tools
     'django.core.context_processors.request',
+    'Rynda.core.context_processors.production_context',
 )
 MIDDLEWARE_CLASSES = (
     'django.middleware.common.CommonMiddleware',
@@ -209,5 +212,5 @@ LOGGING = {
     }
 }
 
-EXTERNAL = False
+
 LOGIN_REDIRECT_URL = '/'

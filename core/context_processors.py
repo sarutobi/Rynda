@@ -1,11 +1,13 @@
 # -*- coding: utf-8 -*-
 #Core context processors for Rynda project
 
+from django.conf import settings
+
 from .models import Subdomain, Category, CategoryGroup
 
 
 def subdomains_context(request):
-    '''Create a subdomains context lists'''
+    """ Create a subdomains context lists. """
     subdomains = list(
         Subdomain.objects
         .values('id', 'url', 'title', 'isCurrent')
@@ -28,10 +30,15 @@ def subdomains_context(request):
 
 
 def categories_context(request):
-    '''Categories hierarchy'''
+    """ Categories hierarchy. """
     cats = CategoryGroup.objects.values('id', 'name').all()
     tree = [c for c in cats]
     for l in tree:
         l['children'] = [c for c in Category.objects.values(
             'id', 'name').filter(group=l['id'])]
     return {'categories': tree, }
+
+
+def production_context(request):
+    """ Add production mode flag. """
+    return {'production': settings.PRODUCTION, }
