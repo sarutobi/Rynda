@@ -7,6 +7,7 @@ from factory import django, fuzzy
 from test.factories import UserFactory
 from test.utils import lorem_ipsum
 
+from geozones.factories import LocationFactory
 from .models import Message
 
 
@@ -17,12 +18,19 @@ def point_gen(num):
 
 
 class MessageFactory(django.DjangoModelFactory):
-    '''
-    Factory for messages
-    '''
+    """ Factory for messages. """
     FACTORY_FOR = Message
 
     message = lorem_ipsum()
     user = factory.SubFactory(UserFactory)
     messageType = fuzzy.FuzzyChoice(
         (Message.REQUEST, Message.OFFER, Message.INFO))
+    is_virtual = fuzzy.FuzzyChoice((True, False))
+
+    @factory.lazy_attribute
+    def linked_location(self):
+        if self.is_virtual:
+            ret = None
+        else:
+            ret = LocationFactory()
+        return ret

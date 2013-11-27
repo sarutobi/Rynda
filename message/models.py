@@ -77,8 +77,7 @@ class Message(models.Model):
         choices=TYPES_CHOICE,
         db_column='message_type',
         verbose_name=_('message type'),)
-    # This is registered user, and this user can be not the same person,
-    # who need help.
+    # This is registered user, possible not a man, who really need help.
     # TODO Create a different contact table to store real person, who need help
     user = models.ForeignKey(
         User,
@@ -92,6 +91,9 @@ class Message(models.Model):
         max_length=255,
         verbose_name=_("source"),
         blank=True)
+
+    is_virtual = models.BooleanField(
+        default=False, verbose_name=_('is virtual'))
 
     # Moderator's fields
 

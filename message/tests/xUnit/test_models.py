@@ -10,7 +10,9 @@ from test.factories import UserFactory
 
 
 class TestMessage(TestCase):
-    ''' Test core message functionality '''
+
+    """ Test core message functionality. """
+
     def setUp(self):
         self.user = UserFactory()
         self.region = RegionFactory()
@@ -18,11 +20,11 @@ class TestMessage(TestCase):
             user=self.user)
 
     def test_message_unicode(self):
-        """ Test for message __unicode__ method"""
+        """ Test for message __unicode__ method. """
         self.assertEqual(self.message.title, "%s" % self.message)
 
     def test_message_flags(self):
-        """ Testing message default flags """
+        """ Testing message default flags. """
         self.assertFalse(self.message.is_active)
         self.assertFalse(self.message.is_important)
         self.assertTrue(self.message.is_anonymous)
@@ -30,15 +32,35 @@ class TestMessage(TestCase):
         self.assertTrue(self.message.allow_feedback)
 
     def test_message_save(self):
-        """ Test for double save messages """
+        """ Test for double save messages. """
         self.message.save()
         self.assertEqual(1, len(Message.objects.all()))
         self.assertIsNotNone(self.message.pk)
         self.message.delete()
 
     def test_message_status(self):
-        """ Test for default message status """
+        """ Test for default message status. """
         self.assertEquals(self.message.status, Message.NEW)
+
+
+class TestVirtualMessage(TestCase):
+
+    """ Tests for virtual messages.
+
+    Virtual messages can't be linked to any location in the map. This class of
+    messages can be resolved distantly.
+
+    """
+
+    def setUp(self):
+        self.virtual_message = MessageFactory(is_virtual=True)
+        self.regular_message = MessageFactory(is_virtual=False)
+
+    def test_virtual_location(self):
+        self.assertIsNone(self.virtual_message.linked_location)
+
+    def test_regular_message(self):
+        self.assertIsNotNone(self.regular_message.linked_location)
 
 
 class TestMessageCategories(TestCase):
