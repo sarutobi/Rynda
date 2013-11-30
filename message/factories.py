@@ -5,9 +5,10 @@ import random
 import factory
 from factory import django, fuzzy
 from test.factories import UserFactory
-from test.utils import lorem_ipsum
+from test.utils import FuzzyText
 
 from geozones.factories import LocationFactory
+from core.factories import SubdomainFactory, CategoryFactory
 from .models import Message
 
 
@@ -21,11 +22,16 @@ class MessageFactory(django.DjangoModelFactory):
     """ Factory for messages. """
     FACTORY_FOR = Message
 
-    message = lorem_ipsum()
-    user = factory.SubFactory(UserFactory)
+    title = FuzzyText()
+    message = FuzzyText(length=200)
     messageType = fuzzy.FuzzyChoice(
         (Message.REQUEST, Message.OFFER, Message.INFO))
+    subdomain = factory.SubFactory(SubdomainFactory)
+    # category = factory.SubFactory(CategoryFactory)
+    is_anonymous = True
+    allow_feedback = True
     is_virtual = fuzzy.FuzzyChoice((True, False))
+    user = factory.SubFactory(UserFactory)
 
     @factory.lazy_attribute
     def linked_location(self):
@@ -34,3 +40,12 @@ class MessageFactory(django.DjangoModelFactory):
         else:
             ret = LocationFactory()
         return ret
+
+    @factory.post_generation
+    def category(self, create, extracted, **kwargs):
+        if not create:
+            return
+
+        if extracted:
+            for cat in extracted:
+                self.category.add(cat)
