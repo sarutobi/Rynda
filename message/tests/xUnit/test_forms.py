@@ -4,14 +4,13 @@
 from django import forms
 from django.test import TestCase
 
-from core.factories import CategoryFactory
+from core.factories import CategoryFactory, SubdomainFactory
 from geozones.factories import RegionFactory
 from message.factories import MessageFactory
 from message.forms import (
     MessageForm, UserMessageForm, RequestForm, OfferForm, InformationForm)
 from message.models import Message, Category
 
-from test.utils import lorem_ipsum
 from test.factories import UserFactory
 
 
@@ -19,8 +18,10 @@ class TestBaseMessageForm(TestCase):
     """Base message form tests"""
     def setUp(self):
         self.user = UserFactory()
+        subdomain = SubdomainFactory()
         self.data = MessageFactory.attributes(
-            create=False, extra={'user': self.user, }
+            create=False, extra={
+                'user': self.user, 'subdomain': subdomain.pk, }
         )
 
     def test_send_data(self):
@@ -37,6 +38,20 @@ class TestBaseMessageForm(TestCase):
         form = MessageForm(self.data)
         self.assertFalse(form.is_valid())
 
+    # def test_virtual_message(self):
+        # virtual_message = MessageFactory.attributes(
+            # create=False, extra={'user': self.user, 'is_virtual': True}
+        # )
+        # form = MessageForm(data=virtual_message)
+        # self.assertTrue(form.is_valid())
+        # msg = form.save(commit=False)
+        # self.assertIsNone(msg.linked_location)
+
+    # def test_ordinal_message(self):
+        # form = MessageForm(data=self.data)
+        # msg = form.save(commit=False)
+        # self.assertEquals(self.data['linked_location'], msg.linked_location)
+
 
 class TestUserMessageForm(TestCase):
     def setUp(self):
@@ -52,12 +67,12 @@ class TestFormTypes(TestCase):
 
     def setUp(self):
         self.region = RegionFactory()
-        self.data = {
-            'title': lorem_ipsum(words_count=3),
-            'message': lorem_ipsum(),
-            'georegion': self.region.pk,
-            'messageType': Message.REQUEST,
-        }
+        subdomain = SubdomainFactory()
+        self.data = MessageFactory.attributes(
+            create=False, extra={
+                'messageType': Message.REQUEST, 'subdomain': subdomain.pk,
+            }
+        )
 
     def test_request_form(self):
         form = RequestForm()
@@ -87,16 +102,16 @@ class TestRequestCategory(TestCase):
         self.cats = list()
         for x in xrange(5):
             self.cats.append(CategoryFactory())
-        self.user = UserFactory()
-        self.region = RegionFactory()
-#        self.type_request = MessageTypeFactory()
+        # self.user = UserFactory()
+        # self.region = RegionFactory()
+# #        self.type_request = MessageTypeFactory()
         self.data = {
-            'message': lorem_ipsum(),
-            'user_id': self.user,
-            'location_0': 25.0,
-            'location_1': 50.0,
+            # 'message': lorem_ipsum(),
+            # 'user_id': self.user,
+            # 'location_0': 25.0,
+            # 'location_1': 50.0,
             'category': [x.pk for x in self.cats],
-            'address': lorem_ipsum(words_count=4)
+            # 'address': lorem_ipsum(words_count=4)
         }
 
     def tearDown(self):
