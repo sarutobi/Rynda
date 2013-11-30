@@ -6,6 +6,7 @@ from django.test import TestCase
 
 from core.factories import CategoryFactory
 from geozones.factories import RegionFactory
+from message.factories import MessageFactory
 from message.forms import (
     MessageForm, UserMessageForm, RequestForm, OfferForm, InformationForm)
 from message.models import Message, Category
@@ -18,20 +19,9 @@ class TestBaseMessageForm(TestCase):
     """Base message form tests"""
     def setUp(self):
         self.user = UserFactory()
-        self.data = {
-            'title': lorem_ipsum(words_count=3),
-            'message': lorem_ipsum(),
-            'messageType': Message.REQUEST,
-        }
-
-    def tearDown(self):
-        self.region = None
-        self.user.delete()
-
-#    def test_form_type(self):
-#        self.assertEqual(
-#            self.type_request.pk,
-#            self.form.fields['messageType'].initial)
+        self.data = MessageFactory.attributes(
+            create=False, extra={'user': self.user, }
+        )
 
     def test_send_data(self):
         form = MessageForm(self.data)
@@ -40,7 +30,7 @@ class TestBaseMessageForm(TestCase):
         msg = form.save(commit=False)
         self.assertIsNotNone(msg)
         self.assertEqual(Message.NEW, msg.status)
-        self.assertEqual(Message.REQUEST, msg.messageType)
+        self.assertEqual(self.data['messageType'], msg.messageType)
 
     def test_lost_message(self):
         self.data["message"] = ""
