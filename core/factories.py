@@ -2,9 +2,10 @@
 
 import factory
 
-from factory import django
+from factory import django, fuzzy
 
-from .models import Category, CategoryGroup
+from test.utils import FuzzyText
+from .models import Category, CategoryGroup, Subdomain
 
 
 #class CityFactory(factory.Factory):
@@ -29,3 +30,14 @@ class CategoryFactory(django.DjangoModelFactory):
     name = factory.Sequence(lambda n: "Category %s" % n)
     group = factory.SubFactory(CategoryGroupFactory)
     order = factory.Sequence(lambda n: n)
+
+
+class SubdomainFactory(django.DjangoModelFactory):
+    FACTORY_FOR = Subdomain
+
+    url = FuzzyText()
+    title = FuzzyText()
+    isCurrent = False
+    status = Subdomain.ACTIVE
+    order = fuzzy.FuzzyInteger(0)
+    disclaimer = FuzzyText()
