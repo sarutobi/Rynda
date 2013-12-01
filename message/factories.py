@@ -8,14 +8,14 @@ from test.factories import UserFactory
 from test.utils import FuzzyText
 
 from geozones.factories import LocationFactory
-from core.factories import SubdomainFactory, CategoryFactory
+from core.factories import SubdomainFactory
 from .models import Message
 
 
-def point_gen(num):
-    latitude = random.uniform(-90.0, 90.0)
-    longitude = random.uniform(-180.0, 180.0)
-    return "POINT(%f %f)" % (longitude, latitude)
+# def point_gen(num):
+    # latitude = random.uniform(-90.0, 90.0)
+    # longitude = random.uniform(-180.0, 180.0)
+    # return "POINT(%f %f)" % (longitude, latitude)
 
 
 class MessageFactory(django.DjangoModelFactory):
@@ -32,6 +32,11 @@ class MessageFactory(django.DjangoModelFactory):
     allow_feedback = True
     is_virtual = fuzzy.FuzzyChoice((True, False))
     user = factory.SubFactory(UserFactory)
+    source = fuzzy.FuzzyChoice(("", FuzzyText()))
+    is_active = False
+    is_important = False
+    is_removed = False
+    status = Message.NEW
 
     @factory.lazy_attribute
     def linked_location(self):
