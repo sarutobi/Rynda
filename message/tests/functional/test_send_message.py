@@ -34,7 +34,17 @@ class TestSendRequestMessage(WebTest):
         form['is_anonymous'] = self.data['is_anonymous']
         form['allow_feedback'] = self.data['allow_feedback']
         form.submit()
-        self.assertEquals(before +1, Message.objects.count())
+        self.assertEquals(before + 1, Message.objects.count())
+
+    def test_message_user(self):
+        form = self.page.forms['mainForm']
+        form['title'] = self.data['title']
+        form['message'] = self.data['message']
+        form['is_anonymous'] = self.data['is_anonymous']
+        form['allow_feedback'] = self.data['allow_feedback']
+        form.submit()
+        msg = Message.objects.get()
+        self.assertEquals(msg.user, self.user)
 #    def test_anonymous_form(self):
 #        form = self.app.get('/message/pomogite/dobavit').forms['mainForm']
 #        self.assertIsNone(form['user'])
