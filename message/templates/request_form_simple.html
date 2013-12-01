@@ -12,13 +12,13 @@
         </div>
 		
         <div class="relative mt10 mb10">		
-			<span class="attention">
-				Обратите внимание, что поля, помеченные знаком * обязательны для заполнения.
-			</span>
+            <span class="attention">
+                Обратите внимание, что поля, помеченные знаком * обязательны для заполнения.
+            </span>
         </div>
         <form id="mainForm" action="" method='post'>
         {% csrf_token%}
-        {{form.errors}}
+        {{ form.errors }}
 
         {% for f in form.hidden_fields %}
         {{ f }}
@@ -26,13 +26,18 @@
         <div class="column_container width_fixer" id="nh1column">
         <div>
             <h3>Опишите вашу проблему</h3>
-            {{form.title.label_tag}}
-            {{form.title}}
+            {{ form.title.label_tag }}
+            {{ form.title }}
             <br />
-            *{{form.message.label_tag}}
-            {{form.message}}
-            <div id="messageTextError" class="validationError">{{form.message.errors}}</div>
+            *{{ form.message.label_tag }}
+            {{ form.message }}
+            <div id="messageTextError" class="validationError">{{ form.message.errors }}</div>
         </div>
+        <div>
+            {{ form.is_anonymous.label_tag }}{{ form.is_anonymous }}
+            {{ form.allow_feedback.label_tag }}{{ form.allow_feedback }}
+        </div>
+        <!--
         <div>
             <h3>Расскажите о себе</h3>
 
@@ -72,6 +77,7 @@
         </div>
         </div>
         {{ form.location }}
+        -->
         <input type='submit'>
         </form>
     </div>
