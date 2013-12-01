@@ -76,76 +76,92 @@ class Message(models.Model):
     messageType = models.IntegerField(
         choices=TYPES_CHOICE,
         db_column='message_type',
-        verbose_name=_('message type'),)
+        verbose_name=_('message type'),
+    )
     # This is registered user, possible not a man, who really need help.
     # TODO Create a different contact table to store real person, who need help
     user = models.ForeignKey(
         User,
         verbose_name=_("User"),
         editable=False,
-        db_column='user_id',)
+        db_column='user_id',
+    )
 
     # Optional fields
     # Message original source
     source = models.CharField(
         max_length=255,
         verbose_name=_("source"),
-        blank=True)
+        blank=True
+    )
 
     is_virtual = models.BooleanField(
-        default=False, verbose_name=_('is virtual'))
+        default=False, verbose_name=_('is virtual')
+    )
 
     # Moderator's fields
 
     is_active = models.BooleanField(
-        default=False, verbose_name=_('active'))
+        default=False, verbose_name=_('active')
+    )
     is_important = models.BooleanField(
-        default=False, verbose_name=_('important'))
+        default=False, verbose_name=_('important')
+    )
     is_anonymous = models.BooleanField(
-        default=True, verbose_name=_('hide contacts'))
+        default=True, verbose_name=_('hide contacts')
+    )
     is_removed = models.BooleanField(
-        default=False, verbose_name=_('removed'))
+        default=False, verbose_name=_('removed')
+    )
     allow_feedback = models.BooleanField(
-        default=True, verbose_name=_('allow feedback'))
+        default=True, verbose_name=_('allow feedback')
+    )
 
     status = models.SmallIntegerField(
         choices=MESSAGE_STATUS,
         verbose_name=_('status'),
-        default=NEW, blank=True, null=True)
+        default=NEW, blank=True, null=True
+    )
 
     #Internal fields
     date_add = models.DateTimeField(
         auto_now_add=True,
         db_column='date_add',
-        editable=False)
+        editable=False
+    )
     last_edit = models.DateTimeField(
         auto_now=True,
         db_column='date_modify',
-        editable=False)
+        editable=False
+    )
     expired_date = models.DateTimeField(
         verbose_name=_("expired at"),
-        blank=True, null=True)
+        blank=True, null=True
+    )
     edit_key = models.CharField(max_length=40, blank=True)
     sender_ip = models.IPAddressField(
         blank=True, null=True,
         editable=False,
-        verbose_name=_("sender IP"))
+        verbose_name=_("sender IP")
+    )
 
     #Links to core models
     linked_location = models.ForeignKey(
         Location,
-        null=True, blank=True)
+        null=True, blank=True
+    )
     category = models.ManyToManyField(
         Category,
         db_table='messagecategories',
         symmetrical=False,
         verbose_name=_("message categories"),
-        null=True,
-        blank=True)
+        null=True, blank=True
+    )
     subdomain = models.ForeignKey(
         Subdomain, db_column='subdomain_id',
         null=True, blank=True,
-        verbose_name=_('subdomain'))
+        verbose_name=_('subdomain')
+    )
 
     def __unicode__(self):
         return self.title
