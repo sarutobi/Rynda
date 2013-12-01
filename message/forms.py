@@ -5,7 +5,6 @@ from django.core.exceptions import ValidationError
 from django.utils.translation import ugettext as _
 
 from core.widgets import CategoryTree
-from geozones.widgets import GeolocationWidget
 from message.models import Message
 
 
