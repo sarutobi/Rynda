@@ -38,7 +38,7 @@ class TestSendRequestMessage(WebTest):
 
 
 class TestRequestMessageParameters(WebTest):
-    """ Test for new request parameters """
+    """ Tests for new request parameters """
     def setUp(self):
         self.user = UserFactory()
         self.data = MessageFactory.attributes(create=False)
