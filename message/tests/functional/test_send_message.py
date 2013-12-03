@@ -42,22 +42,26 @@ class TestRequestMessageParameters(WebTest):
     def setUp(self):
         self.user = UserFactory()
         self.data = MessageFactory.attributes(create=False)
-        form = self.app.get(
+        self.form = self.app.get(
             reverse('create-request'), user=self.user.username
         ).forms['mainForm']
-        form['title'] = self.data['title']
-        form['message'] = self.data['message']
-        form['is_anonymous'] = self.data['is_anonymous']
-        form['allow_feedback'] = self.data['allow_feedback']
-        form.submit()
+
+    def send_form(self):
+        self.form['title'] = self.data['title']
+        self.form['message'] = self.data['message']
+        self.form['is_anonymous'] = self.data['is_anonymous']
+        self.form['allow_feedback'] = self.data['allow_feedback']
+        self.form.submit()
 
     def test_message_user(self):
         """ Test message author """
+        self.send_form()
         msg = Message.objects.get()
         self.assertEquals(msg.user, self.user)
 
     def test_message_flags(self):
         """ Test default message flags """
+        self.send_form()
         msg = Message.objects.get()
         self.assertEquals(Message.NEW, msg.status)
         self.assertFalse(msg.is_removed)
