@@ -70,3 +70,17 @@ class TestRequestMessageParameters(WebTest):
         self.assertFalse(msg.is_virtual)
         self.assertFalse(msg.is_important)
         self.assertFalse(msg.is_active)
+
+    def test_nonanonymous_message(self):
+        """ Send non-anonymous message """
+        self.data['is_anonymous'] = False
+        self.send_form()
+        msg = Message.objects.get()
+        self.assertFalse(msg.is_anonymous)
+
+    def test_no_feedback(self):
+        """ Send message and do not want feedback """
+        self.data['allow_feedback'] = False
+        self.send_form()
+        msg = Message.objects.get()
+        self.assertFalse(msg.allow_feedback)
