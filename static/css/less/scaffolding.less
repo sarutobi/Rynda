@@ -62,7 +62,10 @@ p {
 }
 
 #feedback {
-    background: @white;
+    background: @lightBlueGray;
+    border-top: 1px solid @hr_bordershadow;
+    border-left: 1px solid @vr_bordershadow;
+    .top_rounded(2px);
     ul {
         padding-bottom: 20px;
         li {
@@ -73,6 +76,12 @@ p {
                 font-size: 14px;
             }
         }
+    }
+    #bottom_border {
+        background: url("i/actual_rec_bg.png") repeat-x bottom;
+        height: 10px;
+        bottom: 0;
+        margin-top: 15px;
     }
 }
 
@@ -89,6 +98,8 @@ p {
     left: 20px;
     padding: 4px 6px;
     background:#a4bcc3;
+    border-bottom: 1px solid @hr_bordershadow;
+    border-right: 1px solid @vr_bordershadow;
     display: inline-block;
 }
 
