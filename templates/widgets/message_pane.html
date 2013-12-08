@@ -1,21 +1,21 @@
 <div class="span4 message_pane labelled clearfix">
     <div class='helper'>{{ helper_title }}</div>
     {% if requests %}
-        <ul id="requestsList" class="no_list triplelist">
+        <ul id="requestsList" class="triplelist">
         {% for m in messages %}
-        <li>
-            <div class="triple_date">
-                {{ m.date_add|date:"d.m" }}<br />
-                <span class="triple_year">{{m.date_add|date:"Y"}}</span>
-            </div>
-            <a class="triple_link" href="/message/{{ m.id }}" title="Просьба о помощи #{{ m.id }}{{ m.title }}">
-                {% if m.title %}
-                    {{ m.title }}
-                {% else %}
-                    Сообщение {{ m.id }}
-                {% endif %}
-            </a>
-        </li>
+            <li>
+                <div class="triple_date">
+                    {{ m.date_add|date:"d.m" }}<br />
+                    <span class="triple_year">{{m.date_add|date:"Y"}}</span>
+                </div>
+                <a class="triple_link" href="/message/{{ m.id }}" title="Просьба о помощи #{{ m.id }}{{ m.title }}">
+                    {% if m.title %}
+                        {{ m.title }}
+                    {% else %}
+                        Сообщение {{ m.id }}
+                    {% endif %}
+                </a>
+            </li>
         {% endfor %}
         </ul>
         <a id="requestsMore" href="/message/pomogite" class="alignright green triple_more_info" title="Все просьбы  о помощи &raquo;"><strong>Другие просьбы о помощи&#8230;</strong></a>
