@@ -69,5 +69,12 @@
     // width: .span(4);
     ul {
         padding-left: 0;
+        li {
+            padding: 14px 14px 14px 14px;
+            background: url(i/triple_li_bg.png) no-repeat bottom center;
+            &:hover {
+                background: darken(desaturate(@lightBlueGray, 20%), 8%);
+            }
+        }
     }
 }
