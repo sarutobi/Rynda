@@ -29,9 +29,43 @@
         color: @white;
         text-decoration: underline;
     }
+}
+
+#hub_tabs {
     ul {
-        padding: 0;
-        margin: 0;
+        li{
+            background: #a4bcc3;
+            &:first-child{
+                width: 30px;
+                background: url(i/home.png) no-repeat center #a4bcc3;
+                span {
+                    display: none;
+                }
+                a {
+                    text-decoration: none;
+                }
+            }
+
+            &.tab_active{
+                background-color: #fcfdfe !important;
+                height: 24px;
+                padding-top: 6px;
+                margin-left: 0px;
+                margin-top: 1px;
+                color: #6d6d6d;
+                a {
+                    color: #6d6d6d;
+                }
+            }
+            &.tab_crysis {
+                background: @activeBackground;
+            }
+
+            a {
+                color: @white;
+            }
+                                        
+        }    
     }
 }
 
