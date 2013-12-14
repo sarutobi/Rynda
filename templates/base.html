@@ -52,7 +52,14 @@
 
     <section class="main">
         <div class="clearfix" id="header">
-            {% block buttons %}{% endblock %}
+            {%block buttons%}
+                <div id="want_to_help_button">
+                    <a href="/message/pomogu/dobavit" class="no_text" title="Хочу помочь">Хочу помочь</a>
+                </div>
+                <div id="need_help_button">
+                    <a href="/message/pomogite/dobavit" class="no_text" title="Нужна помощь">Нужна помощь</a>
+                </div>
+            {%endblock%}
             <h1 class="no_text"><a href="/" title="Rynda.org — портал добровольцев">Rynda</a></h1>
         </div>
         <div class='clearfix'>
