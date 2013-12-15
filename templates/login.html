@@ -1,11 +1,11 @@
 {% extends 'base.html' %}
 {% load url from future %}
 
-{%block maincontent%}
+{% block maincontent %}
     <!-- Контент модального окна для аутентификации: -->
     <div >
-        <div id="authModal">
-            {{form.errors}}
+        <div id="authModal" class="span6">
+            {{ form.errors }}
             <form id="loginForm" action="{%url 'django.contrib.auth.views.login' %}" method="post">
                 {% csrf_token %}
                 <div>

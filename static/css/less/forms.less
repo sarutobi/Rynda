@@ -1,9 +1,11 @@
 input[type="text"],
+input[type="password"],
 input[type="select"],
 input[type="submit"] {
     width: 100%;
 }
 
+input[type="password"],
 input[type="text"] {
   color: #2d4b4f;
   background: #f4f4f4;
@@ -15,6 +17,14 @@ input[type="text"] {
   height: 29px;
   margin-bottom: 4px;
 }
+
+#authModal {
+    min-width: 200px;
+    min-height: 220px;
+    background: @white;
+    margin: 0 auto !important;
+}
+
 
 .formField {
   background: #F4F2F4;
@@ -77,24 +87,12 @@ input[type="text"] {
   margin: 2px 0px 8px 0px;
   font-family: Tahoma, Geneva, sans-serif;
 }
-#loginForm {
-  margin: 20px 0 15px 85px;
-}
 .login_box_form_container #loginForm {
   margin: 0;
 }
 #loginForm input[type=text],
 .login_box_input {
-  color: #2d4b4f;
-  background: #f4f4f4;
-  border-top: 1px solid #c8c8c8;
-  border-left: 2px solid #C8C8C8;
-  border-bottom: 1px solid #f9f9f9;
-  border-right: 1px solid #f8f8f8;
-  width: 224px;
-  padding: 0px 7px 0px 7px;
-  height: 29px;
-  margin: 4px 0px 10px;
+   margin: 4px 0px 10px;
 }
 .login_box_submit {
   background: #228d9c;
@@ -138,10 +136,6 @@ input[type="text"] {
 }
 #cboxLoadedContent #authModal #loginForm #authmodal_button_panel #loginSubmit {
   margin-left: 15px;
-}
-#authModal {
-  min-width: 200px;
-  min-height: 220px;
 }
 #loginSubmit {
   background: #228d9d;
