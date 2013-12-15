@@ -1,3 +1,21 @@
+input[type="text"],
+input[type="select"],
+input[type="submit"] {
+    width: 100%;
+}
+
+input[type="text"] {
+  color: #2d4b4f;
+  background: #f4f4f4;
+  border-top: 1px solid #c8c8c8;
+  border-left: 2px solid #e8e8e8;
+  border-bottom: 1px solid #f9f9f9;
+  border-right: 1px solid #f8f8f8;
+  padding: 0px 7px 0px 7px;
+  height: 29px;
+  margin-bottom: 4px;
+}
+
 .formField {
   background: #F4F2F4;
 }
@@ -328,7 +346,7 @@ html body div#colorbox div#cboxWrapper div div#cboxContent div#cboxLoadedContent
 }
 /*greyFilter*/
 .greyFilter {
-  background: #FFF;
+  background: @white;
   padding: 20px;
   border-left: 1px solid #e2e3e3;
 }
@@ -339,28 +357,15 @@ html body div#colorbox div#cboxWrapper div div#cboxContent div#cboxLoadedContent
   height: 32px;
   background: url(i/corner.png) no-repeat;
 }
-#messages_filter input[type=text] {
-  color: #2d4b4f;
-  background: #f4f4f4;
-  border-top: 1px solid #c8c8c8;
-  border-left: 2px solid #e8e8e8;
-  border-bottom: 1px solid #f9f9f9;
-  border-right: 1px solid #f8f8f8;
-  width: 280px;
-  padding: 0px 7px 0px 7px;
-  height: 29px;
-  margin-bottom: 4px;
-}
 #messages_filter .styledSelect {
   width: 274px;
   background-position: -67px -122px;
 }
-#filterForm select,
+/*#filterForm select,
 .filterbox {
-  width: 296px!important;
   margin: 4px 0px;
   padding: 5px 1px 5px 5px;
-}
+}*/
 #messages_filter h4 {
   color: #1b3033;
   font-size: 14px!important;
@@ -386,6 +391,5 @@ input#filterSubmit {
   border-left: 1px solid #2f4d51;
   margin-left: 0px;
   margin-top: 0px!important;
-  width: 296px;
 }
 
