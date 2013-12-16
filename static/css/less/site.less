@@ -100,6 +100,9 @@
   font-size: 10px;
 }
 
+#export_csv {
+    display: none;
+}
 // Classes //
 
 .message_pane {
@@ -122,13 +125,24 @@
     }
 }
 
-.header_container, .header_container_grey {
+#header_container, .header_container_grey {
     height: 50px;
     .top_rounded;
 }
 
-.header_container {
+#header_container {
     background: url(i/h_bg.png) repeat-x;
+    color: @white;
+    h3 {
+        font-size: 18px;
+        //color: @white;
+        padding: 13px 0px 0px 19px;
+        font-weight: normal !important;
+    }
+    div#counter{
+        //color: @white;
+        padding: 13px 13px 0px 0px;
+    }
 }
 
 .header_container_grey {

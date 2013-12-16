@@ -8,14 +8,13 @@
     <div class="span4">
         {% block listfilter %}{% endblock %}
     </div>
-    <div class="column span8 ml50">
-        <div class="header_container rounded_top">
-            <div class="alignright mc_container">
-                <div id="export_csv" class="csv pointer no_text" title="Экспорт списка в CSV">Экспорт списка</div>
-                Всего: <span id="itemsCount">{{ items }}</span>
-
+    <div class="span8 clearfix">
+        <div id="header_container">
+            <div class="floatright" id="counter">
+                <div id="export_csv" class="csv floatright no_text" title="Экспорт списка в CSV">Экспорт списка</div>
+                Всего: <span id="itemsCount">{{ items|default:0 }}</span>
             </div>
-            <h3 class="mb0 rounded_top regulartext_header">{{ listTitleShort }}</h3>
+            <h3>{{ listTitleShort }}</h3>
         </div>
         <div class="message_list" id="mp1">
             <div class="date_select mb10">
@@ -28,10 +27,9 @@
 
             <div id="filterResponseMessage"></div>
             <ul id="itemsList" class="no_list datelist grayDivider">
-            {% block listcontent %}
-            {% endblock %}
+                {% block listcontent %} {% endblock %}
             </ul>
-            <div class="clearfix"></div>
+
             <div id="paginationBlock" class="paginaton mb10">
             <div id="paginationPages" data-current-page="{{ paginator.number }}" class="alignleft list_pagination_div">
                 {% if page_obj.has_previous %}
