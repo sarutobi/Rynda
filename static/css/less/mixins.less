@@ -11,7 +11,7 @@
 }
 
 .offset (@columns) {
-  margin-left: (@gridColumnWidth * @columns) + (@gridGutterWidth * (@columns + 1));
+  margin-left: (@gridColumnWidth * @columns) + (@gridGutterWidth * (@columns + 1)) !important;
 }
 .offsetX (@index) when (@index > 0) {
   (~".offset@{index}") { .offset(@index); }
