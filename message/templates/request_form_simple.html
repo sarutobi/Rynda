@@ -24,20 +24,20 @@
         {{ f }}
         {% endfor %}
         <div class="column_container width_fixer" id="nh1column">
-        <div>
-            <h3>Опишите вашу проблему</h3>
-            {{ form.title.label_tag }}
-            {{ form.title }}
-            <br />
-            *{{ form.message.label_tag }}
-            {{ form.message }}
-            <div id="messageTextError" class="validationError">{{ form.message.errors }}</div>
-        </div>
-        <div>
-            {{ form.is_anonymous.label_tag }}{{ form.is_anonymous }}
-            {{ form.allow_feedback.label_tag }}{{ form.allow_feedback }}
-        </div>
-        <!--
+            <div>
+                <h3>Опишите вашу проблему</h3>
+                {{ form.title.label_tag }}
+                {{ form.title }}
+                <br />
+                *{{ form.message.label_tag }}
+                {{ form.message }}
+                <div id="messageTextError" class="validationError">{{ form.message.errors }}</div>
+            </div>
+            <div>
+                {{ form.is_anonymous.label_tag }}{{ form.is_anonymous }}
+                {{ form.allow_feedback.label_tag }}{{ form.allow_feedback }}
+            </div>
+            {% comment %}
         <div>
             <h3>Расскажите о себе</h3>
 
@@ -77,8 +77,9 @@
         </div>
         </div>
         {{ form.location }}
-        -->
-        <input type='submit'>
+            {% endcomment %}
+            <input type='submit'>
+        </div>
         </form>
     </div>
 </div>
