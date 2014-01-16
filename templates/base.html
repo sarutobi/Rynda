@@ -99,29 +99,29 @@
             <div id="license">&copy; - Платформа «Виртуальная Рында - Атлас помощи», 2011-2013. Лицензия <a href="http://creativecommons.org/licenses/by-nc-sa/3.0/">Creative Commons 3.0 (Атрибуция — Некоммерческое использование — С сохранением условий)</a></div>
         </footer>
     </section>
-  <!-- JavaScript at the bottom for fast page loading -->
+</div>
+</body>
+<!-- JavaScript at the bottom for fast page loading -->
 
-  <script src="{{STATIC_URL}}js/libs/jquery-1.8.1.min.js"></script>
-  <script src="{{STATIC_URL}}js/libs/underscore-min.js"></script>
-  <script src="{{STATIC_URL}}js/libs/backbone-min.js"></script>
-  <script src="{{STATIC_URL}}js/libs/leaflet.js"></script>
-  <script src="{{STATIC_URL}}js/messi.min.js"></script>
-  <script src="{{STATIC_URL}}js/rynda.js"></script>
+<script src="{{STATIC_URL}}js/libs/jquery-1.8.1.min.js"></script>
+<script src="{{STATIC_URL}}js/libs/underscore-min.js"></script>
+<script src="{{STATIC_URL}}js/libs/backbone-min.js"></script>
+<script src="{{STATIC_URL}}js/libs/leaflet.js"></script>
+<script src="{{STATIC_URL}}js/messi.min.js"></script>
+<script src="{{STATIC_URL}}js/rynda.js"></script>
 
-  <!-- scripts concatenated and minified via build script -->
-  
-  <script src="{{STATIC_URL}}js/plugins.js"></script>
-  <script src="{{STATIC_URL}}js/script.js"></script>
-  {% if messages %}
-  <script type='text/javascript'>
-  //Show popup message
-  $(function(){
-    new Messi('{% for message in messages %} {{ message }} {% endfor %}');
-  });
-  </script>
-  {% endif %}
-  {% block scripts %}{% endblock %}
-  <!-- end scripts -->
-  </div>
-  </body>
+<!-- scripts concatenated and minified via build script -->
+
+<script src="{{STATIC_URL}}js/plugins.js"></script>
+<script src="{{STATIC_URL}}js/script.js"></script>
+{% if messages %}
+<script type='text/javascript'>
+//Show popup message
+$(function(){
+new Messi('{% for message in messages %} {{ message }} {% endfor %}');
+});
+</script>
+{% endif %}
+{% block scripts %}{% endblock %}
+<!-- end scripts -->
 </html>
