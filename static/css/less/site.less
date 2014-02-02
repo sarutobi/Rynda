@@ -17,7 +17,7 @@
     background: @lightBlueGray;
     border-top: 1px solid @hr_bordershadow;
     border-left: 1px solid @vr_bordershadow;
-    .top_rounded;
+    .border-top-radius(5px);
 }
 
 #auth_panel {
@@ -75,11 +75,13 @@
     background: @lightBlueGray;
     border-top: 1px solid @hr_bordershadow;
     border-left: 1px solid @vr_bordershadow;
-    .top_rounded(2px);
+    .border-top-radius(2px);
     ul {
         padding-bottom: 20px;
+        list-style-type: none;
         li {
             padding: 0 20px;
+            float: left;
             a {
                 color: @lightGreen;
                 font-weight: bold;
@@ -111,7 +113,7 @@
 // Classes //
 
 .message_pane {
-    .box-sizing;
+    .box-sizing(border-box);
     background: #cee0e4;
     border-top: none;
     border-right: 1px solid #9dc4cd;
@@ -132,7 +134,7 @@
 
 #header_container, .header_container_grey {
     height: 50px;
-    .top_rounded;
+    .border-top-radius(5px);
 }
 
 #header_container {
