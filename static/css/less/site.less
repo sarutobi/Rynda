@@ -35,8 +35,20 @@
 
 #hub_tabs {
     ul {
+        list-style-type: none;
+        margin: 0px;
+        padding: 0px;
         li{
             background: #a4bcc3;
+            float: left;
+            .border-top-radius(4px);
+            width: 118px;
+            text-align: center;
+            height: 22px;
+            margin-right: 1px;
+            margin-top: 7px;
+            padding-top: 3px;
+            text-align: center;
             &:first-child{
                 width: 30px;
                 background: url(i/home.png) no-repeat center #a4bcc3;
@@ -51,9 +63,9 @@
             &.tab_active{
                 background-color: #fcfdfe !important;
                 height: 24px;
-                padding-top: 6px;
+                padding-top: 4px;
                 margin-left: 0px;
-                margin-top: 1px;
+                margin-top: 6px;
                 color: #6d6d6d;
                 a {
                     color: #6d6d6d;
@@ -65,6 +77,7 @@
 
             a {
                 color: @white;
+                text-decoration: none;
             }
                                         
         }    
