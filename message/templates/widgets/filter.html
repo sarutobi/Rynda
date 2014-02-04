@@ -1,44 +1,47 @@
-<div class="header_container_grey rounded_top">
-    <h3>Выберите параметры поиска</h3>
-</div>
-<div class="greyFilter" id="messages_filter">
-    <!--div class="filter_corner"></div-->
-    <form id="filterForm" action="" method='get'>
-        {{ filter.form.messageType.label_tag }} <br />
-        {{ filter.form.messageType }}
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">Выберите параметры поиска</h3>
+    </div>
 
-        {{ filter.form.georegion.label_tag }} <br>
-        {{ filter.form.georegion }}
-        
-        {{ filter.form.subdomain.label_tag }} <br />
-        {{ filter.form.subdomain }}
+    <div class="panel-body" id="messages_filter">
+        <!--div class="filter_corner"></div-->
+        <form id="filterForm" action="" method='get'>
+            {{ filter.form.messageType.label_tag }} <br />
+            {{ filter.form.messageType }}
 
-        {{ filter.form.category.label_tag }}
-        {{ filter.form.category }}
+            {{ filter.form.georegion.label_tag }} <br>
+            {{ filter.form.georegion }}
+            
+            {{ filter.form.subdomain.label_tag }} <br />
+            {{ filter.form.subdomain }}
 
-        <label for="filterUntimed">Как срочно</label>
-        <select name="untimed" id="filterUntimed">
-            <option value="-1">Всё равно</option>
-            <option value="0">Срочные</option>
-            <option value="1">Несрочные</option>
-        </select>
+            {{ filter.form.category.label_tag }}
+            {{ filter.form.category }}
 
-        <input type="text" name="filterString" id="filterString" placeholder="Введите здесь текст для поиска" />
+            <label for="filterUntimed">Как срочно</label>
+            <select name="untimed" id="filterUntimed">
+                <option value="-1">Всё равно</option>
+                <option value="0">Срочные</option>
+                <option value="1">Несрочные</option>
+            </select>
 
-        <input type="submit" id="filterSubmit"  name="filterSubmit" value="Обновить поиск" />
-        {% comment %}
-        <?php if(!empty($filterPersistVars)) {
-            foreach((array)$filterPersistVars as $varName => $value) {
-                if(is_array($value)) {
-                    foreach($value as $arrElementValue) {?>
-        <input type="hidden" class="filterPersistVar" name="<?php echo $varName;?>[]" value="<?php echo $arrElementValue;?>" />
-        <?php       }
-                } else {?>
-        <input type="hidden" class="filterPersistVar" name="<?php echo $varName;?>" value="<?php echo $value;?>" />
-        <?php   }
-            }
-        }?>
-        <!--<img id="filterResponseLoading" src="/images/loading.gif" alt="" style="display: none;" />-->
-        {% endcomment %}
-    </form>
+            <input type="text" name="filterString" id="filterString" placeholder="Введите здесь текст для поиска" />
+
+            <input type="submit" id="filterSubmit"  name="filterSubmit" value="Обновить поиск" />
+            {% comment %}
+            <?php if(!empty($filterPersistVars)) {
+                foreach((array)$filterPersistVars as $varName => $value) {
+                    if(is_array($value)) {
+                        foreach($value as $arrElementValue) {?>
+            <input type="hidden" class="filterPersistVar" name="<?php echo $varName;?>[]" value="<?php echo $arrElementValue;?>" />
+            <?php       }
+                    } else {?>
+            <input type="hidden" class="filterPersistVar" name="<?php echo $varName;?>" value="<?php echo $value;?>" />
+            <?php   }
+                }
+            }?>
+            <!--<img id="filterResponseLoading" src="/images/loading.gif" alt="" style="display: none;" />-->
+            {% endcomment %}
+        </form>
+    </div>
 </div>

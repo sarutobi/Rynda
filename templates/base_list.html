@@ -5,76 +5,78 @@
         <a title="Главная" href="/">Главная</a> &raquo;
         <span title="{{ listTitle }}">{{ listTitleShort }}</span>
     </div>
-    <div class="span4">
-        {% block listfilter %}{% endblock %}
-    </div>
-    <div class="span8 clearfix">
-        <div id="header_container">
-            <div class="floatright" id="counter">
-                <div id="export_csv" class="csv floatright no_text" title="Экспорт списка в CSV">Экспорт списка</div>
-                Всего: <span id="itemsCount">{{ items|default:0 }}</span>
-            </div>
-            <h3>{{ listTitleShort }}</h3>
+    <div class="row">
+        <div class="col-md-4">
+            {% block listfilter %}{% endblock %}
         </div>
-        <div class="message_list" id="mp1">
-            <div class="date_select mb10">
-                <a href="#" class="dateAddedFrom" id="<?php echo mktime(0, 0, 0);?>" title="Только пользователи, зарегистрированные сегодня">За сегодня</a> |
-                <a href="#" class="dateAddedFrom" id="<?php echo strtotime('-3 day', mktime(0, 0, 0));?>" title="Только пользователи, зарегистрированные за последние 3 дня">За 3 дня</a> |
-                <a href="#" class="dateAddedFrom" id="<?php echo strtotime('-1 week', mktime(0, 0, 0));?>" title="Только пользователи, зарегистрированные за последнюю неделю">За неделю</a> |
-                <a href="#" class="dateAddedFrom" id="<?php echo strtotime('-1 month', mktime(0, 0, 0));?>" title="Только пользователи, зарегистрированные за последний месяц">За месяц</a> |
-                <a href="#" class="dateAddedFrom" id="0" title="Пользователи, зарегистрированные за все время">За все время</a><img id="filterResponseLoading" src="/images/white_sm_loader.gif" alt="" style="display: none;" />
+        <div class="col-md-8 panel panel-default">
+            <div class="panel-heading">
+                <div class="floatright" id="counter">
+                    <div id="export_csv" class="csv floatright no_text" title="Экспорт списка в CSV">Экспорт списка</div>
+                    Всего: <span id="itemsCount">{{ items|default:0 }}</span>
+                </div>
+                <h3 class="panel-title">{{ listTitleShort }}</h3>
             </div>
+            <div class="panel-body message_list" id="mp1">
+                <div class="date_select mb10">
+                    <a href="#" class="dateAddedFrom" id="<?php echo mktime(0, 0, 0);?>" title="Только пользователи, зарегистрированные сегодня">За сегодня</a> |
+                    <a href="#" class="dateAddedFrom" id="<?php echo strtotime('-3 day', mktime(0, 0, 0));?>" title="Только пользователи, зарегистрированные за последние 3 дня">За 3 дня</a> |
+                    <a href="#" class="dateAddedFrom" id="<?php echo strtotime('-1 week', mktime(0, 0, 0));?>" title="Только пользователи, зарегистрированные за последнюю неделю">За неделю</a> |
+                    <a href="#" class="dateAddedFrom" id="<?php echo strtotime('-1 month', mktime(0, 0, 0));?>" title="Только пользователи, зарегистрированные за последний месяц">За месяц</a> |
+                    <a href="#" class="dateAddedFrom" id="0" title="Пользователи, зарегистрированные за все время">За все время</a><img id="filterResponseLoading" src="/images/white_sm_loader.gif" alt="" style="display: none;" />
+                </div>
 
-            <div id="filterResponseMessage"></div>
-            <ul id="itemsList" class="no_list datelist grayDivider">
-                {% block listcontent %} {% endblock %}
-            </ul>
+                <div id="filterResponseMessage"></div>
+                <ul id="itemsList" class="no_list datelist grayDivider">
+                    {% block listcontent %} {% endblock %}
+                </ul>
 
-            <div id="paginationBlock" class="paginaton mb10">
-            <div id="paginationPages" data-current-page="{{ paginator.number }}" class="alignleft list_pagination_div">
-                {% if page_obj.has_previous %}
-                    <a class='page' href='{{ paginator_url }}{{ page_obj.previous_page_number }}{{ query_string|urlencode }}'>Назад</a>
-                {% else %}
-                    <span class='page'>Назад</span>
-                {% endif %}
+                <div id="paginationBlock" class="paginaton mb10">
+                <div id="paginationPages" data-current-page="{{ paginator.number }}" class="alignleft list_pagination_div">
+                    {% if page_obj.has_previous %}
+                        <a class='page' href='{{ paginator_url }}{{ page_obj.previous_page_number }}{{ query_string|urlencode }}'>Назад</a>
+                    {% else %}
+                        <span class='page'>Назад</span>
+                    {% endif %}
 
-                {% if paginator_line.first %}
-                    {% for p in paginator_line.first %}
+                    {% if paginator_line.first %}
+                        {% for p in paginator_line.first %}
+                            {% if p != page_obj.number %}
+                                <a class='page' href='{{ paginator_url }}{{ p }}{{ query_string|urlencode }}'>{{ p }}</a>
+                            {% else %}
+                                <span class='current_page'>{{ p }}</span>
+                            {% endif %}
+                        {% endfor %}
+                        ...
+                    {% endif %}
+                    {% for p in paginator_line.window %}
                         {% if p != page_obj.number %}
                             <a class='page' href='{{ paginator_url }}{{ p }}{{ query_string|urlencode }}'>{{ p }}</a>
                         {% else %}
                             <span class='current_page'>{{ p }}</span>
                         {% endif %}
                     {% endfor %}
-                    ...
-                {% endif %}
-                {% for p in paginator_line.window %}
-                    {% if p != page_obj.number %}
-                        <a class='page' href='{{ paginator_url }}{{ p }}{{ query_string|urlencode }}'>{{ p }}</a>
-                    {% else %}
-                        <span class='current_page'>{{ p }}</span>
+
+                    {% if paginator_line.last %}
+                        ...
+                        {% for p in paginate.last %}
+                            {% if p != page_obj.number %}
+                                <a class='page' href='{{ paginator_url }}{{ p }}{{ query_string|urlencode }}'>{{ p }}</a>
+                            {%else%}
+                                <span class='current_page'>{{ p }}</span>
+                            {% endif %}
+                        {% endfor %}
                     {% endif %}
-                {% endfor %}
 
-                {% if paginator_line.last %}
-                    ...
-                    {% for p in paginate.last %}
-                        {% if p != page_obj.number %}
-                            <a class='page' href='{{ paginator_url }}{{ p }}{{ query_string|urlencode }}'>{{ p }}</a>
-                        {%else%}
-                            <span class='current_page'>{{ p }}</span>
-                        {% endif %}
-                    {% endfor %}
-                {% endif %}
+                    {% if page_obj.has_next %}
+                        <a class='page' href='{{ paginator_url }}{{ page_obj.next_page_number }}{{ query_string|urlencode }}'>Вперед</a>
+                    {% else %}
+                        <span class='page'>Вперед</span>
+                    {% endif %}
+                    </div>
 
-                {% if page_obj.has_next %}
-                    <a class='page' href='{{ paginator_url }}{{ page_obj.next_page_number }}{{ query_string|urlencode }}'>Вперед</a>
-                {% else %}
-                    <span class='page'>Вперед</span>
-                {% endif %}
+                    {% block paginator %} {% endblock %}
                 </div>
-
-                {% block paginator %} {% endblock %}
             </div>
         </div>
     </div>
