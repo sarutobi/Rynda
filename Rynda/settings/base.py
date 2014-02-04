@@ -162,6 +162,7 @@ INSTALLED_APPS = (
     'south',
     'social_auth',
     'templated_emails',
+    'widget_tweaks',
     'post_office',
     'message',
     'users',
