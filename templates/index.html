@@ -8,13 +8,15 @@
 {% endblock %}
 
 {% block maincontent %}
-<div id="topwidget" class="span12 labelled" style="height:156px;">
-    <div class='helper'>Как мы работаем</div>
+<div class="row">
+    <div id="topwidget" class="col-md-12 labelled" style="height:156px;">
+        <div class='helper'>Как мы работаем</div>
+    </div>
 </div>
 <div id="locationMap" class="mainPageMapCont clearfix">
-    <div id="mapWithoutFilterForm" {% if request.session.ryndaorg_main_map_shown == 0 %}style="display:none;"{% endif %}>
-        <div id="locationMapCanvas" class="span9 row" style="height: 320px;"></div>
-        <div id='mainPageFilter' class='span3' style='height:320px;background-color:white'></div>
+    <div id="mapWithoutFilterForm"  class="row" {% if request.session.ryndaorg_main_map_shown == 0 %}style="display:none;"{% endif %}>
+        <div id="locationMapCanvas" class="col-md-9" style="height: 320px;"></div>
+        <div id='mainPageFilter' class='col-md-3' style='height:320px;background-color:white'></div>
         <!-- div id="mapResponseMessage" style="display:none;"></div-->
     </div>
 </div>
@@ -68,9 +70,11 @@
 </div>
 {% endif%}
 {% endcomment %}
-{% include "widgets/message_pane.html" with helper_title="Просьбы о помощи" messages=requests %}
-{% include "widgets/message_pane.html" with helper_title="Предложения помощи" messages=offers %}
-{% include "widgets/message_pane.html" with helper_title="Помощь оказана" messages=requests %}
+<div class="row">
+    {% include "widgets/message_pane.html" with helper_title="Просьбы о помощи" messages=requests %}
+    {% include "widgets/message_pane.html" with helper_title="Предложения помощи" messages=offers %}
+    {% include "widgets/message_pane.html" with helper_title="Помощь оказана" messages=requests %}
+</div>
 
 {% comment %}
 <div class="clearfix"></div>    
