@@ -1,33 +1,44 @@
+{% load widget_tweaks %}
 <div class="panel panel-default">
     <div class="panel-heading">
         <h3 class="panel-title">Выберите параметры поиска</h3>
     </div>
 
     <div class="panel-body" id="messages_filter">
-        <!--div class="filter_corner"></div-->
+
         <form id="filterForm" action="" method='get'>
-            {{ filter.form.messageType.label_tag }} <br />
-            {{ filter.form.messageType }}
+            <div class="form-group">
+                {{ filter.form.messageType.label_tag }}
+                {{ filter.form.messageType|add_class:"form-control" }}
+            </div>
+            <div class="form-group">
+                {{ filter.form.georegion.label_tag }}
+                {{ filter.form.georegion|add_class:"form-control" }}
+            </div>
 
-            {{ filter.form.georegion.label_tag }} <br>
-            {{ filter.form.georegion }}
-            
-            {{ filter.form.subdomain.label_tag }} <br />
-            {{ filter.form.subdomain }}
+            <div class="form-group">
+                {{ filter.form.subdomain.label_tag }}
+                {{ filter.form.subdomain|add_class:"form-control" }}
+            </div>
 
-            {{ filter.form.category.label_tag }}
-            {{ filter.form.category }}
+            <div class="form-group">
+                {{ filter.form.category.label_tag }}
+                {{ filter.form.category|add_class:"form-control" }}
+            </div>
 
-            <label for="filterUntimed">Как срочно</label>
-            <select name="untimed" id="filterUntimed">
-                <option value="-1">Всё равно</option>
-                <option value="0">Срочные</option>
-                <option value="1">Несрочные</option>
-            </select>
+            <div class="form-group">
+                <label for="filterUntimed">Как срочно</label>
+                <select class="form-control" name="untimed" id="filterUntimed">
+                    <option value="-1">Всё равно</option>
+                    <option value="0">Срочные</option>
+                    <option value="1">Несрочные</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control" name="filterString" id="filterString" placeholder="Введите здесь текст для поиска" />
+            </div>
 
-            <input type="text" name="filterString" id="filterString" placeholder="Введите здесь текст для поиска" />
-
-            <input type="submit" id="filterSubmit"  name="filterSubmit" value="Обновить поиск" />
+            <input type="submit" id="filterSubmit" class="btn btn-rynda-default form-control" name="filterSubmit" value="Обновить поиск" />
             {% comment %}
             <?php if(!empty($filterPersistVars)) {
                 foreach((array)$filterPersistVars as $varName => $value) {
