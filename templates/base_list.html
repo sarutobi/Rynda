@@ -1,15 +1,16 @@
 {% extends "base.html" %}
 
 {% block maincontent %}
-    <div class="breadcrumbs mb10">
-        <a title="Главная" href="/">Главная</a> &raquo;
-        <span title="{{ listTitle }}">{{ listTitleShort }}</span>
+<div class="breadcrumbs mb10">
+    <a title="Главная" href="/">Главная</a> &raquo;
+    <span title="{{ listTitle }}">{{ listTitleShort }}</span>
+</div>
+<div class="row">
+    <div class="col-md-4">
+        {% block listfilter %}{% endblock %}
     </div>
-    <div class="row">
-        <div class="col-md-4">
-            {% block listfilter %}{% endblock %}
-        </div>
-        <div class="col-md-8 panel panel-default">
+    <div class="col-md-8">
+        <div class="panel panel-default">
             <div class="panel-heading">
                 <div class="floatright" id="counter">
                     <div id="export_csv" class="csv floatright no_text" title="Экспорт списка в CSV">Экспорт списка</div>
@@ -80,7 +81,7 @@
             </div>
         </div>
     </div>
-    <div class="clearfix "></div>
+</div>
 {% endblock %}
 {% comment %}
 <script id="listItemTmpl" type="text/x-jquery-tmpl">
