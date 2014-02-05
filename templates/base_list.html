@@ -10,11 +10,11 @@
         {% block listfilter %}{% endblock %}
     </div>
     <div class="col-md-8">
-        <div class="panel panel-default">
+        <div class="panel panel-rynda-default">
             <div class="panel-heading">
                 <div class="floatright" id="counter">
                     <div id="export_csv" class="csv floatright no_text" title="Экспорт списка в CSV">Экспорт списка</div>
-                    Всего: <span id="itemsCount">{{ items|default:0 }}</span>
+                    Всего: <span class="badge">{{ items|default:0 }}</span>
                 </div>
                 <h3 class="panel-title">{{ listTitleShort }}</h3>
             </div>
