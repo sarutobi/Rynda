@@ -137,7 +137,7 @@ msgstr "IP отправителя"
 
 #: models.py:164
 msgid "message categories"
-msgstr "кстегории сообщения"
+msgstr "категории сообщения"
 
 #: models.py:170
 msgid "subdomain"
