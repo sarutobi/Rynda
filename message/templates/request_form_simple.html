@@ -1,86 +1,110 @@
 {% extends 'base.html'%}
 
+{% load widget_tweaks %}
+
 {% block hubs %}
     {% include "widgets/base_hub.html"  with part='message' %}
 {% endblock %}
 
 {% block maincontent %}
-<div class="span8 offset2 rounded_all" id="content">
-    <div id="formTotal">
-        <div class="header_container rounded_top">
-            <h2 class="no_text">Вам нужна помощь?</h2>
+<div class="col-md-8 col-md-offset-2">
+    <div class="panel panel-rynda-default">
+        <div class="panel-heading">
+            <h2 class="panel-title">Вам нужна помощь?</h2>
         </div>
-		
-        <div class="relative mt10 mb10">		
-            <span class="attention">
-                Обратите внимание, что поля, помеченные знаком * обязательны для заполнения.
-            </span>
-        </div>
-        <form id="mainForm" action="" method='post'>
-        {% csrf_token%}
-        {{ form.errors }}
-
-        {% for f in form.hidden_fields %}
-        {{ f }}
-        {% endfor %}
-        <div class="column_container width_fixer" id="nh1column">
-            <div>
-                <h3>Опишите вашу проблему</h3>
-                {{ form.title.label_tag }}<br />
-                {{ form.title }}
-                <br />
-                *{{ form.message.label_tag }}<br />
-                {{ form.message }}
-                <div id="messageTextError" class="validationError">{{ form.message.errors }}</div>
+                
+        <div class="panel-body">		
+            <div class="alert alert-info">
+                Обратите внимание, что поля, помеченные знаком &#39;*&#39; обязательны для заполнения.
             </div>
-            <div>
-                {{ form.is_anonymous.label_tag }}{{ form.is_anonymous }}<br />
-                {{ form.allow_feedback.label_tag }}{{ form.allow_feedback }}
+
+            <form id="mainForm" action="" method='post'>
+            {% csrf_token %}
+            {% if form.errors %}
+                <div class="alert alert-danger">
+                    {{ form.errors }}
+                </div>
+            {% endif %}
+
+            {% for f in form.hidden_fields %}
+            {{ f }}
+            {% endfor %}
+            <div class="panel panel-default" id="request-data">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Опишите вашу проблему</h3>
+                </div>
+
+                <div class="panel-body">
+                    <div class="form-group">
+                        {{ form.title.label_tag }}
+                        {{ form.title|add_class:"form-control" }}
+                    </div>
+                    <div class="form-group">
+                        *{{ form.message.label_tag }}
+                        {{ form.message|add_class:"form-control" }}
+                        <div id="messageTextError" class="validationError">{{ form.message.errors }}</div>
+                    </div>
+                    <div class="checkbox">
+                        {{ form.is_anonymous.label_tag }}{{ form.is_anonymous|add_class:"form-control" }}
+                    </div>
+                    <div class="checkbox">
+                        {{ form.allow_feedback.label_tag }}{{ form.allow_feedback|add_class:"form-control" }}
+                    </div>
+                </div>
+            </div>
+
+            <div class="panel panel-info" id="recipient-data">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Расскажите о себе</h3>
+                </div>
+
+                <div class="panel-body">
+                    *{{form.contact_first_name.label_tag}}
+                    {{form.contact_first_name}}
+                    <div id="firstNameError" class="validationError">{{form.contact_first_name.errors}}</div>
+                    <br />
+                    *{{form.contact_last_name.label_tag}}
+                    {{form.contact_last_name}}
+                    <div id="lastNameError" class="validationError">{{form.contact_last_name.errors}}</div>
+                    <br />
+                    *{{form.contact_mail.label_tag}}
+                    {{form.contact_mail}}
+                    <div id="emailError" class="validationError">{{from.contact_mail.error}}</div>
+                    <br />
+                    {{ form.contact_phone.label_tag }}
+                    {{ form.contact_phone }}
+                    <div class="validationError">{{ form.contact_phone.error }}</div>
+                    <br /> 
+                    <label class="label_show">
+                        <input type="checkbox" name="isPrivate" value="1" checked />
+                        Не публиковать мои контактные данные (они будут доступны только модераторам)
+                    </label>
+                    <div id="contactsError" class="validationError" style="display:none;"></div>
+                    <br />
+                </div>
             </div>
             {% comment %}
-        <div>
-            <h3>Расскажите о себе</h3>
-
-            *{{form.contact_first_name.label_tag}}
-            {{form.contact_first_name}}
-            <div id="firstNameError" class="validationError">{{form.contact_first_name.errors}}</div>
-            <br />
-            *{{form.contact_last_name.label_tag}}
-            {{form.contact_last_name}}
-            <div id="lastNameError" class="validationError">{{form.contact_last_name.errors}}</div>
-            <br />
-            *{{form.contact_mail.label_tag}}
-            {{form.contact_mail}}
-            <div id="emailError" class="validationError">{{from.contact_mail.error}}</div>
-            <br />
-            {{ form.contact_phone.label_tag }}
-            {{ form.contact_phone }}
-            <div class="validationError">{{ form.contact_phone.error }}</div>
-            <br /> 
-            <label class="label_show">
-                <input type="checkbox" name="isPrivate" value="1" checked />
-                Не публиковать мои контактные данные (они будут доступны только модераторам)
-            </label>
-            <div id="contactsError" class="validationError" style="display:none;"></div>
-            <br />
-            <h3>Местоположение</h3>
-            {{ form.georegion.label_tag }}
-            {{ form.georegion }}
-            <div class="validationError">{{ form.georegion.error }}</div>
-            <br />
-            {{ form.address.label_tag }}
-            {{ form.address }}
-            <div class="validationError">{{ form.address.error }}</div>
-            <br />
-            <h3>Категории</h3>
-            {{ form.category }}
+                <h3>Местоположение</h3>
+                {{ form.georegion.label_tag }}
+                {{ form.georegion }}
+                <div class="validationError">{{ form.georegion.error }}</div>
+                <br />
+                {{ form.address.label_tag }}
+                {{ form.address }}
+                <div class="validationError">{{ form.address.error }}</div>
+                <br />
+                <h3>Категории</h3>
+                {{ form.category }}
+            </div>
+            </div>
+            {{ form.location }}
+                {% endcomment %}
+                <div class="panel-footer">
+                    <input type='submit' class="btn btn-rynda-default form-control">
+                </div>
+            </div>
+            </form>
         </div>
-        </div>
-        {{ form.location }}
-            {% endcomment %}
-            <input type='submit'>
-        </div>
-        </form>
     </div>
 </div>
 {% endblock %}
