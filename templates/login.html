@@ -2,39 +2,40 @@
 {% load url from future %}
 
 {% block maincontent %}
-    <!-- Контент модального окна для аутентификации: -->
-    <div >
-        <div id="authModal" class="span6">
-            {{ form.errors }}
+<!-- Контент окна для аутентификации: -->
+<div class="col-md-6 col-md-offset-3">
+    <div class="panel rynda-panel-default">
+        <div class="panel-heading">
+            <h2 class="panel-title">Вход в систему</h2>
+        </div>
+        <div class="panel-body">
+            <div class="alert alert-danger">
+                {{ form.errors }}
+            </div>
+
             <form id="loginForm" action="{%url 'django.contrib.auth.views.login' %}" method="post">
                 {% csrf_token %}
-                <div>
-                <p>
-                    <label for="loginField">Email:</label><br />
-                    <input tabindex="1" type="text" name="username" id="loginField" class="formField login_box_input" />
-                </p>
-                <p>
-                    <div class="login_box_forgot_pass">
-                        <a href="/forgot">Я забыл пароль!</a>
-                    </div>
-                    <label for="passwordField">Пароль:</label><br />
-                    <input  tabindex="2" type="password" name="password" id="passwordField" class="formField login_box_input" />
+                <div class="form-group">
+                    <label for="loginField">Email:</label>
+                    <input tabindex="1" type="text" name="username" id="loginField" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label for="passwordField">Пароль:</label>
+                    <input  tabindex="2" type="password" name="password" id="passwordField" class="form-control" />
+                    <p class="form-control-static"><a href='/password/reset' >Я забыл пароль</a></p>
+                </div>
 
-                </p>
-                <p>
-                    <input tabindex="3" type="checkbox" name="rememberField" id="rememberField" value="1" checked />
+                <div class="checkbox">
+                    <input tabindex="3" type="checkbox" name="rememberField" id="rememberField" value="1" checked class="form-control" />
                     <label for="rememberField">Помнить меня</label>
-                </p>
-				<img id="loginLoading" src="{{STATIC_URL}}/img/white_sm_loader.gif" style="display:none;" alt="" />
-                <div id="loginMessage" class="login_box_message" style="display: none;"></div>
-			<div id="authmodal_button_panel">
-                <input tabindex="4" type="submit" id="loginSubmit" class="login_box_submit" value="ВОЙТИ" />
-                <input tabindex="5" type="reset" id="loginCancel" class="login_box_submit" value="ОТМЕНА" />
-                <a href='/password/reset'>Я забыл пароль</a>
-            </div>
-        </div>
-    </form>
+                </div>
+                <div class="panel-footer">
+                    <input tabindex="4" type="submit" id="loginSubmit" class="btn rynda-btn-default" value="ВОЙТИ" />
+                    <input tabindex="5" type="reset" id="loginCancel" class="login_box_submit" value="ОТМЕНА" />
+                </div>
+            </form>
         </div>
     </div>
-    <!-- Контент модального окна для аутентификации - завершён -->
+</div>
+<!-- Контент окна для аутентификации - завершён -->
 {%endblock%}
