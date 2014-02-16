@@ -75,6 +75,7 @@ class UserTest(TestCase):
 class TestUserCreation(TestCase):
     def setUp(self):
         user = UserFactory.build()
+        self.before = User.objects.count()
         self.user = create_new_user(
             first_name=user.first_name,
             last_name=user.last_name,
@@ -88,7 +89,7 @@ class TestUserCreation(TestCase):
         self.user.delete()
 
     def test_create_new_user(self):
-        self.assertEqual(1, User.objects.all().count())
+        self.assertEqual(self.before + 1, User.objects.all().count())
 
     def test_user_password(self):
         u = User.objects.get(email=self.user.email)
