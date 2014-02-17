@@ -3,6 +3,7 @@
 
 from django.conf import settings
 from django.contrib.auth import logout
+from django.contrib.auth.models import User
 from django.core.urlresolvers import reverse_lazy
 from django.shortcuts import redirect, render_to_response
 from django.template import RequestContext
@@ -69,6 +70,8 @@ class CreateRequest(CategoryMixin, RyndaFormView):
         instance = form.save(commit=False)
         if self.request.user.is_authenticated():
             instance.user = self.request.user
+        else:
+            instance.user = User.objects.get(pk=settings.ANONYMOUS_USER_ID)
         instance.save()
         return redirect(self.success_url)
 

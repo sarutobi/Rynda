@@ -9,6 +9,24 @@ from message.factories import MessageFactory
 from test.factories import UserFactory
 
 
+class TestAnonymousMessage(WebTest):
+    """ Отправка сообщения незарегистрированным пользователем """
+
+    def setUp(self):
+        self.page = self.app.get(reverse('create-request'))
+        self.data = MessageFactory.attributes(create=False)
+
+    def test_anonymous_message(self):
+        before = Message.objects.count()
+        form = self.page.forms['mainForm']
+        form['title'] = self.data['title']
+        form['message'] = self.data['message']
+        form['is_anonymous'] = self.data['is_anonymous']
+        form['allow_feedback'] = self.data['allow_feedback']
+        form.submit()
+        self.assertEquals(before + 1, Message.objects.count())
+
+
 class TestSendRequestMessage(WebTest):
     """ Functional test for request creation. """
 
