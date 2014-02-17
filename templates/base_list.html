@@ -42,10 +42,11 @@
 
                 <div id="paginationBlock" class="paginaton mb10">
                 <div id="paginationPages" data-current-page="{{ paginator.number }}" class="alignleft list_pagination_div">
+                    <ul class="pagination">
                     {% if page_obj.has_previous %}
-                        <a class='page' href='{{ paginator_url }}{{ page_obj.previous_page_number }}{{ query_string|urlencode }}'>Назад</a>
+                        <li><a class='page' href='{{ paginator_url }}{{ page_obj.previous_page_number }}{{ query_string|urlencode }}'>Назад</a></li>
                     {% else %}
-                        <span class='page'>Назад</span>
+                        <li class='disabled'>Назад</li>
                     {% endif %}
 
                     {% if paginator_line.first %}
@@ -82,6 +83,7 @@
                     {% else %}
                         <span class='page'>Вперед</span>
                     {% endif %}
+                    </ul>
                     </div>
 
                     {% block paginator %} {% endblock %}

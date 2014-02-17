@@ -38,8 +38,9 @@ class PaginatorMixin(object):
         #страниц в пейджере
         if (outside_range + adj_pages + 1 + adj_pages + outside_range)\
             >= num_pages:
-            return {'first':[],'window':[n for n in range(1, num_pages+1)],
-                'last':[],  'has_prev':has_prev, 'has_next':has_next}
+            return {
+                'first': [], 'window': [n for n in range(1, num_pages + 1)],
+                'last': [],  'has_prev': has_prev, 'has_next': has_next}
 
         #страница для отображения находится в начальном диапазоне
         if (outside_range + adj_pages + 1) >= page:
@@ -58,7 +59,8 @@ class PaginatorMixin(object):
                 num_pages+1)]
             window = [n for n in range(page - adj_pages, page + adj_pages +1)
                 if n < num_pages]
-        return {'first': first, 'window': window, 'last': last,
+        return {
+            'first': first, 'window': window, 'last': last,
             'has_prev': has_prev, 'has_next': has_next}
 
 
