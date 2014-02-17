@@ -10,22 +10,15 @@
 
 {% block listcontent %}
 {% for u in users %}
-<li>
-    <a href="/user/{{u.id}}" title="#{{u.id}}: u.get_full_name" class="darkGrey list_number">#{{u.id}}</a>
+<li class="list-group-item">
     <div class="list_content">
-        <a href="/user/{{u.id}}" class="darkRed" title="№{{u.id}}: {{u.get_full_name}}">
-            <strong>#{{u.id}}: {{u.get_full_name}}</strong>
-        </a>
+        <strong>{{ u.get_full_name }}</strong>
         <br />
-        <div class="clearfix mt4"></div>
-        <a href="/user/{{u.id}}" class="no_underline" title="Страница пользователя">Подробнее</a>
-        <br />
-        <br />
-        <span class="darkGrey fs10">
+        <a href="/user/{{u.id}}" title="Страница пользователя">Подробнее</a>
+        <div class="well well-sm">
            Зарегистрирован: {{u.date_joined|date:'d.m.Y H:i'}} | Последнее посещение:{{u.last_login|date:'d.m.Y H:i'}}
-        </span>
+        </div>
     </div>
-    <div class="clearfix"></div>
 </li>
 {% endfor%}
 {% endblock %}
