@@ -26,6 +26,12 @@ class UserList(RyndaListView):
     paginator_url = '/user/page/'
     paginate_by = 10
 
+    def get_context_data(self, **kwargs):
+        context = super(UserList, self).get_context_data(**kwargs)
+        count = self.get_queryset().count()
+        context['count'] = count
+        return context
+
 
 class CreateUser(RyndaFormView):
     '''
