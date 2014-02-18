@@ -2,7 +2,7 @@
 
 from rest_framework import serializers
 
-from core.models import Category
+from category.models import Category
 
 
 class CategorySerializer(serializers.ModelSerializer):
@@ -10,4 +10,4 @@ class CategorySerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Category
-        fields =  ('id', 'name', 'parentId')
+        fields = ('id', 'name', 'parentId')

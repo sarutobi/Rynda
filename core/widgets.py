@@ -8,7 +8,7 @@ from django.utils.encoding import force_unicode
 from django.utils.html import conditional_escape
 from django.utils.safestring import mark_safe
 
-from .models import CategoryGroup
+from category.models import CategoryGroup
 
 #from utils.tree import to_tree
 
