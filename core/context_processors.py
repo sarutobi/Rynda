@@ -3,7 +3,9 @@
 
 from django.conf import settings
 
-from .models import Subdomain, Category, CategoryGroup
+from category.models import Category, CategoryGroup
+
+from .models import Subdomain
 
 
 def subdomains_context(request):

@@ -6,7 +6,8 @@ from django.db.models.query import QuerySet
 from django.utils.translation import ugettext_lazy as _
 
 import django_filters
-from core.models import Category, Subdomain
+from core.models import Subdomain
+from category.models import Category
 from geozones.models import Location
 from model_utils.managers import PassThroughManager
 
