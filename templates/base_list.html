@@ -46,24 +46,25 @@
                     {% if page_obj.has_previous %}
                         <li><a class='page' href='{{ paginator_url }}{{ page_obj.previous_page_number }}{{ query_string|urlencode }}'>Назад</a></li>
                     {% else %}
-                        <li class='disabled'>Назад</li>
+                        <li class='disabled'><a href='#'>Назад</a></li>
                     {% endif %}
 
                     {% if paginator_line.first %}
                         {% for p in paginator_line.first %}
                             {% if p != page_obj.number %}
-                                <a class='page' href='{{ paginator_url }}{{ p }}{{ query_string|urlencode }}'>{{ p }}</a>
+                                <li><a href='{{ paginator_url }}{{ p }}{{ query_string|urlencode }}'>{{ p }}</a></li>
                             {% else %}
-                                <span class='current_page'>{{ p }}</span>
+                                <li class='active'><a href='#'>{{ p }}</a></li>
                             {% endif %}
                         {% endfor %}
                         ...
                     {% endif %}
+
                     {% for p in paginator_line.window %}
                         {% if p != page_obj.number %}
-                            <a class='page' href='{{ paginator_url }}{{ p }}{{ query_string|urlencode }}'>{{ p }}</a>
+                            <li><a href='{{ paginator_url }}{{ p }}{{ query_string|urlencode }}'>{{ p }}</a></li>
                         {% else %}
-                            <span class='current_page'>{{ p }}</span>
+                            <li class='active'><a href="#">{{ p }}</a></li>
                         {% endif %}
                     {% endfor %}
 
@@ -71,17 +72,17 @@
                         ...
                         {% for p in paginate.last %}
                             {% if p != page_obj.number %}
-                                <a class='page' href='{{ paginator_url }}{{ p }}{{ query_string|urlencode }}'>{{ p }}</a>
+                                <li><a href='{{ paginator_url }}{{ p }}{{ query_string|urlencode }}'>{{ p }}</a></li>
                             {%else%}
-                                <span class='current_page'>{{ p }}</span>
+                                <li class='active'><a href="#">{{ p }}</a></li>
                             {% endif %}
                         {% endfor %}
                     {% endif %}
 
                     {% if page_obj.has_next %}
-                        <a class='page' href='{{ paginator_url }}{{ page_obj.next_page_number }}{{ query_string|urlencode }}'>Вперед</a>
+                        <li><a href='{{ paginator_url }}{{ page_obj.next_page_number }}{{ query_string|urlencode }}'>Вперед</a></li>
                     {% else %}
-                        <span class='page'>Вперед</span>
+                        <li class='disabled'><a href="#">Вперед</a></li>
                     {% endif %}
                     </ul>
                     </div>
