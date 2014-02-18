@@ -164,10 +164,12 @@ INSTALLED_APPS = (
     'templated_emails',
     'widget_tweaks',
     'post_office',
+    # Project applications
+    'core',
+    'category',
     'message',
     'users',
     'geozones',
-    'core',
     'feed',
     'api',
 )
