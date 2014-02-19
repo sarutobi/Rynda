@@ -25,11 +25,14 @@ class Migration(SchemaMigration):
             # For permissions to work properly after migrating
             orm['contenttypes.contenttype'].objects.filter(app_label='category', model='category').update(app_label='core')
 
-    # Deleting model 'Category'
-        db.delete_table(u'category_category')
+    models = {
+        u'contenttypes.contenttype': {
+            'Meta': {'ordering': "('name',)", 'unique_together': "(('app_label', 'model'),)", 'object_name': 'ContentType', 'db_table': "'django_content_type'"},
+            'app_label': ('django.db.models.fields.CharField', [], {'max_length': '100'}),
+            u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
+            'model': ('django.db.models.fields.CharField', [], {'max_length': '100'}),
+            'name': ('django.db.models.fields.CharField', [], {'max_length': '100'})
+        }
+    }
 
-        # Deleting model 'CategoryGroup'
-        db.delete_table(u'category_categorygroup')
-
-
-        complete_apps = ['category']
+    complete_apps = ['category', 'contenttypes']
