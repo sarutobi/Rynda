@@ -62,3 +62,12 @@ class CategoryGroup(models.Model):
         """ Добавляет категорию в группу """
         category.group = self
         category.save()
+
+
+def build_tree():
+    """ Свертывание категорий в группы """
+    tree = CategoryGroup.objects.values('id', 'name').all()
+    for l in tree:
+        l['children'] = [c for c in Category.objects.values(
+            'id', 'name').filter(group=l['id'])]
+    return tree
