@@ -5,7 +5,8 @@ import factory
 from factory import django, fuzzy
 
 from test.utils import FuzzyText
-from .models import Category, CategoryGroup, Subdomain
+from category.models import Category, CategoryGroup
+from .models import Subdomain
 
 
 #class CityFactory(factory.Factory):
