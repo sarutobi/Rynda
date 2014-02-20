@@ -35,7 +35,7 @@ class Category(models.Model):
     group = models.ForeignKey("CategoryGroup", null=True, blank=True)
 
     def __unicode__(self):
-        return self.name
+        return "%s: %s" % (self.group.name, self.name)
 
     def unlink(self):
         '''Remove link to category group'''
