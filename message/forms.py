@@ -1,9 +1,11 @@
 # -*- coding: utf-8 -*-
 
-from django import forms
+# from django import forms
 from django.core.exceptions import ValidationError
 from django.forms.widgets import CheckboxSelectMultiple
 from django.utils.translation import ugettext as _
+
+import floppyforms as forms
 
 from category.fields import CategoryChoiceField
 from core.widgets import CategoryTree
