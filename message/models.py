@@ -23,7 +23,7 @@ class MessageQueryset(QuerySet):
         return self.filter(status__gt=Message.NEW, status__lt=Message.CLOSED)
 
     def closed(self):
-        return self.filter(status=6)
+        return self.filter(status=Message.CLOSED)
 
     def type_is(self, m_type):
         return self.filter(messageType=m_type)
