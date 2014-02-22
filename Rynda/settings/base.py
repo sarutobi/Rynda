@@ -164,6 +164,7 @@ INSTALLED_APPS = (
     'templated_emails',
     'widget_tweaks',
     'post_office',
+    'floppyforms',
     # Project applications
     'core',
     'category',
