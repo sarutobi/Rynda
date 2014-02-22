@@ -2,8 +2,10 @@
 
 from django import forms
 from django.core.exceptions import ValidationError
+from django.forms.widgets import CheckboxSelectMultiple
 from django.utils.translation import ugettext as _
 
+from category.fields import CategoryChoiceField
 from core.widgets import CategoryTree
 from message.models import Message
 
@@ -35,7 +37,7 @@ class MessageForm(forms.ModelForm):
             'is_anonymous', 'allow_feedback',
         )
         widgets = {
-            'category': CategoryTree(),
+            'category': CheckboxSelectMultiple()
         }
 
     def clean_messageType(self):
@@ -49,7 +51,7 @@ class UserMessageForm(MessageForm):
     class Meta(MessageForm.Meta):
         widgets = {
             'messageType': forms.HiddenInput(),
-            'category': CategoryTree(),
+            'category': CategoryChoiceField(),
         }
 
 

@@ -44,6 +44,12 @@
                         {{ form.message|add_class:"form-control" }}
                         <div id="messageTextError" class="validationError">{{ form.message.errors }}</div>
                     </div>
+                    
+                    <div class="form-group">
+                        {{ form.category.label_tag }}
+                        {{ form.category|add_class:"form-control" }}
+                    </div>
+                   
                     <div class="checkbox">
                         {{ form.is_anonymous.label_tag }}{{ form.is_anonymous|add_class:"form-control" }}
                     </div>
