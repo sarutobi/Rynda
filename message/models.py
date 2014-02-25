@@ -68,7 +68,7 @@ class Message(models.Model):
     # Managers
     objects = PassThroughManager.for_queryset_class(MessageQueryset)()
 
-    # Mandatory fields
+    # Основные поля сообщения
     title = models.CharField(
         max_length=200,
         verbose_name=_('title'),
@@ -79,8 +79,9 @@ class Message(models.Model):
         db_column='message_type',
         verbose_name=_('message type'),
     )
-    # This is registered user, possible not a man, who really need help.
-    # TODO Create a different contact table to store real person, who need help
+    # Ссылка на зарегистрированного пользователя. Если сообщение
+    # оставляет незарегистрированный пользователь, то тут будет ссылка
+    # на пользователя settings.ANONYMOUS_USER_ID
     user = models.ForeignKey(
         User,
         verbose_name=_("User"),
