@@ -74,12 +74,21 @@ class Message(models.Model):
         verbose_name=_('title'),
         blank=True)
     message = models.TextField(verbose_name=_('message'))
+    # Следующие два поля содержат контактную информацию человека, к которому
+    # относится сообщение. Должно быть заполнено как минимум одно из этих
+    # полей, это условие проверяется при записи данных в базу
+    # NB! значения этих полей не обязательно должны совпадать с контактами
+    # зарегистрированного пользователя, оставляющего сообщение.
+    contact_mail = models.EmailField(max_length=254, blank=True, default='')
+    contact_phone = models.CharField(max_length=10, blank=True, default='')
+    # Тип сообщения, которое оставляет пользователь. Повлиять на это поле
+    # пользователь не может, тип сообщения может изменить модератор.
     messageType = models.IntegerField(
         choices=TYPES_CHOICE,
         db_column='message_type',
         verbose_name=_('message type'),
     )
-    # Ссылка на зарегистрированного пользователя. Если сообщение
+    # Ссылка на пользователя портала. Если сообщение
     # оставляет незарегистрированный пользователь, то тут будет ссылка
     # на пользователя settings.ANONYMOUS_USER_ID
     user = models.ForeignKey(
