@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from django.contrib.auth.models import User
+from django.core.exceptions import ValidationError
 from django.db import models
 from django.db.models.query import QuerySet
 from django.utils.translation import ugettext_lazy as _
@@ -180,6 +181,11 @@ class Message(models.Model):
     def save(self, *args, **kwargs):
         self.full_clean()
         super(Message, self).save(*args, **kwargs)
+
+    def clean(self):
+        """ проверка полей модели перед сохранением """
+        if self.contact_mail == '' and self.contact_phone == '':
+            raise ValidationError(_("You MUST provide an contact email or phone number!"))
 
 
 class MessageSideFilter(django_filters.FilterSet):
