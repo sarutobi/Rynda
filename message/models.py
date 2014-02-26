@@ -7,6 +7,8 @@ from django.db.models.query import QuerySet
 from django.utils.translation import ugettext_lazy as _
 
 import django_filters
+from jsonfield import JSONField
+
 from core.models import Subdomain
 from category.models import Category
 from geozones.models import Location
@@ -82,6 +84,9 @@ class Message(models.Model):
     # зарегистрированного пользователя, оставляющего сообщение.
     contact_mail = models.EmailField(max_length=254, blank=True, default='')
     contact_phone = models.CharField(max_length=10, blank=True, default='')
+    # Дополнительная информация по сообщению. Эта информация полезна при выводе
+    # сообщения, но не представляет никакого интереса с точки зрения движка.
+    additional_info = JSONField(blank=True, default='')
     # Тип сообщения, которое оставляет пользователь. Повлиять на это поле
     # пользователь не может, тип сообщения может изменить модератор.
     messageType = models.IntegerField(
@@ -89,8 +94,8 @@ class Message(models.Model):
         db_column='message_type',
         verbose_name=_('message type'),
     )
-    # Ссылка на пользователя портала. Если сообщение
-    # оставляет незарегистрированный пользователь, то тут будет ссылка
+    # Ссылка на пользователя портала. Если сообщение оставляет
+    # незарегистрированный пользователь, то тут будет ссылка
     # на пользователя settings.ANONYMOUS_USER_ID
     user = models.ForeignKey(
         User,
