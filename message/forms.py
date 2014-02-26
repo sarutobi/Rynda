@@ -1,20 +1,17 @@
 # -*- coding: utf-8 -*-
 
-# from django import forms
 from django.core.exceptions import ValidationError
-from django.forms.widgets import CheckboxSelectMultiple
 from django.utils.translation import ugettext as _
 
 import floppyforms as forms
 
 from category.fields import CategoryChoiceField
-from core.widgets import CategoryTree
 from message.models import Message
 
 
 class VirtualMessageFormMixin(forms.ModelForm):
 
-    """ Data for virtual message. """
+    """ Виртуальные сообщения """
 
     def __init__(self, *args, **kwargs):
         super(VirtualMessageFormMixin, self).__init__(*args, **kwargs)
@@ -29,7 +26,7 @@ class VirtualMessageFormMixin(forms.ModelForm):
 
 class MessageForm(forms.ModelForm):
 
-    """ Base message form"""
+    """ Базовая форма ввода сообщения """
 
     class Meta:
         model = Message
@@ -39,7 +36,7 @@ class MessageForm(forms.ModelForm):
             'is_anonymous', 'allow_feedback',
         )
         widgets = {
-            'category': CheckboxSelectMultiple()
+            'category': CategoryChoiceField()
         }
 
     def clean_messageType(self):
@@ -55,6 +52,11 @@ class UserMessageForm(MessageForm):
             'messageType': forms.HiddenInput(),
             'category': CategoryChoiceField(),
         }
+
+    first_name = forms.CharField(label=_('First name'))
+    last_name = forms.CharField(label=_('Last name'))
+    email = forms.EmailField(label=_('Contact email'))
+    phone = forms.CharField(label=_('Contact phone'))
 
 
 class RequestForm(UserMessageForm):
@@ -94,7 +96,7 @@ class AdminMessageForm(MessageForm):
     class Meta(MessageForm.Meta):
         widgets = {
             'messageType': forms.Select(),
-            'category': CategoryTree(),
+            'category': CategoryChoiceField(),
         }
 
     def clean_messageType(self):
