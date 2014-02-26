@@ -50,42 +50,46 @@
                         {{ form.category|add_class:"form-control" }}
                     </div>
                    
-                    <div class="checkbox">
-                        {{ form.is_anonymous.label_tag }}{{ form.is_anonymous|add_class:"form-control" }}
-                    </div>
-                    <div class="checkbox">
+                   <div class="checkbox">
                         {{ form.allow_feedback.label_tag }}{{ form.allow_feedback|add_class:"form-control" }}
                     </div>
                 </div>
             </div>
 
-            <div class="panel panel-info" id="recipient-data">
+            <div class="panel panel-default" id="recipient-data">
                 <div class="panel-heading">
                     <h3 class="panel-title">Расскажите о себе</h3>
                 </div>
 
                 <div class="panel-body">
-                    *{{form.contact_first_name.label_tag}}
-                    {{form.contact_first_name}}
-                    <div id="firstNameError" class="validationError">{{form.contact_first_name.errors}}</div>
-                    <br />
-                    *{{form.contact_last_name.label_tag}}
-                    {{form.contact_last_name}}
+                    <div class="form-group">
+                        *{{ form.first_name.label_tag }}
+                        {{ form.first_name|add_class:"form-control" }}
+                    </div>
+                    <div id="firstNameError" class="validationError">{{ form.first_name.errors }}</div>
+                    
+                    <div class="form-group">
+                        *{{ form.last_name.label_tag }}
+                        {{ form.last_name|add_class:"form-control" }}
+                    </div>
                     <div id="lastNameError" class="validationError">{{form.contact_last_name.errors}}</div>
-                    <br />
-                    *{{form.contact_mail.label_tag}}
-                    {{form.contact_mail}}
+                    
+                    <div class="form-group">
+                        *{{ form.email.label_tag }}
+                        {{ form.email|add_class:"form-control" }}
+                    </div>
                     <div id="emailError" class="validationError">{{from.contact_mail.error}}</div>
-                    <br />
-                    {{ form.contact_phone.label_tag }}
-                    {{ form.contact_phone }}
+
+                    <div class="form-group">
+                        {{ form.phone.label_tag }}
+                        {{ form.phone|add_class:"form-control" }}
+                    </div>
                     <div class="validationError">{{ form.contact_phone.error }}</div>
-                    <br /> 
-                    <label class="label_show">
-                        <input type="checkbox" name="isPrivate" value="1" checked />
-                        Не публиковать мои контактные данные (они будут доступны только модераторам)
-                    </label>
-                    <div id="contactsError" class="validationError" style="display:none;"></div>
+
+                    <div class="checkbox">
+                        {{ form.is_anonymous.label_tag }}{{ form.is_anonymous|add_class:"form-control" }}
+                    </div>
+                   <div id="contactsError" class="validationError" style="display:none;"></div>
                     <br />
                 </div>
             </div>
