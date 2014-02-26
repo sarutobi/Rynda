@@ -77,13 +77,6 @@ class Message(models.Model):
         verbose_name=_('title'),
         blank=True)
     message = models.TextField(verbose_name=_('message'))
-    # Следующие два поля содержат контактную информацию человека, к которому
-    # относится сообщение. Должно быть заполнено как минимум одно из этих
-    # полей, это условие проверяется при записи данных в базу
-    # NB! значения этих полей не обязательно должны совпадать с контактами
-    # зарегистрированного пользователя, оставляющего сообщение.
-    contact_mail = models.EmailField(max_length=254, blank=True, default='')
-    contact_phone = models.CharField(max_length=10, blank=True, default='')
     # Дополнительная информация по сообщению. Эта информация полезна при выводе
     # сообщения, но не представляет никакого интереса с точки зрения движка.
     additional_info = JSONField(blank=True, default='')
@@ -186,12 +179,6 @@ class Message(models.Model):
     def save(self, *args, **kwargs):
         self.full_clean()
         super(Message, self).save(*args, **kwargs)
-
-    def clean(self):
-        """ проверка полей модели перед сохранением """
-        if self.contact_mail == '' and self.contact_phone == '':
-            raise ValidationError(
-                _("You MUST provide an contact email or phone number!"))
 
 
 class MessageSideFilter(django_filters.FilterSet):
