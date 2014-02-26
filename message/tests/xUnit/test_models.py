@@ -42,6 +42,12 @@ class TestMessage(TestCase):
         """ Test for default message status. """
         self.assertEquals(self.message.status, Message.NEW)
 
+    def test_additional_info(self):
+        self.message.additional_info = {'test': 'one', }
+        self.message.save()
+        msg = Message.objects.get(pk=self.message.pk)
+        self.assertEqual(self.message.additional_info, msg.additional_info)
+
 
 class TestVirtualMessage(TestCase):
 
