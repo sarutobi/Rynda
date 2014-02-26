@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 
-from django import forms
+import floppyforms as forms
 from django.test import TestCase
 
 from core.factories import CategoryFactory, SubdomainFactory
