@@ -165,6 +165,7 @@ INSTALLED_APPS = (
     'widget_tweaks',
     'post_office',
     'floppyforms',
+    'jsonfield',
     # Project applications
     'core',
     'category',
