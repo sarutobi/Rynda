@@ -53,10 +53,10 @@ class UserMessageForm(MessageForm):
             'category': CategoryChoiceField(),
         }
 
-    first_name = forms.CharField(label=_('First name'))
-    last_name = forms.CharField(label=_('Last name'))
-    email = forms.EmailField(label=_('Contact email'))
-    phone = forms.CharField(label=_('Contact phone'))
+    first_name = forms.CharField(label=_('First name'), required=False)
+    last_name = forms.CharField(label=_('Last name'), required=False)
+    email = forms.EmailField(label=_('Contact email'), required=False)
+    phone = forms.CharField(label=_('Contact phone'), required=False)
 
 
 class RequestForm(UserMessageForm):
