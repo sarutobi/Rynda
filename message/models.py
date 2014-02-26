@@ -185,7 +185,8 @@ class Message(models.Model):
     def clean(self):
         """ проверка полей модели перед сохранением """
         if self.contact_mail == '' and self.contact_phone == '':
-            raise ValidationError(_("You MUST provide an contact email or phone number!"))
+            raise ValidationError(
+                _("You MUST provide an contact email or phone number!"))
 
 
 class MessageSideFilter(django_filters.FilterSet):
@@ -217,4 +218,5 @@ class MessageNotes(models.Model):
         verbose_name=_("last edit"))
 
     def __unicode__(self):
-        return "Note from %s" % self.user
+        return _("Note from %(user)s to message %(msgid)d")\
+            % {'user': self.user, 'msgid': self.message_id, }
