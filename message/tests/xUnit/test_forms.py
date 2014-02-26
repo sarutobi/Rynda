@@ -62,6 +62,27 @@ class TestUserMessageForm(TestCase):
             self.form.fields['messageType'].widget,
             forms.HiddenInput)
 
+    def test_contact_data(self):
+        """ Тестирование сохранения контактных данных """
+        contacts = {
+            'first_name': 'test',
+            'last_name': 'user',
+            'email': 'me@local.host',
+            'phone': '1234567890',
+        }
+        user = UserFactory()
+        subdomain = SubdomainFactory()
+        data = MessageFactory.attributes(
+            create=False, extra={
+                'subdomain': subdomain.pk, 'user': user, })
+        data.update(contacts)
+        form = UserMessageForm(data=data)
+        self.assertTrue(form.is_bound)
+        self.assertTrue(form.is_valid())
+        msg = form.save(commit=False)
+        self.assertIsNotNone(msg.additional_info)
+        self.assertEqual(msg.additional_info, contacts)
+
 
 class TestFormTypes(TestCase):
 

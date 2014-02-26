@@ -58,6 +58,18 @@ class UserMessageForm(MessageForm):
     email = forms.EmailField(label=_('Contact email'), required=False)
     phone = forms.CharField(label=_('Contact phone'), required=False)
 
+    def save(self, force_insert=False, force_update=False, commit=True):
+        msg = super(UserMessageForm, self).save(commit=False)
+        msg.additional_info = {
+            'first_name': self.cleaned_data['first_name'],
+            'last_name': self.cleaned_data['last_name'],
+            'email': self.cleaned_data['email'],
+            'phone': self.cleaned_data['phone'],
+        }
+        if commit:
+            msg.save()
+        return msg
+
 
 class RequestForm(UserMessageForm):
     """ Simple request form. """
