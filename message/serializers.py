@@ -10,9 +10,10 @@ class MessageSerializer(serializers.ModelSerializer):
 
 
 class MapMessageSerializer(serializers.ModelSerializer):
-    lat = serializers.Field(source='location.y')
-    lon = serializers.Field(source='location.x')
+    # lat = serializers.Field(source='location.y')
+    # lon = serializers.Field(source='location.x')
 
     class Meta:
         model = Message
-        fields = ['id', 'title', 'lat', 'lon', 'messageType']
+        # fields = ['id', 'title', 'lat', 'lon', 'messageType']
+        fields = ['id', 'title', 'messageType']
