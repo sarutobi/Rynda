@@ -23,6 +23,7 @@ class TestAnonymousMessage(WebTest):
         form['message'] = self.data['message']
         form['is_anonymous'] = self.data['is_anonymous']
         form['allow_feedback'] = self.data['allow_feedback']
+        form['email'] = 'me@local.host'
         form.submit()
         self.assertEquals(before + 1, Message.objects.count())
 
@@ -51,6 +52,7 @@ class TestSendRequestMessage(WebTest):
         form['message'] = self.data['message']
         form['is_anonymous'] = self.data['is_anonymous']
         form['allow_feedback'] = self.data['allow_feedback']
+        form['email'] = 'me@local.host'
         form.submit()
         self.assertEquals(before + 1, Message.objects.count())
 
@@ -69,6 +71,7 @@ class TestRequestMessageParameters(WebTest):
         self.form['message'] = self.data['message']
         self.form['is_anonymous'] = self.data['is_anonymous']
         self.form['allow_feedback'] = self.data['allow_feedback']
+        self.form['email'] = 'me@local.host'
         self.form.submit()
 
     def test_message_user(self):
