@@ -81,6 +81,25 @@ class TestUserMessageForm(TestCase):
         self.assertIsNotNone(msg.additional_info)
         self.assertEqual(msg.additional_info, self.contacts)
 
+    def test_email_only(self):
+        """ Введен только email """
+        self.data['phone'] = ''
+        form = UserMessageForm(data=self.data)
+        self.assertTrue(form.is_valid())
+
+    def test_phone_only(self):
+        """ Введен только телефон """
+        self.data['email'] = ''
+        form = UserMessageForm(data=self.data)
+        self.assertTrue(form.is_valid())
+
+    def test_no_contact_data(self):
+        """ Контактные данные не представлены """
+        self.data['email'] = ''
+        self.data['phone'] = ''
+        form = UserMessageForm(data=self.data)
+        self.assertFalse(form.is_valid())
+
 
 class TestFormTypes(TestCase):
 
@@ -90,6 +109,10 @@ class TestFormTypes(TestCase):
         self.data = MessageFactory.attributes(
             create=False, extra={
                 'messageType': Message.REQUEST, 'subdomain': subdomain.pk,
+                'first_name': 'test',
+                'last_name': 'user',
+                'email': 'me@local.host',
+                'phone': '1234567890',
             }
         )
 

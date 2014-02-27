@@ -70,6 +70,20 @@ class UserMessageForm(MessageForm):
             msg.save()
         return msg
 
+    def clean(self):
+        """
+        Проверка корректности формы.
+
+        Необходимо, чтобы пользователь заполнил хотя бы одно из двух полей
+        email и phone. Если это не выполнено, выдать ошибку проверки формы.
+        """
+        super(UserMessageForm, self).clean()
+        ce = self.cleaned_data
+        if ce['email'] == '' and ce['phone'] == '':
+            raise ValidationError(
+                _("You must provide at least one from contact email or phone!"))
+        return ce
+
 
 class RequestForm(UserMessageForm):
     """ Simple request form. """
