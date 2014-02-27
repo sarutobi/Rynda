@@ -55,33 +55,31 @@ class TestBaseMessageForm(TestCase):
 
 class TestUserMessageForm(TestCase):
     def setUp(self):
-        self.form = UserMessageForm()
-
-    def test_messagetype_widget(self):
-        self.assertIsInstance(
-            self.form.fields['messageType'].widget,
-            forms.HiddenInput)
-
-    def test_contact_data(self):
-        """ Тестирование сохранения контактных данных """
-        contacts = {
+        self.contacts = {
             'first_name': 'test',
             'last_name': 'user',
             'email': 'me@local.host',
             'phone': '1234567890',
         }
-        user = UserFactory()
         subdomain = SubdomainFactory()
-        data = MessageFactory.attributes(
+        self.data = MessageFactory.attributes(
             create=False, extra={
-                'subdomain': subdomain.pk, 'user': user, })
-        data.update(contacts)
-        form = UserMessageForm(data=data)
+                'subdomain': subdomain.pk, })
+        self.data.update(self.contacts)
+
+    def test_messagetype_widget(self):
+        form = UserMessageForm()
+        self.assertIsInstance(
+            form.fields['messageType'].widget, forms.HiddenInput)
+
+    def test_contact_data(self):
+        """ Тестирование сохранения контактных данных """
+        form = UserMessageForm(data=self.data)
         self.assertTrue(form.is_bound)
         self.assertTrue(form.is_valid())
         msg = form.save(commit=False)
         self.assertIsNotNone(msg.additional_info)
-        self.assertEqual(msg.additional_info, contacts)
+        self.assertEqual(msg.additional_info, self.contacts)
 
 
 class TestFormTypes(TestCase):
