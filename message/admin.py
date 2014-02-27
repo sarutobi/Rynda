@@ -15,15 +15,23 @@ class MessageAdmin(admin.ModelAdmin):
             'js/rynda.js',
         )
     list_display = (
-        'pk',
         'title',
         'subdomain',
+        'user',
         'messageType',
         'status',
         'date_add',
+        'last_edit',
     )
-    list_display_links = ('pk', 'title')
-    list_filter = ('status',)
-    form = AdminMessageForm
+    list_display_links = ('title', )
+    list_filter = ('status', 'messageType',)
+    readonly_fields = ('edit_key', 'date_add', 'last_edit',)
+    # fieldsets = (
+        # ("Message", {'fields': ('title', 'message', )}),
+        # ("Category", {'fields': ('category',), 'classes': ('collapse'), }),
+        # ("Contact", {"fields": ("additional_info",)}),
+        # ("Flags", {"fields": ("is_active", )})
+    # )
+    # form = AdminMessageForm
 
 admin.site.register(Message, MessageAdmin)
