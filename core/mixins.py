@@ -90,4 +90,4 @@ class CategoryMixin(object):
 class ExternalScriptsMixin(object):
 
     def allow_external(self):
-        return settings.EXTERNAL
+        return getattr(settings, 'EXTERNAL', False)
