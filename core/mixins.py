@@ -2,7 +2,7 @@
 
 from django.conf import settings
 
-from core.context_processors import subdomains_context, categories_context
+from core.context_processors import subdomains_context
 from category.models import Category, CategoryGroup
 
 
