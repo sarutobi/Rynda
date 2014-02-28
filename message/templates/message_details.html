@@ -23,9 +23,9 @@
 
 {% block maincontent%}
 
-<div class="g960" id="content">
+<div class="col-md-8" id="content">
     <!-- Левая панель -->
-    <div class="column" id="vm_1_column">
+    <div class="panel panel-default" id="vm_1_column">
     	{% comment %}
         <div class="breadcrumbs mb10">
         	<a title="Главная" href="/">Главная</a> &raquo;
@@ -35,49 +35,55 @@
             
         </div>
         {% endcomment %}
-        <h2 class="h24 allcaps mb10">
-        {% if message.status >= 3 %}
-            <div id="messageVerified">{{ message.get_status_display }}</div>
-        {% elif message.status == 2 %}
-            <div id="messageUnverified">{{ message.get_status_display }}</div>
-		{% endif %}	
-            {{ message.title }}
-        </h2>
+        <div class="panel-heading">
+            <h2 class="h24 allcaps mb10">
+            {% if message.status >= 3 %}
+                <div id="messageVerified">{{ message.get_status_display }}</div>
+            {% elif message.status == 2 %}
+                <div id="messageUnverified">{{ message.get_status_display }}</div>
+            {% endif %}	
+                {{ message.title }}
+            </h2>
+        </div>
         {% comment %}
         {% if user.has_edit_rights %}
         <a title="Редактировать сообщение в админке" href="http://master.dev-rynda.ru/show/message/<?php echo $message['id'];?>">[Редактировать сообщение]</a>
         {%endif%}
         {% endcomment %}
-        <div class="grey">{{ message.date_add|date:"d.m.Y г. H:i (e)" }}</div>
-        <div class="vm_main_text rounded_all">{{ message.message|safe }}</div>
-        <div class="vm_categories">
-            Категории:
-        {% for c in message.category.all %}
-             {{ c.name }}
-        {% endfor %}
-        </div>
-        {% if message.photos %}
-        <div class="vm_pics">
-            {% for p in message.photo %}
-        	<a href="{{ p.uri }}" class="photoHref" rel="photo">
-                <img src="{{ p.thumb_uri }}" alt="" />
-            </a>
+        <div class="panel-body">
+            <div class="grey">{{ message.date_add|date:"d.m.Y г. H:i (e)" }}</div>
+            <div class="vm_main_text rounded_all">{{ message.message|safe }}</div>
+            <div class="vm_categories">
+                Категории:
+            {% for c in message.category.all %}
+                {{ c.name }}
             {% endfor %}
+            </div>
+            {% if message.photos %}
+            <div class="vm_pics">
+                {% for p in message.photo %}
+                <a href="{{ p.uri }}" class="photoHref" rel="photo">
+                    <img src="{{ p.thumb_uri }}" alt="" />
+                </a>
+                {% endfor %}
+            </div>
+            {% endif %}
+            {% include 'external/vk_comments.html' %}
         </div>
-        {% endif %}
-    {% include 'external/vk_comments.html' %}
     </div>
-    <!-- Левая панель завершена -->
-    
-    <!-- Правая панель -->
-    <div class="column" id="vm_2_column">
+</div>
+<!-- Левая панель завершена -->
+
+<!-- Правая панель -->
+<div class="col-md-4">
+    <div class="panel panel-default" id="vm_2_column">
         <ul class="aid_list">
             <li>
 <!--                <img src="/images/incognito.png" alt="Инкогнито" />-->
                 {% if not message.is_anonymous %}
                     От:
                     <strong>
-                        {{ message.contact_first_name|capfirst }} {{ message.contact_last_name|capfirst }}
+                        {{ message.additional_info.first_name|capfirst }} {{ message.additional_info|capfirst }}
                     </strong>
                     <div id="contactsData">
                         <span class="phone-ico mr10"></span>{{ message.contact_phone }}<br />
