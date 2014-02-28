@@ -38,16 +38,25 @@ def list(request, slug='all'):
     last_requests = generate_message_pane(
         "Просьбы о помощи",
         Message.objects.active().type_is(
-            Message.REQUEST).values('id', 'title', 'date_add')[:MAX_PANE_MESSAGES + 1],
+            Message.REQUEST).values(
+                'id', 'title', 'date_add')[:MAX_PANE_MESSAGES + 1],
         "/message/pomogite")
-    last_offers = Message.objects.active().type_is(
-        Message.OFFER).values('id', 'title', 'date_add')[:5]
-    last_completed = Message.objects.type_is(
-        Message.REQUEST).closed().values('id', 'title', 'date_add')[:5]
-    last_info = Message.objects.active().type_is(
-        Message.INFO).values('id', 'title', 'date_add')[:5]
-    last_feeds = FeedItem.objects.filter(feedId=3).values(
-        'id', 'link', 'title', 'date')[:5]
+    last_offers = generate_message_pane(
+        "Предложения помощи",
+        Message.objects.active().type_is(
+            Message.OFFER).values(
+                'id', 'title', 'date_add')[:MAX_PANE_MESSAGES + 1],
+        "/message/pomogu")
+    last_completed = generate_message_pane(
+        "Помощь оказана",
+        Message.objects.type_is(
+            Message.REQUEST).closed().values(
+                'id', 'title', 'date_add')[:MAX_PANE_MESSAGES + 1],
+        "/message/pomogli")
+    # last_info = Message.objects.active().type_is(
+        # Message.INFO).values('id', 'title', 'date_add')[:5]
+    # last_feeds = FeedItem.objects.filter(feedId=3).values(
+        # 'id', 'link', 'title', 'date')[:5]
     return render_to_response(
         'index.html', {
             'regions': Region.objects.filter(id__gt=0),
@@ -57,8 +66,9 @@ def list(request, slug='all'):
             'requests': last_requests,
             'offers': last_offers,
             'completed': last_completed,
-            'info': last_info,
-            'news': last_feeds, },
+            # 'info': last_info,
+            # 'news': last_feeds,
+        },
         context_instance=RequestContext(
             request,
             processors=[subdomains_context, categories_context]))
