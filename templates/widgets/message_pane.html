@@ -24,13 +24,13 @@
                 </li>
             {% endfor %}
             </ul>
-            <a id="requestsMore" href="/message/pomogite" class="green triple_more_info pull-right" title="Все просьбы  о помощи &raquo;"><strong>Другие просьбы о помощи&#8230;</strong></a>
+            {% if has_more %}
+                <a id="requestsMore" href="{{ link_to_continue }}" class="green triple_more_info pull-right" >Все сообщения</a>
+            {% endif %}
         {% else %}
-            <div id="requestsNotFound" class="clearfix">
-                <ul class="no-markers triplelist">
-                    <li>Просьб о помощи не найдено — <a href="/pomogite/dobavit">добавить свою</a></li>
-                </ul>
-            </div>
+            <ul class="list-group">
+                <li class="list-group-item">Сообщений не найдено</li>
+            </ul>
         {% endif %}
         </div>
     </div>

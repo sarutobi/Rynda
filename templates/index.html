@@ -71,7 +71,10 @@
 {% endif%}
 {% endcomment %}
 <div class="row">
+    {% comment %}
     {% include "widgets/message_pane.html" with helper_title="Просьбы о помощи" messages=requests %}
+    {% endcomment %}
+    {{ requests }}
     {% include "widgets/message_pane.html" with helper_title="Предложения помощи" messages=offers %}
     {% include "widgets/message_pane.html" with helper_title="Помощь оказана" messages=completed %}
 </div>

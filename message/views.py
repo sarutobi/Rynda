@@ -7,6 +7,7 @@ from django.contrib.auth.models import User
 from django.core.urlresolvers import reverse_lazy
 from django.shortcuts import redirect, render_to_response
 from django.template import RequestContext
+from django.template.loader import render_to_string
 
 from core.context_processors import categories_context, subdomains_context
 from core.mixins import CategoryMixin, SubdomainContextMixin
@@ -18,10 +19,27 @@ from geozones.models import Region
 from message.forms import RequestForm
 from message.models import Message, MessageIndexFilter, MessageSideFilter
 
+MAX_PANE_MESSAGES = 5
+
+
+def generate_message_pane(pane_label, context_messages, link_to_continue=None):
+    """ Генерация виджета панели сообщений на главной странице """
+    has_more = len(context_messages) > MAX_PANE_MESSAGES
+    context = {
+        "messages": context_messages[:MAX_PANE_MESSAGES],
+        "has_more": has_more,
+        "helper_title": pane_label,
+        "link_to_continue": link_to_continue,
+    }
+    return render_to_string("widgets/message_pane.html", context)
+
 
 def list(request, slug='all'):
-    last_requests = Message.objects.active().type_is(
-        Message.REQUEST).values('id', 'title', 'date_add')[:5]
+    last_requests = generate_message_pane(
+        "Просьбы о помощи",
+        Message.objects.active().type_is(
+            Message.REQUEST).values('id', 'title', 'date_add')[:MAX_PANE_MESSAGES + 1],
+        "/message/pomogite")
     last_offers = Message.objects.active().type_is(
         Message.OFFER).values('id', 'title', 'date_add')[:5]
     last_completed = Message.objects.type_is(
