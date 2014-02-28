@@ -5,7 +5,7 @@ from django.conf import settings
 from django.contrib.auth import logout
 from django.contrib.auth.models import User
 from django.core.urlresolvers import reverse_lazy
-from django.shortcuts import redirect, render_to_response
+from django.shortcuts import redirect, render, render_to_response
 from django.template import RequestContext
 from django.template.loader import render_to_string
 
@@ -35,6 +35,7 @@ def generate_message_pane(pane_label, context_messages, link_to_continue=None):
 
 
 def list(request, slug='all'):
+    """ Главная страница """
     last_requests = generate_message_pane(
         "Просьбы о помощи",
         Message.objects.active().type_is(
@@ -57,8 +58,10 @@ def list(request, slug='all'):
         # Message.INFO).values('id', 'title', 'date_add')[:5]
     # last_feeds = FeedItem.objects.filter(feedId=3).values(
         # 'id', 'link', 'title', 'date')[:5]
-    return render_to_response(
-        'index.html', {
+    return render(
+        request,
+        'index.html',
+        {
             'regions': Region.objects.filter(id__gt=0),
             #'categories': cat_tree,
             'filter': MessageIndexFilter(
@@ -68,10 +71,10 @@ def list(request, slug='all'):
             'completed': last_completed,
             # 'info': last_info,
             # 'news': last_feeds,
-        },
-        context_instance=RequestContext(
-            request,
-            processors=[subdomains_context, categories_context]))
+        },)
+        # context_instance=RequestContext(
+            # request,
+            # processors=[subdomains_context, categories_context]))
 
 
 def logout_view(request):
