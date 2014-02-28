@@ -22,7 +22,7 @@ class RyndaDetailView(SubdomainContextMixin, ExternalScriptsMixin, DetailView):
     pass
 
 
-class RyndaListView(SubdomainContextMixin, QueryStringMixin, PaginatorMixin, ListView):
+class RyndaListView(QueryStringMixin, PaginatorMixin, ListView):
     paginator_url = None
     list_title_short = None
 
