@@ -162,7 +162,6 @@ class Message(models.Model):
     )
     category = models.ManyToManyField(
         Category,
-        db_table='messagecategories',
         symmetrical=False,
         verbose_name=_("message categories"),
         null=True, blank=True

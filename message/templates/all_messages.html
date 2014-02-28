@@ -9,34 +9,28 @@
 {% endblock %}
 
 {% block listcontent %}
+
 {% for m in object_list %}
-<li>
-    {%if m.messageType == 1 %}
-    <a href="/message/{{m.id}}" title="Просьба о помощи #{{m.id}}{% if m.title %}: {{m.title}} {%endif%}" class="darkGrey list_number">#{{m.id}}</a>
+<li class="list-group-item">
     <div class="list_content">
-        <a href="/message/{{m.id}}" class="darkRed" title="Просьба о помощи №{{m.id}}{%if m.title%}: {{m.title}} {%endif%}">
-            <strong>Просьба о помощи #{{m.id}}{%if m.title%}: {{m.title}} {%endif%}</strong>
+        <a href="/message/{{ m.id }}" class="darkRed" title="Сообщение {{ m.id }}{% if m.title %}: {{ m.title }} {% endif %}">
+        {% if m.messageType == 1 %}
+                Просьба о помощи #{{ m.id }}{% if m.title %}: {{ m.title }} {% endif %}
+        {% elif m.messageType == 2 %}
+                Предложение помощи #{{ m.id }}{% if m.title %}: {{ m.title }} {% endif %}
+        {% elif m.messageType == 3 %}
+                Информационное сообщение #{{ m.id }}{% if m.title %}: {{ m.title }} {% endif %}
+        {% endif %}
         </a>
-    {% elif m.messageType == 2 %}
-    <a href="/message/{{m.id}}" title="Предложение помощи #${{m.id}}{% if m.title %}: {{m.title}} {% endif %}" class="darkGrey list_number">#{{m.id}}</a>
-    <div class="list_content">
-        <a href="/message/{{ m.id }}" class="darkRed" title="Предложение помощи №{{m.id}}{% if m.title %}: {{m.title}} {% endif %}">
-            <strong>Предложение помощи #{{m.id}}{% if m.title %}: {{m.title}} {% endif %}</strong>
-        </a>
-    {% elif m.messageType == 3 %}
-    <a href="/message/{{m.id}}" title="Информационное сообщение #{{m.id}}{% if m.title %}: {{m.title}} {% endif %}" class="darkGrey list_number">#{{m.id}}</a>
-    <div class="list_content">
-        <a href="/message/{{ m.id }}" class="darkRed" title="Информационное сообщение #{{m.id}}{% if m.title %}: {{m.title}} {% endif %}">
-            <strong>Информационное сообщение #{{m.id}}{% if m.title %}: {{m.title}} {% endif %}</strong>
-        </a>
-    {% endif %}    
-    <br />
-    <div class="clearfix mt4"></div>
-    <a href="/message/{{m.id}}" class="no_underline" title="Подробные сведения о сообщении">{{ m.message|safe|truncatewords:10 }}</a>
-    <br />
-    <br />
-    <span class="darkGrey fs10">
-        {{m.date_add|date:"d.m.Y"}} | <a href="/message/?georegion={{ m.georegion }}" title="Все сообщения по региону «{{ m.georegion__name }}»">{{ m.georegion__name }}</a>
+        <br />
+        {{ m.message|safe|truncatewords:10 }}
+        <br />
+        <br />
+        <span class="darkGrey fs10">
+            {{m.date_add|date:"d.m.Y"}} | <a href="/message/?georegion={{ m.georegion }}" title="Все сообщения по региону «{{ m.georegion__name }}»">{{ m.georegion__name }}</a>
+            {% for c in m.category.all %}
+                <a href='#'>{{ c }}</a>
+            {% endfor %}
 {% comment %}    
 <!--            {{if categories.length > 0}} | {{/if}}
         {{each categories}}
@@ -45,7 +39,6 @@
 {% endcomment %}
     </span>
     </div>
-    <div class="clearfix"></div>
 </li>
 {%endfor%}
 
