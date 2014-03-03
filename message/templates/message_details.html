@@ -42,7 +42,7 @@
             <div class="vm_categories">
                 Категории:
             {% for c in message.category.all %}
-                {{ c.name }}
+                <span class="btn btn-info btn-xs disabled">{{ c.name }}</span>
             {% endfor %}
             </div>
             {% if message.photos %}
