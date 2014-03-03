@@ -26,30 +26,16 @@
 <div class="col-md-8" id="content">
     <!-- Левая панель -->
     <div class="panel panel-default" id="vm_1_column">
-    	{% comment %}
-        <div class="breadcrumbs mb10">
-        	<a title="Главная" href="/">Главная</a> &raquo;
-            <a href="/message" title="Сообщения">Сообщения</a> &raquo;
-            <a href="/pomogu" title="Сообщения типа «предложение помощи»">Предложения помощи</a> &raquo;
-            {{message.messageType}} №{{message.id}} {{message.title}}
-            
-        </div>
-        {% endcomment %}
         <div class="panel-heading">
             <h2 class="h24 allcaps mb10">
+                {{ message.title }}
+            </h2>
             {% if message.status >= 3 %}
                 <div id="messageVerified">{{ message.get_status_display }}</div>
             {% elif message.status == 2 %}
                 <div id="messageUnverified">{{ message.get_status_display }}</div>
             {% endif %}	
-                {{ message.title }}
-            </h2>
         </div>
-        {% comment %}
-        {% if user.has_edit_rights %}
-        <a title="Редактировать сообщение в админке" href="http://master.dev-rynda.ru/show/message/<?php echo $message['id'];?>">[Редактировать сообщение]</a>
-        {%endif%}
-        {% endcomment %}
         <div class="panel-body">
             <div class="grey">{{ message.date_add|date:"d.m.Y г. H:i (e)" }}</div>
             <div class="vm_main_text rounded_all">{{ message.message|safe }}</div>
@@ -68,6 +54,28 @@
                 {% endfor %}
             </div>
             {% endif %}
+            {% comment %}
+            <!-- AddThis Button BEGIN -->
+            <div class="social_networks mt25">
+                <script type="text/javascript">
+                    var addthis_config = {ui_language: 'ru'}
+                </script>		
+                <div class="addthis_toolbox addthis_default_style addthis_32x32_style"
+                    addthis:title="{{ message.title}}"
+                    addthis:description="{{ message.message|truncatewords:20 }}">
+                    <a class="addthis_button_vk" title="Запостить во ВКонтакте"></a>
+                    <a class="addthis_button_facebook" title="Запостить в Facebook"></a>
+                    <a class="addthis_button_twitter" title="Запостить в Twitter"></a>
+                    <a class="addthis_button_mymailru" title="Добавить в Мой Мир на Mail.ru"></a>
+                    <a class="addthis_button_favorites" title="Сохранить в закладках браузера"></a>
+                    <a class="addthis_button_google" title="Сохранить в закладках Google"></a>
+                    <a class="addthis_button_livejournal" title="Запостить в ЖЖ"><img alt="LiveJournal" src="/css/i/lj.png" width="32px" height="32px" /></a>
+                    <a class="addthis_button_compact" title="Сохранить в..."></a>
+                </div>
+                <script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#username=xa-4d1233ce7f701763"></script>
+            </div>
+            <!-- AddThis Button END -->
+            {% endcomment %}
             {% include 'external/vk_comments.html' %}
         </div>
     </div>
@@ -78,8 +86,8 @@
 <div class="col-md-4">
     <div class="panel panel-default" id="vm_2_column">
         <div class="panel-body">
-            <ul class="">
-                <li>
+            <ul class="list-group">
+                <li class="list-group-item">
     <!--                <img src="/images/incognito.png" alt="Инкогнито" />-->
                     {% if not message.is_anonymous %}
                         От:
@@ -100,7 +108,6 @@
                         Пользователь предпочел скрыть свои контактные данные, используйте  для связи с ним комментарии.
                     {%endif%}
                     <br />
-                    <div class="clearfix mb35"></div>
                 </li>
             </ul>
         </div>
@@ -117,24 +124,6 @@
             </div>
             <div id="messageLat" style="display:none;">{{ message.locationId.latitude}}</div>
             <div id="messageLng" style="display:none;">{{ message.locationId.longitude}}</div>
-        <!-- AddThis Button BEGIN -->
-        <div class="social_networks mt25">
-			<script type="text/javascript">
-                var addthis_config = {ui_language: 'ru'}
-            </script>		
-            <div class="addthis_toolbox addthis_default_style addthis_32x32_style">
-            <a class="addthis_button_vk" title="Запостить во ВКонтакте"></a>
-            <a class="addthis_button_facebook" title="Запостить в Facebook"></a>
-            <a class="addthis_button_twitter" title="Запостить в Twitter"></a>
-            <a class="addthis_button_mymailru" title="Добавить в Мой Мир на Mail.ru"></a>
-            <a class="addthis_button_favorites" title="Сохранить в закладках браузера"></a>
-            <a class="addthis_button_google" title="Сохранить в закладках Google"></a>
-            <a class="addthis_button_livejournal" title="Запостить в ЖЖ"><img alt="LiveJournal" src="/css/i/lj.png" width="32px" height="32px" /></a>
-            <a class="addthis_button_compact" title="Сохранить в..."></a>
-            </div>
-            <script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#username=xa-4d1233ce7f701763"></script>
-        </div>
-        <!-- AddThis Button END -->
     </div>
     <!-- Правая панель завершена -->
 	
