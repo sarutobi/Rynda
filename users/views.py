@@ -1,8 +1,7 @@
 # -*- coding: utf-8 -*-
 
-from django.shortcuts import redirect, render_to_response
+from django.shortcuts import redirect
 from django.conf import settings
-from django.contrib import messages
 from django.contrib.auth.models import User
 from django.views.generic.detail import DetailView
 
@@ -23,6 +22,7 @@ class UserList(RyndaListView):
     queryset = User.objects.select_related().exclude(
         pk=settings.ANONYMOUS_USER_ID).filter(
         is_active=True).order_by('date_joined')
+    list_title_short = "Список пользователей"
     paginator_url = '/user/page/'
     paginate_by = 10
 
