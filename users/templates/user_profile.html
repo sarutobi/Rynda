@@ -9,177 +9,157 @@
 {% endblock %}
 
 {% block maincontent %}
-
-<div class="clearfix"></div>
-<div id="user_profile_container" class="rounded_all">
-    <div class="header_container rounded_top">
-        {% if user.id = u.id %}
-        <a href="/user/edit/{{user.id}}" class="profile_edit_settings"><div id="editHeader">Редактировать</div></a>
-        {% endif %}
-        <h3 class="mb0 rounded_top regulartext_header">
-			Профиль пользователя
-        </h3>
-    </div>
-	<div id="user_profile_warp1_container">
-	<div id="user_profile_warp2_container">
-	<div class="UP_left_column">
-
-    <div id="avatar_container">
-        <div id="avatar_image">
-            <img src="{{STATIC_URL}}{{user.url|default:'/css/i/anonymous.png'}}" />
-            <div id="avatar_image-circle"></div>
+<div class="col-md-10 col-md-offset-1">
+    <div id="user_profile_container" class="panel rynda-panel-default">
+        <div class="panel-heading">
+            {% if user.id = u.id %}
+                <a href="/user/edit/{{ user.id }}" class="btn rynda-btn-default">Редактировать</a>
+            {% endif %}
+            <h3 class="panel-title"> Профиль пользователя </h3>
         </div>
+
+        <div class="panel-body">
+            <div class="row" id="user_profile_warp2_container">
+                <div class="col-md-4">
+                    <div id="avatar_container">
+                        <img class="img-circle" src="{{STATIC_URL}}{{user.url|default:'/css/i/anonymous.png'}}" />
+                    </div>
+                    <div id="user_profile_left_column_shortData">
+                        <div class="UP_left_column_shortData_cont">
+                            <span class="darkGrey">Пол:</span>
+                            {% if u.gender = 1 %} муж.
+                            {% elif u.gender = 2 %} жен.
+                            {% else %}не указан{%endif%}
+                        </div>
+                        <br />
+                        {% if u.about_me %}
+                        <div class="UP_left_column_shortData_cont">
+                            <span class="darkGrey">О себе:</span>
+                            {{u.about_me}}
+                        </div>
+                        {% endif %}
+                        <br />
+                    </div>
+                </div>
+                <div class="col-md-8">
+                    <div class="panel panel-default" id="user_profile_box_container">
+                        <div class="panel-heading" id="user_FI_Container">
+                            <h3 class="user_FI">
+                                {{ u.get_full_name|default:u.email }}
+                            </h3>
+                        </div>
+                        <div class="panel-body">
+                            <div class="prof_info_container absolute">
+                                <ul class="list-group">
+                                    <li class="list-group-item">Последний вход на сайт: <br />{{ u.last_login|date:'d.m.Y' }}</li>
+                                    <li class="list-group-item">Зарегистрирован: <br />{{ u.registered|date:'d.m.Y' }}</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="panel panel-default">
+                        <div id="contactsData" {% if u = users %}style="display:none"{% endif %} class="panel-body">
+                            <ul class="list-group">
+                                <li class="list-group-item">
+                                    <span class="glyphicon glyphicon-envelope"></span> 
+                                    <a href="mailto:{{ u.email }}" title="Написать письмо на эту почту">{{ u.email }}</a>
+                                </li>
+                                <li class="list-group-item">
+                                    <span>
+                                    {% for p in u.phones %}
+                                        <span class="phone-ico"></span>{{ p }}<br />
+                                    {% endfor %}
+                                    </span>
+                                </li>
+                            </ul>
+                        </div>
+                        {% if u != user %}
+                        <div id="contactsHidden" class="pl20 mt25 mb10 darkGrey ">
+                            Контактная информация скрыта!
+                            <div id="showContacts" class="dotted green mt4">Открыть</div>
+                        </div>
+                        {% endif %}
+    <!--				<ul>
+                                            <li><span class="email-ico"></span> 
+                            <?php if($this->rynda_user->isPrivate($user)) {?>
+                                                    Пользователь предпочёл скрыть свои данные
+                                            <?php } else {?>
+                                                    <a href="mailto:<?php echo $user->email;?>" title="Написать письмо на эту почту"><?php echo $user->email;?></a>
+                                            <?php }?>
+                                            </li>
+                                            <li>
+                                            <?php if($this->rynda_user->isPrivate($user)) {?>
+                                                    <span class="phone-ico"></span>Пользователь предпочёл скрыть свои данные
+                                            <?php } else {?>
+                                                    <span>
+                                                    <?php foreach($this->rynda_user->getPhones($user) as $phone) {
+                                                            if($phone) {?>
+                                                            <span class="phone-ico"></span><?php echo formatPhone($phone);?> <br />
+                                                    <?php }
+                                                    }?>
+                                                    </span>
+                                            <?php }?>
+                                            </li>
+                                    </ul>-->
+                    
+                            {% if soc_profiles %}
+                            <h4><span>В соц.сетях:</span></h4>
+                            <div id="socialNet_showContainer">
+                                {% for p in soc_profiles %}
+                                <div class="socialNet_show">
+                                    <a href="{{ p.profileUrl }}"><img src="{{ p.socNetIcon }}" /><span>{{ p.socNetTitle }}</span></a>
+                                </div>
+                                {% endfor %}
+                            </div>
+                            {% endif %}
+                        </div>
+                        <div class="clear">&nbsp;</div>
+                            {% if volunteerProfiles %}
+                            <h4><span>Профили волонтёрства</span></h4>
+                            <div id="vpList">
+                                <ul>
+                                    {% for vp in volunteerProfiles %}
+                                    <li><a href="#vp{{ vp.id }}">{{ vp.title }}</a></li>
+                                    {% endfor %}
+                                </ul>
+                                {% for vp in volunteerProfiles %}
+                                <div id="vp{{ vp.id }}">
+                                    Профиль №{{ vp.id }}
+                                    <p><span class="region"></span>Местоположение: {{vp.address}} (<a href="/info/r/{{vp.regionId}}" title="Все сообщения по этому региону">{{vp.regionName}}</a>)</p>
+                                    <p><span class="distance"></span>На каком расстоянии готов(а) помогать:
+                                            <strong>{{vp.distance}}</strong></p>
+                                    <p><span class="days"></span>По каким дням готов(а) помогать:
+                                    <strong>{{vp.days}}</strong>
+                                    <p><span class="categoryhelp"></span>Категории помощи: {% if vp.isAllCategories %}'любые'{%else%}{% for c in vp.categories %}c{% endfor %}{% endif %}</p>
+                                    {% if u == user %}
+                                    <p><span class="mailoutEmail"></span>Присылать уведомления о подходящих просьбах о помощи на: {{vp.mailoutEmail}}</p>
+                                    {% endif %}
+                                </div>
+                                {% endfor %}
+                            </div>
+                            {% endif %}
+
+                            <h4><span>
+                                Сообщения пользователя <div id="messagesCount"></div>
+                                <img id="controlResponseLoading" src="/css/i/blue_sm_loader.gif" alt="" style="display: none;" /></span>
+                            </h4>
+                            <div id="messageList_container">
+                                <div class="date_select_profile mb10">
+                                    <a href="#" class="dateAddedFrom listFilter" id="<?php echo mktime(0, 0, 0);?>" title="Только сообщения, поступившие сегодня">За сегодня</a> |
+                                    <a href="#" class="dateAddedFrom listFilter" id="<?php echo strtotime('-3 day', mktime(0, 0, 0));?>" title="Только сообщения, поступившие за последние 3 дня">За 3 дня</a> |
+                                    <a href="#" class="dateAddedFrom listFilter" id="<?php echo strtotime('-1 week', mktime(0, 0, 0));?>" title="Только сообщения, поступившие за последнюю неделю">За неделю</a> |
+                                    <a href="#" class="dateAddedFrom listFilter activeDateFilter" id="0" title="Сообщения, поступившие за все время">За все время</a>
+                                </div>
+                                <div id="controlResponseMessage"></div>
+                                <ul id="messagesList" class="no_list profile_list"></ul>
+                                <div class="clearfix"></div>
+                           </div>
+                        </div>
+                    </div>
+                    <div class="clearfix"></div>
+                </div>
+            </div>
     </div>
-	<div id="user_profile_left_column_shortData">
-        <div class="UP_left_column_shortData_cont">
-            <span class="darkGrey">Пол:</span>
-            {% if u.gender = 1 %} муж.
-            {% elif u.gender = 2 %} жен.
-            {% else %} не указан{%endif%}
-        </div>
-		<br />
-        {% if u.about_me %}
-        <div class="UP_left_column_shortData_cont">
-		<span class="darkGrey">О себе:</span>
-        {{u.about_me}}
-		</div>
-        {% endif %}
-		<br />
-<!--		<div class="UP_left_column_shortData_cont">
-		<span class="darkGrey">Группа крови:</span>
-		</div>-->
-	</div>
-
-	</div>
-	<div class="UP_center_column">
-        <div id="user_profile_box_container">
-			<div id="user_FI_Container">
-				<h3 class="user_FI">
-				{{u.get_full_name|default:u.email}}
-                {% comment %}
-                first_name && !$user->last_name )
-						echo $user->email;
-					else if($isOwner)
-                        echo $user->first_name.' '.$user->last_name;
-                    else
-						echo $this->rynda_user->isPrivate($user) ?
-                           $user->first_name.' '.(mb_substr($user->last_name, 0, 1)).'.'
-                         : $user->first_name.' '.$user->last_name;
-				?>
-                {% endcomment %}
-				</h3>
-			</div>
-			<div class="relative">
-				<div class="prof_info_container absolute">
-					<ul>
-					<li class="green">Последний вход на сайт: <br />{{u.last_login|date:'d.m.Y'}}</li>
-					<li class="green">Зарегистрирован: <br />{{u.registered|date:'d.m.Y'}}</li>
-					</ul>
-				</div>
-			</div>
-			<div class="short_info_container">
-                <div id="contactsData" {% if u = users %}style="display:none"{% endif %}>
-                    <ul>
-                        <li>
-                            <span class="email-ico"></span> 
-                            <a href="mailto:{{u.email}}" title="Написать письмо на эту почту">{{u.email}}</a>
-                        </li>
-                        <li>
-                            <span>
-                            {% for p in u.phones %}
-                                <span class="phone-ico"></span>{{p}}<br />
-                            {% endfor %}
-                            </span>
-                        <?php }?>
-                        </li>
-                    </ul>
-                </div>
-                {% if u != user %}
-				<div id="contactsHidden" class="pl20 mt25 mb10 darkGrey ">
-                    Контактная информация скрыта!
-                    <div id="showContacts" class="dotted green mt4">Открыть</div>
-                </div>
-                {% endif %}
-<!--				<ul>
-					<li><span class="email-ico"></span> 
-                        <?php if($this->rynda_user->isPrivate($user)) {?>
-						Пользователь предпочёл скрыть свои данные
-					<?php } else {?>
-						<a href="mailto:<?php echo $user->email;?>" title="Написать письмо на эту почту"><?php echo $user->email;?></a>
-					<?php }?>
-					</li>
-					<li>
-					<?php if($this->rynda_user->isPrivate($user)) {?>
-						<span class="phone-ico"></span>Пользователь предпочёл скрыть свои данные
-					<?php } else {?>
-						<span>
-						<?php foreach($this->rynda_user->getPhones($user) as $phone) {
-							if($phone) {?>
-							<span class="phone-ico"></span><?php echo formatPhone($phone);?> <br />
-						<?php }
-						}?>
-						</span>
-					<?php }?>
-					</li>
-				</ul>-->
-                
-                {% if soc_profiles %}
-                <h4><span>В соц.сетях:</span></h4>
-                <div id="socialNet_showContainer">
-                    {% for p in soc_profiles %}
-                    <div class="socialNet_show"><a href="{{p.profileUrl}}"><img src="{{p.socNetIcon}}" /><span>{{p.socNetTitle}}</span></a></div>
-                    {% endfor %}
-                </div>
-                {% endif %}
-			</div>
-			<div class="clear">&nbsp;</div>
-			{% if volunteerProfiles %}
-			<h4><span>Профили волонтёрства</span></h4>
-			<div id="vpList">
-				<ul>
-					{% for vp in volunteerProfiles %}
-					<li><a href="#vp{{vp.id}}">{{vp.title}}</a></li>
-					{% endfor %}
-				</ul>
-				{% for vp in volunteerProfiles %}
-				<div id="vp{{vp.id}}">
-		            Профиль №{{vp.id}}
-					<p><span class="region"></span>Местоположение: {{vp.address}} (<a href="/info/r/{{vp.regionId}}" title="Все сообщения по этому региону">{{vp.regionName}}</a>)</p>
-					<p><span class="distance"></span>На каком расстоянии готов(а) помогать:
-						<strong>{{vp.distance}}</strong></p>
-					<p><span class="days"></span>По каким дням готов(а) помогать:
-					<strong>{{vp.days}}</strong>
-					<p><span class="categoryhelp"></span>Категории помощи: {% if vp.isAllCategories %}'любые'{%else%}{% for c in vp.categories %}c{% endfor %}{% endif %}</p>
-					{% if u == user %}
-					<p><span class="mailoutEmail"></span>Присылать уведомления о подходящих просьбах о помощи на: {{vp.mailoutEmail}}</p>
-					{% endif %}
-				</div>
-				{% endfor %}
-			</div>
-			{% endif %}
-			<div class="clear">&nbsp;</div>
-			<h4><span>
-				Сообщения пользователя <div id="messagesCount"></div>
-				<img id="controlResponseLoading" src="/css/i/blue_sm_loader.gif" alt="" style="display: none;" /></span>
-			</h4>
-			<div id="messageList_container">
-				<div class="date_select_profile mb10">
-					<a href="#" class="dateAddedFrom listFilter" id="<?php echo mktime(0, 0, 0);?>" title="Только сообщения, поступившие сегодня">За сегодня</a> |
-					<a href="#" class="dateAddedFrom listFilter" id="<?php echo strtotime('-3 day', mktime(0, 0, 0));?>" title="Только сообщения, поступившие за последние 3 дня">За 3 дня</a> |
-					<a href="#" class="dateAddedFrom listFilter" id="<?php echo strtotime('-1 week', mktime(0, 0, 0));?>" title="Только сообщения, поступившие за последнюю неделю">За неделю</a> |
-					<a href="#" class="dateAddedFrom listFilter activeDateFilter" id="0" title="Сообщения, поступившие за все время">За все время</a>
-				</div>
-				<div id="controlResponseMessage"></div>
-				<ul id="messagesList" class="no_list profile_list"></ul>
-				<div class="clearfix"></div>
-		   </div>
-		   
-		</div>
-	</div>
-	<div class="clearfix"></div>
-	</div>
-	</div>
-
 </div>
 {% endblock %}
 
