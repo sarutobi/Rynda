@@ -1,12 +1,12 @@
 #distribute==0.6.24
-Django==1.6.1
+Django==1.6.2
 South==0.8.2
 argparse==1.2.1
 cssutils==0.9.10b1
 django-admin-tools==0.5.1
 django-filter==0.5.4
 django-floppyforms==1.1
-django-model-utils==1.2.0
+django-model-utils==2.0.2
 django-post_office==0.3.1
 django-social-auth==0.7.28
 django-widget-tweaks==1.1.2
