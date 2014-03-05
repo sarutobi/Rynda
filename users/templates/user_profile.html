@@ -15,7 +15,7 @@
             {% if user.id = u.id %}
                 <a href="/user/edit/{{ user.id }}" class="btn rynda-btn-default">Редактировать</a>
             {% endif %}
-            <h3 class="panel-title"> Профиль пользователя </h3>
+            <h3 class="panel-title">Профиль пользователя</h3>
         </div>
 
         <div class="panel-body">
@@ -51,8 +51,8 @@
                         <div class="panel-body">
                             <div class="prof_info_container absolute">
                                 <ul class="list-group">
-                                    <li class="list-group-item">Последний вход на сайт: <br />{{ u.last_login|date:'d.m.Y' }}</li>
-                                    <li class="list-group-item">Зарегистрирован: <br />{{ u.registered|date:'d.m.Y' }}</li>
+                                    <li class="list-group-item">Последний вход на сайт: {{ u.last_login|date:'d.m.Y' }}</li>
+                                    <li class="list-group-item">Зарегистрирован: {{ u.date_joined|date:'d.m.Y' }}</li>
                                 </ul>
                             </div>
                         </div>
