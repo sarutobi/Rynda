@@ -1,9 +1,16 @@
 {% extends 'base.html' %}
 
+{% block hubs %}
+    {% include "widgets/base_hub.html"  with part='user' %}
+{% endblock %}
+
+{% block navigation %}
+    <div class="breadcrumbs mb10 ml10 "><a title="Главная" href="/">Главная</a> &raquo; Моя страница</div>
+{% endblock %}
+
 {% block maincontent %}
 
 <div class="clearfix"></div>
-<div class="breadcrumbs mb10 ml10 "><a title="Главная" href="/">Главная</a> &raquo; Моя страница</div>
 <div id="user_profile_container" class="rounded_all">
     <div class="header_container rounded_top">
         {% if user.id = u.id %}
