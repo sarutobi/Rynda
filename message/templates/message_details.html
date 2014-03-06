@@ -90,17 +90,17 @@
                     {% if not message.is_anonymous %}
                         От:
                         <strong>
-                            {{ message.additional_info.first_name|capfirst }} {{ message.additional_info.phone|capfirst }}
+                            {{ message.additional_info.first_name|capfirst }} {{ message.additional_info.last_name|capfirst }}
                         </strong>
                         <div id="contactsData">
                             <span class="phone-ico mr10"></span>{{ message.additional_info.phone }}<br />
-                            <span class="email-ico mr10"></span>
-                            <a href="mailto:{{ message.contact_mail }}">{{ message.contact_mail }}</a>
+                            <span class="glyphicon glyphicon-envelope"></span>
+                            <a href="mailto:{{ message.contact_mail }}">{{ message.additional_info.email }}</a>
                         </div>
                     {% else %}
-                        От
+                        От:
                         <strong>
-                            {{ message.contact_first_name|capfirst }} {{message.contact_last_name|capfirst|slice:":1" }}
+                            {{ message.additional_info.first_name|capfirst }} {{message.additional_info.last_name|capfirst|slice:":1" }}.
                         </strong>
                         <br />
                         Пользователь предпочел скрыть свои контактные данные, используйте  для связи с ним комментарии.
