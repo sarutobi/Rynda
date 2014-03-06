@@ -5,20 +5,18 @@
 {% endblock %}
 
 {% block navigation %}
-<div>
-    <div class="breadcrumbs mb10">
-        	<a title="Главная" href="/">Главная</a> &raquo;
-            <a href="/message" title="Сообщения">Сообщения</a> &raquo;
-            {% if message.messageType == 1 %}
-                Предложение помощи
-            {% elif message.messageType == 2 %}
-                Просьба о помощи
-            {% else %}
-                Информационное сообщение
-            {% endif %}
-            № {{ message.id }} {{ message.title }}
-    </div>
-</div>
+<ul class="breadcrumb">
+    <li><a title="Главная" href="/">Главная</a></li>
+    <li><a href="/message" title="Сообщения">Сообщения</a></li>
+    <li>{% if message.messageType == 1 %}
+            Предложение помощи
+        {% elif message.messageType == 2 %}
+            Просьба о помощи
+        {% else %}
+            Информационное сообщение
+        {% endif %}
+        № {{ message.id }} {{ message.title }}</li>
+</ul>
 {% endblock %}
 
 {% block maincontent%}
