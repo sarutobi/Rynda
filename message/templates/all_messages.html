@@ -4,6 +4,13 @@
     {% include "widgets/base_hub.html"  with part='message' %}
 {% endblock %}
 
+{% block navigation %}
+<ul class="breadcrumb">
+    <li><a title="Главная" href="/">Главная</a></li>
+    <li>Список сообщений</li>
+</ul>
+{% endblock %}
+
 {% block listfilter%}
     {% include 'widgets/filter.html' %}
 {% endblock %}
@@ -14,13 +21,7 @@
 <li class="list-group-item">
     <div class="list_content">
         <a href="/message/{{ m.id }}" class="darkRed" title="Сообщение {{ m.id }}{% if m.title %}: {{ m.title }} {% endif %}">
-        {% if m.messageType == 1 %}
-                Просьба о помощи #{{ m.id }}{% if m.title %}: {{ m.title }} {% endif %}
-        {% elif m.messageType == 2 %}
-                Предложение помощи #{{ m.id }}{% if m.title %}: {{ m.title }} {% endif %}
-        {% elif m.messageType == 3 %}
-                Информационное сообщение #{{ m.id }}{% if m.title %}: {{ m.title }} {% endif %}
-        {% endif %}
+            {{ m.get_messageType_display|capfirst }} #{{ m.id }}{% if m.title %}: {{ m.title }} {% endif %}
         </a>
         <br />
         {{ m.message|safe|truncatewords:10 }}
