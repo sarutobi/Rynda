@@ -32,6 +32,8 @@
                     {{ form.password.label_tag }}
                     {% for e in form.password.errors %}{{ e }}{% endfor %}
                     {{ form.password|add_class:"form-control" }}
+                </div>
+                <div class="form-group">
                     <p class="form-control-static"><a href='/password/reset' >Я забыл пароль</a></p>
                 </div>
 
