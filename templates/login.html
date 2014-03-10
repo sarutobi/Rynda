@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load url from future %}
+{% load widget_tweaks %}
 
 {% block maincontent %}
 <!-- Контент окна для аутентификации: -->
@@ -9,19 +10,24 @@
             <h2 class="panel-title">Вход в систему</h2>
         </div>
         <div class="panel-body">
-            <div class="alert alert-danger">
-                {{ form.errors }}
+            {% if form.non_field_errors %}
+            <div class="alert alert-warning">
+                {% for e in form.non_field_errors %}
+                {{ e }}
+                {% endfor %}
             </div>
-
-            <form id="loginForm" action="{%url 'django.contrib.auth.views.login' %}" method="post">
+            {% endif %}
+            <form id="loginForm" action="{% url 'django.contrib.auth.views.login' %}" method="post">
                 {% csrf_token %}
-                <div class="form-group">
-                    <label for="loginField">Email:</label>
-                    <input tabindex="1" type="text" name="username" id="loginField" class="form-control" />
+                <div class="form-group {% if form.username.errors %}has-error{% endif %}">
+                    {{ form.username.label_tag }}
+                    {% for e in form.username.errors %}{{ e }}{% endfor %}
+                    {{ form.username|add_class:"form-control" }}
                 </div>
-                <div class="form-group">
-                    <label for="passwordField">Пароль:</label>
-                    <input  tabindex="2" type="password" name="password" id="passwordField" class="form-control" />
+                <div class="form-group {% if form.password.errors %}has-error{% endif %}">
+                    {{ form.password.label_tag }}
+                    {% for e in form.password.errors %}{{ e }}{% endfor %}
+                    {{ form.password|add_class:"form-control" }}
                     <p class="form-control-static"><a href='/password/reset' >Я забыл пароль</a></p>
                 </div>
 
