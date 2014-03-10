@@ -2,6 +2,10 @@
 {% load url from future %}
 {% load widget_tweaks %}
 
+{% block hubs %}
+    {% include "widgets/base_hub.html"  with part='user' %}
+{% endblock %}
+
 {% block maincontent %}
 <!-- Контент окна для аутентификации: -->
 <div class="col-md-6 col-md-offset-3">
