@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from django.shortcuts import render_to_response, get_object_or_404
+from django.shortcuts import render, render_to_response, get_object_or_404
 
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, FormView
@@ -45,6 +45,12 @@ class RyndaListView(QueryStringMixin, PaginatorMixin, ListView):
 
 class RyndaFormView(SubdomainContextMixin, FormView):
     pass
+
+
+def about(request):
+    return render(
+        request,
+        'about.html',)
 
 
 def show_page(request, slug):
