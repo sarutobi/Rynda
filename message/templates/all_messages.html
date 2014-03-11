@@ -30,7 +30,7 @@
         <span class="darkGrey fs10">
             {{m.date_add|date:"d.m.Y"}} | <a href="/message/?georegion={{ m.georegion }}" title="Все сообщения по региону «{{ m.georegion__name }}»">{{ m.georegion__name }}</a>
             {% for c in m.category.all %}
-                <a href='#'>{{ c }}</a>
+            <a href='#' class="no-underline"><span class="label label-info">{{ c }}</span></a>
             {% endfor %}
 {% comment %}    
 <!--            {{if categories.length > 0}} | {{/if}}
