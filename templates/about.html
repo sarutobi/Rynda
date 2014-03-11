@@ -1,5 +1,9 @@
 {% extends 'base.html' %}
 
+{% block hubs %}
+    {% include "widgets/base_hub.html"  with part='about' %}
+{% endblock %}
+
 {% block maincontent %}
 <div class="col-md-10 col-md-offset-1">
 <div class="panel panel-default">
