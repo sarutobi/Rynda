@@ -13,8 +13,6 @@ urlpatterns = patterns('',
     url(r'^admin/', include(admin.site.urls)),
     url(r'^admin-tools/', include('admin_tools.urls')),
     url(r'^api/', include('api.urls')),
-    url(r'info/about$', 'core.views.about', name="about_project"),
-    url(r'^info/', include('core.urls')),
     # url(r'^logout$', 'message.views.logout_view'),
     url(r'^message/', include('message.urls')),
     url(r'^organization/', include('organizations.urls')),
@@ -22,6 +20,11 @@ urlpatterns = patterns('',
     url(r'^t/(?P<slug>[a-z_0-9-]+)$', 'message.views.list'),
     url(r'^t/(?P<slug>)message/', include('message.urls')),
     url(r'^user/', include('users.urls')),
+)
+
+urlpatterns += patterns(
+    'django.contrib.flatpages.views',
+    url(r'info/about/$', 'flatpage', {'url': '/about/'}, name="about_project"),
 )
 
 urlpatterns += patterns('django.contrib.auth.views',

@@ -149,6 +149,7 @@ INSTALLED_APPS = (
     'django.contrib.sites',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.flatpages',
     #
     'admin_tools',
     'admin_tools.theming',
