@@ -2,6 +2,7 @@
 
 from fabric.api import *
 
+import git
 import local
 
 # Localhost virtualenvwrapper activation
