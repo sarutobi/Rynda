@@ -2,6 +2,7 @@
 
 from fabric.api import *
 
+import django
 import git
 import local
 
@@ -30,3 +31,12 @@ def server():
     local("./manage.py runserver --settings=Rynda.settings.local")
 
 
+@task
+def upgrade():
+    git.push()
+    CONTEXT_PATH = prompt("Путь к корневой директории: ")
+    CONTEXT_USER = prompt("Имя пользователя: ")
+    CONTEXT_SETTINGS = prompt("Файл настроек: ")
+    with cd(CONTEXT_PATH), settings(sudo_user=CONTEXT_USER):
+        git.pull()
+        django.update_database(CONTEXT_SETTINGS)
