@@ -40,7 +40,7 @@
                 <div id="paginationPages" data-current-page="{{ paginator.number }}" class="alignleft list_pagination_div">
                     <ul class="pagination">
                     {% if page_obj.has_previous %}
-                        <li><a class='page' href='{{ paginator_url }}{{ page_obj.previous_page_number }}/{{ query_string|urlencode }}'>Назад</a></li>
+                        <li><a class='page' href='{{ paginator_url }}{{ page_obj.previous_page_number }}/{{ query_string|safe }}'>Назад</a></li>
                     {% else %}
                         <li class='disabled'><a href='#'>Назад</a></li>
                     {% endif %}
@@ -48,7 +48,7 @@
                     {% if paginator_line.first %}
                         {% for p in paginator_line.first %}
                             {% if p != page_obj.number %}
-                                <li><a href='{{ paginator_url }}{{ p }}/{{ query_string|urlencode }}'>{{ p }}</a></li>
+                                <li><a href='{{ paginator_url }}{{ p }}/{{ query_string|safe }}'>{{ p }}</a></li>
                             {% else %}
                                 <li class='active'><a href='#'>{{ p }}</a></li>
                             {% endif %}
@@ -58,7 +58,7 @@
 
                     {% for p in paginator_line.window %}
                         {% if p != page_obj.number %}
-                            <li><a href='{{ paginator_url }}{{ p }}/{{ query_string|urlencode }}'>{{ p }}</a></li>
+                            <li><a href='{{ paginator_url }}{{ p }}/{{ query_string|safe }}'>{{ p }}</a></li>
                         {% else %}
                             <li class='active'><a href="#">{{ p }}</a></li>
                         {% endif %}
@@ -68,7 +68,7 @@
                         ...
                         {% for p in paginate.last %}
                             {% if p != page_obj.number %}
-                                <li><a href='{{ paginator_url }}{{ p }}/{{ query_string|urlencode }}'>{{ p }}</a></li>
+                                <li><a href='{{ paginator_url }}{{ p }}/{{ query_string|safe }}'>{{ p }}</a></li>
                             {%else%}
                                 <li class='active'><a href="#">{{ p }}</a></li>
                             {% endif %}
@@ -76,7 +76,7 @@
                     {% endif %}
 
                     {% if page_obj.has_next %}
-                        <li><a href='{{ paginator_url }}{{ page_obj.next_page_number }}/{{ query_string|urlencode }}'>Вперед</a></li>
+                        <li><a href='{{ paginator_url }}{{ page_obj.next_page_number }}/{{ query_string|safe }}'>Вперед</a></li>
                     {% else %}
                         <li class='disabled'><a href="#">Вперед</a></li>
                     {% endif %}
