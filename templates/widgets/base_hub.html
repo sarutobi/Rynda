@@ -27,7 +27,7 @@
         {% if part == 'about' %} 
             <li class='tab_active'><div class='tabLink_container'>О проекте</div></li>
         {% else %}
-            <li><div class='tabLink_container'><a href='/info'>О проекте</a></div></li>
+        <li><div class='tabLink_container'><a href='{% url "about_project" %}'>О проекте</a></div></li>
         {% endif %}
     </ul>
 </div>
