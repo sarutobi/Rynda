@@ -7,6 +7,7 @@ cssutils==0.9.10b1
 django-filter==0.5.4
 django-floppyforms==1.1
 django-model-utils==2.0.2
+django-olwidget==0.61.0
 django-post_office==0.3.1
 django-social-auth==0.7.28
 django-widget-tweaks==1.1.2
