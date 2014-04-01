@@ -1,17 +1,17 @@
 # -*- coding: utf-8 -*-
 
 from django.contrib import admin
-from django.db import models
+from django.contrib.gis.db import models
 from django.utils.translation import ugettext_lazy as _
 
 
 class Region(models.Model):
 
     """
-    A geographic region.
+    Географический регион.
 
-    Common regional zones. All messages can be grouped by this territorial
-    cluster.
+    Обобщенный георегион, описывающий произвольную геообласть на карте.
+    Сообщения могут быть сгруппированы по этому признаку.
     TODO: use django-mptt
     TODO: make nested regions
     TODO: link message to nested regions
@@ -31,9 +31,11 @@ class Region(models.Model):
     # Region center coordinates
     latitude = models.FloatField(_("latitude"))
     longitude = models.FloatField(_("longitude"))
+    center = models.PointField(_("map center"), null=True)
     # Region map default zoom
     zoom = models.SmallIntegerField(_("map zoom"))
     order = models.IntegerField(_("order"))
+    objects = models.GeoManager()
 
     def __unicode__(self):
         return self.name
