@@ -14,10 +14,10 @@ class Migration(DataMigration):
         for region in orm.Region.objects.all():
             region.center = "POINT(%f %f)" % (region.longitude, region.latitude)
             region.save()
-            print region.center
 
     def backwards(self, orm):
         "Write your backwards methods here."
+        print "No actions required"
 
     models = {
         u'geozones.location': {
