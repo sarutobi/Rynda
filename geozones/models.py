@@ -40,7 +40,7 @@ class Region(models.Model):
     def __unicode__(self):
         return self.name
 
-admin.site.register(Region)
+#admin.site.register(Region)
 
 
 class Location(models.Model):
