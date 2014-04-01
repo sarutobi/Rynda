@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 
-from django.contrib import admin
 from django.contrib.gis.db import models
 from django.utils.translation import ugettext_lazy as _
 
@@ -37,8 +36,6 @@ class Region(models.Model):
 
     def __unicode__(self):
         return self.name
-
-#admin.site.register(Region)
 
 
 class Location(models.Model):
