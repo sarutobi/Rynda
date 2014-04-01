@@ -3,1092 +3,924 @@
     "pk": 0, 
     "model": "geozones.region", 
     "fields": {
+        "order": 0, 
         "center": "POINT (0.0000000000000000 0.0000000000000000)", 
         "zoom": 4, 
-        "longitude": 0.0, 
-        "order": 0, 
-        "latitude": 0.0, 
-        "slug": "unknown", 
-        "name": "Unknown"
+        "name": "Unknown", 
+        "slug": "unknown"
     }
 },
 {
     "pk": 1, 
     "model": "geozones.region", 
     "fields": {
+        "order": 50, 
         "center": "POINT (40.1058000000000021 44.6077999999999975)", 
         "zoom": 7, 
-        "longitude": 40.1058, 
-        "order": 50, 
-        "latitude": 44.6078, 
-        "slug": "", 
-        "name": "\u0420\u0435\u0441\u043f\u0443\u0431\u043b\u0438\u043a\u0430 \u0410\u0434\u044b\u0433\u0435\u044f"
+        "name": "\u0420\u0435\u0441\u043f\u0443\u0431\u043b\u0438\u043a\u0430 \u0410\u0434\u044b\u0433\u0435\u044f", 
+        "slug": ""
     }
 },
 {
     "pk": 2, 
     "model": "geozones.region", 
     "fields": {
+        "order": 60, 
         "center": "POINT (56.0375000000000014 54.7749999999999986)", 
         "zoom": 6, 
-        "longitude": 56.0375, 
-        "order": 60, 
-        "latitude": 54.775, 
-        "slug": "", 
-        "name": "\u0420\u0435\u0441\u043f\u0443\u0431\u043b\u0438\u043a\u0430 \u0411\u0430\u0448\u043a\u043e\u0440\u0442\u043e\u0441\u0442\u0430\u043d"
+        "name": "\u0420\u0435\u0441\u043f\u0443\u0431\u043b\u0438\u043a\u0430 \u0411\u0430\u0448\u043a\u043e\u0440\u0442\u043e\u0441\u0442\u0430\u043d", 
+        "slug": ""
     }
 },
 {
     "pk": 3, 
     "model": "geozones.region", 
     "fields": {
+        "order": 70, 
         "center": "POINT (107.6166999999999945 51.8333000000000013)", 
         "zoom": 5, 
-        "longitude": 107.6167, 
-        "order": 70, 
-        "latitude": 51.8333, 
-        "slug": "", 
-        "name": "\u0420\u0435\u0441\u043f\u0443\u0431\u043b\u0438\u043a\u0430 \u0411\u0443\u0440\u044f\u0442\u0438\u044f"
+        "name": "\u0420\u0435\u0441\u043f\u0443\u0431\u043b\u0438\u043a\u0430 \u0411\u0443\u0440\u044f\u0442\u0438\u044f", 
+        "slug": ""
     }
 },
 {
     "pk": 4, 
     "model": "geozones.region", 
     "fields": {
+        "order": 80, 
         "center": "POINT (85.9549999999999983 51.9560999999999993)", 
         "zoom": 6, 
-        "longitude": 85.955, 
-        "order": 80, 
-        "latitude": 51.9561, 
-        "slug": "", 
-        "name": "\u0420\u0435\u0441\u043f\u0443\u0431\u043b\u0438\u043a\u0430 \u0410\u043b\u0442\u0430\u0439"
+        "name": "\u0420\u0435\u0441\u043f\u0443\u0431\u043b\u0438\u043a\u0430 \u0410\u043b\u0442\u0430\u0439", 
+        "slug": ""
     }
 },
 {
     "pk": 5, 
     "model": "geozones.region", 
     "fields": {
+        "order": 90, 
         "center": "POINT (47.5022000000000020 42.9752999999999972)", 
         "zoom": 7, 
-        "longitude": 47.5022, 
-        "order": 90, 
-        "latitude": 42.9753, 
-        "slug": "", 
-        "name": "\u0420\u0435\u0441\u043f\u0443\u0431\u043b\u0438\u043a\u0430 \u0414\u0430\u0433\u0435\u0441\u0442\u0430\u043d"
+        "name": "\u0420\u0435\u0441\u043f\u0443\u0431\u043b\u0438\u043a\u0430 \u0414\u0430\u0433\u0435\u0441\u0442\u0430\u043d", 
+        "slug": ""
     }
 },
 {
     "pk": 6, 
     "model": "geozones.region", 
     "fields": {
+        "order": 100, 
         "center": "POINT (44.7817000000000007 43.2261000000000024)", 
         "zoom": 8, 
-        "longitude": 44.7817, 
-        "order": 100, 
-        "latitude": 43.2261, 
-        "slug": "", 
-        "name": "\u0420\u0435\u0441\u043f\u0443\u0431\u043b\u0438\u043a\u0430 \u0418\u043d\u0433\u0443\u0448\u0435\u0442\u0438\u044f"
+        "name": "\u0420\u0435\u0441\u043f\u0443\u0431\u043b\u0438\u043a\u0430 \u0418\u043d\u0433\u0443\u0448\u0435\u0442\u0438\u044f", 
+        "slug": ""
     }
 },
 {
     "pk": 7, 
     "model": "geozones.region", 
     "fields": {
+        "order": 110, 
         "center": "POINT (43.6188999999999965 43.4981000000000009)", 
         "zoom": 8, 
-        "longitude": 43.6189, 
-        "order": 110, 
-        "latitude": 43.4981, 
-        "slug": "", 
-        "name": "\u041a\u0430\u0431\u0430\u0440\u0434\u0438\u043d\u043e-\u0411\u0430\u043b\u043a\u0430\u0440\u0441\u043a\u0430\u044f \u0420\u0435\u0441\u043f\u0443\u0431\u043b\u0438\u043a\u0430"
+        "name": "\u041a\u0430\u0431\u0430\u0440\u0434\u0438\u043d\u043e-\u0411\u0430\u043b\u043a\u0430\u0440\u0441\u043a\u0430\u044f \u0420\u0435\u0441\u043f\u0443\u0431\u043b\u0438\u043a\u0430", 
+        "slug": ""
     }
 },
 {
     "pk": 8, 
     "model": "geozones.region", 
     "fields": {
+        "order": 120, 
         "center": "POINT (44.2558000000000007 46.3078000000000003)", 
         "zoom": 6, 
-        "longitude": 44.2558, 
-        "order": 120, 
-        "latitude": 46.3078, 
-        "slug": "", 
-        "name": "\u0420\u0435\u0441\u043f\u0443\u0431\u043b\u0438\u043a\u0430 \u041a\u0430\u043b\u043c\u044b\u043a\u0438\u044f"
+        "name": "\u0420\u0435\u0441\u043f\u0443\u0431\u043b\u0438\u043a\u0430 \u041a\u0430\u043b\u043c\u044b\u043a\u0438\u044f", 
+        "slug": ""
     }
 },
 {
     "pk": 9, 
     "model": "geozones.region", 
     "fields": {
+        "order": 130, 
         "center": "POINT (42.0578000000000003 44.2233000000000018)", 
         "zoom": 7, 
-        "longitude": 42.0578, 
-        "order": 130, 
-        "latitude": 44.2233, 
-        "slug": "", 
-        "name": "\u0420\u0435\u0441\u043f\u0443\u0431\u043b\u0438\u043a\u0430 \u041a\u0430\u0440\u0430\u0447\u0430\u0435\u0432\u043e-\u0427\u0435\u0440\u043a\u0435\u0441\u0441\u0438\u044f"
+        "name": "\u0420\u0435\u0441\u043f\u0443\u0431\u043b\u0438\u043a\u0430 \u041a\u0430\u0440\u0430\u0447\u0430\u0435\u0432\u043e-\u0427\u0435\u0440\u043a\u0435\u0441\u0441\u0438\u044f", 
+        "slug": ""
     }
 },
 {
     "pk": 10, 
     "model": "geozones.region", 
     "fields": {
+        "order": 140, 
         "center": "POINT (34.3333000000000013 61.8166999999999973)", 
         "zoom": 5, 
-        "longitude": 34.3333, 
-        "order": 140, 
-        "latitude": 61.8167, 
-        "slug": "", 
-        "name": "\u0420\u0435\u0441\u043f\u0443\u0431\u043b\u0438\u043a\u0430 \u041a\u0430\u0440\u0435\u043b\u0438\u044f"
+        "name": "\u0420\u0435\u0441\u043f\u0443\u0431\u043b\u0438\u043a\u0430 \u041a\u0430\u0440\u0435\u043b\u0438\u044f", 
+        "slug": ""
     }
 },
 {
     "pk": 11, 
     "model": "geozones.region", 
     "fields": {
+        "order": 150, 
         "center": "POINT (50.8121999999999971 61.6666999999999987)", 
         "zoom": 5, 
-        "longitude": 50.8122, 
-        "order": 150, 
-        "latitude": 61.6667, 
-        "slug": "", 
-        "name": "\u0420\u0435\u0441\u043f\u0443\u0431\u043b\u0438\u043a\u0430 \u041a\u043e\u043c\u0438"
+        "name": "\u0420\u0435\u0441\u043f\u0443\u0431\u043b\u0438\u043a\u0430 \u041a\u043e\u043c\u0438", 
+        "slug": ""
     }
 },
 {
     "pk": 12, 
     "model": "geozones.region", 
     "fields": {
+        "order": 160, 
         "center": "POINT (47.8710999999999984 56.6368999999999971)", 
         "zoom": 7, 
-        "longitude": 47.8711, 
-        "order": 160, 
-        "latitude": 56.6369, 
-        "slug": "", 
-        "name": "\u0420\u0435\u0441\u043f\u0443\u0431\u043b\u0438\u043a\u0430 \u041c\u0430\u0440\u0438\u0439 \u042d\u043b"
+        "name": "\u0420\u0435\u0441\u043f\u0443\u0431\u043b\u0438\u043a\u0430 \u041c\u0430\u0440\u0438\u0439 \u042d\u043b", 
+        "slug": ""
     }
 },
 {
     "pk": 13, 
     "model": "geozones.region", 
     "fields": {
+        "order": 170, 
         "center": "POINT (45.1833000000000027 54.1833000000000027)", 
         "zoom": 7, 
-        "longitude": 45.1833, 
-        "order": 170, 
-        "latitude": 54.1833, 
-        "slug": "", 
-        "name": "\u0420\u0435\u0441\u043f\u0443\u0431\u043b\u0438\u043a\u0430 \u041c\u043e\u0440\u0434\u043e\u0432\u0438\u044f"
+        "name": "\u0420\u0435\u0441\u043f\u0443\u0431\u043b\u0438\u043a\u0430 \u041c\u043e\u0440\u0434\u043e\u0432\u0438\u044f", 
+        "slug": ""
     }
 },
 {
     "pk": 14, 
     "model": "geozones.region", 
     "fields": {
+        "order": 180, 
         "center": "POINT (129.7331000000000074 62.0339000000000027)", 
         "zoom": 4, 
-        "longitude": 129.7331, 
-        "order": 180, 
-        "latitude": 62.0339, 
-        "slug": "", 
-        "name": "\u0420\u0435\u0441\u043f\u0443\u0431\u043b\u0438\u043a\u0430 \u0421\u0430\u0445\u0430 (\u042f\u043a\u0443\u0442\u0438\u044f)"
+        "name": "\u0420\u0435\u0441\u043f\u0443\u0431\u043b\u0438\u043a\u0430 \u0421\u0430\u0445\u0430 (\u042f\u043a\u0443\u0442\u0438\u044f)", 
+        "slug": ""
     }
 },
 {
     "pk": 15, 
     "model": "geozones.region", 
     "fields": {
+        "order": 190, 
         "center": "POINT (44.6835999999999984 43.0427999999999997)", 
         "zoom": 8, 
-        "longitude": 44.6836, 
-        "order": 190, 
-        "latitude": 43.0428, 
-        "slug": "", 
-        "name": "\u0420\u0435\u0441\u043f\u0443\u0431\u043b\u0438\u043a\u0430 \u0421\u0435\u0432\u0435\u0440\u043d\u0430\u044f \u041e\u0441\u0435\u0442\u0438\u044f-\u0410\u043b\u0430\u043d\u0438\u044f"
+        "name": "\u0420\u0435\u0441\u043f\u0443\u0431\u043b\u0438\u043a\u0430 \u0421\u0435\u0432\u0435\u0440\u043d\u0430\u044f \u041e\u0441\u0435\u0442\u0438\u044f-\u0410\u043b\u0430\u043d\u0438\u044f", 
+        "slug": ""
     }
 },
 {
     "pk": 16, 
     "model": "geozones.region", 
     "fields": {
+        "order": 200, 
         "center": "POINT (49.1332999999999984 55.7500000000000000)", 
         "zoom": 6, 
-        "longitude": 49.1333, 
-        "order": 200, 
-        "latitude": 55.75, 
-        "slug": "", 
-        "name": "\u0420\u0435\u0441\u043f\u0443\u0431\u043b\u0438\u043a\u0430 \u0422\u0430\u0442\u0430\u0440\u0441\u0442\u0430\u043d"
+        "name": "\u0420\u0435\u0441\u043f\u0443\u0431\u043b\u0438\u043a\u0430 \u0422\u0430\u0442\u0430\u0440\u0441\u0442\u0430\u043d", 
+        "slug": ""
     }
 },
 {
     "pk": 17, 
     "model": "geozones.region", 
     "fields": {
+        "order": 210, 
         "center": "POINT (94.4500000000000028 51.7000000000000028)", 
         "zoom": 6, 
-        "longitude": 94.45, 
-        "order": 210, 
-        "latitude": 51.7, 
-        "slug": "", 
-        "name": "\u0420\u0435\u0441\u043f\u0443\u0431\u043b\u0438\u043a\u0430 \u0422\u044b\u0432\u0430"
+        "name": "\u0420\u0435\u0441\u043f\u0443\u0431\u043b\u0438\u043a\u0430 \u0422\u044b\u0432\u0430", 
+        "slug": ""
     }
 },
 {
     "pk": 18, 
     "model": "geozones.region", 
     "fields": {
+        "order": 220, 
         "center": "POINT (53.2332999999999998 56.8500000000000014)", 
         "zoom": 6, 
-        "longitude": 53.2333, 
-        "order": 220, 
-        "latitude": 56.85, 
-        "slug": "", 
-        "name": "\u0423\u0434\u043c\u0443\u0440\u0442\u0441\u043a\u0430\u044f \u0420\u0435\u0441\u043f\u0443\u0431\u043b\u0438\u043a\u0430"
+        "name": "\u0423\u0434\u043c\u0443\u0440\u0442\u0441\u043a\u0430\u044f \u0420\u0435\u0441\u043f\u0443\u0431\u043b\u0438\u043a\u0430", 
+        "slug": ""
     }
 },
 {
     "pk": 19, 
     "model": "geozones.region", 
     "fields": {
+        "order": 230, 
         "center": "POINT (91.4291999999999945 53.7156000000000020)", 
         "zoom": 5, 
-        "longitude": 91.4292, 
-        "order": 230, 
-        "latitude": 53.7156, 
-        "slug": "", 
-        "name": "\u0420\u0435\u0441\u043f\u0443\u0431\u043b\u0438\u043a\u0430 \u0425\u0430\u043a\u0430\u0441\u0438\u044f"
+        "name": "\u0420\u0435\u0441\u043f\u0443\u0431\u043b\u0438\u043a\u0430 \u0425\u0430\u043a\u0430\u0441\u0438\u044f", 
+        "slug": ""
     }
 },
 {
     "pk": 21, 
     "model": "geozones.region", 
     "fields": {
+        "order": 250, 
         "center": "POINT (47.3999999999999986 56.1000000000000014)", 
         "zoom": 8, 
-        "longitude": 47.4, 
-        "order": 250, 
-        "latitude": 56.1, 
-        "slug": "", 
-        "name": "\u0427\u0443\u0432\u0430\u0448\u0441\u043a\u0430\u044f \u0420\u0435\u0441\u043f\u0443\u0431\u043b\u0438\u043a\u0430"
+        "name": "\u0427\u0443\u0432\u0430\u0448\u0441\u043a\u0430\u044f \u0420\u0435\u0441\u043f\u0443\u0431\u043b\u0438\u043a\u0430", 
+        "slug": ""
     }
 },
 {
     "pk": 22, 
     "model": "geozones.region", 
     "fields": {
+        "order": 260, 
         "center": "POINT (83.7522000000000020 53.3558000000000021)", 
         "zoom": 5, 
-        "longitude": 83.7522, 
-        "order": 260, 
-        "latitude": 53.3558, 
-        "slug": "", 
-        "name": "\u0410\u043b\u0442\u0430\u0439\u0441\u043a\u0438\u0439 \u043a\u0440\u0430\u0439"
+        "name": "\u0410\u043b\u0442\u0430\u0439\u0441\u043a\u0438\u0439 \u043a\u0440\u0430\u0439", 
+        "slug": ""
     }
 },
 {
     "pk": 23, 
     "model": "geozones.region", 
     "fields": {
+        "order": 270, 
         "center": "POINT (38.9769000000000005 45.0328000000000017)", 
         "zoom": 7, 
-        "longitude": 38.9769, 
-        "order": 270, 
-        "latitude": 45.0328, 
-        "slug": "", 
-        "name": "\u041a\u0440\u0430\u0441\u043d\u043e\u0434\u0430\u0440\u0441\u043a\u0438\u0439 \u043a\u0440\u0430\u0439"
+        "name": "\u041a\u0440\u0430\u0441\u043d\u043e\u0434\u0430\u0440\u0441\u043a\u0438\u0439 \u043a\u0440\u0430\u0439", 
+        "slug": ""
     }
 },
 {
     "pk": 24, 
     "model": "geozones.region", 
     "fields": {
+        "order": 280, 
         "center": "POINT (92.7917000000000058 56.0097000000000023)", 
         "zoom": 4, 
-        "longitude": 92.7917, 
-        "order": 280, 
-        "latitude": 56.0097, 
-        "slug": "", 
-        "name": "\u041a\u0440\u0430\u0441\u043d\u043e\u044f\u0440\u0441\u043a\u0438\u0439 \u043a\u0440\u0430\u0439"
+        "name": "\u041a\u0440\u0430\u0441\u043d\u043e\u044f\u0440\u0441\u043a\u0438\u0439 \u043a\u0440\u0430\u0439", 
+        "slug": ""
     }
 },
 {
     "pk": 25, 
     "model": "geozones.region", 
     "fields": {
+        "order": 290, 
         "center": "POINT (131.9000000000000057 43.1332999999999984)", 
         "zoom": 5, 
-        "longitude": 131.9, 
-        "order": 290, 
-        "latitude": 43.1333, 
-        "slug": "", 
-        "name": "\u041f\u0440\u0438\u043c\u043e\u0440\u0441\u043a\u0438\u0439 \u043a\u0440\u0430\u0439"
+        "name": "\u041f\u0440\u0438\u043c\u043e\u0440\u0441\u043a\u0438\u0439 \u043a\u0440\u0430\u0439", 
+        "slug": ""
     }
 },
 {
     "pk": 26, 
     "model": "geozones.region", 
     "fields": {
+        "order": 300, 
         "center": "POINT (41.9733000000000018 45.0427999999999997)", 
         "zoom": 7, 
-        "longitude": 41.9733, 
-        "order": 300, 
-        "latitude": 45.0428, 
-        "slug": "", 
-        "name": "\u0421\u0442\u0430\u0432\u0440\u043e\u043f\u043e\u043b\u044c\u0441\u043a\u0438\u0439 \u043a\u0440\u0430\u0439"
+        "name": "\u0421\u0442\u0430\u0432\u0440\u043e\u043f\u043e\u043b\u044c\u0441\u043a\u0438\u0439 \u043a\u0440\u0430\u0439", 
+        "slug": ""
     }
 },
 {
     "pk": 27, 
     "model": "geozones.region", 
     "fields": {
+        "order": 310, 
         "center": "POINT (135.0999999999999943 48.5000000000000000)", 
         "zoom": 5, 
-        "longitude": 135.1, 
-        "order": 310, 
-        "latitude": 48.5, 
-        "slug": "", 
-        "name": "\u0425\u0430\u0431\u0430\u0440\u043e\u0432\u0441\u043a\u0438\u0439 \u043a\u0440\u0430\u0439"
+        "name": "\u0425\u0430\u0431\u0430\u0440\u043e\u0432\u0441\u043a\u0438\u0439 \u043a\u0440\u0430\u0439", 
+        "slug": ""
     }
 },
 {
     "pk": 28, 
     "model": "geozones.region", 
     "fields": {
+        "order": 320, 
         "center": "POINT (127.5332999999999970 50.2667000000000002)", 
         "zoom": 5, 
-        "longitude": 127.5333, 
-        "order": 320, 
-        "latitude": 50.2667, 
-        "slug": "", 
-        "name": "\u0410\u043c\u0443\u0440\u0441\u043a\u0430\u044f \u043e\u0431\u043b\u0430\u0441\u0442\u044c"
+        "name": "\u0410\u043c\u0443\u0440\u0441\u043a\u0430\u044f \u043e\u0431\u043b\u0430\u0441\u0442\u044c", 
+        "slug": ""
     }
 },
 {
     "pk": 29, 
     "model": "geozones.region", 
     "fields": {
+        "order": 330, 
         "center": "POINT (40.5332999999999970 64.5666999999999973)", 
         "zoom": 5, 
-        "longitude": 40.5333, 
-        "order": 330, 
-        "latitude": 64.5667, 
-        "slug": "arhangelskaya-oblast", 
-        "name": "\u0410\u0440\u0445\u0430\u043d\u0433\u0435\u043b\u044c\u0441\u043a\u0430\u044f \u043e\u0431\u043b\u0430\u0441\u0442\u044c"
+        "name": "\u0410\u0440\u0445\u0430\u043d\u0433\u0435\u043b\u044c\u0441\u043a\u0430\u044f \u043e\u0431\u043b\u0430\u0441\u0442\u044c", 
+        "slug": "arhangelskaya-oblast"
     }
 },
 {
     "pk": 30, 
     "model": "geozones.region", 
     "fields": {
+        "order": 340, 
         "center": "POINT (48.0491999999999990 46.3494000000000028)", 
         "zoom": 6, 
-        "longitude": 48.0492, 
-        "order": 340, 
-        "latitude": 46.3494, 
-        "slug": "", 
-        "name": "\u0410\u0441\u0442\u0440\u0430\u0445\u0430\u043d\u0441\u043a\u0430\u044f \u043e\u0431\u043b\u0430\u0441\u0442\u044c"
+        "name": "\u0410\u0441\u0442\u0440\u0430\u0445\u0430\u043d\u0441\u043a\u0430\u044f \u043e\u0431\u043b\u0430\u0441\u0442\u044c", 
+        "slug": ""
     }
 },
 {
     "pk": 31, 
     "model": "geozones.region", 
     "fields": {
+        "order": 350, 
         "center": "POINT (36.5872000000000028 50.6133000000000024)", 
         "zoom": 7, 
-        "longitude": 36.5872, 
-        "order": 350, 
-        "latitude": 50.6133, 
-        "slug": "", 
-        "name": "\u0411\u0435\u043b\u0433\u043e\u0440\u043e\u0434\u0441\u043a\u0430\u044f \u043e\u0431\u043b\u0430\u0441\u0442\u044c"
+        "name": "\u0411\u0435\u043b\u0433\u043e\u0440\u043e\u0434\u0441\u043a\u0430\u044f \u043e\u0431\u043b\u0430\u0441\u0442\u044c", 
+        "slug": ""
     }
 },
 {
     "pk": 32, 
     "model": "geozones.region", 
     "fields": {
+        "order": 360, 
         "center": "POINT (34.3511000000000024 53.2421999999999969)", 
         "zoom": 7, 
-        "longitude": 34.3511, 
-        "order": 360, 
-        "latitude": 53.2422, 
-        "slug": "", 
-        "name": "\u0411\u0440\u044f\u043d\u0441\u043a\u0430\u044f \u043e\u0431\u043b\u0430\u0441\u0442\u044c"
+        "name": "\u0411\u0440\u044f\u043d\u0441\u043a\u0430\u044f \u043e\u0431\u043b\u0430\u0441\u0442\u044c", 
+        "slug": ""
     }
 },
 {
     "pk": 33, 
     "model": "geozones.region", 
     "fields": {
+        "order": 370, 
         "center": "POINT (40.3980999999999995 56.1428000000000011)", 
         "zoom": 7, 
-        "longitude": 40.3981, 
-        "order": 370, 
-        "latitude": 56.1428, 
-        "slug": "", 
-        "name": "\u0412\u043b\u0430\u0434\u0438\u043c\u0438\u0440\u0441\u043a\u0430\u044f \u043e\u0431\u043b\u0430\u0441\u0442\u044c"
+        "name": "\u0412\u043b\u0430\u0434\u0438\u043c\u0438\u0440\u0441\u043a\u0430\u044f \u043e\u0431\u043b\u0430\u0441\u0442\u044c", 
+        "slug": ""
     }
 },
 {
     "pk": 34, 
     "model": "geozones.region", 
     "fields": {
+        "order": 380, 
         "center": "POINT (44.5857999999999990 48.8046999999999969)", 
         "zoom": 6, 
-        "longitude": 44.5858, 
-        "order": 380, 
-        "latitude": 48.8047, 
-        "slug": "", 
-        "name": "\u0412\u043e\u043b\u0433\u043e\u0433\u0440\u0430\u0434\u0441\u043a\u0430\u044f \u043e\u0431\u043b\u0430\u0441\u0442\u044c"
+        "name": "\u0412\u043e\u043b\u0433\u043e\u0433\u0440\u0430\u0434\u0441\u043a\u0430\u044f \u043e\u0431\u043b\u0430\u0441\u0442\u044c", 
+        "slug": ""
     }
 },
 {
     "pk": 35, 
     "model": "geozones.region", 
     "fields": {
+        "order": 390, 
         "center": "POINT (39.8999999999999986 59.2167000000000030)", 
         "zoom": 6, 
-        "longitude": 39.9, 
-        "order": 390, 
-        "latitude": 59.2167, 
-        "slug": "", 
-        "name": "\u0412\u043e\u043b\u043e\u0433\u043e\u0434\u0441\u043a\u0430\u044f \u043e\u0431\u043b\u0430\u0441\u0442\u044c"
+        "name": "\u0412\u043e\u043b\u043e\u0433\u043e\u0434\u0441\u043a\u0430\u044f \u043e\u0431\u043b\u0430\u0441\u0442\u044c", 
+        "slug": ""
     }
 },
 {
     "pk": 36, 
     "model": "geozones.region", 
     "fields": {
+        "order": 400, 
         "center": "POINT (39.1700000000000017 51.6664000000000030)", 
         "zoom": 6, 
-        "longitude": 39.17, 
-        "order": 400, 
-        "latitude": 51.6664, 
-        "slug": "", 
-        "name": "\u0412\u043e\u0440\u043e\u043d\u0435\u0436\u0441\u043a\u0430\u044f \u043e\u0431\u043b\u0430\u0441\u0442\u044c"
+        "name": "\u0412\u043e\u0440\u043e\u043d\u0435\u0436\u0441\u043a\u0430\u044f \u043e\u0431\u043b\u0430\u0441\u0442\u044c", 
+        "slug": ""
     }
 },
 {
     "pk": 37, 
     "model": "geozones.region", 
     "fields": {
+        "order": 410, 
         "center": "POINT (40.9500000000000028 57.0000000000000000)", 
         "zoom": 7, 
-        "longitude": 40.95, 
-        "order": 410, 
-        "latitude": 57.0, 
-        "slug": "", 
-        "name": "\u0418\u0432\u0430\u043d\u043e\u0432\u0441\u043a\u0430\u044f \u043e\u0431\u043b\u0430\u0441\u0442\u044c"
+        "name": "\u0418\u0432\u0430\u043d\u043e\u0432\u0441\u043a\u0430\u044f \u043e\u0431\u043b\u0430\u0441\u0442\u044c", 
+        "slug": ""
     }
 },
 {
     "pk": 38, 
     "model": "geozones.region", 
     "fields": {
+        "order": 420, 
         "center": "POINT (104.3332999999999942 52.2667000000000002)", 
         "zoom": 5, 
-        "longitude": 104.3333, 
-        "order": 420, 
-        "latitude": 52.2667, 
-        "slug": "", 
-        "name": "\u0418\u0440\u043a\u0443\u0442\u0441\u043a\u0430\u044f \u043e\u0431\u043b\u0430\u0441\u0442\u044c"
+        "name": "\u0418\u0440\u043a\u0443\u0442\u0441\u043a\u0430\u044f \u043e\u0431\u043b\u0430\u0441\u0442\u044c", 
+        "slug": ""
     }
 },
 {
     "pk": 39, 
     "model": "geozones.region", 
     "fields": {
+        "order": 430, 
         "center": "POINT (20.5000000000000000 54.7100000000000009)", 
         "zoom": 7, 
-        "longitude": 20.5, 
-        "order": 430, 
-        "latitude": 54.71, 
-        "slug": "", 
-        "name": "\u041a\u0430\u043b\u0438\u043d\u0438\u0433\u0440\u0430\u0434\u0441\u043a\u0430\u044f \u043e\u0431\u043b\u0430\u0441\u0442\u044c"
+        "name": "\u041a\u0430\u043b\u0438\u043d\u0438\u0433\u0440\u0430\u0434\u0441\u043a\u0430\u044f \u043e\u0431\u043b\u0430\u0441\u0442\u044c", 
+        "slug": ""
     }
 },
 {
     "pk": 40, 
     "model": "geozones.region", 
     "fields": {
+        "order": 440, 
         "center": "POINT (36.2706000000000017 54.5358000000000018)", 
         "zoom": 7, 
-        "longitude": 36.2706, 
-        "order": 440, 
-        "latitude": 54.5358, 
-        "slug": "", 
-        "name": "\u041a\u0430\u043b\u0443\u0436\u0441\u043a\u0430\u044f \u043e\u0431\u043b\u0430\u0441\u0442\u044c"
+        "name": "\u041a\u0430\u043b\u0443\u0436\u0441\u043a\u0430\u044f \u043e\u0431\u043b\u0430\u0441\u0442\u044c", 
+        "slug": ""
     }
 },
 {
     "pk": 41, 
     "model": "geozones.region", 
     "fields": {
+        "order": 450, 
         "center": "POINT (158.6500000000000057 53.0167000000000002)", 
         "zoom": 4, 
-        "longitude": 158.65, 
-        "order": 450, 
-        "latitude": 53.0167, 
-        "slug": "", 
-        "name": "\u041a\u0430\u043c\u0447\u0430\u0442\u0441\u043a\u0438\u0439 \u043a\u0440\u0430\u0439"
+        "name": "\u041a\u0430\u043c\u0447\u0430\u0442\u0441\u043a\u0438\u0439 \u043a\u0440\u0430\u0439", 
+        "slug": ""
     }
 },
 {
     "pk": 42, 
     "model": "geozones.region", 
     "fields": {
+        "order": 460, 
         "center": "POINT (86.0832999999999942 55.3333000000000013)", 
         "zoom": 6, 
-        "longitude": 86.0833, 
-        "order": 460, 
-        "latitude": 55.3333, 
-        "slug": "", 
-        "name": "\u041a\u0435\u043c\u0435\u0440\u043e\u0432\u0441\u043a\u0430\u044f \u043e\u0431\u043b\u0430\u0441\u0442\u044c"
+        "name": "\u041a\u0435\u043c\u0435\u0440\u043e\u0432\u0441\u043a\u0430\u044f \u043e\u0431\u043b\u0430\u0441\u0442\u044c", 
+        "slug": ""
     }
 },
 {
     "pk": 43, 
     "model": "geozones.region", 
     "fields": {
+        "order": 470, 
         "center": "POINT (49.6189999999999998 58.6670000000000016)", 
         "zoom": 7, 
-        "longitude": 49.619, 
-        "order": 470, 
-        "latitude": 58.667, 
-        "slug": "", 
-        "name": "\u041a\u0438\u0440\u043e\u0432\u0441\u043a\u0430\u044f \u043e\u0431\u043b\u0430\u0441\u0442\u044c"
+        "name": "\u041a\u0438\u0440\u043e\u0432\u0441\u043a\u0430\u044f \u043e\u0431\u043b\u0430\u0441\u0442\u044c", 
+        "slug": ""
     }
 },
 {
     "pk": 44, 
     "model": "geozones.region", 
     "fields": {
+        "order": 480, 
         "center": "POINT (40.9343999999999966 57.7708000000000013)", 
         "zoom": 6, 
-        "longitude": 40.9344, 
-        "order": 480, 
-        "latitude": 57.7708, 
-        "slug": "", 
-        "name": "\u041a\u043e\u0441\u0442\u0440\u043e\u043c\u0441\u043a\u0430\u044f \u043e\u0431\u043b\u0430\u0441\u0442\u044c"
+        "name": "\u041a\u043e\u0441\u0442\u0440\u043e\u043c\u0441\u043a\u0430\u044f \u043e\u0431\u043b\u0430\u0441\u0442\u044c", 
+        "slug": ""
     }
 },
 {
     "pk": 45, 
     "model": "geozones.region", 
     "fields": {
+        "order": 490, 
         "center": "POINT (65.2999999999999972 55.5144000000000020)", 
         "zoom": 7, 
-        "longitude": 65.3, 
-        "order": 490, 
-        "latitude": 55.5144, 
-        "slug": "", 
-        "name": "\u041a\u0443\u0440\u0433\u0430\u043d\u0441\u043a\u0430\u044f \u043e\u0431\u043b\u0430\u0441\u0442\u044c"
+        "name": "\u041a\u0443\u0440\u0433\u0430\u043d\u0441\u043a\u0430\u044f \u043e\u0431\u043b\u0430\u0441\u0442\u044c", 
+        "slug": ""
     }
 },
 {
     "pk": 46, 
     "model": "geozones.region", 
     "fields": {
+        "order": 500, 
         "center": "POINT (36.1938999999999993 51.7302999999999997)", 
         "zoom": 7, 
-        "longitude": 36.1939, 
-        "order": 500, 
-        "latitude": 51.7303, 
-        "slug": "", 
-        "name": "\u041a\u0443\u0440\u0441\u043a\u0430\u044f \u043e\u0431\u043b\u0430\u0441\u0442\u044c"
+        "name": "\u041a\u0443\u0440\u0441\u043a\u0430\u044f \u043e\u0431\u043b\u0430\u0441\u0442\u044c", 
+        "slug": ""
     }
 },
 {
     "pk": 47, 
     "model": "geozones.region", 
     "fields": {
+        "order": 40, 
         "center": "POINT (30.2641999999999989 59.8943999999999974)", 
         "zoom": 6, 
-        "longitude": 30.2642, 
-        "order": 40, 
-        "latitude": 59.8944, 
-        "slug": "", 
-        "name": "\u041b\u0435\u043d\u0438\u043d\u0433\u0440\u0430\u0434\u0441\u043a\u0430\u044f \u043e\u0431\u043b\u0430\u0441\u0442\u044c"
+        "name": "\u041b\u0435\u043d\u0438\u043d\u0433\u0440\u0430\u0434\u0441\u043a\u0430\u044f \u043e\u0431\u043b\u0430\u0441\u0442\u044c", 
+        "slug": ""
     }
 },
 {
     "pk": 48, 
     "model": "geozones.region", 
     "fields": {
+        "order": 520, 
         "center": "POINT (39.5688999999999993 52.6186000000000007)", 
         "zoom": 7, 
-        "longitude": 39.5689, 
-        "order": 520, 
-        "latitude": 52.6186, 
-        "slug": "", 
-        "name": "\u041b\u0438\u043f\u0435\u0446\u043a\u0430\u044f \u043e\u0431\u043b\u0430\u0441\u0442\u044c"
+        "name": "\u041b\u0438\u043f\u0435\u0446\u043a\u0430\u044f \u043e\u0431\u043b\u0430\u0441\u0442\u044c", 
+        "slug": ""
     }
 },
 {
     "pk": 49, 
     "model": "geozones.region", 
     "fields": {
+        "order": 530, 
         "center": "POINT (150.8000000000000114 59.5666999999999973)", 
         "zoom": 5, 
-        "longitude": 150.8, 
-        "order": 530, 
-        "latitude": 59.5667, 
-        "slug": "", 
-        "name": "\u041c\u0430\u0433\u0430\u0434\u0430\u043d\u0441\u043a\u0430\u044f \u043e\u0431\u043b\u0430\u0441\u0442\u044c"
+        "name": "\u041c\u0430\u0433\u0430\u0434\u0430\u043d\u0441\u043a\u0430\u044f \u043e\u0431\u043b\u0430\u0441\u0442\u044c", 
+        "slug": ""
     }
 },
 {
     "pk": 50, 
     "model": "geozones.region", 
     "fields": {
+        "order": 20, 
         "center": "POINT (37.6172800000000009 55.7527899999999974)", 
         "zoom": 6, 
-        "longitude": 37.61728, 
-        "order": 20, 
-        "latitude": 55.75279, 
-        "slug": "", 
-        "name": "\u041c\u043e\u0441\u043a\u043e\u0432\u0441\u043a\u0430\u044f \u043e\u0431\u043b\u0430\u0441\u0442\u044c"
+        "name": "\u041c\u043e\u0441\u043a\u043e\u0432\u0441\u043a\u0430\u044f \u043e\u0431\u043b\u0430\u0441\u0442\u044c", 
+        "slug": ""
     }
 },
 {
     "pk": 51, 
     "model": "geozones.region", 
     "fields": {
+        "order": 550, 
         "center": "POINT (33.0833000000000013 68.9667000000000030)", 
         "zoom": 5, 
-        "longitude": 33.0833, 
-        "order": 550, 
-        "latitude": 68.9667, 
-        "slug": "", 
-        "name": "\u041c\u0443\u0440\u043c\u0430\u043d\u0441\u043a\u0430\u044f \u043e\u0431\u043b\u0430\u0441\u0442\u044c"
+        "name": "\u041c\u0443\u0440\u043c\u0430\u043d\u0441\u043a\u0430\u044f \u043e\u0431\u043b\u0430\u0441\u0442\u044c", 
+        "slug": ""
     }
 },
 {
     "pk": 52, 
     "model": "geozones.region", 
     "fields": {
+        "order": 560, 
         "center": "POINT (44.0000000000000000 56.3333000000000013)", 
         "zoom": 6, 
-        "longitude": 44.0, 
-        "order": 560, 
-        "latitude": 56.3333, 
-        "slug": "", 
-        "name": "\u041d\u0438\u0436\u0435\u0433\u043e\u0440\u043e\u0434\u0441\u043a\u0430\u044f \u043e\u0431\u043b\u0430\u0441\u0442\u044c"
+        "name": "\u041d\u0438\u0436\u0435\u0433\u043e\u0440\u043e\u0434\u0441\u043a\u0430\u044f \u043e\u0431\u043b\u0430\u0441\u0442\u044c", 
+        "slug": ""
     }
 },
 {
     "pk": 53, 
     "model": "geozones.region", 
     "fields": {
+        "order": 570, 
         "center": "POINT (31.2500000000000000 58.5000000000000000)", 
         "zoom": 6, 
-        "longitude": 31.25, 
-        "order": 570, 
-        "latitude": 58.5, 
-        "slug": "", 
-        "name": "\u041d\u043e\u0432\u0433\u043e\u0440\u043e\u0434\u0441\u043a\u0430\u044f \u043e\u0431\u043b\u0430\u0441\u0442\u044c"
+        "name": "\u041d\u043e\u0432\u0433\u043e\u0440\u043e\u0434\u0441\u043a\u0430\u044f \u043e\u0431\u043b\u0430\u0441\u0442\u044c", 
+        "slug": ""
     }
 },
 {
     "pk": 54, 
     "model": "geozones.region", 
     "fields": {
+        "order": 580, 
         "center": "POINT (82.9343999999999966 55.0411000000000001)", 
         "zoom": 6, 
-        "longitude": 82.9344, 
-        "order": 580, 
-        "latitude": 55.0411, 
-        "slug": "", 
-        "name": "\u041d\u043e\u0432\u043e\u0441\u0438\u0431\u0438\u0440\u0441\u043a\u0430\u044f \u043e\u0431\u043b\u0430\u0441\u0442\u044c"
+        "name": "\u041d\u043e\u0432\u043e\u0441\u0438\u0431\u0438\u0440\u0441\u043a\u0430\u044f \u043e\u0431\u043b\u0430\u0441\u0442\u044c", 
+        "slug": ""
     }
 },
 {
     "pk": 55, 
     "model": "geozones.region", 
     "fields": {
+        "order": 590, 
         "center": "POINT (73.4000000000000057 55.0000000000000000)", 
         "zoom": 6, 
-        "longitude": 73.4, 
-        "order": 590, 
-        "latitude": 55.0, 
-        "slug": "", 
-        "name": "\u041e\u043c\u0441\u043a\u0430\u044f \u043e\u0431\u043b\u0430\u0441\u0442\u044c"
+        "name": "\u041e\u043c\u0441\u043a\u0430\u044f \u043e\u0431\u043b\u0430\u0441\u0442\u044c", 
+        "slug": ""
     }
 },
 {
     "pk": 56, 
     "model": "geozones.region", 
     "fields": {
+        "order": 600, 
         "center": "POINT (55.0985999999999976 51.7847000000000008)", 
         "zoom": 6, 
-        "longitude": 55.0986, 
-        "order": 600, 
-        "latitude": 51.7847, 
-        "slug": "", 
-        "name": "\u041e\u0440\u0435\u043d\u0431\u0443\u0440\u0433\u0441\u043a\u0430\u044f \u043e\u0431\u043b\u0430\u0441\u0442\u044c"
+        "name": "\u041e\u0440\u0435\u043d\u0431\u0443\u0440\u0433\u0441\u043a\u0430\u044f \u043e\u0431\u043b\u0430\u0441\u0442\u044c", 
+        "slug": ""
     }
 },
 {
     "pk": 57, 
     "model": "geozones.region", 
     "fields": {
+        "order": 610, 
         "center": "POINT (36.0803000000000011 52.9658000000000015)", 
         "zoom": 7, 
-        "longitude": 36.0803, 
-        "order": 610, 
-        "latitude": 52.9658, 
-        "slug": "", 
-        "name": "\u041e\u0440\u043b\u043e\u0432\u0441\u043a\u0430\u044f \u043e\u0431\u043b\u0430\u0441\u0442\u044c"
+        "name": "\u041e\u0440\u043b\u043e\u0432\u0441\u043a\u0430\u044f \u043e\u0431\u043b\u0430\u0441\u0442\u044c", 
+        "slug": ""
     }
 },
 {
     "pk": 58, 
     "model": "geozones.region", 
     "fields": {
+        "order": 620, 
         "center": "POINT (45.0000000000000000 53.1957999999999984)", 
         "zoom": 7, 
-        "longitude": 45.0, 
-        "order": 620, 
-        "latitude": 53.1958, 
-        "slug": "", 
-        "name": "\u041f\u0435\u043d\u0437\u0435\u043d\u0441\u043a\u0430\u044f \u043e\u0431\u043b\u0430\u0441\u0442\u044c"
+        "name": "\u041f\u0435\u043d\u0437\u0435\u043d\u0441\u043a\u0430\u044f \u043e\u0431\u043b\u0430\u0441\u0442\u044c", 
+        "slug": ""
     }
 },
 {
     "pk": 59, 
     "model": "geozones.region", 
     "fields": {
+        "order": 630, 
         "center": "POINT (56.2500000000000000 58.0000000000000000)", 
         "zoom": 5, 
-        "longitude": 56.25, 
-        "order": 630, 
-        "latitude": 58.0, 
-        "slug": "", 
-        "name": "\u041f\u0435\u0440\u043c\u0441\u043a\u0438\u0439 \u043a\u0440\u0430\u0439"
+        "name": "\u041f\u0435\u0440\u043c\u0441\u043a\u0438\u0439 \u043a\u0440\u0430\u0439", 
+        "slug": ""
     }
 },
 {
     "pk": 60, 
     "model": "geozones.region", 
     "fields": {
+        "order": 640, 
         "center": "POINT (28.3333000000000013 57.8333000000000013)", 
         "zoom": 6, 
-        "longitude": 28.3333, 
-        "order": 640, 
-        "latitude": 57.8333, 
-        "slug": "", 
-        "name": "\u041f\u0441\u043a\u043e\u0432\u0441\u043a\u0430\u044f \u043e\u0431\u043b\u0430\u0441\u0442\u044c"
+        "name": "\u041f\u0441\u043a\u043e\u0432\u0441\u043a\u0430\u044f \u043e\u0431\u043b\u0430\u0441\u0442\u044c", 
+        "slug": ""
     }
 },
 {
     "pk": 61, 
     "model": "geozones.region", 
     "fields": {
+        "order": 650, 
         "center": "POINT (39.7139000000000024 47.2364000000000033)", 
         "zoom": 6, 
-        "longitude": 39.7139, 
-        "order": 650, 
-        "latitude": 47.2364, 
-        "slug": "", 
-        "name": "\u0420\u043e\u0441\u0442\u043e\u0432\u0441\u043a\u0430\u044f \u043e\u0431\u043b\u0430\u0441\u0442\u044c"
+        "name": "\u0420\u043e\u0441\u0442\u043e\u0432\u0441\u043a\u0430\u044f \u043e\u0431\u043b\u0430\u0441\u0442\u044c", 
+        "slug": ""
     }
 },
 {
     "pk": 62, 
     "model": "geozones.region", 
     "fields": {
+        "order": 660, 
         "center": "POINT (39.7400000000000020 54.6197000000000017)", 
         "zoom": 7, 
-        "longitude": 39.74, 
-        "order": 660, 
-        "latitude": 54.6197, 
-        "slug": "", 
-        "name": "\u0420\u044f\u0437\u0430\u043d\u0441\u043a\u0430\u044f \u043e\u0431\u043b\u0430\u0441\u0442\u044c"
+        "name": "\u0420\u044f\u0437\u0430\u043d\u0441\u043a\u0430\u044f \u043e\u0431\u043b\u0430\u0441\u0442\u044c", 
+        "slug": ""
     }
 },
 {
     "pk": 63, 
     "model": "geozones.region", 
     "fields": {
+        "order": 670, 
         "center": "POINT (50.1499999999999986 53.2000000000000028)", 
         "zoom": 6, 
-        "longitude": 50.15, 
-        "order": 670, 
-        "latitude": 53.2, 
-        "slug": "", 
-        "name": "\u0421\u0430\u043c\u0430\u0440\u0441\u043a\u0430\u044f \u043e\u0431\u043b\u0430\u0441\u0442\u044c"
+        "name": "\u0421\u0430\u043c\u0430\u0440\u0441\u043a\u0430\u044f \u043e\u0431\u043b\u0430\u0441\u0442\u044c", 
+        "slug": ""
     }
 },
 {
     "pk": 64, 
     "model": "geozones.region", 
     "fields": {
+        "order": 680, 
         "center": "POINT (46.0332999999999970 51.5666999999999973)", 
         "zoom": 6, 
-        "longitude": 46.0333, 
-        "order": 680, 
-        "latitude": 51.5667, 
-        "slug": "", 
-        "name": "\u0421\u0430\u0440\u0430\u0442\u043e\u0432\u0441\u043a\u0430\u044f \u043e\u0431\u043b\u0430\u0441\u0442\u044c"
+        "name": "\u0421\u0430\u0440\u0430\u0442\u043e\u0432\u0441\u043a\u0430\u044f \u043e\u0431\u043b\u0430\u0441\u0442\u044c", 
+        "slug": ""
     }
 },
 {
     "pk": 65, 
     "model": "geozones.region", 
     "fields": {
+        "order": 690, 
         "center": "POINT (142.7406000000000006 46.9521999999999977)", 
         "zoom": 5, 
-        "longitude": 142.7406, 
-        "order": 690, 
-        "latitude": 46.9522, 
-        "slug": "", 
-        "name": "\u0421\u0430\u0445\u0430\u043b\u0438\u043d\u0441\u043a\u0430\u044f \u043e\u0431\u043b\u0430\u0441\u0442\u044c"
+        "name": "\u0421\u0430\u0445\u0430\u043b\u0438\u043d\u0441\u043a\u0430\u044f \u043e\u0431\u043b\u0430\u0441\u0442\u044c", 
+        "slug": ""
     }
 },
 {
     "pk": 66, 
     "model": "geozones.region", 
     "fields": {
+        "order": 700, 
         "center": "POINT (60.6000000000000014 56.8500000000000014)", 
         "zoom": 5, 
-        "longitude": 60.6, 
-        "order": 700, 
-        "latitude": 56.85, 
-        "slug": "", 
-        "name": "\u0421\u0432\u0435\u0440\u0434\u043b\u043e\u0432\u0441\u043a\u0430\u044f \u043e\u0431\u043b\u0430\u0441\u0442\u044c"
+        "name": "\u0421\u0432\u0435\u0440\u0434\u043b\u043e\u0432\u0441\u043a\u0430\u044f \u043e\u0431\u043b\u0430\u0441\u0442\u044c", 
+        "slug": ""
     }
 },
 {
     "pk": 67, 
     "model": "geozones.region", 
     "fields": {
+        "order": 710, 
         "center": "POINT (32.0399999999999991 54.7817000000000007)", 
         "zoom": 7, 
-        "longitude": 32.04, 
-        "order": 710, 
-        "latitude": 54.7817, 
-        "slug": "", 
-        "name": "\u0421\u043c\u043e\u043b\u0435\u043d\u0441\u043a\u0430\u044f \u043e\u0431\u043b\u0430\u0441\u0442\u044c"
+        "name": "\u0421\u043c\u043e\u043b\u0435\u043d\u0441\u043a\u0430\u044f \u043e\u0431\u043b\u0430\u0441\u0442\u044c", 
+        "slug": ""
     }
 },
 {
     "pk": 68, 
     "model": "geozones.region", 
     "fields": {
+        "order": 720, 
         "center": "POINT (41.4339000000000013 52.7316999999999965)", 
         "zoom": 7, 
-        "longitude": 41.4339, 
-        "order": 720, 
-        "latitude": 52.7317, 
-        "slug": "", 
-        "name": "\u0422\u0430\u043c\u0431\u043e\u0432\u0441\u043a\u0430\u044f \u043e\u0431\u043b\u0430\u0441\u0442\u044c"
+        "name": "\u0422\u0430\u043c\u0431\u043e\u0432\u0441\u043a\u0430\u044f \u043e\u0431\u043b\u0430\u0441\u0442\u044c", 
+        "slug": ""
     }
 },
 {
     "pk": 69, 
     "model": "geozones.region", 
     "fields": {
+        "order": 730, 
         "center": "POINT (35.8930999999999969 56.8618999999999986)", 
         "zoom": 6, 
-        "longitude": 35.8931, 
-        "order": 730, 
-        "latitude": 56.8619, 
-        "slug": "", 
-        "name": "\u0422\u0432\u0435\u0440\u0441\u043a\u0430\u044f \u043e\u0431\u043b\u0430\u0441\u0442\u044c"
+        "name": "\u0422\u0432\u0435\u0440\u0441\u043a\u0430\u044f \u043e\u0431\u043b\u0430\u0441\u0442\u044c", 
+        "slug": ""
     }
 },
 {
     "pk": 70, 
     "model": "geozones.region", 
     "fields": {
+        "order": 740, 
         "center": "POINT (84.9667000000000030 56.5000000000000000)", 
         "zoom": 5, 
-        "longitude": 84.9667, 
-        "order": 740, 
-        "latitude": 56.5, 
-        "slug": "", 
-        "name": "\u0422\u043e\u043c\u0441\u043a\u0430\u044f \u043e\u0431\u043b\u0430\u0441\u0442\u044c"
+        "name": "\u0422\u043e\u043c\u0441\u043a\u0430\u044f \u043e\u0431\u043b\u0430\u0441\u0442\u044c", 
+        "slug": ""
     }
 },
 {
     "pk": 71, 
     "model": "geozones.region", 
     "fields": {
+        "order": 750, 
         "center": "POINT (37.6111000000000004 54.2043999999999997)", 
         "zoom": 7, 
-        "longitude": 37.6111, 
-        "order": 750, 
-        "latitude": 54.2044, 
-        "slug": "", 
-        "name": "\u0422\u0443\u043b\u044c\u0441\u043a\u0430\u044f \u043e\u0431\u043b\u0430\u0441\u0442\u044c"
+        "name": "\u0422\u0443\u043b\u044c\u0441\u043a\u0430\u044f \u043e\u0431\u043b\u0430\u0441\u0442\u044c", 
+        "slug": ""
     }
 },
 {
     "pk": 72, 
     "model": "geozones.region", 
     "fields": {
+        "order": 760, 
         "center": "POINT (65.5271999999999935 57.1522000000000006)", 
         "zoom": 6, 
-        "longitude": 65.5272, 
-        "order": 760, 
-        "latitude": 57.1522, 
-        "slug": "", 
-        "name": "\u0422\u044e\u043c\u0435\u043d\u0441\u043a\u0430\u044f \u043e\u0431\u043b\u0430\u0441\u0442\u044c"
+        "name": "\u0422\u044e\u043c\u0435\u043d\u0441\u043a\u0430\u044f \u043e\u0431\u043b\u0430\u0441\u0442\u044c", 
+        "slug": ""
     }
 },
 {
     "pk": 73, 
     "model": "geozones.region", 
     "fields": {
+        "order": 770, 
         "center": "POINT (48.2999999999999972 54.2999999999999972)", 
         "zoom": 7, 
-        "longitude": 48.3, 
-        "order": 770, 
-        "latitude": 54.3, 
-        "slug": "", 
-        "name": "\u0423\u043b\u044c\u044f\u043d\u043e\u0432\u0441\u043a\u0430\u044f \u043e\u0431\u043b\u0430\u0441\u0442\u044c"
+        "name": "\u0423\u043b\u044c\u044f\u043d\u043e\u0432\u0441\u043a\u0430\u044f \u043e\u0431\u043b\u0430\u0441\u0442\u044c", 
+        "slug": ""
     }
 },
 {
     "pk": 74, 
     "model": "geozones.region", 
     "fields": {
+        "order": 780, 
         "center": "POINT (61.4296999999999969 55.1544000000000025)", 
         "zoom": 7, 
-        "longitude": 61.4297, 
-        "order": 780, 
-        "latitude": 55.1544, 
-        "slug": "", 
-        "name": "\u0427\u0435\u043b\u044f\u0431\u0438\u043d\u0441\u043a\u0430\u044f \u043e\u0431\u043b\u0430\u0441\u0442\u044c"
+        "name": "\u0427\u0435\u043b\u044f\u0431\u0438\u043d\u0441\u043a\u0430\u044f \u043e\u0431\u043b\u0430\u0441\u0442\u044c", 
+        "slug": ""
     }
 },
 {
     "pk": 75, 
     "model": "geozones.region", 
     "fields": {
+        "order": 262, 
         "center": "POINT (113.5499999999999972 52.0332999999999970)", 
         "zoom": 5, 
-        "longitude": 113.55, 
-        "order": 262, 
-        "latitude": 52.0333, 
-        "slug": "", 
-        "name": "\u0417\u0430\u0431\u0430\u0439\u043a\u0430\u043b\u044c\u0441\u043a\u0438\u0439 \u043a\u0440\u0430\u0439"
+        "name": "\u0417\u0430\u0431\u0430\u0439\u043a\u0430\u043b\u044c\u0441\u043a\u0438\u0439 \u043a\u0440\u0430\u0439", 
+        "slug": ""
     }
 },
 {
     "pk": 76, 
     "model": "geozones.region", 
     "fields": {
+        "order": 800, 
         "center": "POINT (39.8667000000000016 57.6167000000000016)", 
         "zoom": 7, 
-        "longitude": 39.8667, 
-        "order": 800, 
-        "latitude": 57.6167, 
-        "slug": "", 
-        "name": "\u042f\u0440\u043e\u0441\u043b\u0430\u0432\u0441\u043a\u0430\u044f \u043e\u0431\u043b\u0430\u0441\u0442\u044c"
+        "name": "\u042f\u0440\u043e\u0441\u043b\u0430\u0432\u0441\u043a\u0430\u044f \u043e\u0431\u043b\u0430\u0441\u0442\u044c", 
+        "slug": ""
     }
 },
 {
     "pk": 77, 
     "model": "geozones.region", 
     "fields": {
+        "order": 10, 
         "center": "POINT (37.6172800000000009 55.7527899999999974)", 
         "zoom": 10, 
-        "longitude": 37.61728, 
-        "order": 10, 
-        "latitude": 55.75279, 
-        "slug": "moskva", 
-        "name": "\u041c\u043e\u0441\u043a\u0432\u0430"
+        "name": "\u041c\u043e\u0441\u043a\u0432\u0430", 
+        "slug": "moskva"
     }
 },
 {
     "pk": 78, 
     "model": "geozones.region", 
     "fields": {
+        "order": 30, 
         "center": "POINT (30.2641999999999989 59.8943999999999974)", 
         "zoom": 9, 
-        "longitude": 30.2642, 
-        "order": 30, 
-        "latitude": 59.8944, 
-        "slug": "sankt-peterburg", 
-        "name": "\u0421\u0430\u043d\u043a\u0442-\u041f\u0435\u0442\u0435\u0440\u0431\u0443\u0440\u0433"
+        "name": "\u0421\u0430\u043d\u043a\u0442-\u041f\u0435\u0442\u0435\u0440\u0431\u0443\u0440\u0433", 
+        "slug": "sankt-peterburg"
     }
 },
 {
     "pk": 79, 
     "model": "geozones.region", 
     "fields": {
+        "order": 830, 
         "center": "POINT (132.9499999999999886 48.7999999999999972)", 
         "zoom": 7, 
-        "longitude": 132.95, 
-        "order": 830, 
-        "latitude": 48.8, 
-        "slug": "", 
-        "name": "\u0415\u0432\u0440\u0435\u0439\u0441\u043a\u0430\u044f \u0430\u0432\u0442\u043e\u043d\u043e\u043c\u043d\u0430\u044f \u043e\u0431\u043b\u0430\u0441\u0442\u044c"
+        "name": "\u0415\u0432\u0440\u0435\u0439\u0441\u043a\u0430\u044f \u0430\u0432\u0442\u043e\u043d\u043e\u043c\u043d\u0430\u044f \u043e\u0431\u043b\u0430\u0441\u0442\u044c", 
+        "slug": ""
     }
 },
 {
     "pk": 83, 
     "model": "geozones.region", 
     "fields": {
+        "order": 870, 
         "center": "POINT (53.0471999999999966 67.6480999999999995)", 
         "zoom": 5, 
-        "longitude": 53.0472, 
-        "order": 870, 
-        "latitude": 67.6481, 
-        "slug": "", 
-        "name": "\u041d\u0435\u043d\u0435\u0446\u043a\u0438\u0439 \u0430\u0432\u0442\u043e\u043d\u043e\u043c\u043d\u044b\u0439 \u043e\u043a\u0440\u0443\u0433"
+        "name": "\u041d\u0435\u043d\u0435\u0446\u043a\u0438\u0439 \u0430\u0432\u0442\u043e\u043d\u043e\u043c\u043d\u044b\u0439 \u043e\u043a\u0440\u0443\u0433", 
+        "slug": ""
     }
 },
 {
     "pk": 86, 
     "model": "geozones.region", 
     "fields": {
+        "order": 900, 
         "center": "POINT (69.0019000000000062 61.0041999999999973)", 
         "zoom": 5, 
-        "longitude": 69.0019, 
-        "order": 900, 
-        "latitude": 61.0042, 
-        "slug": "", 
-        "name": "\u0425\u0430\u043d\u0442\u044b-\u041c\u0430\u043d\u0441\u0438\u0439\u0441\u043a\u0438\u0439 \u0430\u0432\u0442\u043e\u043d\u043e\u043c\u043d\u044b\u0439 \u043e\u043a\u0440\u0443\u0433 - \u042e\u0433\u0440\u0430"
+        "name": "\u0425\u0430\u043d\u0442\u044b-\u041c\u0430\u043d\u0441\u0438\u0439\u0441\u043a\u0438\u0439 \u0430\u0432\u0442\u043e\u043d\u043e\u043c\u043d\u044b\u0439 \u043e\u043a\u0440\u0443\u0433 - \u042e\u0433\u0440\u0430", 
+        "slug": ""
     }
 },
 {
     "pk": 87, 
     "model": "geozones.region", 
     "fields": {
+        "order": 910, 
         "center": "POINT (177.4833000000000141 64.7349999999999994)", 
         "zoom": 5, 
-        "longitude": 177.4833, 
-        "order": 910, 
-        "latitude": 64.735, 
-        "slug": "", 
-        "name": "\u0427\u0443\u043a\u043e\u0442\u0441\u043a\u0438\u0439 \u0430\u0432\u0442\u043e\u043d\u043e\u043c\u043d\u044b\u0439 \u043e\u043a\u0440\u0443\u0433"
+        "name": "\u0427\u0443\u043a\u043e\u0442\u0441\u043a\u0438\u0439 \u0430\u0432\u0442\u043e\u043d\u043e\u043c\u043d\u044b\u0439 \u043e\u043a\u0440\u0443\u0433", 
+        "slug": ""
     }
 },
 {
     "pk": 89, 
     "model": "geozones.region", 
     "fields": {
+        "order": 930, 
         "center": "POINT (66.6019000000000005 66.5300000000000011)", 
         "zoom": 5, 
-        "longitude": 66.6019, 
-        "order": 930, 
-        "latitude": 66.53, 
-        "slug": "", 
-        "name": "\u042f\u043c\u0430\u043b\u043e-\u041d\u0435\u043d\u0435\u0446\u043a\u0438\u0439 \u0430\u0432\u0442\u043e\u043d\u043e\u043c\u043d\u044b\u0439 \u043e\u043a\u0440\u0443\u0433"
+        "name": "\u042f\u043c\u0430\u043b\u043e-\u041d\u0435\u043d\u0435\u0446\u043a\u0438\u0439 \u0430\u0432\u0442\u043e\u043d\u043e\u043c\u043d\u044b\u0439 \u043e\u043a\u0440\u0443\u0433", 
+        "slug": ""
     }
 },
 {
     "pk": 95, 
     "model": "geozones.region", 
     "fields": {
+        "order": 240, 
         "center": "POINT (45.7002999999999986 43.3083000000000027)", 
         "zoom": 7, 
-        "longitude": 45.7003, 
-        "order": 240, 
-        "latitude": 43.3083, 
-        "slug": "", 
-        "name": "\u0427\u0435\u0447\u0435\u043d\u0441\u043a\u0430\u044f \u0420\u0435\u0441\u043f\u0443\u0431\u043b\u0438\u043a\u0430"
+        "name": "\u0427\u0435\u0447\u0435\u043d\u0441\u043a\u0430\u044f \u0420\u0435\u0441\u043f\u0443\u0431\u043b\u0438\u043a\u0430", 
+        "slug": ""
     }
 }
 ]

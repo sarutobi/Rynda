@@ -29,8 +29,6 @@ class Region(models.Model):
     # Region slug
     slug = models.SlugField(_("slug"))
     # Region center coordinates
-    latitude = models.FloatField(_("latitude"))
-    longitude = models.FloatField(_("longitude"))
     center = models.PointField(_("map center"), null=True)
     # Region map default zoom
     zoom = models.SmallIntegerField(_("map zoom"))
