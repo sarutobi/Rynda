@@ -86,9 +86,12 @@
 
 #feedback {
     background: @lightBlueGray;
-    border-top: 1px solid @hr_bordershadow;
+    border-bottom: none;
+    box-shadow: none;
+//    border-top: 1px solid @hr_bordershadow;
+//    .border-top-radius(2px);
     border-left: 1px solid @vr_bordershadow;
-    .border-top-radius(2px);
+    border-right: 1px solid @vr_bordershadow;
     ul {
         padding-bottom: 20px;
         list-style-type: none;
@@ -104,6 +107,7 @@
     }
     #bottom_border {
         background: url("i/actual_rec_bg.png") repeat-x bottom;
+        background-color: #edfefe;
         height: 10px;
         bottom: 0;
         margin-top: 15px;
