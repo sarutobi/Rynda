@@ -10,12 +10,14 @@
 
 {% block maincontent %}
 <div class="col-md-10 col-md-offset-1">
-    <div id="user_profile_container" class="panel panel-default">
-        <div class="panel-heading">
+    <div id="user_profile_container" class="panel panel-primary">
+        <div class="panel-heading clearfix">
+            <h1 class="panel-title pull-left" style="padding-top:7px;">Профиль пользователя {{ u.get_full_name|default:u.email }}</h3>
             {% if user.id = u.id %}
-                <a href="/user/edit/{{ user.id }}" class="btn rynda-btn-default">Редактировать</a>
+            <div class="pull-right">
+                <a href="/user/edit/{{ user.id }}" class="btn btn-primary">Редактировать</a>
+            </div>
             {% endif %}
-            <h3 class="panel-title">Профиль пользователя {{ u.get_full_name|default:u.email }}</h3>
         </div>
 
         <div class="panel-body">
