@@ -26,6 +26,8 @@
 {% block paginator%}
 <div id="paginationPages" data-current-page="1" class="alignleft list_pagination_div"></div>
     <div class="alignright"><span class="darkGrey">Пользователей на странице:</span>
+        <span class="badge">10</span>
+        {% comment %}
         <select id="paginationItemsPerPage" name="paginationItemsPerPage">
             <option value="10" selected="selected">10</option>
             <option value="25">25</option>
@@ -33,6 +35,7 @@
             <option value="100">100</option>
             <option value="0">Все</option>
         </select>
+        {% endcomment %}
     </div>
     <div class="clearfix "></div>
 </div>
