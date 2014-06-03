@@ -31,19 +31,21 @@
                 <div class="form-group {% if form.password.errors %}has-error{% endif %}">
                     {{ form.password.label_tag }}
                     {% for e in form.password.errors %}{{ e }}{% endfor %}
-                    {{ form.password|add_class:"form-control" }}
-                </div>
-                <div class="form-group">
+                    <div class="input-group">
+                        {{ form.password|add_class:"form-control" }}
+                        <span class="input-group-addon">
+                            <label for="rememberField">
+                                <input tabindex="3" type="checkbox" name="rememberField" id="rememberField" value="1" checked /> Помнить меня
+                            </label>
+                        </span>
+                    </div>
                     <p class="form-control-static"><a href='/password/reset' >Я забыл пароль</a></p>
                 </div>
 
-                <div class="checkbox">
-                    <input tabindex="3" type="checkbox" name="rememberField" id="rememberField" value="1" checked class="form-control" />
-                    <label for="rememberField">Помнить меня</label>
-                </div>
                 <div class="panel-footer">
-                    <input tabindex="4" type="submit" id="loginSubmit" class="btn rynda-btn-default" value="ВОЙТИ" />
-                    <input tabindex="5" type="reset" id="loginCancel" class="login_box_submit" value="ОТМЕНА" />
+                    <div class="row">
+                        <input tabindex="4" type="submit" id="loginSubmit" class="btn rynda-btn-default btn-block" value="ВОЙТИ" />
+                    </div>
                 </div>
             </form>
         </div>
