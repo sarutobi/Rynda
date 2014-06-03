@@ -7,7 +7,7 @@
 {% endblock %}
 
 {% block maincontent %}
-<div class="col-md-8 col-md-offset-2">
+<div class="col-md-10 col-md-offset-1">
     <div class="panel panel-rynda-default">
         <div class="panel-heading">
             <h2 class="panel-title">Вам нужна помощь?</h2>
@@ -17,43 +17,66 @@
             <div class="alert alert-info">
                 Обратите внимание, что поля, помеченные знаком &#39;*&#39; обязательны для заполнения.
             </div>
-
-            <form id="mainForm" action="" method='post'>
-            {% csrf_token %}
-            {% if form.errors %}
+            {% if form.non_field_errors %}
                 <div class="alert alert-danger">
-                    {{ form.errors }}
+                    {{ form.non_field_errors }}
                 </div>
             {% endif %}
 
-            {% for f in form.hidden_fields %}
-            {{ f }}
-            {% endfor %}
-            <div class="panel panel-default" id="request-data">
-                <div class="panel-heading">
-                    <h3 class="panel-title">Опишите вашу проблему</h3>
+            <div class="row">
+                <form id="mainForm" action="" method='post'>
+                {% csrf_token %}
+                
+                {% for f in form.hidden_fields %}
+                {{ f }}
+                {% endfor %}
+                <div class="col-md-8">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Опишите вашу проблему</h3>
+                        </div>
+
+                        <div class="panel-body">
+                        {% if form.title.errors %}
+                            <div class="form-group has-error">
+                        {% else %}
+                            <div class="form-group has-success">
+                        {% endif %}
+                                {{ form.title.label_tag }}
+                                {{ form.title|add_class:"form-control" }}
+                            </div>
+
+                        {% if form.message.errors %}
+                            <div class="form-group has-error">
+                        {% else %}
+                            <div class="form-group has-success">
+                        {% endif %}
+                                *{{ form.message.label_tag }}
+                                {{ form.message|add_class:"form-control" }}
+                                <div id="messageTextError" class="alert alert-danger">{{ form.message.errors }}</div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
-                <div class="panel-body">
-                    <div class="form-group">
-                        {{ form.title.label_tag }}
-                        {{ form.title|add_class:"form-control" }}
-                    </div>
-                    <div class="form-group">
-                        *{{ form.message.label_tag }}
-                        {{ form.message|add_class:"form-control" }}
-                        <div id="messageTextError" class="validationError">{{ form.message.errors }}</div>
-                    </div>
-                    
-                    <div class="form-group">
-                        {{ form.category.label_tag }}
-                        {{ form.category|add_class:"form-control" }}
-                    </div>
-                   
-                   <div class="checkbox">
-                        {{ form.allow_feedback.label_tag }}{{ form.allow_feedback|add_class:"form-control" }}
+                <div class="col-md-4">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            {{ form.category.label_tag }}
+                        </div>
+                        <div class="panel-body">
+                            <div class="form-group">
+                                {{ form.category|add_class:"form-control" }}
+                            </div>
+                        </div>
                     </div>
                 </div>
+            </div>
+                   
+            <div class="checkbox">
+                <label for="{{ form.allow_feedback.id_for_label }}">
+                    {{ form.allow_feedback.label }}{{ form.allow_feedback }}
+                </label>
             </div>
 
             <div class="panel panel-default" id="recipient-data">
@@ -87,7 +110,7 @@
                     <div class="validationError">{{ form.contact_phone.error }}</div>
 
                     <div class="checkbox">
-                        {{ form.is_anonymous.label_tag }}{{ form.is_anonymous|add_class:"form-control" }}
+                        {{ form.is_anonymous.label_tag }}{{ form.is_anonymous }}
                     </div>
                    <div id="contactsError" class="validationError" style="display:none;"></div>
                     <br />
