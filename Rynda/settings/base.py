@@ -156,6 +156,7 @@ INSTALLED_APPS = (
     # 'admin_tools.menu',
     # 'admin_tools.dashboard',
     #
+    'grappelli',
     'django.contrib.admin',
     'django.contrib.gis',
     'django_filters',
