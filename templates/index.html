@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load leaflet_tags %}
 
 {% block hubs %}
     {% include "widgets/base_hub.html"  with part='base' %}
@@ -16,7 +17,7 @@
 </div>
 <div id="locationMap" class="mainPageMapCont clearfix">
     <div id="mapWithoutFilterForm"  class="row" {% if request.session.ryndaorg_main_map_shown == 0 %}style="display:none;"{% endif %}>
-        <div id="locationMapCanvas" class="col-md-9" style="height: 320px;"></div>
+        <div id="locationMapCanvas" class="col-md-9" style="height: 320px;">{% leaflet_map "indexmap" %}</div>
         <div id='mainPageFilter' class='col-md-3' style='height:320px;background-color:white'></div>
         <!-- div id="mapResponseMessage" style="display:none;"></div-->
     </div>
@@ -277,6 +278,8 @@
 {% endblock %}
 
 {% block scripts %}
+{% leaflet_js %}
+{% leaflet_css %}
 <!-- Leaflet cluster scripts -->
 <script type='text/javascript' src='{{ STATIC_URL }}/js/libs/leaflet.markercluster.js'></script>
 <link rel='stylesheet' href='{{ STATIC_URL }}/css/MarkerCluster.css' />
@@ -286,6 +289,7 @@
 $(function(){
     Rynda.sameheight($('.message_pane'));
 
+/*
     Rynda.map.createMap('locationMapCanvas');
     Rynda.map.fetch();
     $('.mapTabs-button-sub-click').mouseover(
@@ -301,5 +305,6 @@ $(function(){
         $('.mapTabs-sub').hide();
     });
 });
+*/
 </script>
 {%endblock%}
