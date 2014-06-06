@@ -169,6 +169,7 @@ INSTALLED_APPS = (
     'floppyforms',
     'jsonfield',
     'olwidget',
+    'leaflet',
     # Project applications
     'core',
     'category',
