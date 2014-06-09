@@ -1,6 +1,7 @@
 {% extends 'base.html'%}
 
 {% load widget_tweaks %}
+{% load leaflet_tags %}
 
 {% block hubs %}
     {% include "widgets/base_hub.html"  with part='message' %}
@@ -118,22 +119,24 @@
                     <br />
                 </div>
             </div>
-            {% comment %}
-                <h3>Местоположение</h3>
-                {{ form.georegion.label_tag }}
-                {{ form.georegion }}
-                <div class="validationError">{{ form.georegion.error }}</div>
-                <br />
-                {{ form.address.label_tag }}
-                {{ form.address }}
-                <div class="validationError">{{ form.address.error }}</div>
-                <br />
-                <h3>Категории</h3>
-                {{ form.category }}
+
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Местоположение</h3>
+                </div>
+                <div class="panel-body">
+                    {{ form.georegion.label_tag }}
+                    {{ form.georegion }}
+                    <div class="validationError">{{ form.georegion.error }}</div>
+                    <br />
+                    {{ form.address.label_tag }}
+                    {{ form.address }}
+                    <div class="validationError">{{ form.address.error }}</div>
+                    <br />
+                    {{ form.location }}
+                    {% leaflet_map "newpoint" %}
+                </div>
             </div>
-            </div>
-            {{ form.location }}
-                {% endcomment %}
                 <div class="panel-footer">
                     <input type='submit' class="btn btn-rynda-default form-control">
                 </div>
@@ -146,4 +149,6 @@
 
 {% block scripts %}
 {{ form.media }}
+{% leaflet_css %}
+{% leaflet_js %}
 {% endblock %}
