@@ -53,7 +53,9 @@
                         {% endif %}
                                 *{{ form.message.label_tag }}
                                 {{ form.message|add_class:"form-control" }}
+                                {% if form.message.errors %}
                                 <div id="messageTextError" class="alert alert-danger">{{ form.message.errors }}</div>
+                                {% endif %}
                             </div>
                         </div>
                     </div>
