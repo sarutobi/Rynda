@@ -156,6 +156,7 @@ INSTALLED_APPS = (
     # 'admin_tools.menu',
     # 'admin_tools.dashboard',
     #
+    'grappelli',
     'django.contrib.admin',
     'django.contrib.gis',
     'django_filters',
@@ -168,6 +169,7 @@ INSTALLED_APPS = (
     'floppyforms',
     'jsonfield',
     'olwidget',
+    'leaflet',
     # Project applications
     'core',
     'category',
