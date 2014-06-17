@@ -1,6 +1,6 @@
 from django.conf.urls import patterns, include, url
 
-from message.views import MessageView, CreateRequest, MessageList,\
+from message.views import MessageView, CreateRequestM, MessageList,\
     CreateOffer
 
 urlpatterns = patterns('',
@@ -9,6 +9,6 @@ urlpatterns = patterns('',
     (r'^(?P<pk>\d+)$', MessageView.as_view()),
  #   url(r'^pomogite$', 'message.views.requests'),
  #   url(r'^pomogu$', 'message.views.offer'),
-    url('^pomogite/dobavit', CreateRequest.as_view(), name='create-request'),
+    url('^pomogite/dobavit', CreateRequestM.as_view(), name='create-request'),
     ('^pomogu/dobavit', CreateOffer.as_view()),
 )

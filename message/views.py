@@ -10,11 +10,12 @@ from django.template import RequestContext
 from django.template.loader import render_to_string
 
 from core.context_processors import categories_context, subdomains_context
-from core.mixins import CategoryMixin, SubdomainContextMixin
+from core.mixins import CategoryMixin, SubdomainContextMixin, MultipleFormsView
 from core.models import Subdomain
 from core.views import (RyndaCreateView, RyndaDetailView, RyndaFormView,
                         RyndaListView)
 from feed.models import FeedItem
+from geozones.forms import LocationForm
 from geozones.models import Region
 from message.forms import RequestForm
 from message.models import Message, MessageIndexFilter, MessageSideFilter
@@ -107,6 +108,32 @@ class CreateRequest(CategoryMixin, RyndaFormView):
         return redirect(self.success_url)
 
 
+class CreateRequestM(MultipleFormsView):
+    template_name = "request_form_simple.html"
+    model = Message
+    form_classes = {
+        'message': RequestForm,
+        'location': LocationForm,
+    }
+    success_url = reverse_lazy('message_list')
+
+    def get_initial(self):
+        initial = {}
+        if self.request.user.is_authenticated():
+            initial['contact_first_name'] = self.request.user.first_name
+            initial['contact_last_name'] = self.request.user.last_name
+            initial['contact_mail'] = self.request.user.email
+            initial['contact_phone'] = self.request.user.profile.phones
+        return initial
+
+    def form_valid(self, form):
+        instance = form.save(commit=False)
+        if self.request.user.is_authenticated():
+            instance.user = self.request.user
+        else:
+            instance.user = User.objects.get(pk=settings.ANONYMOUS_USER_ID)
+        instance.save()
+        return redirect(self.success_url)
 class CreateOffer(CategoryMixin, RyndaCreateView):
     template_name = "offer_form.html"
     model = Message

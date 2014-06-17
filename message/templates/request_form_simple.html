@@ -20,7 +20,8 @@
             </div>
             {% if form.non_field_errors %}
                 <div class="alert alert-danger">
-                    {{ form.non_field_errors }}
+                    {{ forms.message.non_field_errors }}
+                    {{ forms.location.non_field_errors }}
                 </div>
             {% endif %}
 
@@ -28,7 +29,7 @@
                 <form id="mainForm" action="" method='post'>
                 {% csrf_token %}
                 
-                {% for f in form.hidden_fields %}
+                {% for f in forms.message.hidden_fields %}
                 {{ f }}
                 {% endfor %}
                 <div class="col-md-8">
@@ -38,24 +39,24 @@
                         </div>
 
                         <div class="panel-body">
-                        {% if form.title.errors %}
+                        {% if forms.message.title.errors %}
                             <div class="form-group has-error">
                         {% else %}
                             <div class="form-group has-success">
                         {% endif %}
-                                {{ form.title.label_tag }}
-                                {{ form.title|add_class:"form-control" }}
+                                {{ forms.message.title.label_tag }}
+                                {{ forms.message.title|add_class:"form-control" }}
                             </div>
 
-                        {% if form.message.errors %}
+                        {% if forms.message.message.errors %}
                             <div class="form-group has-error">
                         {% else %}
                             <div class="form-group has-success">
                         {% endif %}
-                                *{{ form.message.label_tag }}
-                                {{ form.message|add_class:"form-control" }}
-                                {% if form.message.errors %}
-                                <div id="messageTextError" class="alert alert-danger">{{ form.message.errors }}</div>
+                                *{{ forms.message.message.label_tag }}
+                                {{ forms.message.message|add_class:"form-control" }}
+                                {% if forms.message.message.errors %}
+                                <div id="messageTextError" class="alert alert-danger">{{ forms.message.message.errors }}</div>
                                 {% endif %}
                             </div>
                         </div>
@@ -65,11 +66,11 @@
                 <div class="col-md-4">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            {{ form.category.label_tag }}
+                            {{ forms.message.category.label_tag }}
                         </div>
                         <div class="panel-body">
                             <div class="form-group">
-                                {{ form.category|add_class:"form-control" }}
+                                {{ forms.message.category|add_class:"form-control" }}
                             </div>
                         </div>
                     </div>
@@ -77,8 +78,8 @@
             </div>
                    
             <div class="checkbox">
-                <label for="{{ form.allow_feedback.id_for_label }}">
-                    {{ form.allow_feedback.label }}{{ form.allow_feedback }}
+                <label for="{{ forms.message.allow_feedback.id_for_label }}">
+                    {{ forms.message.allow_feedback.label }}{{ forms.message.allow_feedback }}
                 </label>
             </div>
 
@@ -89,31 +90,31 @@
 
                 <div class="panel-body">
                     <div class="form-group">
-                        *{{ form.first_name.label_tag }}
-                        {{ form.first_name|add_class:"form-control" }}
+                        *{{ forms.message.first_name.label_tag }}
+                        {{ forms.message.first_name|add_class:"form-control" }}
                     </div>
-                    <div id="firstNameError" class="validationError">{{ form.first_name.errors }}</div>
+                    <div id="firstNameError" class="validationError">{{ forms.message.first_name.errors }}</div>
                     
                     <div class="form-group">
-                        *{{ form.last_name.label_tag }}
-                        {{ form.last_name|add_class:"form-control" }}
+                        *{{ forms.message.last_name.label_tag }}
+                        {{ forms.message.last_name|add_class:"form-control" }}
                     </div>
-                    <div id="lastNameError" class="validationError">{{form.contact_last_name.errors}}</div>
+                    <div id="lastNameError" class="validationError">{{forms.message.contact_last_name.errors}}</div>
                     
                     <div class="form-group">
-                        *{{ form.email.label_tag }}
-                        {{ form.email|add_class:"form-control" }}
+                        *{{ forms.message.email.label_tag }}
+                        {{ forms.message.email|add_class:"form-control" }}
                     </div>
-                    <div id="emailError" class="validationError">{{from.contact_mail.error}}</div>
+                    <div id="emailError" class="validationError">{{forms.message.contact_mail.error}}</div>
 
                     <div class="form-group">
-                        {{ form.phone.label_tag }}
-                        {{ form.phone|add_class:"form-control" }}
+                        {{ forms.message.phone.label_tag }}
+                        {{ forms.message.phone|add_class:"form-control" }}
                     </div>
-                    <div class="validationError">{{ form.contact_phone.error }}</div>
+                    <div class="validationError">{{ forms.message.contact_phone.error }}</div>
 
                     <div class="checkbox">
-                        {{ form.is_anonymous.label_tag }}{{ form.is_anonymous }}
+                        {{ forms.message.is_anonymous.label_tag }}{{ forms.message.is_anonymous }}
                     </div>
                    <div id="contactsError" class="validationError" style="display:none;"></div>
                     <br />
@@ -125,16 +126,16 @@
                     <h3 class="panel-title">Местоположение</h3>
                 </div>
                 <div class="panel-body">
-                    {{ form.georegion.label_tag }}
-                    {{ form.georegion }}
-                    <div class="validationError">{{ form.georegion.error }}</div>
+                    {{ forms.location.errors }}
+                    {{ forms.location.name.label_tag }}
+                    {{ forms.location.name|add_class:"form-control" }}
+                    <div class="validationError">{{ forms.location.name.error }}</div>
                     <br />
                     {{ form.address.label_tag }}
                     {{ form.address }}
                     <div class="validationError">{{ form.address.error }}</div>
                     <br />
-                    {{ form.location }}
-                    {% leaflet_map "newpoint" %}
+                    {{ forms.location.coordinates }}
                 </div>
             </div>
                 <div class="panel-footer">
@@ -149,6 +150,6 @@
 
 {% block scripts %}
 {{ form.media }}
-{% leaflet_css %}
-{% leaflet_js %}
+{% leaflet_css plugins="forms, draw" %}
+{% leaflet_js plugins="forms, draw" %}
 {% endblock %}
