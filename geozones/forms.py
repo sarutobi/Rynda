@@ -3,6 +3,8 @@
 from django import forms
 from django.utils.translation import ugettext_lazy as _
 
+from leaflet.forms.widgets import LeafletWidget
+
 from .models import Location
 from .widgets import GeolocationWidget
 
@@ -26,3 +28,5 @@ class LocationField(forms.MultiValueField):
 class LocationForm(forms.ModelForm):
     class Meta():
         model = Location
+        fields = ['name', 'description', 'coordinates', ]
+        widgets = {'coordinates': LeafletWidget(), }
