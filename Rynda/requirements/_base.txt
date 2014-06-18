@@ -8,7 +8,7 @@ django-filter==0.5.4
 django-floppyforms==1.1
 django-grappelli==2.5.3
 django-leaflet==0.13.2
-django-model-utils==2.0.4
+django-model-utils==2.0.3
 django-olwidget==0.61.0
 django-post_office==0.3.1
 django-social-auth==0.7.28
