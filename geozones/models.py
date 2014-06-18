@@ -58,7 +58,9 @@ class Location(models.Model):
     name = models.CharField(
         max_length=250, default='Location', verbose_name=_("name"))
     # Geocoordinates
-    coordinates = models.MultiPolygonField(null=True, verbose_name=_("On map"))
+    coordinates = models.GeometryCollectionField(
+        null=True,
+        verbose_name=_("On map"))
     latitude = models.FloatField()
     longitude = models.FloatField(db_column='longitude')
     # Optional link for region
@@ -67,7 +69,7 @@ class Location(models.Model):
         verbose_name=_("region"),
     )
     # Short description or address
-    description = models.CharField(max_length=200)
+    description = models.CharField(max_length=200, blank=True)
     objects = models.GeoManager()
 
     def __unicode__(self):
