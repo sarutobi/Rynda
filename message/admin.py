@@ -2,18 +2,20 @@
 
 from django.contrib import admin
 
+from leaflet.admin import LeafletGeoAdmin
+
 from .forms import AdminMessageForm
 from .models import Message
 
 
-class MessageAdmin(admin.ModelAdmin):
-    class Media:
-        js = (
-            'js/libs/jquery-1.8.1.min.js',
-            'js/libs/leaflet.js',
+class MessageAdmin(LeafletGeoAdmin):
+    # class Media:
+        # js = (
+            # 'js/libs/jquery-1.8.1.min.js',
+            # 'js/libs/leaflet.js',
             # 'js/plugins.js',
-            'js/rynda.js',
-        )
+            # 'js/rynda.js',
+        # )
     list_display = (
         'title',
         'subdomain',
