@@ -126,14 +126,21 @@ class CreateRequestM(MultipleFormsView):
             initial['contact_phone'] = self.request.user.profile.phones
         return initial
 
-    def form_valid(self, form):
-        instance = form.save(commit=False)
+    def forms_valid(self, forms):
+        import pdb; pdb.set_trace()
+        location = forms['location'].save(commit=False)
+        location.region_id = 64
+        location.save()
+        message = forms['message'].save(commit=False)
+        message.location = location
         if self.request.user.is_authenticated():
-            instance.user = self.request.user
+            message.user = self.request.user
         else:
-            instance.user = User.objects.get(pk=settings.ANONYMOUS_USER_ID)
-        instance.save()
-        return redirect(self.success_url)
+            message.user = User.objects.get(pk=settings.ANONYMOUS_USER_ID)
+        message.save()
+        return super(CreateRequestM, self).forms_valid(forms)
+
+
 class CreateOffer(CategoryMixin, RyndaCreateView):
     template_name = "offer_form.html"
     model = Message
