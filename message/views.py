@@ -132,7 +132,7 @@ class CreateRequestM(MultipleFormsView):
         location.region_id = 64
         location.save()
         message = forms['message'].save(commit=False)
-        message.location = location
+        message.linked_location = location
         if self.request.user.is_authenticated():
             message.user = self.request.user
         else:
