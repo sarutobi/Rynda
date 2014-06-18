@@ -4,7 +4,7 @@ from django.contrib import admin
 from olwidget.admin import GeoModelAdmin
 from leaflet.admin import LeafletGeoAdmin
 
-from .models import Region
+from .models import Region, Location
 
 
 class RegionGeoModel(GeoModelAdmin):
@@ -13,3 +13,5 @@ class RegionGeoModel(GeoModelAdmin):
 
 # admin.site.register(Region, RegionGeoModel)
 admin.site.register(Region, LeafletGeoAdmin)
+
+admin.site.register(Location, LeafletGeoAdmin)
