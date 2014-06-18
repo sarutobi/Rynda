@@ -1,9 +1,11 @@
 # -*- coding: utf-8 -*-
 
 from django.contrib.auth.models import User
+from django.contrib.gis.db import models
+from django.contrib.gis.db.models.query import GeoQuerySet
 from django.core.exceptions import ValidationError
-from django.db import models
-from django.db.models.query import QuerySet
+# from django.db import models
+# from django.db.models.query import QuerySet
 from django.utils.translation import ugettext_lazy as _
 
 import django_filters
@@ -12,10 +14,14 @@ from jsonfield import JSONField
 from core.models import Subdomain
 from category.models import Category
 from geozones.models import Location
-from model_utils.managers import PassThroughManager
+from model_utils.managers import PassThroughManagerMixin
 
 
-class MessageQueryset(QuerySet):
+class PassThroughGeoManager(PassThroughManagerMixin, models.GeoManager):
+    pass
+
+
+class MessageQueryset(GeoQuerySet):
     def list(self):
         ''' Ask only few fields for listing'''
         return self.values(
@@ -69,7 +75,7 @@ class Message(models.Model):
                       (CLOSED, _('closed')))
 
     # Managers
-    objects = PassThroughManager.for_queryset_class(MessageQueryset)()
+    objects = PassThroughGeoManager.for_queryset_class(MessageQueryset)()
 
     # Основные поля сообщения
     title = models.CharField(
@@ -154,6 +160,12 @@ class Message(models.Model):
         editable=False,
         verbose_name=_("sender IP")
     )
+
+    # Геоданные сообщения
+    address = models.CharField(
+        max_length=200, blank=True, verbose_name=_('address'))
+    coordinates = models.MultiPointField(
+        null=True, verbose_name=_("On map"))
 
     #Links to core models
     linked_location = models.ForeignKey(
