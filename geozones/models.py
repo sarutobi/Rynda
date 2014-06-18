@@ -61,8 +61,6 @@ class Location(models.Model):
     coordinates = models.GeometryCollectionField(
         null=True,
         verbose_name=_("On map"))
-    latitude = models.FloatField()
-    longitude = models.FloatField(db_column='longitude')
     # Optional link for region
     region = models.ForeignKey(
         Region,
