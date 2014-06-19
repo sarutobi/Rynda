@@ -127,7 +127,6 @@ class CreateRequestM(MultipleFormsView):
         return initial
 
     def forms_valid(self, forms):
-        import pdb; pdb.set_trace()
         location = forms['location'].save(commit=False)
         location.region_id = 64
         location.save()

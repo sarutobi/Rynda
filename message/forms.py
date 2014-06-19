@@ -4,6 +4,7 @@ from django.core.exceptions import ValidationError
 from django.utils.translation import ugettext as _
 
 import floppyforms as forms
+from leaflet.forms.widgets import LeafletWidget
 
 from category.fields import CategoryChoiceField
 from message.models import Message
@@ -34,9 +35,11 @@ class MessageForm(forms.ModelForm):
             'title', 'message', 'messageType', 'subdomain',
             'category',
             'is_anonymous', 'allow_feedback',
+            'address', 'coordinates',
         )
         widgets = {
-            'category': CategoryChoiceField()
+            'category': CategoryChoiceField(),
+            'coordinates': LeafletWidget(),
         }
 
     def clean_messageType(self):
@@ -50,6 +53,7 @@ class UserMessageForm(MessageForm):
     class Meta(MessageForm.Meta):
         widgets = {
             'messageType': forms.HiddenInput(),
+            'coordinates': LeafletWidget(),
             'category': CategoryChoiceField(),
         }
 
