@@ -168,7 +168,7 @@ INSTALLED_APPS = (
     'post_office',
     'floppyforms',
     'jsonfield',
-    'olwidget',
+    # 'olwidget',
     'leaflet',
     # Project applications
     'core',
