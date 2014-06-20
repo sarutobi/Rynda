@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from django.core.exceptions import ValidationError
+from django.forms.util import ErrorList
 from django.utils.translation import ugettext as _
 
 import floppyforms as forms
@@ -34,7 +35,7 @@ class MessageForm(forms.ModelForm):
         fields = (
             'title', 'message', 'messageType', 'subdomain',
             'category',
-            'is_anonymous', 'allow_feedback', 'is_virtual'
+            'is_anonymous', 'allow_feedback', 'is_virtual',
             'address', 'coordinates',
         )
         widgets = {
@@ -84,6 +85,12 @@ class UserMessageForm(MessageForm):
         super(UserMessageForm, self).clean()
         ce = self.cleaned_data
         if ce['email'] == '' and ce['phone'] == '':
+            self.errors['email'] = ErrorList([
+                _("You must provide at least one from contact email or phone!"),
+            ])
+            self.errors['phone'] = ErrorList([
+                _("You must provide at least one from contact email or phone!"),
+            ])
             raise ValidationError(
                 _("You must provide at least one from contact email or phone!"))
         return ce
