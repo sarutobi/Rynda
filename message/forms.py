@@ -34,7 +34,7 @@ class MessageForm(forms.ModelForm):
         fields = (
             'title', 'message', 'messageType', 'subdomain',
             'category',
-            'is_anonymous', 'allow_feedback',
+            'is_anonymous', 'allow_feedback', 'is_virtual'
             'address', 'coordinates',
         )
         widgets = {
