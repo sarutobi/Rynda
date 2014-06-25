@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 
+from django.contrib.gis import forms as geoforms
 from django.core.exceptions import ValidationError
 from django.forms.util import ErrorList
 from django.utils.translation import ugettext as _
@@ -36,7 +37,7 @@ class MessageForm(forms.ModelForm):
             'title', 'message', 'messageType', 'subdomain',
             'category',
             'is_anonymous', 'allow_feedback', 'is_virtual',
-            'address', 'coordinates',
+            # 'address', 'coordinates',
         )
         widgets = {
             'category': CategoryChoiceField(),
@@ -62,6 +63,9 @@ class UserMessageForm(MessageForm):
     last_name = forms.CharField(label=_('Last name'), required=False)
     email = forms.EmailField(label=_('Contact email'), required=False)
     phone = forms.CharField(label=_('Contact phone'), required=False)
+    address = forms.CharField(label=_('Address'))
+    coordinates = geoforms.MultiPointField(
+        label=_('Coordinates'), widget=LeafletWidget())
 
     def save(self, force_insert=False, force_update=False, commit=True):
         msg = super(UserMessageForm, self).save(commit=False)
