@@ -4,7 +4,7 @@ South==0.8.4
 argparse==1.2.1
 cssutils==0.9.10b1
 #django-admin-tools==0.5.1
-django-filter==0.5.4
+django-filter==0.7
 django-floppyforms==1.1
 django-grappelli==2.5.3
 django-leaflet==0.13.2
