@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 
-import random
-
+from django.contrib.gis.geos import Point, MultiPoint
 import factory
 from factory import django, fuzzy
 from test.factories import UserFactory
@@ -12,10 +11,12 @@ from core.factories import SubdomainFactory
 from .models import Message
 
 
-# def point_gen(num):
-    # latitude = random.uniform(-90.0, 90.0)
-    # longitude = random.uniform(-180.0, 180.0)
-    # return "POINT(%f %f)" % (longitude, latitude)
+class FuzzyMultiPoint(fuzzy.BaseFuzzyAttribute):
+    def fuzz(self):
+        p1 = Point(0, 1)
+        p2 = Point(2, 4)
+        mp = MultiPoint(p1, p2)
+        return mp.wkt
 
 
 class MessageFactory(django.DjangoModelFactory):
