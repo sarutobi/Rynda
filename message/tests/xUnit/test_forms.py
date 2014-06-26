@@ -53,7 +53,7 @@ class TestBaseMessageForm(TestCase):
         # self.assertEquals(self.data['linked_location'], msg.linked_location)
 
 
-class TestUserMessageForm(TestCase):
+class MessageDataGenerator(TestCase):
     def setUp(self):
         self.contacts = {
             'first_name': 'test',
@@ -62,8 +62,8 @@ class TestUserMessageForm(TestCase):
             'phone': '1234567890',
         }
         loc_data = {
-            'coordinates': 'coordinates',
-            'address': FuzzyMultiPoint().fuzz(),
+            'coordinates': FuzzyMultiPoint().fuzz(),
+            'address': 'test address',
         }
         subdomain = SubdomainFactory()
         self.data = MessageFactory.attributes(
@@ -71,6 +71,9 @@ class TestUserMessageForm(TestCase):
                 'subdomain': subdomain.pk, })
         self.data.update(self.contacts)
         self.data.update(loc_data)
+
+
+class TestUserMessageForm(MessageDataGenerator):
 
     def test_messagetype_widget(self):
         form = UserMessageForm()
@@ -81,7 +84,6 @@ class TestUserMessageForm(TestCase):
         """ Базовый тест сохранения правильной формы """
         form = UserMessageForm(data=self.data)
         self.assertTrue(form.is_bound)
-        import pdb;pdb.set_trace()
         self.assertTrue(form.is_valid(), form.errors)
 
     def test_contact_data(self):
@@ -111,20 +113,7 @@ class TestUserMessageForm(TestCase):
         self.assertFalse(form.is_valid())
 
 
-class TestFormTypes(TestCase):
-
-    def setUp(self):
-        self.region = RegionFactory()
-        subdomain = SubdomainFactory()
-        self.data = MessageFactory.attributes(
-            create=False, extra={
-                'messageType': Message.REQUEST, 'subdomain': subdomain.pk,
-                'first_name': 'test',
-                'last_name': 'user',
-                'email': 'me@local.host',
-                'phone': '1234567890',
-            }
-        )
+class TestFormTypes(MessageDataGenerator):
 
     def test_request_form(self):
         form = RequestForm()
