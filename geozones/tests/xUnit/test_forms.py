@@ -22,4 +22,4 @@ class TestLocationForm(TestCase):
     def test_no_region(self):
         self.data['region'] = None
         form = LocationForm(data=self.data)
-        self.assertFalse(form.is_valid())
+        self.assertTrue(form.is_valid())
