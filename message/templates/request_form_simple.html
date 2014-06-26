@@ -18,6 +18,7 @@
             <div class="alert alert-info">
                 Обратите внимание, что поля, помеченные знаком &#39;*&#39; обязательны для заполнения.
             </div>
+            <form id="mainForm" action="" method='post'>
             {% if form.non_field_errors %}
                 <div class="alert alert-danger">
                     {{ form.non_field_errors }}
@@ -25,7 +26,6 @@
             {% endif %}
 
             <div class="row">
-                <form id="mainForm" action="" method='post'>
                 {% csrf_token %}
                 
                 {% for f in form.hidden_fields %}
