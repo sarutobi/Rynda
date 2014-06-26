@@ -6,7 +6,7 @@ from django.test import TestCase
 
 from core.factories import CategoryFactory, SubdomainFactory
 from geozones.factories import RegionFactory
-from message.factories import MessageFactory
+from message.factories import MessageFactory, FuzzyMultiPoint
 from message.forms import (
     MessageForm, UserMessageForm, RequestForm, OfferForm, InformationForm)
 from message.models import Message, Category
@@ -61,22 +61,32 @@ class TestUserMessageForm(TestCase):
             'email': 'me@local.host',
             'phone': '1234567890',
         }
+        loc_data = {
+            'coordinates': 'coordinates',
+            'address': FuzzyMultiPoint().fuzz(),
+        }
         subdomain = SubdomainFactory()
         self.data = MessageFactory.attributes(
             create=False, extra={
                 'subdomain': subdomain.pk, })
         self.data.update(self.contacts)
+        self.data.update(loc_data)
 
     def test_messagetype_widget(self):
         form = UserMessageForm()
         self.assertIsInstance(
             form.fields['messageType'].widget, forms.HiddenInput)
 
+    def test_save_message(self):
+        """ Базовый тест сохранения правильной формы """
+        form = UserMessageForm(data=self.data)
+        self.assertTrue(form.is_bound)
+        import pdb;pdb.set_trace()
+        self.assertTrue(form.is_valid(), form.errors)
+
     def test_contact_data(self):
         """ Тестирование сохранения контактных данных """
         form = UserMessageForm(data=self.data)
-        self.assertTrue(form.is_bound)
-        self.assertTrue(form.is_valid())
         msg = form.save(commit=False)
         self.assertIsNotNone(msg.additional_info)
         self.assertEqual(msg.additional_info, self.contacts)
@@ -91,7 +101,7 @@ class TestUserMessageForm(TestCase):
         """ Введен только телефон """
         self.data['email'] = ''
         form = UserMessageForm(data=self.data)
-        self.assertTrue(form.is_valid())
+        self.assertTrue(form.is_valid(), form.errors)
 
     def test_no_contact_data(self):
         """ Контактные данные не представлены """
