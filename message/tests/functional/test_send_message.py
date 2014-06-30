@@ -4,9 +4,9 @@ from django.core.urlresolvers import reverse
 
 from django_webtest import WebTest
 
-from core.factories import SubdomainFactory
+from core.factories import SubdomainFactory, FuzzyGeometryCollection
 from message.models import Message
-from message.factories import MessageFactory, FuzzyMultiPoint
+from message.factories import MessageFactory
 from test.factories import UserFactory
 
 
@@ -19,7 +19,7 @@ class MessageDataMixin():
             'phone': '1234567890',
         }
         loc_data = {
-            'coordinates': FuzzyMultiPoint().fuzz(),
+            'coordinates': FuzzyGeometryCollection().fuzz(),
             'address': 'test address',
         }
         subdomain = SubdomainFactory()

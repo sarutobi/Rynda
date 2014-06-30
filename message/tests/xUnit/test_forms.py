@@ -4,9 +4,9 @@
 import floppyforms as forms
 from django.test import TestCase
 
-from core.factories import CategoryFactory, SubdomainFactory
+from core.factories import CategoryFactory, SubdomainFactory, FuzzyMultiPoint
 from geozones.factories import RegionFactory
-from message.factories import MessageFactory, FuzzyMultiPoint
+from message.factories import MessageFactory
 from message.forms import (
     MessageForm, UserMessageForm, RequestForm, OfferForm, InformationForm)
 from message.models import Message, Category
