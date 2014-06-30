@@ -3,7 +3,7 @@
 from .base import *
 
 DEBUG = True
-TEMPLATE_DEBUG = False
+TEMPLATE_DEBUG = True
 DATABASES = {
     'default': {
         'ENGINE': 'django.contrib.gis.db.backends.postgis',
