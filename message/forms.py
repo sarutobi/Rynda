@@ -1,12 +1,13 @@
 # -*- coding: utf-8 -*-
 
-from django.contrib.gis import forms as geoforms
+# from django.contrib.gis import forms as geoforms
+from leaflet.forms.fields import PointField, MultiPointField
 from django.core.exceptions import ValidationError
 from django.forms.util import ErrorList
 from django.utils.translation import ugettext as _
 
 import floppyforms as forms
-from leaflet.forms.widgets import LeafletWidget
+# from leaflet.forms.widgets import LeafletWidget
 
 from category.fields import CategoryChoiceField
 from message.models import Message
@@ -41,7 +42,6 @@ class MessageForm(forms.ModelForm):
         )
         widgets = {
             'category': CategoryChoiceField(),
-            'coordinates': LeafletWidget(),
         }
 
     def clean_messageType(self):
@@ -51,11 +51,16 @@ class MessageForm(forms.ModelForm):
         return test
 
 
-class UserMessageForm(MessageForm):
-    class Meta(MessageForm.Meta):
+class UserMessageForm(forms.ModelForm):
+    class Meta():
+        model = Message
+        fields = (
+            'title', 'message', 'messageType', 'subdomain',
+            'category',
+            'is_anonymous', 'allow_feedback', 'is_virtual',
+        )
         widgets = {
             'messageType': forms.HiddenInput(),
-            'coordinates': LeafletWidget(),
             'category': CategoryChoiceField(),
         }
 
@@ -64,8 +69,8 @@ class UserMessageForm(MessageForm):
     email = forms.EmailField(label=_('Contact email'), required=False)
     phone = forms.CharField(label=_('Contact phone'), required=False)
     address = forms.CharField(label=_('Address'))
-    coordinates = geoforms.MultiPointField(
-        label=_('Coordinates'), widget=LeafletWidget())
+    # TODO MultiPointField
+    coordinates = PointField(label=_('Coordinates'))
 
     def save(self, force_insert=False, force_update=False, commit=True):
         msg = super(UserMessageForm, self).save(commit=False)
