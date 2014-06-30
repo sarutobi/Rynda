@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 
-from django.contrib.gis.geos import Point, MultiPoint
 import factory
 from factory import django, fuzzy
 from test.factories import UserFactory
@@ -9,14 +8,6 @@ from test.utils import FuzzyText
 from geozones.factories import LocationFactory
 from core.factories import SubdomainFactory
 from .models import Message
-
-
-class FuzzyMultiPoint(fuzzy.BaseFuzzyAttribute):
-    def fuzz(self):
-        p1 = Point(0, 1)
-        p2 = Point(2, 4)
-        mp = MultiPoint(p1, p2)
-        return mp.wkt
 
 
 class MessageFactory(django.DjangoModelFactory):
