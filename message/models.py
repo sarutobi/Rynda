@@ -185,7 +185,7 @@ class Message(models.Model):
     )
 
     def __unicode__(self):
-        return self.title
+        return self.title or "Untitled"
 
     def save(self, *args, **kwargs):
         self.full_clean()
