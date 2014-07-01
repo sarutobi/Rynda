@@ -66,7 +66,7 @@ class TestAnonymousMessage(WebTest, MessageDataMixin):
 
 
 class TestSendRequestMessage(WebTest, MessageDataMixin):
-    """ Functional test for request creation. """
+    """ Функционал создания просьбы о помощи """
 
     def setUp(self):
         self.user = UserFactory()
