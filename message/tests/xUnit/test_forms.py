@@ -38,20 +38,6 @@ class TestBaseMessageForm(TestCase):
         form = MessageForm(self.data)
         self.assertFalse(form.is_valid())
 
-    # def test_virtual_message(self):
-        # virtual_message = MessageFactory.attributes(
-            # create=False, extra={'user': self.user, 'is_virtual': True}
-        # )
-        # form = MessageForm(data=virtual_message)
-        # self.assertTrue(form.is_valid())
-        # msg = form.save(commit=False)
-        # self.assertIsNone(msg.linked_location)
-
-    # def test_ordinal_message(self):
-        # form = MessageForm(data=self.data)
-        # msg = form.save(commit=False)
-        # self.assertEquals(self.data['linked_location'], msg.linked_location)
-
 
 class MessageDataGenerator(TestCase):
     def setUp(self):
@@ -110,6 +96,11 @@ class TestUserMessageForm(MessageDataGenerator):
         self.data['phone'] = ''
         form = UserMessageForm(data=self.data)
         self.assertTrue(form.is_valid())
+
+    def test_message_status(self):
+        form = UserMessageForm(data=self.data)
+        msg = form.save(commit=False)
+        self.assertEqual(msg.status, Message.NEW)
 
     def test_phone_only(self):
         """ Введен только телефон """
