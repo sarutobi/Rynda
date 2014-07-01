@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 
 from django.contrib.gis.db import models
+from django.contrib.gis.geos import GeometryCollection
 from django.utils.translation import ugettext_lazy as _
 
 
@@ -65,6 +66,7 @@ class Location(models.Model):
     region = models.ForeignKey(
         Region,
         verbose_name=_("region"),
+        blank=True, null=True,
     )
     # Short description or address
     description = models.CharField(max_length=200, blank=True)
@@ -72,3 +74,6 @@ class Location(models.Model):
 
     def __unicode__(self):
         return self.name
+
+    def to_geocollection(self, geodata):
+        self.coordinates = GeometryCollection(geodata)
