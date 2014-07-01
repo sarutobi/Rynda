@@ -1,5 +1,6 @@
 # coding: utf-8
 
+from django.conf import settings
 from django.core.urlresolvers import reverse
 
 from django_webtest import WebTest
@@ -30,16 +31,8 @@ class MessageDataMixin():
         data.update(loc_data)
         return data
 
-
-class TestAnonymousMessage(WebTest, MessageDataMixin):
-    """ Отправка сообщения незарегистрированным пользователем """
-
-    def setUp(self):
-        self.page = self.app.get(reverse('create-request'))
-        self.data = self.generate_message()
-
-    def test_anonymous_message(self):
-        before = Message.objects.count()
+    def fill_form(self):
+        """ Вспомогательный метод заполнения формы данными """
         form = self.page.forms['mainForm']
         form['title'] = self.data['title']
         form['message'] = self.data['message']
@@ -48,8 +41,28 @@ class TestAnonymousMessage(WebTest, MessageDataMixin):
         form['email'] = self.data['email']
         form['address'] = self.data['address']
         form['coordinates'] = self.data['coordinates']
+        return form
+
+
+class TestAnonymousMessage(WebTest, MessageDataMixin):
+    """ Отправка сообщения незарегистрированным пользователем """
+
+    def setUp(self):
+        self.page = self.app.get(reverse('create-request'))
+        self.data = self.generate_message()
+
+    def test_store_anonymous_message(self):
+        """ Проверка сохранения данных анонимного сообщения """
+        before = Message.objects.count()
+        form = self.fill_form()
         form.submit()
         self.assertEquals(before + 1, Message.objects.count())
+
+    def test_message_is_anonymous(self):
+        form = self.fill_form()
+        form.submit()
+        msg = Message.objects.get()
+        self.assertEqual(msg.user_id, settings.ANONYMOUS_USER_ID)
 
 
 class TestSendRequestMessage(WebTest, MessageDataMixin):
@@ -62,23 +75,13 @@ class TestSendRequestMessage(WebTest, MessageDataMixin):
             user=self.user.username)
         self.data = self.generate_message()
 
-    # def tearDown(self):
-        # Message.objects.all().delete()
-
     def test_get_form(self):
         form = self.page.forms['mainForm']
         self.assertIsNotNone(form)
 
     def test_message_saved(self):
         before = Message.objects.count()
-        form = self.page.forms['mainForm']
-        form['title'] = self.data['title']
-        form['message'] = self.data['message']
-        form['is_anonymous'] = self.data['is_anonymous']
-        form['allow_feedback'] = self.data['allow_feedback']
-        form['email'] = self.data['email']
-        form['address'] = self.data['address']
-        form['coordinates'] = self.data['coordinates']
+        form = self.fill_form()
         form.submit()
         self.assertEquals(before + 1, Message.objects.count())
 
