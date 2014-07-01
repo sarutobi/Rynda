@@ -5,18 +5,17 @@ from django.conf import settings
 from django.contrib.auth import logout
 from django.contrib.auth.models import User
 from django.core.urlresolvers import reverse_lazy
-from django.shortcuts import redirect, render, render_to_response
-from django.template import RequestContext
+from django.shortcuts import redirect, render
 from django.template.loader import render_to_string
 
-from core.context_processors import categories_context, subdomains_context
+# from core.context_processors import categories_context, subdomains_context
 from core.mixins import CategoryMixin, SubdomainContextMixin, MultipleFormsView
-from core.models import Subdomain
+# from core.models import Subdomain
 from core.views import (RyndaCreateView, RyndaDetailView, RyndaFormView,
                         RyndaListView)
-from feed.models import FeedItem
+# from feed.models import FeedItem
 from geozones.forms import LocationForm
-from geozones.models import Region
+from geozones.models import Region, Location
 from message.forms import RequestForm
 from message.models import Message, MessageIndexFilter, MessageSideFilter
 
@@ -104,6 +103,11 @@ class CreateRequest(CategoryMixin, RyndaFormView):
             instance.user = self.request.user
         else:
             instance.user = User.objects.get(pk=settings.ANONYMOUS_USER_ID)
+        location = Location()
+        location.to_geocollection(form.cleaned_data['coordinates'])
+        location.address = form.fields['address']
+        location.save()
+        instance.linked_location = location
         instance.save()
         return redirect(self.success_url)
 

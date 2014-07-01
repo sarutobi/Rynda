@@ -6,6 +6,7 @@ from django.core.urlresolvers import reverse
 from django_webtest import WebTest
 
 from core.factories import SubdomainFactory, FuzzyPoint
+from geozones.models import Location
 from message.models import Message
 from message.factories import MessageFactory
 from test.factories import UserFactory
@@ -136,3 +137,8 @@ class TestRequestMessageParameters(WebTest, MessageDataMixin):
         self.send_form()
         msg = Message.objects.get()
         self.assertFalse(msg.allow_feedback)
+
+    def test_message_location(self):
+        loc_cnt = Location.objects.count()
+        self.send_form()
+        self.assertEqual(loc_cnt + 1, Location.objects.count())
