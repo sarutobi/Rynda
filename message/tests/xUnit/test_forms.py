@@ -81,15 +81,22 @@ class TestUserMessageForm(MessageDataGenerator):
             form.fields['messageType'].widget, forms.HiddenInput)
 
     def test_correct_form(self):
-        """ Базовый тест сохранения правильной формы """
+        """ Тест проверки правильной формы """
         form = UserMessageForm(data=self.data)
         self.assertTrue(form.is_bound)
         self.assertTrue(form.is_valid(), form.errors)
 
-    def test_store_form(self):
+    def test_create_message(self):
         form = UserMessageForm(data=self.data)
         msg = form.save(commit=False)
         self.assertIsNotNone(msg)
+
+    def test_store_message(self):
+        form = UserMessageForm(data=self.data)
+        msg = form.save(commit=False)
+        msg.user = UserFactory()
+        msg.save()
+        self.assertEqual(1, Message.objects.count())
 
     def test_contact_data(self):
         """ Тестирование сохранения контактных данных """
