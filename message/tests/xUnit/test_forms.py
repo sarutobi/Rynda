@@ -4,7 +4,7 @@
 import floppyforms as forms
 from django.test import TestCase
 
-from core.factories import SubdomainFactory, FuzzyPoint
+from core.factories import SubdomainFactory, FuzzyGeometryCollection
 from message.factories import MessageFactory
 from message.forms import (
     MessageForm, UserMessageForm, RequestForm, OfferForm, InformationForm)
@@ -47,7 +47,7 @@ class MessageDataGenerator(TestCase):
             'phone': '1234567890',
         }
         loc_data = {
-            'coordinates': FuzzyPoint().fuzz(),
+            'coordinates': FuzzyGeometryCollection().fuzz(),
             'address': 'test address',
         }
         subdomain = SubdomainFactory()
