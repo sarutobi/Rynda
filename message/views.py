@@ -103,10 +103,12 @@ class CreateRequest(CategoryMixin, RyndaFormView):
             instance.user = self.request.user
         else:
             instance.user = User.objects.get(pk=settings.ANONYMOUS_USER_ID)
-        location = Location()
-        location.to_geocollection(form.cleaned_data['coordinates'])
-        location.address = form.fields['address']
-        location.save()
+        data = {
+            'name': self.request.POST['address'],
+            'coordinates': self.request.POST['coordinates'], }
+        loc_form = LocationForm(data=data)
+        location = loc_form.save()
+        # location.save()
         instance.linked_location = location
         instance.save()
         return redirect(self.success_url)
