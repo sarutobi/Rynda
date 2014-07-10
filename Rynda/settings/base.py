@@ -163,7 +163,6 @@ INSTALLED_APPS = (
     'rest_framework',
     'south',
     'social_auth',
-    'templated_emails',
     'widget_tweaks',
     'post_office',
     'floppyforms',
