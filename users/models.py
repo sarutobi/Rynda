@@ -10,7 +10,8 @@ from django.db import models
 from django.db.models.signals import post_save
 from django.contrib.auth.models import User
 
-from templated_emails.utils import send_templated_email
+# from templated_emails.utils import send_templated_email
+from post_office import mail
 
 
 class UserAuthCode(object):
@@ -101,19 +102,23 @@ def create_new_user(first_name, last_name, password, email):
     )
     user.set_password(password),
     user.save()
-    send_templated_email(
-        [user], 'emails/registration_confirm',
-        {'user': user, 'site_url': 'SERVER_NAME',
-         'activation_code': 'code', }
+    mail.send(
+        [user], 'test_mail',
+        template='emails/registration_confirm',
+        context={
+            'user': user, 'site_url': 'SERVER_NAME',
+            'activation_code': 'code', }
     )
     return user
 
 
 def notify_new_user(user, code):
-    send_templated_email(
-        [user], 'emails/registration_confirm',
-        {'user': user, 'site_url': self.request.META['SERVER_NAME'],
-         'activation_code': code, }
+    mail.send(
+        [user], 'test_mail',
+        template='emails/registration_confirm',
+        context={
+            'user': user, 'site_url': self.request.META['SERVER_NAME'],
+            'activation_code': code, }
     )
 
 
