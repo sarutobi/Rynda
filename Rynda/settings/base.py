@@ -190,6 +190,7 @@ AUTHENTICATION_BACKENDS = (
 ADMIN_TOOLS_THEMING_CSS = 'admin_tools/css/theming.css'
 AUTH_PROFILE_MODULE = 'users.users'
 EMAIL_BACKEND = 'post_office.EmailBackend'
+DEFAULT_FROM_EMAIL = 'noreply@local.host'
 
 # A sample logging configuration. The only tangible logging
 # performed by this configuration is to send an email to
