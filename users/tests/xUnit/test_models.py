@@ -1,7 +1,5 @@
 # coding: utf-8
 
-
-from django.core import mail
 from django.conf import settings
 from django.contrib.auth.models import User
 from django.utils import timezone
@@ -9,6 +7,7 @@ from django.test import TestCase
 
 from test.factories import UserFactory
 from users.models import UserAuthCode, create_new_user, activate_user
+from post_office.models import Email
 
 
 class UserAuthCodeTest(TestCase):
@@ -56,9 +55,6 @@ class UserTest(TestCase):
             last_name='Factory'
         )
 
-    def tearDown(self):
-        self.user = None
-
     def test_user(self):
         self.assertNotEqual(None, self.user)
 
@@ -83,11 +79,6 @@ class TestUserCreation(TestCase):
             password='123'
         )
 
-    def tearDown(self):
-        # clear outbox
-        mail.outbox.pop()
-        self.user.delete()
-
     def test_create_new_user(self):
         self.assertEqual(self.before + 1, User.objects.all().count())
 
@@ -104,12 +95,15 @@ class TestUserCreation(TestCase):
         self.assertFalse(u.is_active)
 
     def test_send_email(self):
-        self.assertEqual(1, len(mail.outbox))
+        emails_count = Email.objects.count()
+        self.assertEqual(1, emails_count)
 
     def test_email_subject(self):
+        mail = Email.objects.get()
         self.assertEqual(
-            mail.outbox[0].subject,
-            u'Активация учетной записи'
+            mail.subject,
+            u'Активация учетной записи\n',
+            mail.subject
         )
 
 

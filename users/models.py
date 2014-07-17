@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 
+import os
 import random
 import base64
 import hashlib
@@ -10,7 +11,6 @@ from django.db import models
 from django.db.models.signals import post_save
 from django.contrib.auth.models import User
 
-# from templated_emails.utils import send_templated_email
 from post_office import mail
 
 
@@ -102,23 +102,30 @@ def create_new_user(first_name, last_name, password, email):
     )
     user.set_password(password),
     user.save()
-    mail.send(
-        [user], 'test_mail',
-        template='emails/registration_confirm',
-        context={
-            'user': user, 'site_url': 'SERVER_NAME',
-            'activation_code': 'code', }
-    )
+    notify_new_user(user)
     return user
 
 
-def notify_new_user(user, code):
+def _file_get_contents(fname):
+    abs_path = os.path.dirname(__file__)
+    file_path = os.path.join(abs_path, fname)
+    with open(file_path, 'r') as f:
+        return f.read()
+
+
+def notify_new_user(user):
+    """ Уведомляем нового пользователя о регистрации """
+    file_path = "templates/emails/registration_confirm/%s"
+    subj = _file_get_contents(file_path % "short.txt")
+    text = _file_get_contents(file_path % "email.txt")
+    html = _file_get_contents(file_path % "email.html")
+
     mail.send(
-        [user], 'test_mail',
-        template='emails/registration_confirm',
+        [user],
+        subject=subj, message=text, html_message=html,
         context={
-            'user': user, 'site_url': self.request.META['SERVER_NAME'],
-            'activation_code': code, }
+            'user': user,
+            'activation_code': UserAuthCode(settings.SECRET_KEY).auth_code(user), }
     )
 
 
