@@ -8,6 +8,22 @@ from .forms import AdminMessageForm
 from .models import Message
 
 
+def get_full_name(obj):
+    return "%s %s" % (obj.additional_info['first_name'], obj.additional_info['last_name'])
+
+
+def get_phone(obj):
+    return obj.additional_info.get("phone", "No phone")
+
+
+def get_email(obj):
+    return obj.additional_info.get("email", "No email")
+
+get_full_name.short_description = 'Contact name'
+get_phone.short_description = 'Phone'
+get_email.short_description = 'Email'
+
+
 class MessageAdmin(LeafletGeoAdmin):
     # class Media:
         # js = (
@@ -27,13 +43,17 @@ class MessageAdmin(LeafletGeoAdmin):
     )
     list_display_links = ('title', )
     list_filter = ('status', 'messageType',)
-    readonly_fields = ('edit_key', 'date_add', 'last_edit',)
-    # fieldsets = (
-        # ("Message", {'fields': ('title', 'message', )}),
-        # ("Category", {'fields': ('category',), 'classes': ('collapse'), }),
-        # ("Contact", {"fields": ("additional_info",)}),
-        # ("Flags", {"fields": ("is_active", )})
-    # )
+    readonly_fields = ('edit_key', 'date_add', 'last_edit',
+                       get_full_name, get_phone, get_email,
+                       'user', 'sender_ip', )
+    fieldsets = (
+        ("Message", {'fields': ('title', 'message', )}),
+        ("Category", {'fields': ('category',), 'classes': ('collapse',), }),
+        ("Contact", {"fields": ((get_full_name, "is_anonymous"),
+                                (get_phone, get_email), "user", 'sender_ip', )}),
+        ("Flags", {"fields": (("is_active", "is_removed", ),)}),
+        ("Position", {"fields": ("linked_location",)})
+    )
     # form = AdminMessageForm
 
 admin.site.register(Message, MessageAdmin)
