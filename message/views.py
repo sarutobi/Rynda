@@ -93,7 +93,7 @@ class SaveGeoDataMixin():
         return redirect(self.success_url)
 
 
-class CreateRequest(CategoryMixin, RyndaFormView):
+class CreateRequest(CategoryMixin, SaveGeoDataMixin, RyndaFormView):
     template_name = "request_form.html"
     model = Message
     form_class = RequestForm
@@ -141,26 +141,10 @@ class CreateRequestM(MultipleFormsView):
         return super(CreateRequestM, self).forms_valid(forms)
 
 
-class CreateOffer(CategoryMixin, RyndaCreateView):
+class CreateOffer(CategoryMixin, SaveGeoDataMixin, RyndaCreateView):
     template_name = "offer_form.html"
     model = Message
     form_class = OfferForm
-
-    def form_valid(self, form):
-        instance = form.save(commit=False)
-        if self.request.user.is_authenticated():
-            instance.user = self.request.user
-        else:
-            instance.user = User.objects.get(pk=settings.ANONYMOUS_USER_ID)
-        data = {
-            'name': self.request.POST['address'],
-            'coordinates': self.request.POST['coordinates'], }
-        loc_form = LocationForm(data=data)
-        location = loc_form.save()
-        # location.save()
-        instance.linked_location = location
-        instance.save()
-        return redirect(self.success_url)
 
 
 class MessageView(RyndaDetailView):
