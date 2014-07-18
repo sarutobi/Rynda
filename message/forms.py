@@ -1,12 +1,11 @@
 # -*- coding: utf-8 -*-
 
 from django.contrib.gis import forms as geoforms
-# from leaflet.forms.fields import PointField, MultiPointField
 from django.core.exceptions import ValidationError
 from django.forms.util import ErrorList
 from django.utils.translation import ugettext as _
 
-import floppyforms as forms
+import floppyforms.__future__ as forms
 from leaflet.forms.widgets import LeafletWidget
 
 from category.fields import CategoryChoiceField

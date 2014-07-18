@@ -2,7 +2,7 @@
 
 # from django.forms.fields import MultipleChoiceField
 # from django.forms.widgets import CheckboxSelectMultiple
-import floppyforms as forms
+import floppyforms.__future__ as forms
 
 
 class CategoryChoiceField(forms.CheckboxSelectMultiple):

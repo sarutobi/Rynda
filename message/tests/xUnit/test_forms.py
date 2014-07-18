@@ -1,9 +1,8 @@
 # -*- coding: utf-8 -*-
 
-from django.conf import settings
 from django.test import TestCase
 
-import floppyforms as forms
+import floppyforms.__future__ as forms
 
 from core.factories import SubdomainFactory, FuzzyGeometryCollection
 from message.factories import MessageFactory
