@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-# Create your views here.
 
 from django.conf import settings
 from django.contrib.auth import logout
@@ -8,15 +7,12 @@ from django.core.urlresolvers import reverse_lazy
 from django.shortcuts import redirect, render
 from django.template.loader import render_to_string
 
-# from core.context_processors import categories_context, subdomains_context
-from core.mixins import CategoryMixin, SubdomainContextMixin, MultipleFormsView
-# from core.models import Subdomain
+from core.mixins import CategoryMixin, MultipleFormsView
 from core.views import (RyndaCreateView, RyndaDetailView, RyndaFormView,
                         RyndaListView)
-# from feed.models import FeedItem
 from geozones.forms import LocationForm
-from geozones.models import Region, Location
-from message.forms import RequestForm
+from geozones.models import Region
+from message.forms import RequestForm, OfferForm
 from message.models import Message, MessageIndexFilter, MessageSideFilter
 
 MAX_PANE_MESSAGES = 5
@@ -78,21 +74,8 @@ def logout_view(request):
     return redirect('/')
 
 
-class CreateRequest(CategoryMixin, RyndaFormView):
-    template_name = "request_form.html"
-    model = Message
-    form_class = RequestForm
-    success_url = reverse_lazy('message_list')
-
-    def get_initial(self):
-        initial = {}
-        if self.request.user.is_authenticated():
-            initial['contact_first_name'] = self.request.user.first_name
-            initial['contact_last_name'] = self.request.user.last_name
-            initial['contact_mail'] = self.request.user.email
-            initial['contact_phone'] = self.request.user.profile.phones
-        return initial
-
+class SaveGeoDataMixin():
+    """ Сохранение сообщения и геоточки """
     def form_valid(self, form):
         instance = form.save(commit=False)
         if self.request.user.is_authenticated():
@@ -108,6 +91,22 @@ class CreateRequest(CategoryMixin, RyndaFormView):
         instance.linked_location = location
         instance.save()
         return redirect(self.success_url)
+
+
+class CreateRequest(CategoryMixin, RyndaFormView):
+    template_name = "request_form.html"
+    model = Message
+    form_class = RequestForm
+    success_url = reverse_lazy('message_list')
+
+    def get_initial(self):
+        initial = {}
+        if self.request.user.is_authenticated():
+            initial['contact_first_name'] = self.request.user.first_name
+            initial['contact_last_name'] = self.request.user.last_name
+            initial['contact_mail'] = self.request.user.email
+            initial['contact_phone'] = self.request.user.profile.phones
+        return initial
 
 
 class CreateRequestM(MultipleFormsView):
@@ -145,7 +144,7 @@ class CreateRequestM(MultipleFormsView):
 class CreateOffer(CategoryMixin, RyndaCreateView):
     template_name = "offer_form.html"
     model = Message
-    form_class = RequestForm
+    form_class = OfferForm
 
     def form_valid(self, form):
         instance = form.save(commit=False)
