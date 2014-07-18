@@ -54,10 +54,6 @@ def list(request, slug='all'):
             Message.REQUEST).closed().values(
                 'id', 'title', 'date_add')[:MAX_PANE_MESSAGES + 1],
         "/message/pomogli")
-    # last_info = Message.objects.active().type_is(
-        # Message.INFO).values('id', 'title', 'date_add')[:5]
-    # last_feeds = FeedItem.objects.filter(feedId=3).values(
-        # 'id', 'link', 'title', 'date')[:5]
     return render(
         request,
         'index.html',
@@ -83,7 +79,7 @@ def logout_view(request):
 
 
 class CreateRequest(CategoryMixin, RyndaFormView):
-    template_name = "request_form_simple.html"
+    template_name = "request_form.html"
     model = Message
     form_class = RequestForm
     success_url = reverse_lazy('message_list')
