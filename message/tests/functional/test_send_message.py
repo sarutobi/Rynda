@@ -59,6 +59,12 @@ class TestAnonymousMessage(WebTest, MessageDataMixin):
         form.submit()
         self.assertEquals(before + 1, Message.objects.count())
 
+    def test_creator_data(self):
+        form = self.fill_form()
+        form.submit()
+        msg = Message.objects.get()
+        self.assertEqual(msg.user_id, settings.ANONYMOUS_USER_ID)
+
     def test_message_is_anonymous(self):
         form = self.fill_form()
         form.submit()

@@ -147,6 +147,22 @@ class CreateOffer(CategoryMixin, RyndaCreateView):
     model = Message
     form_class = RequestForm
 
+    def form_valid(self, form):
+        instance = form.save(commit=False)
+        if self.request.user.is_authenticated():
+            instance.user = self.request.user
+        else:
+            instance.user = User.objects.get(pk=settings.ANONYMOUS_USER_ID)
+        data = {
+            'name': self.request.POST['address'],
+            'coordinates': self.request.POST['coordinates'], }
+        loc_form = LocationForm(data=data)
+        location = loc_form.save()
+        # location.save()
+        instance.linked_location = location
+        instance.save()
+        return redirect(self.success_url)
+
 
 class MessageView(RyndaDetailView):
     model = Message

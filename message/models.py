@@ -162,12 +162,7 @@ class Message(models.Model):
     )
 
     # Геоданные сообщения
-    # address = models.CharField(
-        # max_length=200, blank=True, verbose_name=_('address'))
-    # coordinates = models.MultiPointField(
-        # null=True, verbose_name=_("On map"))
-
-    #Links to core models
+    # Links to core models
     linked_location = models.ForeignKey(
         Location,
         null=True, blank=True
