@@ -27,45 +27,6 @@ class Category(models.Model):
         max_length=255, null=True, blank=True,
         db_column='icon', verbose_name=_('icon'))
     order = models.SmallIntegerField(db_column='order')
-    # subdomain = models.ForeignKey(
-        # Subdomain, null=True, blank=True,
-        # db_column='subdomain_id', verbose_name=_('subdomain'))
-    group = models.ForeignKey("CategoryGroup", null=True, blank=True)
 
     def __unicode__(self):
         return self.name
-
-    def unlink(self):
-        '''Remove link to category group'''
-        self.group = None
-        self.save()
-
-
-class CategoryGroup(models.Model):
-    """ Модель для группировки категорий """
-    class Meta:
-        ordering = ['order']
-        verbose_name = _('category group')
-        verbose_name_plural = _('category groups')
-
-    name = models.CharField(
-        max_length=200,
-        verbose_name=_('category group name'))
-    order = models.IntegerField()
-
-    def __unicode__(self):
-        return self.name
-
-    def add_category(self, category):
-        """ Добавляет категорию в группу """
-        category.group = self
-        category.save()
-
-
-def build_tree():
-    """ Свертывание категорий в группы """
-    tree = CategoryGroup.objects.values('id', 'name').all()
-    for l in tree:
-        l['children'] = [c for c in Category.objects.values(
-            'id', 'name').filter(group=l['id'])]
-    return tree

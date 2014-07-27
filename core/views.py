@@ -10,7 +10,6 @@ from django.template import RequestContext
 from core.mixins import (
     PaginatorMixin, QueryStringMixin, ExternalScriptsMixin)
 from core.models import Infopage
-from core.context_processors import categories_context
 
 
 class RyndaCreateView(CreateView):
@@ -61,7 +60,7 @@ def show_page(request, slug):
         {'title': page.title, 'text': page.text, 'pages': pages, },
         context_instance=RequestContext(
             request,
-            processors=[subdomains_context, categories_context])
+        )
     )
 
 
@@ -75,5 +74,5 @@ def index_info(request):
         {'title': page.title, 'text': page.text, 'pages': pages, },
         context_instance=RequestContext(
             request,
-            processors=[subdomains_context, categories_context])
+        )
     )

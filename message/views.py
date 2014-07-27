@@ -7,7 +7,7 @@ from django.core.urlresolvers import reverse_lazy
 from django.shortcuts import redirect, render
 from django.template.loader import render_to_string
 
-from core.mixins import CategoryMixin, MultipleFormsView
+from core.mixins import MultipleFormsView
 from core.views import (RyndaCreateView, RyndaDetailView, RyndaFormView,
                         RyndaListView)
 from geozones.forms import LocationForm
@@ -55,18 +55,12 @@ def list(request, slug='all'):
         'index.html',
         {
             'regions': Region.objects.filter(id__gt=0),
-            #'categories': cat_tree,
             'filter': MessageIndexFilter(
                 request.GET, Message.objects.active().list().all()),
             'requests': last_requests,
             'offers': last_offers,
             'completed': last_completed,
-            # 'info': last_info,
-            # 'news': last_feeds,
         },)
-        # context_instance=RequestContext(
-            # request,
-            # processors=[subdomains_context, categories_context]))
 
 
 def logout_view(request):
@@ -87,13 +81,12 @@ class SaveGeoDataMixin():
             'coordinates': self.request.POST['coordinates'], }
         loc_form = LocationForm(data=data)
         location = loc_form.save()
-        # location.save()
         instance.linked_location = location
         instance.save()
         return redirect(self.success_url)
 
 
-class CreateRequest(CategoryMixin, SaveGeoDataMixin, RyndaFormView):
+class CreateRequest(SaveGeoDataMixin, RyndaFormView):
     template_name = "request_form.html"
     model = Message
     form_class = RequestForm
@@ -141,7 +134,7 @@ class CreateRequestM(MultipleFormsView):
         return super(CreateRequestM, self).forms_valid(forms)
 
 
-class CreateOffer(CategoryMixin, SaveGeoDataMixin, RyndaCreateView):
+class CreateOffer(SaveGeoDataMixin, RyndaCreateView):
     template_name = "offer_form.html"
     model = Message
     form_class = OfferForm

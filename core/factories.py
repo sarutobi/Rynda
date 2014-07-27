@@ -6,8 +6,7 @@ import random
 from factory import django, fuzzy
 from django.contrib.gis.geos import Point, MultiPoint, GeometryCollection
 
-from test.utils import FuzzyText
-from category.models import Category, CategoryGroup
+from category.models import Category
 
 
 class FuzzyPoint(fuzzy.BaseFuzzyAttribute):
@@ -33,16 +32,8 @@ class FuzzyGeometryCollection(fuzzy.BaseFuzzyAttribute):
         return GeometryCollection(p1, p2).wkt
 
 
-class CategoryGroupFactory(django.DjangoModelFactory):
-    FACTORY_FOR = CategoryGroup
-
-    name = factory.Sequence(lambda n: "Category group %s" % n)
-    order = factory.Sequence(lambda n: n)
-
-
 class CategoryFactory(django.DjangoModelFactory):
     FACTORY_FOR = Category
 
     name = factory.Sequence(lambda n: "Category %s" % n)
-    group = factory.SubFactory(CategoryGroupFactory)
     order = factory.Sequence(lambda n: n)

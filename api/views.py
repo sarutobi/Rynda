@@ -9,7 +9,6 @@ from message.models import Message
 from message.serializers import MessageSerializer, MapMessageSerializer
 from category.models import Category
 from core.serializers import CategorySerializer
-from core.context_processors import categories_context
 
 
 @api_view(['GET'])
@@ -26,7 +25,6 @@ class MapMessageList(generics.ListAPIView):
 
 
 class MessagesList(generics.ListAPIView):
-    #model = Message
     queryset = Message.objects.active().all()
     serializer_class = MessageSerializer
     paginate_by = 10

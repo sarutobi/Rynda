@@ -1,10 +1,10 @@
 # -*- coding: utf-8 -*-
 
 from django.conf import settings
-from django.views.generic.base import View, TemplateResponseMixin
+from django.views.generic.base import TemplateResponseMixin
 from django.views.generic.edit import FormMixin, ProcessFormView
 
-from category.models import Category, CategoryGroup
+from category.models import Category
 
 
 class PaginatorMixin(object):
@@ -61,19 +61,6 @@ class QueryStringMixin(object):
     def get_context_data(self, **kwargs):
         context = super(QueryStringMixin, self).get_context_data(**kwargs)
         context['query_string'] = u'?%s' % self.request.META['QUERY_STRING']
-        return context
-
-
-class CategoryMixin(object):
-    '''Category mixin'''
-    def get_context_data(self, **kwargs):
-        context = super(CategoryMixin, self).get_context_data(**kwargs)
-        cats = CategoryGroup.objects.values('id', 'name').all()
-        tree = [c for c in cats]
-        for l in tree:
-            l['children'] = [c for c in Category.objects.values(
-                'id', 'name').filter(group=l['id'])]
-        context['categories'] = tree
         return context
 
 
