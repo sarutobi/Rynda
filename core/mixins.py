@@ -4,19 +4,7 @@ from django.conf import settings
 from django.views.generic.base import View, TemplateResponseMixin
 from django.views.generic.edit import FormMixin, ProcessFormView
 
-from core.context_processors import subdomains_context
 from category.models import Category, CategoryGroup
-
-
-class SubdomainContextMixin(object):
-    '''Subdomain context mixin'''
-
-    def get_context_data(self, **kwargs):
-        context = super(SubdomainContextMixin, self).get_context_data(**kwargs)
-        sc = subdomains_context(self.request)
-        for key in sc.keys():
-            context[key] = sc[key]
-        return context
 
 
 class PaginatorMixin(object):

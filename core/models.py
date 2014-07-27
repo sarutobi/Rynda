@@ -4,40 +4,40 @@ from django.db import models
 from django.utils.translation import ugettext_lazy as _
 
 
-class Subdomain(models.Model):
-    '''One atlas page'''
-    # Status of page
-    DISABLED = 0
-    ACTIVE = 1
-    ARCHIVED = 2
+# class Subdomain(models.Model):
+    # '''One atlas page'''
+    # # Status of page
+    # DISABLED = 0
+    # ACTIVE = 1
+    # ARCHIVED = 2
 
-    SUBDOMAIN_STATUS = (
-        (DISABLED, _('disabled')),
-        (ACTIVE, _('active')))
+    # SUBDOMAIN_STATUS = (
+        # (DISABLED, _('disabled')),
+        # (ACTIVE, _('active')))
 
-    class Meta:
-        ordering = ['order']
-        verbose_name = _('map')
-        verbose_name_plural = _('maps')
+    # class Meta:
+        # ordering = ['order']
+        # verbose_name = _('map')
+        # verbose_name_plural = _('maps')
 
-    url = models.CharField(max_length=50, blank=True, null=True)
-    title = models.CharField(max_length=50)
-    isCurrent = models.BooleanField(db_column='is_current')
-    status = models.SmallIntegerField(choices=SUBDOMAIN_STATUS)
-    order = models.IntegerField()
-    disclaimer = models.TextField(blank=True)
+    # url = models.CharField(max_length=50, blank=True, null=True)
+    # title = models.CharField(max_length=50)
+    # isCurrent = models.BooleanField(db_column='is_current')
+    # status = models.SmallIntegerField(choices=SUBDOMAIN_STATUS)
+    # order = models.IntegerField()
+    # disclaimer = models.TextField(blank=True)
 
-    def __unicode__(self):
-        return self.title
+    # def __unicode__(self):
+        # return self.title
 
-    def name(self):
-        return self.title
+    # def name(self):
+        # return self.title
 
-    def full_url(self):
-        if self.url:
-            return "%s.newrynda.org" % self.url
-        else:
-            return "newrynda.org"
+    # def full_url(self):
+        # if self.url:
+            # return "%s.newrynda.org" % self.url
+        # else:
+            # return "newrynda.org"
 
 
 class Infopage(models.Model):

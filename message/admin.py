@@ -34,7 +34,6 @@ class MessageAdmin(LeafletGeoAdmin):
         # )
     list_display = (
         'title',
-        'subdomain',
         'user',
         'messageType',
         'status',

@@ -41,7 +41,7 @@ class TestCategory(TestCase):
         cat.delete()
 
     def test_unlinked_category(self):
-        cat = CategoryFactory(group=None, subdomain=None)
+        cat = CategoryFactory(group=None)
         self.assertIsNotNone(cat)
         self.assertIsNone(cat.group)
         cat.delete()

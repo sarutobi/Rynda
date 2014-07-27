@@ -6,7 +6,6 @@ from test.factories import UserFactory
 from test.utils import FuzzyText
 
 from geozones.factories import LocationFactory
-from core.factories import SubdomainFactory
 from .models import Message
 
 
@@ -18,8 +17,6 @@ class MessageFactory(django.DjangoModelFactory):
     message = FuzzyText(length=200)
     messageType = fuzzy.FuzzyChoice(
         (Message.REQUEST, Message.OFFER, Message.INFO))
-    subdomain = factory.SubFactory(SubdomainFactory)
-    # category = factory.SubFactory(CategoryFactory)
     is_anonymous = True
     allow_feedback = True
     is_virtual = fuzzy.FuzzyChoice((True, False))

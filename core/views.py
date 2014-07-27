@@ -8,17 +8,16 @@ from django.views.generic.list import ListView
 from django.template import RequestContext
 
 from core.mixins import (
-    SubdomainContextMixin, PaginatorMixin,
-    QueryStringMixin, ExternalScriptsMixin)
+    PaginatorMixin, QueryStringMixin, ExternalScriptsMixin)
 from core.models import Infopage
-from core.context_processors import subdomains_context, categories_context
+from core.context_processors import categories_context
 
 
-class RyndaCreateView(SubdomainContextMixin, CreateView):
+class RyndaCreateView(CreateView):
     pass
 
 
-class RyndaDetailView(SubdomainContextMixin, ExternalScriptsMixin, DetailView):
+class RyndaDetailView(ExternalScriptsMixin, DetailView):
     pass
 
 
@@ -43,7 +42,7 @@ class RyndaListView(QueryStringMixin, PaginatorMixin, ListView):
         return context
 
 
-class RyndaFormView(SubdomainContextMixin, FormView):
+class RyndaFormView(FormView):
     pass
 
 
@@ -78,4 +77,3 @@ def index_info(request):
             request,
             processors=[subdomains_context, categories_context])
     )
-

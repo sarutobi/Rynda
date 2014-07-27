@@ -34,7 +34,7 @@ class MessageForm(forms.ModelForm):
     class Meta:
         model = Message
         fields = (
-            'title', 'message', 'messageType', 'subdomain',
+            'title', 'message', 'messageType',
             'category',
             'is_anonymous', 'allow_feedback', 'is_virtual',
             # 'address', 'coordinates',
@@ -54,7 +54,7 @@ class UserMessageForm(forms.ModelForm):
     class Meta():
         model = Message
         fields = (
-            'title', 'message', 'messageType', 'subdomain',
+            'title', 'message', 'messageType',
             'category',
             'is_anonymous', 'allow_feedback', 'is_virtual',
         )

@@ -11,7 +11,6 @@ from django.utils.translation import ugettext_lazy as _
 import django_filters
 from jsonfield import JSONField
 
-from core.models import Subdomain
 from category.models import Category
 from geozones.models import Location
 from model_utils.managers import PassThroughManagerMixin
@@ -173,11 +172,11 @@ class Message(models.Model):
         verbose_name=_("message categories"),
         null=True, blank=True
     )
-    subdomain = models.ForeignKey(
-        Subdomain, db_column='subdomain_id',
-        null=True, blank=True,
-        verbose_name=_('subdomain')
-    )
+    # subdomain = models.ForeignKey(
+        # Subdomain, db_column='subdomain_id',
+        # null=True, blank=True,
+        # verbose_name=_('subdomain')
+    # )
 
     def __unicode__(self):
         return self.title or "Untitled"
@@ -190,13 +189,13 @@ class Message(models.Model):
 class MessageSideFilter(django_filters.FilterSet):
     class Meta:
         model = Message
-        fields = ['subdomain', 'messageType', 'category']
+        fields = ['messageType', 'category']
 
 
 class MessageIndexFilter(django_filters.FilterSet):
     class Meta:
         model = Message
-        fields = ['subdomain', 'date_add']
+        fields = ['date_add', ]
 
     date_add = django_filters.DateRangeFilter()
 

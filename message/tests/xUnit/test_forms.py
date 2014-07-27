@@ -4,7 +4,7 @@ from django.test import TestCase
 
 import floppyforms.__future__ as forms
 
-from core.factories import SubdomainFactory, FuzzyGeometryCollection
+from core.factories import FuzzyGeometryCollection
 from message.factories import MessageFactory
 from message.forms import (
     MessageForm, UserMessageForm, RequestForm, OfferForm, InformationForm)
@@ -17,10 +17,8 @@ class TestBaseMessageForm(TestCase):
     """Base message form tests"""
     def setUp(self):
         self.user = UserFactory()
-        subdomain = SubdomainFactory()
         self.data = MessageFactory.attributes(
-            create=False, extra={
-                'user': self.user, 'subdomain': subdomain.pk, }
+            create=False, extra={'user': self.user, }
         )
 
     def test_send_data(self):
@@ -50,10 +48,7 @@ class MessageDataGenerator(TestCase):
             'coordinates': FuzzyGeometryCollection().fuzz(),
             'address': 'test address',
         }
-        subdomain = SubdomainFactory()
-        self.data = MessageFactory.attributes(
-            create=False, extra={
-                'subdomain': subdomain.pk, })
+        self.data = MessageFactory.attributes(create=False)
         self.data.update(self.contacts)
         self.data.update(loc_data)
 

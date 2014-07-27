@@ -3,8 +3,6 @@
 from django.db import models
 from django.utils.translation import ugettext_lazy as _
 
-from core.models import Subdomain
-
 
 class Category(models.Model):
     """ Категория сообщения """
@@ -29,9 +27,9 @@ class Category(models.Model):
         max_length=255, null=True, blank=True,
         db_column='icon', verbose_name=_('icon'))
     order = models.SmallIntegerField(db_column='order')
-    subdomain = models.ForeignKey(
-        Subdomain, null=True, blank=True,
-        db_column='subdomain_id', verbose_name=_('subdomain'))
+    # subdomain = models.ForeignKey(
+        # Subdomain, null=True, blank=True,
+        # db_column='subdomain_id', verbose_name=_('subdomain'))
     group = models.ForeignKey("CategoryGroup", null=True, blank=True)
 
     def __unicode__(self):
