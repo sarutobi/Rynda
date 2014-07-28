@@ -6,7 +6,7 @@ import random
 from factory import django, fuzzy
 from django.contrib.gis.geos import Point, MultiPoint, GeometryCollection
 
-from category.models import Category
+from message.models import Category
 
 
 class FuzzyPoint(fuzzy.BaseFuzzyAttribute):

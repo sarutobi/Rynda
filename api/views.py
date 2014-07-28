@@ -7,7 +7,7 @@ from rest_framework.response import Response
 
 from message.models import Message
 from message.serializers import MessageSerializer, MapMessageSerializer
-from category.models import Category
+from message.models import Category
 from core.serializers import CategorySerializer
 
 

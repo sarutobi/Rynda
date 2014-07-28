@@ -8,10 +8,30 @@ from django.utils.translation import ugettext_lazy as _
 import django_filters
 from jsonfield import JSONField
 
-from category.models import Category
 from geozones.models import Location
 from model_utils.managers import PassThroughManagerMixin
 
+
+class Category(models.Model):
+    """ Message categories """
+    class Meta:
+        ordering = ['order']
+        verbose_name = _('category')
+        verbose_name_plural = _('categories')
+
+    name = models.CharField(
+        max_length=200, db_column='name',
+        verbose_name=_('name'))
+    description = models.TextField(
+        blank=True, db_column='description',
+        verbose_name=_('description'))
+    slug = models.SlugField(
+        max_length=255, db_column='slug',
+        verbose_name=_('slug'), blank=True)
+    order = models.SmallIntegerField(db_column='order')
+
+    def __unicode__(self):
+        return self.name
 
 class PassThroughGeoManager(PassThroughManagerMixin, models.GeoManager):
     pass

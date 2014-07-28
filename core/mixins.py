@@ -4,7 +4,7 @@ from django.conf import settings
 from django.views.generic.base import TemplateResponseMixin
 from django.views.generic.edit import FormMixin, ProcessFormView
 
-from category.models import Category
+from message.models import Category
 
 
 class PaginatorMixin(object):
