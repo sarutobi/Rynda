@@ -3,9 +3,6 @@
 from django.contrib.auth.models import User
 from django.contrib.gis.db import models
 from django.contrib.gis.db.models.query import GeoQuerySet
-from django.core.exceptions import ValidationError
-# from django.db import models
-# from django.db.models.query import QuerySet
 from django.utils.translation import ugettext_lazy as _
 
 import django_filters
@@ -35,9 +32,6 @@ class MessageQueryset(GeoQuerySet):
 
     def type_is(self, m_type):
         return self.filter(messageType=m_type)
-
-    def subdomain_is(self, subdomain):
-        return self.filter(subdomain__slug=subdomain)
 
 
 class Message(models.Model):
@@ -172,11 +166,6 @@ class Message(models.Model):
         verbose_name=_("message categories"),
         null=True, blank=True
     )
-    # subdomain = models.ForeignKey(
-        # Subdomain, db_column='subdomain_id',
-        # null=True, blank=True,
-        # verbose_name=_('subdomain')
-    # )
 
     def __unicode__(self):
         return self.title or "Untitled"

@@ -168,5 +168,5 @@ class MessageList(RyndaListView):
         context['count'] = count
         return context
 
-    def get_queryset(self):
-        return MessageSideFilter(self.request.GET, self.queryset)
+    # def get_queryset(self):
+        # return MessageSideFilter(self.request.GET, self.queryset)
