@@ -5,7 +5,7 @@ from django.contrib import admin
 from leaflet.admin import LeafletGeoAdmin
 
 from .forms import AdminMessageForm
-from .models import Message
+from .models import Message, Category
 
 
 def get_full_name(obj):
@@ -56,3 +56,5 @@ class MessageAdmin(LeafletGeoAdmin):
     # form = AdminMessageForm
 
 admin.site.register(Message, MessageAdmin)
+
+admin.site.register(Category)
