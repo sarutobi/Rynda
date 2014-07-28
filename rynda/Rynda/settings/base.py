@@ -171,7 +171,6 @@ INSTALLED_APPS = (
     'leaflet',
     # Project applications
     'core',
-    'category',
     'message',
     'users',
     'geozones',
