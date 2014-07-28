@@ -8,7 +8,6 @@ from django.utils.translation import ugettext as _
 import floppyforms.__future__ as forms
 from leaflet.forms.widgets import LeafletWidget
 
-from category.fields import CategoryChoiceField
 from message.models import Message
 
 
@@ -40,7 +39,7 @@ class MessageForm(forms.ModelForm):
             # 'address', 'coordinates',
         )
         widgets = {
-            'category': CategoryChoiceField(),
+            'category': forms.CheckboxSelectMultiple(),
         }
 
     def clean_messageType(self):
@@ -60,7 +59,7 @@ class UserMessageForm(forms.ModelForm):
         )
         widgets = {
             'messageType': forms.HiddenInput(),
-            'category': CategoryChoiceField(),
+            'category': forms.CheckboxSelectMultiple(),
         }
 
     first_name = forms.CharField(label=_('First name'), required=False)
@@ -143,7 +142,7 @@ class AdminMessageForm(MessageForm):
     class Meta(MessageForm.Meta):
         widgets = {
             'messageType': forms.Select(),
-            'category': CategoryChoiceField(),
+            'category': forms.CheckboxSelectMultiple(),
         }
 
     def clean_messageType(self):
