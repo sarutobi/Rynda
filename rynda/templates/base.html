@@ -15,7 +15,7 @@
     <link rel="stylesheet/less" type='text/css' href="{{STATIC_URL}}css/style.less">
     <link rel="stylesheet" href="{{STATIC_URL}}css/messi.min.css">
     <script src="{{STATIC_URL}}js/libs/modernizr-2.5.3.min.js"></script>
-    <script src="{{STATIC_URL}}js/libs/less-1.6.1.min.js"></script>  
+    <script src="{{STATIC_URL}}js/libs/less-1.7.3.min.js"></script>  
 </head>
 
 <body>
@@ -52,12 +52,8 @@
     <section class="main">
         <div class="row clearfix" id="header">
             {%block buttons%}
-                <div id="want_to_help_button">
-                    <a href="/message/pomogu/dobavit" class="text-hide" title="Хочу помочь">Хочу помочь</a>
-                </div>
-                <div id="need_help_button">
-                    <a href="/message/pomogite/dobavit" class="text-hide" title="Нужна помощь">Нужна помощь</a>
-                </div>
+                <a href="/message/pomogu/dobavit" class="btn rynda-btn-head rynda-btn-wh" title="Хочу помочь">Хочу помочь</a>
+                <a href="/message/pomogite/dobavit" class="btn rynda-btn-head rynda-btn-nh" title="Нужна помощь">Нужна помощь</a>
             {%endblock%}
             <h1 class="text-hide"><a href="/" title="Rynda.org — портал добровольцев">Rynda</a></h1>
         </div>

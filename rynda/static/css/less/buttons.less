@@ -4,3 +4,32 @@
 .btn-rynda-default {
     .button-variant(@white, @rynda-brand-color, darken(@rynda-brand-color, 10%));
 }
+
+.rynda-btn-head {
+    width: 283px;
+    height: 88px;
+    margin-left: 10px;
+    margin-top: 32px;
+    text-transform: uppercase;
+    font-weight: bold;
+    .button-size(28px; 10px; 22px; @line-height-base; @border-radius-base);
+    .pull-right();
+}
+
+.rynda-btn-nh {
+    .button-variant(@white, @rynda-btn-nh, darken(@rynda-btn-nh, 10%));
+    #gradient > .vertical(@start-color: @rynda-btn-nh-light; @end-color: @rynda-btn-nh-dark);
+
+    &:hover {
+        #gradient > .vertical(@start-color: @rynda-btn-nh-light-hover; @end-color: @rynda-btn-nh-dark-hover);
+    }
+}
+
+.rynda-btn-wh {
+    .button-variant(@white, @rynda-btn-wh, darken(@rynda-btn-wh, 10%));
+    #gradient > .vertical(@start-color: @rynda-btn-wh-light; @end-color: @rynda-btn-wh-dark);
+
+    &:hover {
+        #gradient > .vertical(@start-color: @rynda-btn-wh-light-hover; @end-color: @rynda-btn-wh-dark-hover);
+    }
+}
