@@ -1,0 +1,278 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2014-07-30 10:28+0400\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: rynda/core/models.py:49 rynda/message/models.py:96
+msgid "title"
+msgstr ""
+
+#: rynda/core/models.py:50
+msgid "text"
+msgstr ""
+
+#: rynda/core/models.py:51
+msgid "is active"
+msgstr ""
+
+#: rynda/core/models.py:52 rynda/geozones/models.py:30
+#: rynda/message/models.py:30
+msgid "slug"
+msgstr ""
+
+#: rynda/core/models.py:54
+msgid "default page"
+msgstr ""
+
+#: rynda/geozones/forms.py:17 rynda/geozones/widgets.py:22
+msgid "latitude"
+msgstr ""
+
+#: rynda/geozones/forms.py:18 rynda/geozones/widgets.py:25
+msgid "longitude"
+msgstr ""
+
+#: rynda/geozones/models.py:23 rynda/geozones/models.py:68
+msgid "region"
+msgstr ""
+
+#: rynda/geozones/models.py:24
+msgid "regions"
+msgstr ""
+
+#: rynda/geozones/models.py:28
+msgid "region name"
+msgstr ""
+
+#: rynda/geozones/models.py:32
+msgid "map center"
+msgstr ""
+
+#: rynda/geozones/models.py:34
+msgid "map zoom"
+msgstr ""
+
+#: rynda/geozones/models.py:35
+msgid "order"
+msgstr ""
+
+#: rynda/geozones/models.py:56
+msgid "location"
+msgstr ""
+
+#: rynda/geozones/models.py:57
+msgid "locations"
+msgstr ""
+
+#: rynda/geozones/models.py:60 rynda/message/models.py:24
+msgid "name"
+msgstr ""
+
+#: rynda/geozones/models.py:64
+msgid "On map"
+msgstr ""
+
+#: rynda/message/forms.py:48
+msgid "Unknown message type!"
+msgstr ""
+
+#: rynda/message/forms.py:65
+msgid "First name"
+msgstr ""
+
+#: rynda/message/forms.py:66
+msgid "Last name"
+msgstr ""
+
+#: rynda/message/forms.py:67
+msgid "Contact email"
+msgstr ""
+
+#: rynda/message/forms.py:68
+msgid "Contact phone"
+msgstr ""
+
+#: rynda/message/forms.py:69
+msgid "Address"
+msgstr ""
+
+#: rynda/message/forms.py:72
+msgid "Coordinates"
+msgstr ""
+
+#: rynda/message/forms.py:98 rynda/message/forms.py:101
+#: rynda/message/forms.py:104
+msgid "You must provide at least one from contact email or phone!"
+msgstr ""
+
+#: rynda/message/models.py:19
+msgid "category"
+msgstr ""
+
+#: rynda/message/models.py:20
+msgid "categories"
+msgstr ""
+
+#: rynda/message/models.py:27
+msgid "description"
+msgstr ""
+
+#: rynda/message/models.py:63 rynda/message/models.py:98
+msgid "message"
+msgstr ""
+
+#: rynda/message/models.py:64
+msgid "messages"
+msgstr ""
+
+#: rynda/message/models.py:72
+msgid "request"
+msgstr ""
+
+#: rynda/message/models.py:73
+msgid "offer"
+msgstr ""
+
+#: rynda/message/models.py:74
+msgid "informatial"
+msgstr ""
+
+#: rynda/message/models.py:84
+msgid "new"
+msgstr ""
+
+#: rynda/message/models.py:85
+msgid "unverified"
+msgstr ""
+
+#: rynda/message/models.py:86
+msgid "verified"
+msgstr ""
+
+#: rynda/message/models.py:87
+msgid "pending"
+msgstr ""
+
+#: rynda/message/models.py:88
+msgid "closed"
+msgstr ""
+
+#: rynda/message/models.py:107
+msgid "message type"
+msgstr ""
+
+#: rynda/message/models.py:114
+msgid "User"
+msgstr ""
+
+#: rynda/message/models.py:123
+msgid "source"
+msgstr ""
+
+#: rynda/message/models.py:128
+msgid "is virtual"
+msgstr ""
+
+#: rynda/message/models.py:134
+msgid "active"
+msgstr ""
+
+#: rynda/message/models.py:137
+msgid "important"
+msgstr ""
+
+#: rynda/message/models.py:140
+msgid "hide contacts"
+msgstr ""
+
+#: rynda/message/models.py:143
+msgid "removed"
+msgstr ""
+
+#: rynda/message/models.py:146
+msgid "allow feedback"
+msgstr ""
+
+#: rynda/message/models.py:151
+msgid "status"
+msgstr ""
+
+#: rynda/message/models.py:167
+msgid "expired at"
+msgstr ""
+
+#: rynda/message/models.py:174
+msgid "sender IP"
+msgstr ""
+
+#: rynda/message/models.py:186
+msgid "message categories"
+msgstr ""
+
+#: rynda/message/models.py:215
+msgid "author"
+msgstr ""
+
+#: rynda/message/models.py:216
+msgid "note"
+msgstr ""
+
+#: rynda/message/models.py:220
+msgid "created at"
+msgstr ""
+
+#: rynda/message/models.py:224
+msgid "last edit"
+msgstr ""
+
+#: rynda/message/models.py:227
+#, python-format
+msgid "Note from %(user)s to message %(msgid)d"
+msgstr ""
+
+#: rynda/templates/admin/base_site.html:4
+msgid "Rynda site manager"
+msgstr ""
+
+#: rynda/templates/admin/base_site.html:7
+msgid "Rynda management"
+msgstr ""
+
+#: rynda/users/tests/xUnit/test_forms.py:39
+#: rynda/users/tests/xUnit/test_forms.py:55
+msgid "This field is required."
+msgstr ""
+
+#: rynda/users/tests/xUnit/test_forms.py:47
+msgid "You must provide a first name!"
+msgstr ""
+
+#: rynda/users/tests/xUnit/test_forms.py:63
+msgid "You must provide a last name!"
+msgstr ""
+
+#: rynda/users/tests/xUnit/test_forms.py:71
+msgid "This email already registered"
+msgstr ""
+
+#: rynda/users/tests/xUnit/test_forms.py:79
+msgid "The password fields did not match"
+msgstr ""
+
+#: rynda/users/tests/xUnit/test_forms.py:105
+msgid "This email isn't registered"
+msgstr ""
