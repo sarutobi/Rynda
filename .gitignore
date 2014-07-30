@@ -1,5 +1,9 @@
 .*
-*.pyc
-local_settings.py
-htmlcov
-mailbox
+*.py[co]
+*.vim
+*.db
+*.mo
+*.log
+local_*.py
+htmlcov/
+mailbox/
