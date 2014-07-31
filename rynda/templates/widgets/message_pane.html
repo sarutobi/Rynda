@@ -1,4 +1,4 @@
-<div class="col-md-4">
+{% load i18n %}<div class="col-md-4">
     <div class="panel panel-primary message_pane">
         <div class='panel-heading'>
             <h1 class="panel-title">{{ helper_title }}</h1>
@@ -18,7 +18,7 @@
                                 {% if m.title %}
                                     {{ m.title }}
                                 {% else %}
-                                    Сообщение {{ m.id }}
+                                {% blocktrans with num=m.id %}Message {{ num }}{% endblocktrans %}
                                 {% endif %}
                             </a>
                         </div>
@@ -27,11 +27,11 @@
             {% endfor %}
             </ul>
             {% if has_more %}
-                <a id="requestsMore" href="{{ link_to_continue }}" class="green triple_more_info pull-right" >Все сообщения</a>
+            <a id="requestsMore" href="{{ link_to_continue }}" class="green triple_more_info pull-right" >{% trans "All messages" %}</a>
             {% endif %}
         {% else %}
             <ul class="list-group">
-                <li class="list-group-item">Сообщений не найдено</li>
+                <li class="list-group-item">{% trans "No messages found" %}</li>
             </ul>
         {% endif %}
         </div>
