@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load i18n %}
 
 {% block hubs %}
     {% include 'widgets/base_hub.html' with part='message' %} 
@@ -6,15 +7,17 @@
 
 {% block navigation %}
 <ul class="breadcrumb">
-    <li><a title="Главная" href="/">Главная</a></li>
-    <li><a href="/message" title="Сообщения">Сообщения</a></li>
-    <li>{% if message.messageType == 1 %}
+    <li><a href="/">{% trans "Home" %}</a></li>
+    <li><a href="/message">{% trans "Message list" %}</a></li>
+    <li>{{ message.get_messageType_display }}
+        {% comment %}{% if message.messageType == 1 %}
             Предложение помощи
         {% elif message.messageType == 2 %}
             Просьба о помощи
         {% else %}
             Информационное сообщение
         {% endif %}
+        {% endcomment %}
         № {{ message.id }} {{ message.title }}</li>
 </ul>
 {% endblock %}
@@ -22,7 +25,7 @@
 {% block maincontent%}
 
 <div class="col-md-8" id="content">
-    <!-- Левая панель -->
+    <!-- Left pane -->
     <div class="panel panel-default" id="vm_1_column">
         <div class="panel-heading">
             <h2 class="h24 allcaps mb10">
@@ -38,7 +41,7 @@
             <div class="grey">{{ message.date_add|date:"d.m.Y г. H:i (e)" }}</div>
             <div class="vm_main_text rounded_all">{{ message.message|safe }}</div>
             <div class="vm_categories">
-                Категории:
+                {% trans "Categories" %}:
             {% for c in message.category.all %}
                 <span class="btn btn-info btn-xs disabled">{{ c.name }}</span>
             {% endfor %}
@@ -52,43 +55,21 @@
                 {% endfor %}
             </div>
             {% endif %}
-            {% comment %}
-            <!-- AddThis Button BEGIN -->
-            <div class="social_networks mt25">
-                <script type="text/javascript">
-                    var addthis_config = {ui_language: 'ru'}
-                </script>		
-                <div class="addthis_toolbox addthis_default_style addthis_32x32_style"
-                    addthis:title="{{ message.title}}"
-                    addthis:description="{{ message.message|truncatewords:20 }}">
-                    <a class="addthis_button_vk" title="Запостить во ВКонтакте"></a>
-                    <a class="addthis_button_facebook" title="Запостить в Facebook"></a>
-                    <a class="addthis_button_twitter" title="Запостить в Twitter"></a>
-                    <a class="addthis_button_mymailru" title="Добавить в Мой Мир на Mail.ru"></a>
-                    <a class="addthis_button_favorites" title="Сохранить в закладках браузера"></a>
-                    <a class="addthis_button_google" title="Сохранить в закладках Google"></a>
-                    <a class="addthis_button_livejournal" title="Запостить в ЖЖ"><img alt="LiveJournal" src="/css/i/lj.png" width="32px" height="32px" /></a>
-                    <a class="addthis_button_compact" title="Сохранить в..."></a>
-                </div>
-                <script type="text/javascript" src="http://s7.addthis.com/js/250/addthis_widget.js#username=xa-4d1233ce7f701763"></script>
-            </div>
-            <!-- AddThis Button END -->
-            {% endcomment %}
             {% include 'external/vk_comments.html' %}
         </div>
     </div>
 </div>
-<!-- Левая панель завершена -->
+<!-- Left pane finished-->
 
-<!-- Правая панель -->
+<!-- Right pane -->
 <div class="col-md-4">
     <div class="panel panel-default" id="vm_2_column">
         <div class="panel-body">
             <ul class="list-group">
                 <li class="list-group-item">
-    <!--                <img src="/images/incognito.png" alt="Инкогнито" />-->
+                    {% trans "From:" as from %}
                     {% if not message.is_anonymous %}
-                        От:
+                    {{ from }}
                         <strong>
                             {{ message.additional_info.first_name|capfirst }} {{ message.additional_info.last_name|capfirst }}
                         </strong>
@@ -98,68 +79,33 @@
                             <a href="mailto:{{ message.contact_mail }}">{{ message.additional_info.email }}</a>
                         </div>
                     {% else %}
-                        От:
+                        {{ from }}
                         <strong>
                             {{ message.additional_info.first_name|capfirst }} {{message.additional_info.last_name|capfirst|slice:":1" }}.
                         </strong>
                         <br />
-                        Пользователь предпочел скрыть свои контактные данные, используйте  для связи с ним комментарии.
+                        {% blocktrans %}
+                        This user preferred to hide contacts. You can use comments to communicate with him.
+                        {% endblocktrans %}
                     {%endif%}
                     <br />
                 </li>
             </ul>
         </div>
         {% if message.location.name or message.location.regionId %}
-            <strong>На карте:</strong>
+            <strong>{% trans "On map:" %}</strong>
             {{message.locationId.name}} {{message.locationId.regionId}}
-
         {% endif %}
 
-        Регион: {{ message.georegion }}<br />
-        Адрес: {{ message.address }}<br />
+        {% trans "Region:" %} {{ message.georegion }}<br />
+        {% trans "Address:" %} {{ message.address }}<br />
             <div id="locationMap">
                 <div id="locationMapCanvas" class="mt10" style="width: 410px; height: 250px;"></div>
             </div>
             <div id="messageLat" style="display:none;">{{ message.locationId.latitude}}</div>
             <div id="messageLng" style="display:none;">{{ message.locationId.longitude}}</div>
     </div>
-    <!-- Правая панель завершена -->
-	
-	{% comment %}
-    <?php if( !empty($advises) ) {?>
-        <div class="g960 inside" id="nh_actualRecommendations">
-            <!--<div class="more_rec">
-            <a class="orange rynda_icon" href="#">Другие рекомендации</a>
-            </div>-->
-            <h3 class="no_text">Актуальные рекомендации</h3>
-            <div class="clearfix grey_line"></div>
-            <div class="act_rec_cont">
-                <ul id="recommendationsList" class="no_list floatleft">
-                <?php foreach($advises as $advise) {?>
-                    <li>
-    <!--                    <div style="width:135px; height:100px; background:#CCC; float:left; margin-right:20px;">Тут картинка</div>-->
-    <!--                    <a href="/info/s/<?php echo $advise['id'];?>">-->
-                        <h4 class="mb10"><?php echo $advise['title'];?></h4>
-    <!--                    </a>-->
-                        <div>
-                        <?php echo $advise['text'];?>
-                        <br /><br />
-                        Категории: <?php echo formatCategoryList($advise['categories']);?>
-                        <br /><br />
-    <!--                    <a class="orange" href="/info/s/<?php echo $advise['id'];?>">Подробнее &raquo;</a>-->
-                        </div>
-                    </li>
-                <?php }?>
-                </ul>
-                <div class="clearfix"></div>
-            </div>
-            <div class="nh_act_rec_bottom"></div>
-        </div>
-    <?php }?>
-	;?>
-    <div class="clear1">&nbsp;</div>
-    <?php $this->load->view('widgets/commentsBlock', array());?>
-	{% endcomment %}
+    <!-- Right pane finished -->
 </div>
 {%endblock%}
 
