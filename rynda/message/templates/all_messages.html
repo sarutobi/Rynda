@@ -1,4 +1,5 @@
 {% extends 'base_list.html' %}
+{% load i18n %}
 
 {% block hubs %}
     {% include "widgets/base_hub.html"  with part='message' %}
@@ -6,8 +7,8 @@
 
 {% block navigation %}
 <ul class="breadcrumb">
-    <li><a title="Главная" href="/">Главная</a></li>
-    <li>Список сообщений</li>
+    <li><a href="/">{% trans "Home" %}</a></li>
+    <li>{% trans "Message list" %}</li>
 </ul>
 {% endblock %}
 
@@ -20,7 +21,7 @@
 {% for m in object_list %}
 <li class="list-group-item">
     <div class="list_content">
-        <a href="/message/{{ m.id }}" class="darkRed" title="Сообщение {{ m.id }}{% if m.title %}: {{ m.title }} {% endif %}">
+        <a href="/message/{{ m.id }}" class="darkRed">
             {{ m.get_messageType_display|capfirst }} #{{ m.id }}{% if m.title %}: {{ m.title }} {% endif %}
         </a>
         <br />
@@ -28,17 +29,11 @@
         <br />
         <br />
         <span class="darkGrey fs10">
-            {{m.date_add|date:"d.m.Y"}} | <a href="/message/?georegion={{ m.georegion }}" title="Все сообщения по региону «{{ m.georegion__name }}»">{{ m.georegion__name }}</a>
+            {{m.date_add|date:"SHORT_DATE_FORMAT"}} | <a href="/message/?georegion={{ m.georegion }}" title="{% blocktrans with geoname=m.georegion__name %}All messages from «{{ geoname }}»{% endblocktrans %}">{{ m.georegion__name }}</a>
             {% for c in m.category.all %}
             <a href='#' class="label label-info">{{ c }}</a>
             {% endfor %}
-{% comment %}    
-<!--            {{if categories.length > 0}} | {{/if}}
-        {{each categories}}
-            <a href="/info/c/${$value.id}" class="orange" title="Все сообщения категории «${$value.name}»">${$value.name}</a>{{if $index < $data.categories.length - 1}}, {{/if}}
-        {{/each}}-->
-{% endcomment %}
-    </span>
+        </span>
     </div>
 </li>
 {%endfor%}
