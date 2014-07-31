@@ -10,14 +10,6 @@
     <li><a href="/">{% trans "Home" %}</a></li>
     <li><a href="/message">{% trans "Message list" %}</a></li>
     <li>{{ message.get_messageType_display }}
-        {% comment %}{% if message.messageType == 1 %}
-            Предложение помощи
-        {% elif message.messageType == 2 %}
-            Просьба о помощи
-        {% else %}
-            Информационное сообщение
-        {% endif %}
-        {% endcomment %}
         № {{ message.id }} {{ message.title }}</li>
 </ul>
 {% endblock %}
