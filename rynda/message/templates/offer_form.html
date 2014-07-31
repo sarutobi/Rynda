@@ -1,4 +1,10 @@
 {% extends "message_form.html" %}
+{% load i18n %}
 
-{% block form_title %}Вы можете помочь?{% endblock %}
-{% block message_title %}Расскажите о ваших возможностях{% endblock %}
+{% block form_title %}
+{% blocktrans %}Can you help?{% endblocktrans %}
+{% endblock %}
+
+{% block message_title %}
+{% blocktrans %}Tell us about your opportunities{% endblocktrans %}
+{% endblock %}
