@@ -61,6 +61,12 @@
                                 <div id="messageTextError" class="alert alert-danger">{{ form.message.errors }}</div>
                                 {% endif %}
                             </div>
+
+                            <div class="checkbox">
+                                <label for="{{ form.allow_feedback.id_for_label }}">
+                                    {{ form.allow_feedback.label }}{{ form.allow_feedback }}
+                                </label>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -79,11 +85,6 @@
                 </div>
             </div>
                    
-            <div class="checkbox">
-                <label for="{{ form.allow_feedback.id_for_label }}">
-                    {{ form.allow_feedback.label }}{{ form.allow_feedback }}
-                </label>
-            </div>
 
             <div class="panel panel-default" id="recipient-data">
                 <div class="panel-heading">
