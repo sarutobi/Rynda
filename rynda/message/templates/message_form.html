@@ -1,4 +1,5 @@
 {% extends 'base.html'%}
+{% load i18n %}
 
 {% load widget_tweaks %}
 {% load leaflet_tags %}
@@ -11,12 +12,14 @@
 <div class="col-md-10 col-md-offset-1">
     <div class="panel panel-rynda-default">
         <div class="panel-heading">
-            <h2 class="panel-title">{% block form_title %}Новое сообщение{% endblock %}</h2>
+            <h2 class="panel-title">{% block form_title %}{% trans "New message" %}{% endblock %}</h2>
         </div>
                 
         <div class="panel-body">		
             <div class="alert alert-info">
-                Обратите внимание, что поля, помеченные знаком &#39;*&#39; обязательны для заполнения.
+                {% blocktrans %}
+                Please note, that fields marked &#39;*&#39; are required.
+                {% endblocktrans %}
             </div>
             <form id="mainForm" action="" method='post'>
             {% if form.non_field_errors %}
@@ -34,7 +37,7 @@
                 <div class="col-md-8">
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                            <h3 class="panel-title">{% block message_title %}Сообщение{% endblock %}</h3>
+                            <h3 class="panel-title">{% block message_title %}{% trans "Message" %}{% endblock %}</h3>
                         </div>
 
                         <div class="panel-body">
@@ -84,7 +87,7 @@
 
             <div class="panel panel-default" id="recipient-data">
                 <div class="panel-heading">
-                    <h3 class="panel-title">Расскажите о себе</h3>
+                    <h3 class="panel-title">{% trans "About yourself" %}</h3>
                 </div>
 
                 <div class="panel-body">
@@ -122,7 +125,7 @@
 
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <h3 class="panel-title">Местоположение</h3>
+                    <h3 class="panel-title">{% trans "Geoposition" %}</h3>
                 </div>
                 <div class="panel-body">
                     {{ form.address.label_tag }}
