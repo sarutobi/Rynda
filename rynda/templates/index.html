@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load i18n %}
 {% load leaflet_tags %}
 
 {% block hubs %}
@@ -11,7 +12,7 @@
 {% block maincontent %}
 <div class="row">
     <div id="topwidget" class="panel panel-primary" style="height:156px;">
-        <div class='panel-heading'>Как мы работаем</div>
+        <div class='panel-heading'>{% trans "How it works" %}</div>
         <div class="panel-body"></div>
     </div>
 </div>
@@ -19,7 +20,6 @@
     <div id="mapWithoutFilterForm"  class="row" {% if request.session.ryndaorg_main_map_shown == 0 %}style="display:none;"{% endif %}>
         <div id="locationMapCanvas" class="col-md-9" style="height: 320px;">{% leaflet_map "indexmap" %}</div>
         <div id='mainPageFilter' class='col-md-3' style='height:320px;background-color:white'></div>
-        <!-- div id="mapResponseMessage" style="display:none;"></div-->
     </div>
 </div>
 
@@ -27,254 +27,12 @@
 <div id="disclaimer" class="rounded_all g720 clearfix">{{ disclaimer }}</div>
 {% endif %}
 
-{% comment %}
-{% if usersForList %}
-<div id="usersList_container" class="rounded_all">
-	<div id="usersList_leftCol">
-		<ul id="usersList">
-			{% for u in usersForList %}
-            <li class="usersList_unit">
-                <div class="usersList_avatar">
-                    <a href="/user/{{u.userId}}" title="{{u.firstName}} {{u.lastName}}">
-                        <img rel="" src="{{ u.avatarUrl }}" />
-                    	<div class="avatar_image-smallcircle"></div>
-					</a>
-                </div>
-               
-                <div class="usersList_name">
-                    <a href="/user/{{u.userId}}" title="<{{u.firstName}} {{u.lastName}}">
-                        {{u.firstName}} {{u.lastName}}
-                    </a>
-                </div>
-            </li>
-            {%endfor%}
-		</ul>
-
-    {% if user.is_authenticated %}
-		<a href="/user/edit/{{user.id}}#vp_title" title="C помощью этой кнопки вы можете создать новый профиль взаимопомощи"><div id="add-vpButton" class="rounded_all relative">Создать профиль взаимопомощи</div></a>
-	{%else%}
-	<a href="/register" title="Регистрация на сайте"><div id="add-vpButton" class="rounded_all relative">Зарегистрироваться</div></a>
-    {%endif%}
-	</div>
-    
-    {% if user.is_authenticated %}
-	<div id="usersList_disclaimer">
-		<div id="usersList_disclaimerHead">ПРИСОЕДИНЯЙТЕСЬ!</div>
-		<div id="usersList_disclaimerText">С радостью сообщаем, что на сайте есть возможность открыть персональные профили помощи. В таком профиле вы можете указать, какую помощь готовы оказывать, и ваше месторасположение. <br />С помощью профилей помощи вы сможете своевременно получать информацию о том, где и в чём вы можете быть полезны.</div>
-	</div>
-    {% else %}
-	<div id="usersList_disclaimer">
-		<div id="usersList_disclaimerHead">ПРИСОЕДИНЯЙТЕСЬ!</div>
-		<div id="usersList_disclaimerText">На нашем сайте вы можете зарегистрироваться и пользоваться всеми сервисами. Например, персональные профили помощи доступны только зарегистрированным пользователям. В таком профиле вы можете указать, какую помощь готовы оказывать, и ваше месторасположение. <br />С помощью профилей помощи вы сможете своевременно получать информацию о том, где и в чём вы можете быть полезны.</div>
-	</div>
-    
-    {% endif %}
-</div>
-{% endif%}
-{% endcomment %}
 <div class="row">
     {{ requests }}
     {{ offers }}
     {{ completed }}
 </div>
 
-{% comment %}
-<div class="clearfix"></div>    
-    <div class="span4 labelled triple_container clearfix" >
-        <div class='helper'>Информационные сообщения</div>
-            {% if info %}
-            <ul id="infoList" class="no_list triplelist">
-             {% for i in info %}
-             <li>
-              <div class="triple_date">
-                {{ i.dateAdd|date:"d.m" }}<br />
-			    <span class="triple_year">{{ i.dateAdd|date:"Y" }}</span>
-		      </div>
-              <a class="triple_link" href="/message/{{ i.id }}" title="Информационное сообщение #{{ i.id }}{{ i.title }}">
-                {% if i.title %} {{ i.title }} {% else %} Сообщение {{ i.id }} {% endif %}
-              </a>
-              <div class="clearfix"></div>
-            </li>
-            {% endfor %}
-            </ul>
-            <br /><a id="infoMore" href="/info" class="alignright green triple_more_info" title="Все информационные сообщения &raquo;"><strong>Другие информационные сообщения &#8230;</strong></a>
-            {% else %}
-            <div id="infoNotFound" class="clearfix">
-            	<ul class="no_list triplelist">
-            		<li>Информационных сообщений не найдено</li>
-                </ul>    
-            </div>
-            {% endif %}
-    </div>
-{% comment %}    
-    <div class="span4" >
-    	<a href="http://blog.rynda.org/">
-            <h3 class="mb0 latestnews no_text rounded_top">Последние новости</h3>
-        </a>
-        <div class="triple_container" id="mp6">
-            {% if news %}
-            <ul class="no_list triplelist">
-            {% for n in news %}
-                <li>
-                    <div class="triple_date">
-						{{n.date|date:'d.m'}}<br />
-						<span class="triple_year">{{n.date|date:'Y'}}</span>
-                    </div>
-                    <a class="triple_link" href="{{n.link}}" title="{{n.title}}">{{n.title}}</a>
-                    <div class="clearfix"></div>
-                </li>
-            {%endfor%}
-            </ul>
-            {%if has_more_news %}
-                <a id="newsMore" href="http://blog.rynda.org/?cat=4" class="alignright green triple_more_info" title="Все новости &raquo;"><strong>Другие новости &#8230;</strong></a>
-            {% endif %}
-            {% else %}
-            <ul class="no_list triplelist">
-            	<li>Пока никаких новостей</li>
-            </ul>
-            {%endif%}
-            <div class="clearfix"></div>
-        </div>
-        
-    </div>
-    
-    <div class="span4 clearfix" >
-    	 <a href="/info">
-         	<h3 class="mb0 aboutproject no_text rounded_top">Информация о проекте</h3>
-         </a>
-        <div class="triple_container" id="mp7">
- 			<p>
-            	<strong>«Виртуальная Рында»</strong> - это средство для координации взаимопомощи, задача которого – раскрыть потенциал российского сетевого сообщества в области сотрудничества между пользователями Интернета и различными организациями, включая некоммерческие организации, государственные структуры и бизнес.<br />
-<br />
-Сайт позволяет каждому сообщить о своей беде или желании помочь. Сообщения поступают в публичное пространство и позволяют привлечь внимание к разного рода событиям и проблемам. Сбор, анализ, обработка и предоставление такой информации помогают максимально эффективно связать участников событий с теми, кто может им помочь.
-
-            </p>
-            <a href="/info" class="alignright green triple_more_info" title="Читать далее &raquo;"><strong>Читать далее &#8230;</strong></a>
-            <div class="clearfix"></div>
-        </div>
-        
-    </div>
-    <div class="clearfix "></div>
-    <div class="g960 inside mt25 rounded_top" id="connection">
-        <h3 class="mb0 rounded_top no_text rounded_top">Каналы связи</h3>
-        <ul class="floatleft no_list ml20 mt25">
-        	<!--<li>СМС: <div class="lightGreen inline fs14"><strong>4444</strong></div></li>-->
-            <li>E-MAIL: <a href="mailto:a@rynda.org" title="Напишите нам на E-Mail"><div class="lightGreen inline fs14"><strong>a@rynda.org</strong></div></a></li>
-            <li>TWITTER: <a href="http://twitter.com/#!/Ryndaorg" title="Следите за нами в Twitter" target="_blank"><div class="lightGreen inline fs14"><strong>@Ryndaorg</strong></div></a></li>
-            <li>SKYPE: <a href="skype:ryndaorg?chat" title="Skype"><div class="lightGreen inline fs14"><strong>ryndaorg</strong></div></a></li>
-            <!--<li>ТЕЛЕФОН: <div class="lightGreen inline fs14"><strong>+7 (916) 1234567</strong></div></li>-->
-        </ul>
-		<div class="clearfix "></div>	
-        <div class="nh_act_rec_bottom mt25"></div>
-    </div>
-
-{%comment%}
-<script id="mapMarkerPopupTmpl" type="text/x-jquery-tmpl">
-    <div class="mainPopupWindow">
-        <h4>
-            <a href="info/s/${id}">
-            {{if isPublic == 1}}
-                ${firstName}{{if lastName}} ${lastName}{{/if}}:
-            {{else}}
-                ${firstName}{{if lastName}} ${$item.getFirstLetter(lastName)}:{{/if}}
-            {{/if}}
-            </a>
-            {{if title && title.length > 0}}
-                <a href="/info/s/${id}">${title}</a>
-            {{else}}
-                <a href="info/s/${id}">
-                    ${$item.formatTextTrimmed(text, 50)}
-                </a>
-            {{/if}}
-        </h4>
-        <div class="mainPopupText">
-            <div class="mainPopupDate">${$item.formatDate(dateAdded)}</div>
-            <a href="/info/s/${id}">
-                <strong><span class='orange'>Подробнее &raquo;</span></strong>
-            </a>
-        </div>
-    </div>
-</script>
-<script id="mapClusterPopupTmpl" type="text/x-jquery-tmpl">
-    <div class="mainPopupWindow">
-        <h4 class="popup_h4">Всего отметок в группе: ${markers.length}</h4>
-        <ul class="mainPopupText">
-        {{each(i, marker) markers}}
-            {{if marker.get("orgType")}}
-            <li class="clusterOrganization">
-                {{if marker.get("title").length > 0}}
-                <a href='/info/o/${marker.get("id")}'>${marker.get("title")}</a>
-                {{else}}
-                <a href='/info/o/${marker.get("id")}'>
-                    {{html $item.formatTextTrimmed(marker.get("text"), 50)}}&nbsp;<strong><span class='orange'>&raquo;</span></strong>
-                </a>
-                {{/if}}
-            </li>
-            {{else}}
-            <li class="clusterMessage">
-                <a href='/info/s/${marker.get("id")}'>
-                {{if marker.get("isPublic") == 1}}
-                    ${marker.get("firstName")}{{if marker.get("lastName").length > 0}} ${marker.get("lastName")}{{/if}}:
-                {{else}}
-                    ${marker.get("firstName")}{{if marker.get("lastName").length > 0}} ${$item.getFirstLetter(marker.get("lastName"))}{{/if}}:
-                {{/if}}
-                </a>
-                {{if marker.get("title").length > 0}}
-                <a href='/info/s/${marker.get("id")}'>${marker.get("title")}</a>
-                {{else}}
-                <a href='/info/s/${marker.get("id")}'>
-                    {{html $item.formatTextTrimmed(marker.get("text"), 50)}}&nbsp;<strong><span class='orange'>&raquo;</span></strong>
-                </a>
-                {{/if}}
-            </li>
-            {{/if}}
-        {{/each}}
-        </ul>
-        <div class="pointer fs10 grey" onclick="zoomTo(${lat}, ${lng});" class="zoomInControl">
-            Приблизить карту
-        </div>
-    </div>
-</script>
-<script id="mapMarkerOrgPopupTmpl" type="text/x-jquery-tmpl">
-    <div class="mainPopupWindow">
-    {{if typeSlug == 'gov'}}
-        <h4 class="popup_h4 switcher_gov">
-    {{else typeSlug == 'nco'}}
-        <h4 class="popup_h4 switcher_org">
-    {{else typeSlug == 'co'}}
-        <h4 class="popup_h4 switcher_com">
-    {{else typeSlug == 'bloodstation'}}
-        <h4 class="popup_h4 switcher_blood">
-    {{else}}
-        <h4 class="popup_h4 switcher_org">
-    {{/if}}
-            <a href="/org/d/${id}">${title}</a>
-        </h4>
-        <div class="ml20"><a href="/org/d/${id}">{{html text}} <strong><span class='orange'>&raquo;</span></strong></a></div>
-    </div>
-</script>
-<script id="messagesBlockTmpl" type="text/x-jquery-tmpl">
-    <li>
-        <div class="triple_date">${$item.getMonthDay(dateAdded)}<br />
-			<span class="triple_year">${$item.getYear(dateAdded)}</span>
-		</div>
-        {{if typeSlug == '<?php echo $messageTypeRequest;?>'}}
-        <a class="triple_link" href="/info/s/${id}" title="Просьба о помощи #${id}{{if title.length > 0}}: ${title}{{/if}}">
-        {{else typeSlug == '<?php echo $messageTypeOffer;?>'}}
-        <a href="/info/s/${id}" class="triple_link" title="Предложение помощи #${id}">
-        {{else}}
-        <a href="/info/s/${id}" class="triple_link" title="Информационное сообщение #${id}{{if title.length > 0}}: ${title}{{/if}}">
-        {{/if}}
-        {{if title.length > 0}}
-            {{html title}}
-        {{else}}
-            {{html $item.formatTextTrimmed(text, 50)}}
-        {{/if}}
-        </a>
-        <div class="clearfix"></div>
-    </li>
-</script>
-{%endcomment%}
 {% endblock %}
 
 {% block scripts %}
@@ -288,23 +46,6 @@
 <script type='text/javascript' >
 $(function(){
     Rynda.sameheight($('.message_pane'));
-
-/*
-    Rynda.map.createMap('locationMapCanvas');
-    Rynda.map.fetch();
-    $('.mapTabs-button-sub-click').mouseover(
-        function(){
-            $('.mapTabs-sub').show();
-        }
-    );
-    $('.mapTabs-sub').mouseover(
-        function(){
-            $('.mapTabs-sub').show();
-        }
-    ).mouseout(function(){
-        $('.mapTabs-sub').hide();
-    });
 });
-*/
 </script>
 {%endblock%}
