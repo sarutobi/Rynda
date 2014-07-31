@@ -11,7 +11,7 @@
     <meta http-equiv="Content-Language" content="{{ LANGUAGE_CODE }}">
     <meta name="language" content="{{ LANGUAGE_CODE }}">
 
-    <title>{%block page_title%}{%endblock%} {% trans "Virtual Rynda" %}</title>
+    <title>{%block page_title%}{%endblock%} {% trans "Virtual Bell" %}</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width">
     <link rel="stylesheet/less" type='text/css' href="{{STATIC_URL}}css/style.less">
@@ -39,7 +39,7 @@
             <a id="authLogIn" href="/login" class="btn btn-sm btn-rynda-default">{% trans "Sign in" %}</a> |
             <a id="authRegister" class="btn btn-sm btn-rynda-default" href="/register">{% trans "Registration" %}</a>
             {% else %}
-            <span class="auth_text">{% trans "Logged in as " %}<a href="/user/{{user.id}}" class="auth_text">{{ user.get_full_name|default:user.email }}</a> |</span>
+            <span class="auth_text">{% trans "Logged in as" %} <a href="/user/{{user.id}}" class="auth_text">{{ user.get_full_name|default:user.email }}</a> |</span>
                 <a id="authLogout" href="/logout" class="auth_text">{% trans "Logout" %}</a>
             {% endif %}
             <!-- Authentication end -->
@@ -97,7 +97,7 @@
                     </ul>
                 </div>
             </div>
-            <div id="license">&copy; - {% blocktrans %}«Virtual Bell - Atlas of Help» platform, 2011-2014. License{% endblocktrans %} <a href="http://creativecommons.org/licenses/by-nc-sa/3.0/">Creative Commons 3.0 (BY—NC—SA)</a></div>
+            <div id="license">&copy; - {% blocktrans %}«Virtual Bell - Atlas of Assistance» platform, 2011-2014. License{% endblocktrans %} <a href="http://creativecommons.org/licenses/by-nc-sa/3.0/">Creative Commons 3.0 (BY—NC—SA)</a></div>
         </footer>
     </section>
 </div>
