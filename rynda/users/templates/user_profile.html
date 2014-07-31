@@ -6,7 +6,11 @@
 {% endblock %}
 
 {% block navigation %}
-<div class="breadcrumbs mb10 ml10 "><a href="/">{% trans "Home" %}</a> &raquo; Моя страница</div>
+<ul class="breadcrumb">
+    <li><a href="/">{% trans "Home" %}</a></li>
+    <li><a href="/user/">{% trans "User list" %}</a></li>
+    <li>{% trans "User page" %}</li>
+</ul>
 {% endblock %}
 
 {% block maincontent %}
