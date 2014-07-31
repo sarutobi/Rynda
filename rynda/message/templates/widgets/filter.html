@@ -1,4 +1,5 @@
 {% load widget_tweaks %}
+{% load i18n %}
 
 <form id="filterForm" action="" method='get'>
     <div class="form-group">
@@ -23,27 +24,14 @@
     <div class="form-group">
         <label for="filterUntimed">Как срочно</label>
         <select class="form-control" name="untimed" id="filterUntimed">
-            <option value="-1">Всё равно</option>
-            <option value="0">Срочные</option>
-            <option value="1">Несрочные</option>
+            <option value="-1">{% trans "Any" %}</option>
+            <option value="0">{% trans "Urgent" %}</option>
+            <option value="1">{% trans "Regular" %}</option>
         </select>
     </div>
     <div class="form-group">
-        <input type="text" class="form-control" name="filterString" id="filterString" placeholder="Введите здесь текст для поиска" />
+        <input type="text" class="form-control" name="filterString" id="filterString" placeholder="{% trans "Please provide at least one search term" %}" />
     </div>
 
-    <input type="submit" id="filterSubmit" class="btn btn-rynda-default form-control" name="filterSubmit" value="Обновить поиск" />
-    {% comment %}
-    <?php if(!empty($filterPersistVars)) {
-        foreach((array)$filterPersistVars as $varName => $value) {
-            if(is_array($value)) {
-                foreach($value as $arrElementValue) {?>
-    <input type="hidden" class="filterPersistVar" name="<?php echo $varName;?>[]" value="<?php echo $arrElementValue;?>" />
-    <?php       }
-            } else {?>
-    <input type="hidden" class="filterPersistVar" name="<?php echo $varName;?>" value="<?php echo $value;?>" />
-    <?php   }
-        }
-    }?>
-    {% endcomment %}
+    <input type="submit" id="filterSubmit" class="btn btn-rynda-default form-control" name="filterSubmit" value="{% trans "Search" %}" />
 </form>
