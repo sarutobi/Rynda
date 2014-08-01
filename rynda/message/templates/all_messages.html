@@ -41,17 +41,8 @@
 {%endblock %}
 
 {% block paginator %}
-<div class="alignright"><span class="darkGrey">Сообщений на странице:</span>
+<div class="alignright"><span class="darkGrey">{% trans "Messages on page:" %}</span>
     <span class="badge">10</span>
-    {% comment %}
-    <select id="paginationItemsPerPage" name="paginationItemsPerPage">
-        <option value="10" selected="selected">10</option>
-        <option value="25">25</option>
-        <option value="50">50</option>
-        <option value="100">100</option>
-        <option value="0">Все</option>
-    </select>
-    {% endcomment %}
 </div>
 <div class="clearfix "></div>
 {% endblock %}
