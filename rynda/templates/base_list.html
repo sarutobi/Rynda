@@ -1,11 +1,12 @@
 {% extends "base.html" %}
+{% load i18n %}
 
 {% block maincontent %}
 <div class="row">
     <div class="col-md-4">
         <div class="panel panel-default">
             <div class="panel-heading">
-                <h3 class="panel-title">Выберите параметры поиска</h3>
+                <h3 class="panel-title">{% trans "Search criteria" %}</h3>
             </div>
 
             <div class="panel-body" id="messages_filter">
@@ -17,8 +18,8 @@
         <div class="panel panel-rynda-default">
             <div class="panel-heading">
                 <div class="floatright" id="counter">
-                    <div id="export_csv" class="csv floatright no_text" title="Экспорт списка в CSV">Экспорт списка</div>
-                    Всего: <span class="badge">{{ count|default:0 }}</span>
+                    <div id="export_csv" class="csv floatright no_text" title="{% trans "Export to CSV" %}">{% trans "Export to CSV" %}</div>
+                    {% trans "Total:" %} <span class="badge">{{ count|default:0 }}</span>
                 </div>
                 <h3 class="panel-title">{{ listTitleShort }}</h3>
             </div>
@@ -40,9 +41,9 @@
                 <div id="paginationPages" data-current-page="{{ paginator.number }}" class="alignleft list_pagination_div">
                     <ul class="pagination">
                     {% if page_obj.has_previous %}
-                        <li><a class='page' href='{{ paginator_url }}{{ page_obj.previous_page_number }}/{{ query_string|safe }}'>Назад</a></li>
+                    <li><a class='page' href='{{ paginator_url }}{{ page_obj.previous_page_number }}/{{ query_string|safe }}'>{% trans "Previous" %}</a></li>
                     {% else %}
-                        <li class='disabled'><a href='#'>Назад</a></li>
+                    <li class='disabled'><a href='#'>{% trans "Previous" %}</a></li>
                     {% endif %}
 
                     {% if paginator_line.first %}
@@ -76,9 +77,9 @@
                     {% endif %}
 
                     {% if page_obj.has_next %}
-                        <li><a href='{{ paginator_url }}{{ page_obj.next_page_number }}/{{ query_string|safe }}'>Вперед</a></li>
+                        <li><a href='{{ paginator_url }}{{ page_obj.next_page_number }}/{{ query_string|safe }}'>{% trans "Next" %}</a></li>
                     {% else %}
-                        <li class='disabled'><a href="#">Вперед</a></li>
+                        <li class='disabled'><a href="#">{% trans "Next" %}</a></li>
                     {% endif %}
                     </ul>
                     </div>
@@ -90,55 +91,3 @@
     </div>
 </div>
 {% endblock %}
-{% comment %}
-<script id="listItemTmpl" type="text/x-jquery-tmpl">
-    <li>
-        <a href="/info/u/${id}" title="#${id}: ${fullName}" class="darkGrey list_number">#${id}</a>
-        <div class="list_content">
-            <a href="/info/u/${id}" class="darkRed" title="№${id}: ${fullName}">
-                <strong>#${id}: ${fullName}</strong>
-            </a>
-            <br />
-            <div class="clearfix mt4"></div>
-            <a href="/info/u/${id}" class="no_underline" title="Страница пользователя">Подробнее</a>
-            <br />
-            <br />
-            <span class="darkGrey fs10">
-                ${$item.formatDate(dateAdded)} | ${regionName}
-            </span>
-        </div>
-        <div class="clearfix"></div>
-    </li>
-</script>
-<script id="paginationPagesTmpl" type="text/x-jquery-tmpl">
-    {{if showLinkFirst}}
-    <a href="#" class="paginationLink" data-page-num="1" data-begin-at="0"><< К началу</a> |
-    {{/if}}
-    {{if showLinkPrev}}
-    <a href="#" class="paginationLink" data-page-num="${currentPageNum-1}" data-begin-at="${itemsPerPage*(currentPageNum-1)}">&laquo; Назад</a> |
-    {{/if}}
-
-    {{if showLinkFirst}} ... {{/if}}
-    <span class="darkGrey">Страницы: </span>
-    {{each pages}}
-    {{if $value.pageNum == currentPageNum}}
-    <b>${$value.pageNum}</b>
-    {{else}}
-    <a href="#" class="paginationLink" data-page-num="${$value.pageNum}" data-begin-at="${$value.beginAt}">${$value.pageNum}</a>
-    {{/if}}
-    {{/each}}
-    {{if showLinkLast}} ... {{/if}}
-
-    {{if showLinkNext}}
-    | <a href="#" class="paginationLink" data-page-num="${currentPageNum+1}" data-begin-at="${itemsPerPage*currentPageNum}">Вперёд &raquo;</a>
-    {{/if}}
-    {{if showLinkLast}}
-    | <a href="#" class="paginationLink" data-page-num="${totalPages}" data-begin-at="${itemsPerPage*(totalPages-1)}">К концу &raquo;</a>
-    {{/if}}
-</script>
-
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5/jquery.min.js" type="text/javascript"></script>
-<script src="/javascript/lib/jQueryTemplates.js" type="text/javascript"></script>
-
-<script src="/javascript/usersList.js?v=<?php echo sha1($this->config->item('js_version'));?>" type="text/javascript"></script>
-{% endcomment %}
