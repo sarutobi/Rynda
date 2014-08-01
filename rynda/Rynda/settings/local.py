@@ -1,5 +1,7 @@
 # coding: utf-8
 
+import re
+import debug_toolbar
 from .base import *
 
 DEBUG = True
@@ -16,6 +18,13 @@ DATABASES = {
 }
 
 
+def show_toolbar(request):
+    uri = request.get_full_path()
+    if re.match('/admin/', uri):
+        return False
+    return debug_toolbar.middleware.show_toolbar
+
+
 INSTALLED_APPS += (
     'debug_toolbar',
     'test',
@@ -23,4 +32,6 @@ INSTALLED_APPS += (
 
 INTERNAL_IPS = ('127.0.0.1')
 MIDDLEWARE_CLASSES += ('debug_toolbar.middleware.DebugToolbarMiddleware',)
-
+DEBUG_TOOLBAR_CONFIG = {
+    'SHOW_TOOLBAR_CALLBACK': "Rynda.settings.local.show_toolbar",
+}
