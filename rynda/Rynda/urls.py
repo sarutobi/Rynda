@@ -27,8 +27,9 @@ urlpatterns += patterns('',
 
 # Project description patterns
 urlpatterns += patterns(
-    'django.contrib.flatpages.views',
-    url(r'info/about/$', 'flatpage', {'url': '/about/'}, name="about_project"),
+    '',
+    url(r'info/$', 'core.views.infopages', name="infopages"),
+    url(r'info/(?P<url>.*)/$', 'django.contrib.flatpages.views.flatpage', ),
 )
 
 # Account-related patterns

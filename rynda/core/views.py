@@ -45,10 +45,10 @@ class RyndaFormView(FormView):
     pass
 
 
-def about(request):
+def infopages(request):
     return render(
         request,
-        'about.html',)
+        'infopages_list.html',)
 
 
 def show_page(request, slug):

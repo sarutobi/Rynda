@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% load i18n %}
+{% load flatpages %}
+{% get_flatpages as flatpages %}
+
+{% block hubs %}
+    {% include "widgets/base_hub.html"  with part='about' %}
+{% endblock %}
+
+{% block maincontent %}
+<div class="col-md-10 col-md-offset-1">
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">{% trans "Information pages" %}</h3>
+        </div>
+        <div class="panel-body">
+            {% if flatpages %}
+            <ul class="list-group">
+                {% for page in flatpages %}
+                <li class="list-group-item"><a href="{{ page.url }}">{{ page.title }}</a></li>
+                {% endfor %}
+            </ul>
+            {% else %}
+            {% trans "Information pages not found" %}
+            {% endif %}
+        </div>
+    </div>
+</div>
+{% endblock %}
+
