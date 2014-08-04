@@ -8,13 +8,13 @@
         {% if part == 'base' %}
             <li class='tab_active'><div class='tabLink_container'>&nbsp;</div></li>
         {% else %}
-            <li><div class='tabLink_container'><a href='/'>&nbsp;</a></div></li>
+        <li><div class='tabLink_container'><a href='{% url "main-index" %}'>&nbsp;</a></div></li>
         {% endif %}
 
         {% if part == 'message' %}
             <li class='tab_active'><div class='tabLink_container'>{{ msgs }}</div></li>
         {% else %}
-            <li><div class='tabLink_container'><a href='/message'>{{ msgs }}</a></div></li>
+        <li><div class='tabLink_container'><a href='{% url "messages-list" %}'>{{ msgs }}</a></div></li>
         {% endif %}
 
         {% if part == 'organization' %}
@@ -26,7 +26,7 @@
         {% if part == 'user' %}
             <li class='tab_active'><div class='tabLink_container'>{{ users }}</div></li>
         {% else %}
-            <li><div class='tabLink_container'><a href='/user'>{{ users }}</a></div></li>
+        <li><div class='tabLink_container'><a href='{% url "user-list" %}'>{{ users }}</a></div></li>
         {% endif %}
        
         {% if part == 'about' %} 
@@ -36,4 +36,3 @@
         {% endif %}
     </ul>
 </div>
-
