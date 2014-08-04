@@ -58,7 +58,7 @@
             <a href="/message/pomogu/dobavit" class="btn rynda-btn-head rynda-btn-wh" title="{% trans "Create offer for help" %}">{% trans "I want to help" %}</a>
             <a href="/message/pomogite/dobavit" class="btn rynda-btn-head rynda-btn-nh" title="{% trans "Create request for help" %}">{% trans "Help needed" %}</a>
             {%endblock%}
-            <h1 class="text-hide"><a href="{% url "main-index" %}" title="{{ SITE_NAME }} — {% trans "portal for volunteers" %}">Rynda</a></h1>
+            <h1 class="text-hide"><a href="{% url "main-index" %}" title="{% blocktrans %}{{ SITE_NAME }} — portal for volunteers{% endblocktrans %}">Rynda</a></h1>
         </div>
         <div class='clearfix navbar'>
             <ul class="nav navbar-nav">
