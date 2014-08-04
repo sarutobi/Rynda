@@ -58,7 +58,7 @@
             <a href="/message/pomogu/dobavit" class="btn rynda-btn-head rynda-btn-wh" title="{% trans "Create offer for help" %}">{% trans "I want to help" %}</a>
             <a href="/message/pomogite/dobavit" class="btn rynda-btn-head rynda-btn-nh" title="{% trans "Create request for help" %}">{% trans "Help needed" %}</a>
             {%endblock%}
-            <h1 class="text-hide"><a href="/" title="{{ SITE_NAME }} — {% trans "portal for volunteers" %}">Rynda</a></h1>
+            <h1 class="text-hide"><a href="{% url "main-index" %}" title="{{ SITE_NAME }} — {% trans "portal for volunteers" %}">Rynda</a></h1>
         </div>
         <div class='clearfix navbar'>
             <ul class="nav navbar-nav">
@@ -88,12 +88,11 @@
             <div class="row">
                 <div id="footer_navigation" class='col-md-12 clearfix'>
                     <ul class="no-markers footer_nav">
-                        <li><a href="/">На главную</a></li>
-                        <li><a href="{% url 'infopages' %}" >{% trans "About us" %}</a></li>
+                        <li><a href="{% url "main-index" %}">На главную</a></li>
                         <li><a href="/pomogite/pomogli">{% trans "Help was found" %}</a></li>
                         <li><a href="/org">{% trans "Organizations" %}</a></li>
                         <li><a class="rss_feed" href="http://feeds.rynda.org/">{% trans "RSS feed" %}</a></li>
-                        <li><a href="/info/contacts" title="Свяжитесь с нами">{% trans "Contact us" %}</a></li>
+                        <li><a href="{% url "infopages" %}">{% trans "About us" %}</a></li>
                     </ul>
                 </div>
             </div>
