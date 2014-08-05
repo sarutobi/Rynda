@@ -90,7 +90,7 @@ class CreateRequest(SaveGeoDataMixin, RyndaFormView):
     template_name = "request_form.html"
     model = Message
     form_class = RequestForm
-    success_url = reverse_lazy('message_list')
+    success_url = reverse_lazy('messages-list')
 
     def get_initial(self):
         initial = {}
