@@ -46,7 +46,7 @@ class MessageAdmin(LeafletGeoAdmin):
                        get_full_name, get_phone, get_email,
                        'user', 'sender_ip', )
     fieldsets = (
-        ("Message", {'fields': ('title', 'message', )}),
+        ("Message", {'fields': ('title', 'message', 'status', )}),
         ("Category", {'fields': ('category',), 'classes': ('collapse',), }),
         ("Contact", {"fields": ((get_full_name, "is_anonymous"),
                                 (get_phone, get_email), "user", 'sender_ip', )}),
