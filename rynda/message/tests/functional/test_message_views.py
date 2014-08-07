@@ -1,5 +1,7 @@
 # coding: utf-8
 
+from django.utils.translation import ugettext_lazy as _
+
 from django_webtest import WebTest
 
 from django.core.urlresolvers import reverse
@@ -12,7 +14,7 @@ from test.factories import UserFactory
 class TestMessagesList(WebTest):
 
     def setUp(self):
-        self.page = self.app.get('/message/')
+        self.page = self.app.get(reverse('messages-list'))
 
     def tearDown(self):
         self.page = None
@@ -21,7 +23,7 @@ class TestMessagesList(WebTest):
         self.assertEqual(200, self.page.status_code)
 
     def test_list_title(self):
-        self.page.mustcontain("Список сообщений")
+        self.page.mustcontain(u"Список сообщений")
 
 
 class TestMessagePaginator(WebTest):
@@ -29,14 +31,14 @@ class TestMessagePaginator(WebTest):
         self.user = UserFactory()
         for x in xrange(50):
             MessageFactory(status=2, user=self.user)
-        self.page = self.app.get('/message/')
+        self.page = self.app.get(reverse('messages-list'))
 
     def tearDown(self):
         Message.objects.all().delete()
         self.page = None
 
     def test_paginator_title(self):
-        self.page.mustcontain("Сообщений на странице", "Назад", "Вперед")
+        self.page.mustcontain(u"Messages on page", u"Previous", u"Next")
 
     def test_page_count(self):
         self.page.mustcontain('1', '2', '3', '4', '5')
@@ -48,6 +50,6 @@ class TestMessageCreation(WebTest):
         self.user = UserFactory()
 
     def test_creation_form(self):
-        form = self.app.get(reverse("create-request")).form
+        form = self.app.get(reverse("message-create-request")).form
         self.assertEquals("", form.action)
         self.assertEquals(form.method.upper(), 'POST')
