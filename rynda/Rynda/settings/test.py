@@ -1,6 +1,6 @@
 # coding: utf-8
 
-from .local import *
+from .base import *
 
 DATABASES = {
     'default': {
