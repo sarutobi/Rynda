@@ -46,7 +46,7 @@ class TestAnonymousMessage(WebTest, MessageDataMixin):
     """ Отправка сообщения незарегистрированным пользователем """
 
     def setUp(self):
-        self.page = self.app.get(reverse('create-request'))
+        self.page = self.app.get(reverse('message-create-request'))
         self.data = self.generate_message()
 
     def test_store_anonymous_message(self):
@@ -74,8 +74,7 @@ class TestSendRequestMessage(WebTest, MessageDataMixin):
 
     def setUp(self):
         self.user = UserFactory()
-        self.page = self.app.get(
-            reverse('create-request'),
+        self.page = self.app.get(reverse('message-create-request'),
             user=self.user.username)
         self.data = self.generate_message()
 
@@ -96,7 +95,7 @@ class TestRequestMessageParameters(WebTest, MessageDataMixin):
         self.user = UserFactory()
         self.data = self.generate_message()
         self.form = self.app.get(
-            reverse('create-request'), user=self.user.username
+            reverse('message-create-request'), user=self.user.username
         ).forms['mainForm']
 
     def send_form(self):
