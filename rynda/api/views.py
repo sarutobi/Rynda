@@ -27,7 +27,7 @@ class MapMessageList(generics.ListAPIView):
 
 
 class MessagesList(generics.ListAPIView):
-    queryset = Message.objects.active().list().all()
+    queryset = Message.objects.active().all()
     serializer_class = MessageSerializer
     paginate_by = 10
 
