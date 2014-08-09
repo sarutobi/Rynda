@@ -20,7 +20,7 @@ DATABASES = {
 
 def show_toolbar(request):
     uri = request.get_full_path()
-    if re.match('/admin/', uri):
+    if re.match('/admin/', uri) or re.match('/api/', uri):
         return False
     return debug_toolbar.middleware.show_toolbar
 
