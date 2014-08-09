@@ -6,9 +6,11 @@ from rest_framework.reverse import reverse
 from rest_framework.response import Response
 
 from message.models import Message
-from message.serializers import MessageSerializer, MapMessageSerializer
+from message.serializers import MapMessageSerializer
 from message.models import Category
 from core.serializers import CategorySerializer
+
+from .serializers import MessageSerializer
 
 
 @api_view(['GET'])
@@ -25,7 +27,7 @@ class MapMessageList(generics.ListAPIView):
 
 
 class MessagesList(generics.ListAPIView):
-    queryset = Message.objects.active().all()
+    queryset = Message.objects.active().list().all()
     serializer_class = MessageSerializer
     paginate_by = 10
 
