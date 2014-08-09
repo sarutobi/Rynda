@@ -14,8 +14,8 @@ from core.serializers import CategorySerializer
 @api_view(['GET'])
 def api_root(request, format=None):
     return Response({
-        'messages': reverse('messages-list', request=request),
-        'categories': reverse('cat-list', request=request),
+        'messages': reverse('api-messages-list', request=request),
+        'categories': reverse('api-cat-list', request=request),
     })
 
 
