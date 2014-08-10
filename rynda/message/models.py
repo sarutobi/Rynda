@@ -45,13 +45,19 @@ class MessageQueryset(GeoQuerySet):
             'date_add', )
 
     def active(self):
-        return self.filter(status__gt=Message.NEW, status__lt=Message.CLOSED)
+        return self.filter(
+            status__gt=Message.NEW, status__lt=Message.CLOSED,
+            is_removed=False
+        )
 
     def closed(self):
         return self.filter(status=Message.CLOSED)
 
     def type_is(self, m_type):
         return self.filter(messageType=m_type)
+
+    def is_deleted(self):
+        return self.filter(is_removed=True)
 
 
 class Message(models.Model):
