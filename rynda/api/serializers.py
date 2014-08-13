@@ -9,6 +9,7 @@ from geozones.models import Location
 
 
 class JSONField(serializers.Field):
+    """ Read-only JSON field serializer """
     def from_native(self, value):
         try:
             val = json.loads(value)
@@ -24,6 +25,13 @@ class LocationSerializer(serializers.ModelSerializer):
         model = Location
 
 
+class CoordinatesSerializer(serializers.ModelSerializer):
+    """ Serialize only coordinates from location """
+    class Meta:
+        model = Location
+        fields = ('coordinates', )
+
+
 class MessageSerializer(serializers.ModelSerializer):
     class Meta:
         model = Message
@@ -34,3 +42,13 @@ class MessageSerializer(serializers.ModelSerializer):
 
     additional_info = JSONField()
     linked_location = LocationSerializer()
+
+
+class MapMessageSerializer(serializers.ModelSerializer):
+    """ Serialize message data for map markers """
+    class Meta:
+        model = Message
+        fields = ('id', 'title', 'messageType', 'linked_location')
+
+    messageType = serializers.ChoiceField(source='get_messageType_display')
+    linked_location = CoordinatesSerializer()

@@ -6,11 +6,11 @@ from rest_framework.reverse import reverse
 from rest_framework.response import Response
 
 from message.models import Message
-from message.serializers import MapMessageSerializer
+# from message.serializers import
 from message.models import Category
 from core.serializers import CategorySerializer
 
-from .serializers import MessageSerializer
+from .serializers import MessageSerializer, MapMessageSerializer
 
 
 @api_view(['GET'])
@@ -18,6 +18,7 @@ def api_root(request, format=None):
     return Response({
         'messages': reverse('api-messages-list', request=request),
         'categories': reverse('api-cat-list', request=request),
+        'map-markers': reverse('get-map-markers', request=request),
     })
 
 
