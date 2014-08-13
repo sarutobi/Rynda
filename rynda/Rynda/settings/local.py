@@ -17,6 +17,13 @@ DATABASES = {
     }
 }
 
+LEAFLET_CONFIG = {
+    'DEFAULT_CENTER': (56.0, 45.0),
+    'DEFAULT_ZOOM': 4,
+    'MAX_ZOOM': 18,
+    'MIN_ZOOM': 3,
+}
+
 
 def show_toolbar(request):
     uri = request.get_full_path()
