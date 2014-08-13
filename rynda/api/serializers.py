@@ -29,7 +29,8 @@ class CoordinatesSerializer(serializers.ModelSerializer):
     """ Serialize only coordinates from location """
     class Meta:
         model = Location
-        fields = ('coordinates', )
+
+    coordinates = serializers.Field(source='coordinates.json')
 
 
 class MessageSerializer(serializers.ModelSerializer):
@@ -48,7 +49,13 @@ class MapMessageSerializer(serializers.ModelSerializer):
     """ Serialize message data for map markers """
     class Meta:
         model = Message
-        fields = ('id', 'title', 'messageType', 'linked_location')
+        fields = ('id', 'title', 'messageType', 'location')
 
     messageType = serializers.ChoiceField(source='get_messageType_display')
-    linked_location = CoordinatesSerializer()
+    location = serializers.SerializerMethodField('get_coordinates')
+
+    def get_coordinates(self, obj):
+        if obj.linked_location is not None:
+            coords = obj.linked_location.coordinates.json
+            return json.loads(coords)
+        return None
