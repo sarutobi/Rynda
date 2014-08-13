@@ -47,5 +47,19 @@
 $(function(){
     Rynda.sameheight($('.message_pane'));
 });
+
+window.addEventListener("map:init", function(e){
+    var detail = e.detail;
+    var layer = L.geoJson().addTo(detail.map);
+    $.ajax({
+        url: '{% url "get-map-markers" %}',
+        context: layer 
+    }).done(function(data) {
+        var that = this;
+        $.each(data, function(i, item) {
+            that.addData(item.location);     
+        });      
+    });
+});
 </script>
 {%endblock%}
