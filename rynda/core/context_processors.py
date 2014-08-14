@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-#Core context processors for Rynda project
+# Core context processors for Rynda project
 
 from django.conf import settings
 
