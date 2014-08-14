@@ -13,7 +13,7 @@ from message.models import Message
 
 class VirtualMessageFormMixin(forms.ModelForm):
 
-    """ Виртуальные сообщения """
+    """ Virtual messages isn't required presence to make smth """
 
     def __init__(self, *args, **kwargs):
         super(VirtualMessageFormMixin, self).__init__(*args, **kwargs)
@@ -28,7 +28,7 @@ class VirtualMessageFormMixin(forms.ModelForm):
 
 class MessageForm(forms.ModelForm):
 
-    """ Базовая форма ввода сообщения """
+    """ Base message form """
 
     class Meta:
         model = Message
@@ -36,7 +36,6 @@ class MessageForm(forms.ModelForm):
             'title', 'message', 'messageType',
             'category',
             'is_anonymous', 'allow_feedback', 'is_virtual',
-            # 'address', 'coordinates',
         )
         widgets = {
             'category': forms.CheckboxSelectMultiple(),
@@ -86,11 +85,12 @@ class UserMessageForm(forms.ModelForm):
 
     def clean(self):
         """
-        Проверка корректности формы.
+        Form validation.
 
-        Необходимо, чтобы пользователь заполнил хотя бы одно из двух полей
-        email и phone. Если это не выполнено, выдать ошибку проверки формы.
+        It is required that at least one from email and phone fields has been
+        filled. If both fields are empty, throw ValidationError.
         """
+
         super(UserMessageForm, self).clean()
         ce = self.cleaned_data
         if ce['email'] == '' and ce['phone'] == '':

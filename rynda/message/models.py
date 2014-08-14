@@ -39,7 +39,8 @@ class PassThroughGeoManager(PassThroughManagerMixin, models.GeoManager):
 
 class MessageQueryset(GeoQuerySet):
     def list(self):
-        ''' Ask only few fields for listing'''
+        """ Ask only few fields for listing"""
+
         return self.values(
             'id', 'title', 'message', 'messageType',
             'date_add', )
@@ -61,13 +62,13 @@ class MessageQueryset(GeoQuerySet):
 
 
 class Message(models.Model):
-    '''Message data'''
+    """ Message data """
 
     class Meta():
         ordering = ['-date_add']
         get_latest_by = 'date_add'
-        verbose_name = _('message')
-        verbose_name_plural = _('messages')
+        verbose_name = _('Message')
+        verbose_name_plural = _('Messages')
 
     # Message types
     REQUEST = 1
@@ -75,9 +76,9 @@ class Message(models.Model):
     INFO = 3
 
     TYPES_CHOICE = (
-        (REQUEST, _("request")),
-        (OFFER, _("offer")),
-        (INFO, _("informatial"))
+        (REQUEST, _("Request message")),
+        (OFFER, _("Offer message")),
+        (INFO, _("Informatial message"))
     )
 
     # Message status
@@ -87,34 +88,33 @@ class Message(models.Model):
     PENDING = 4
     CLOSED = 6
 
-    MESSAGE_STATUS = ((NEW, _('new')),
-                      (UNVERIFIED, _('unverified')),
-                      (VERIFIED, _('verified')),
-                      (PENDING, _('pending')),
-                      (CLOSED, _('closed')))
+    MESSAGE_STATUS = ((NEW, _('New')),
+                      (UNVERIFIED, _('Unverified')),
+                      (VERIFIED, _('Verified')),
+                      (PENDING, _('Pending')),
+                      (CLOSED, _('Closed')))
 
     # Managers
     objects = PassThroughGeoManager.for_queryset_class(MessageQueryset)()
 
-    # Основные поля сообщения
+    # Main message fields
     title = models.CharField(
         max_length=200,
-        verbose_name=_('title'),
+        verbose_name=_('Title'),
         blank=True)
-    message = models.TextField(verbose_name=_('message'))
-    # Дополнительная информация по сообщению. Эта информация полезна при выводе
-    # сообщения, но не представляет никакого интереса с точки зрения движка.
-    additional_info = JSONField(blank=True, default='')
-    # Тип сообщения, которое оставляет пользователь. Повлиять на это поле
-    # пользователь не может, тип сообщения может изменить модератор.
+    message = models.TextField(verbose_name=_('Message'))
+    # Additional message information. This is important for message, but useless
+    # for engine.
+    additional_info = JSONField(
+        blank=True, default='', verbose_name=_("Additional info"))
+    # Message type. Only moderator can change this type.
     messageType = models.IntegerField(
         choices=TYPES_CHOICE,
         db_column='message_type',
-        verbose_name=_('message type'),
+        verbose_name=_('Message type'),
     )
-    # Ссылка на пользователя портала. Если сообщение оставляет
-    # незарегистрированный пользователь, то тут будет ссылка
-    # на пользователя settings.ANONYMOUS_USER_ID
+    # Link to message author. It can be anonymous for engine, so this will be
+    # link to settings.ANONYMOUS_USER_ID
     user = models.ForeignKey(
         User,
         verbose_name=_("User"),
@@ -131,14 +131,16 @@ class Message(models.Model):
     )
 
     is_virtual = models.BooleanField(
-        default=False, verbose_name=_('is virtual')
+        default=False, verbose_name=_('Is virtual')
     )
 
     # Moderator's fields
-
+    # Message can be inactive, i.e. not 'closed' and no more information can be
+    # added.
     is_active = models.BooleanField(
         default=False, verbose_name=_('active')
     )
+    # Is it urgent message?
     is_important = models.BooleanField(
         default=False, verbose_name=_('important')
     )
@@ -180,7 +182,6 @@ class Message(models.Model):
         verbose_name=_("sender IP")
     )
 
-    # Геоданные сообщения
     # Links to core models
     linked_location = models.ForeignKey(
         Location,
@@ -216,18 +217,19 @@ class MessageIndexFilter(django_filters.FilterSet):
 
 
 class MessageNotes(models.Model):
-    '''Moderator notes for message'''
+    """ Moderator notes for message """
+
     message = models.ForeignKey(Message)
-    user = models.ForeignKey(User, editable=False, verbose_name=_("author"))
-    note = models.TextField(verbose_name=_("note"))
+    user = models.ForeignKey(User, editable=False, verbose_name=_("Author"))
+    note = models.TextField(verbose_name=_("Note"))
     date_add = models.DateTimeField(
         auto_now_add=True,
         editable=False,
-        verbose_name=_("created at"))
+        verbose_name=_("Created at"))
     last_edit = models.DateTimeField(
         auto_now=True,
         editable=False,
-        verbose_name=_("last edit"))
+        verbose_name=_("Last edit"))
 
     def __unicode__(self):
         return _("Note from %(user)s to message %(msgid)d")\

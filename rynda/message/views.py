@@ -6,6 +6,7 @@ from django.contrib.auth.models import User
 from django.core.urlresolvers import reverse_lazy
 from django.shortcuts import redirect, render
 from django.template.loader import render_to_string
+from django.utils.translation import ugettext_lazy as _
 
 from core.mixins import MultipleFormsView
 from core.views import (RyndaCreateView, RyndaDetailView, RyndaFormView,
@@ -19,7 +20,7 @@ MAX_PANE_MESSAGES = 5
 
 
 def generate_message_pane(pane_label, context_messages, link_to_continue=None):
-    """ Генерация виджета панели сообщений на главной странице """
+    """ Dashboard message pane generator """
     has_more = len(context_messages) > MAX_PANE_MESSAGES
     context = {
         "messages": context_messages[:MAX_PANE_MESSAGES],
@@ -31,21 +32,21 @@ def generate_message_pane(pane_label, context_messages, link_to_continue=None):
 
 
 def list(request, slug='all'):
-    """ Главная страница """
+    """ Main page """
     last_requests = generate_message_pane(
-        "Просьбы о помощи",
+        _("Help requests"),
         Message.objects.active().type_is(
             Message.REQUEST).values(
                 'id', 'title', 'date_add')[:MAX_PANE_MESSAGES + 1],
-        "/message/pomogite")
+        reverse_lazy("messages-list"))
     last_offers = generate_message_pane(
-        "Предложения помощи",
+        _("Offer of assistance"),
         Message.objects.active().type_is(
             Message.OFFER).values(
                 'id', 'title', 'date_add')[:MAX_PANE_MESSAGES + 1],
-        "/message/pomogu")
+        reverse_lazy("messages-list"))
     last_completed = generate_message_pane(
-        "Помощь оказана",
+        _("Assistance provided"),
         Message.objects.type_is(
             Message.REQUEST).closed().values(
                 'id', 'title', 'date_add')[:MAX_PANE_MESSAGES + 1],
@@ -69,7 +70,7 @@ def logout_view(request):
 
 
 class SaveGeoDataMixin():
-    """ Сохранение сообщения и геоточки """
+    """ Store message and location """
     def form_valid(self, form):
         instance = form.save(commit=False)
         if self.request.user.is_authenticated():
@@ -103,6 +104,7 @@ class CreateRequest(SaveGeoDataMixin, RyndaFormView):
 
 
 class CreateRequestM(MultipleFormsView):
+    """ Handler for multiple forms """
     template_name = "request_form_simple.html"
     model = Message
     form_classes = {
@@ -167,6 +169,3 @@ class MessageList(RyndaListView):
         count = self.queryset.count()
         context['count'] = count
         return context
-
-    # def get_queryset(self):
-        # return MessageSideFilter(self.request.GET, self.queryset)

@@ -4,7 +4,7 @@ from django.contrib import admin
 
 from leaflet.admin import LeafletGeoAdmin
 
-from .forms import AdminMessageForm
+# from .forms import AdminMessageForm
 from .models import Message, Category
 
 
@@ -25,13 +25,6 @@ get_email.short_description = 'Email'
 
 
 class MessageAdmin(LeafletGeoAdmin):
-    # class Media:
-        # js = (
-            # 'js/libs/jquery-1.8.1.min.js',
-            # 'js/libs/leaflet.js',
-            # 'js/plugins.js',
-            # 'js/rynda.js',
-        # )
     list_display = (
         'title',
         'user',
