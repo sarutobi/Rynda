@@ -1,12 +1,13 @@
 {% extends 'base.html'%}
 
 {% load widget_tweaks %}
+{% load i18n %}
 
 {% block maincontent %}
 <div class="col-md-6 col-md-offset-3">
     <div class="panel rynda-panel-default">
         <div class="panel-heading">
-            <h3 class="panel-title">Регистрация</h3>
+            <h3 class="panel-title">{% trans "Registration" %}</h3>
         </div>
         {% if form.errors %}
             {{ form.errors }}
