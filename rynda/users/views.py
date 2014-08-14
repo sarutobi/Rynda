@@ -3,6 +3,7 @@
 from django.shortcuts import redirect
 from django.conf import settings
 from django.contrib.auth.models import User
+from django.utils.translation import ugettext_lazy as _
 from django.views.generic.detail import DetailView
 
 from core.views import RyndaFormView, RyndaListView
@@ -22,7 +23,7 @@ class UserList(RyndaListView):
     queryset = User.objects.select_related().exclude(
         pk=settings.ANONYMOUS_USER_ID).filter(
         is_active=True).order_by('date_joined')
-    list_title_short = "Список пользователей"
+    list_title_short = _("User list")
     paginator_url = '/user/page/'
     paginate_by = 10
 
@@ -34,11 +35,11 @@ class UserList(RyndaListView):
 
 
 class CreateUser(RyndaFormView):
-    '''
+    """
     New user regiatration.
     If registration form is valid, create a new deactivated user,
     new user profile (via signal) and send activation email to user.
-    '''
+    """
     template_name = 'registerform_simple.html'
     form_class = SimpleRegistrationForm
     success_url = '/'
