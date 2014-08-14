@@ -49,30 +49,3 @@ def infopages(request):
     return render(
         request,
         'infopages_list.html',)
-
-
-def show_page(request, slug):
-    page = get_object_or_404(Infopage, slug=slug)
-    pages = Infopage.objects.filter(
-        active=True).exclude(slug=slug).values('slug', 'title')
-    return render_to_response(
-        'infopage/show_page.html',
-        {'title': page.title, 'text': page.text, 'pages': pages, },
-        context_instance=RequestContext(
-            request,
-        )
-    )
-
-
-def index_info(request):
-    page = get_object_or_404(Infopage, default=True)
-    pages = Infopage.objects.filter(
-        active=True,
-        default=False).values('slug', 'title')
-    return render_to_response(
-        'infopage/show_page.html',
-        {'title': page.title, 'text': page.text, 'pages': pages, },
-        context_instance=RequestContext(
-            request,
-        )
-    )
