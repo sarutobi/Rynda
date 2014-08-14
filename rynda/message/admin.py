@@ -1,6 +1,7 @@
 # coding: utf-8
 
 from django.contrib import admin
+from django.core.urlresolvers import reverse
 
 from leaflet.admin import LeafletGeoAdmin
 
@@ -39,14 +40,18 @@ class MessageAdmin(LeafletGeoAdmin):
                        get_full_name, get_phone, get_email,
                        'user', 'sender_ip', )
     fieldsets = (
-        ("Message", {'fields': ('title', 'message', 'status', )}),
+        ("Message", {
+            'fields': (
+                'title', 'message',
+                ('status', 'messageType', 'allow_feedback'), )}),
         ("Category", {'fields': ('category',), 'classes': ('collapse',), }),
         ("Contact", {"fields": ((get_full_name, "is_anonymous"),
-                                (get_phone, get_email), "user", 'sender_ip', )}),
-        ("Flags", {"fields": (("is_active", "is_removed", ),)}),
-        ("Position", {"fields": ("linked_location",)})
+                                (get_phone, get_email), ("user", "sender_ip"), )}),
+        ("Flags", {"fields": (("is_active", "is_removed", "is_important"),)}),
+        ("Position", {"fields": ("linked_location", )})
     )
     # form = AdminMessageForm
+
 
 admin.site.register(Message, MessageAdmin)
 
