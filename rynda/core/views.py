@@ -1,15 +1,13 @@
 # -*- coding: utf-8 -*-
 
-from django.shortcuts import render, render_to_response, get_object_or_404
+from django.shortcuts import render
 
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, FormView
 from django.views.generic.list import ListView
-from django.template import RequestContext
 
 from core.mixins import (
     PaginatorMixin, QueryStringMixin, ExternalScriptsMixin)
-from core.models import Infopage
 
 
 class RyndaCreateView(CreateView):
