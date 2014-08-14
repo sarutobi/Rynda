@@ -6,7 +6,7 @@ from django.views.generic.edit import FormMixin, ProcessFormView
 
 
 class PaginatorMixin(object):
-    '''Paginator line mixin. Best use with list-based mixins'''
+    """ Paginator line mixin. Best use with list-based mixins """
 
     def paginator(self, num_pages, page=1, adj_pages=2, outside_range=3):
         page = int(page)
@@ -22,25 +22,30 @@ class PaginatorMixin(object):
                 has_prev = True
             if page < num_pages:
                 has_next = True
-        #Количество страниц для отображения меньше чем количество
-        #страниц в пейджере
-        if (outside_range + adj_pages + 1 + adj_pages + outside_range)\
-            >= num_pages:
+        # Counts minimal pages to work
+        pager_size = 2 * (outside_range + adj_pages) + 1
+
+        # If pager_size greater than total pages - pager wil show all pages in
+        # range
+        if pager_size >= num_pages:
             return {
                 'first': [], 'window': [n for n in range(1, num_pages + 1)],
                 'last': [],  'has_prev': has_prev, 'has_next': has_next}
 
-        #страница для отображения находится в начальном диапазоне
+        # Checking page windows
+        # Current page in first (low) window
         if (outside_range + adj_pages + 1) >= page:
             first = []
             window = [n for n in range(1, outside_range + 2 + 2 * adj_pages)
                 if n > 0 and n < num_pages]
             last = [n for n in range(num_pages - outside_range, num_pages+1)]
+        # Current page in middle window
         elif (num_pages - outside_range - adj_pages - 1) < page:
             first = [n for n in range(1, outside_range + 1)]
             window = [n for n in range(num_pages - outside_range - 2 *
                 adj_pages + 1, num_pages +1)]
             last = []
+        # Current page in last (high) window
         else:
             first = [n for n in range(1, outside_range + 1)]
             last = [n for n in range(num_pages - outside_range + 1,
@@ -53,9 +58,8 @@ class PaginatorMixin(object):
 
 
 class QueryStringMixin(object):
-    '''
-    This mixin adds a query string to context.
-    '''
+    """ This mixin adds a query string to context. """
+
     def get_context_data(self, **kwargs):
         context = super(QueryStringMixin, self).get_context_data(**kwargs)
         context['query_string'] = u'?%s' % self.request.META['QUERY_STRING']
@@ -82,9 +86,11 @@ class MultipleFormsMixin(FormMixin):
 
 class ProcessMultipleFormsView(ProcessFormView):
     """
-    A mixin that processes multiple forms on POST. Every form must be
-    valid.
+    A mixin that processes multiple forms on POST.
+
+    Every form must be valid.
     """
+
     def get(self, request, *args, **kwargs):
         form_classes = self.get_form_classes()
         forms = self.get_forms(form_classes)
@@ -100,15 +106,11 @@ class ProcessMultipleFormsView(ProcessFormView):
 
 
 class BaseMultipleFormsView(MultipleFormsMixin, ProcessMultipleFormsView):
-    """
-    A base view for displaying several forms.
-    """
+    """ A base view for displaying several forms. """
 
 
 class MultipleFormsView(TemplateResponseMixin, BaseMultipleFormsView):
-    """
-    A view for displaing several forms, and rendering a template response.
-    """
+    """ A view for displaing several forms, and rendering a template response. """
 
 
 class ExternalScriptsMixin(object):
