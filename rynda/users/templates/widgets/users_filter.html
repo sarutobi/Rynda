@@ -1,16 +1,17 @@
-{% load widget_tweaks %}    
+{% load widget_tweaks %}
+{% load i18n %}
 
 <form id="filterForm" action="#">
     <div class="form-group">
-        <label for="filterTypeId">Сортировать список по</label>
+        <label for="filterTypeId">{% trans "Order by" %}</label>
         <select name="filterTypeId" id="filterTypeId" class="form-control">
-            <option value="dateAdd">Дате регистрации</option>
-            <option value="dateAdd">Именам</option>
+            <option value="dateAdd">{%trans "Registration date" %}</option>
+            <option value="dateAdd">{% trans "User name" %}</option>
         </select>
     </div>
 
     <div class="form-group">
-        <label for="orderBy">Сортировать список</label>
+        <label for="orderBy">{% trans "Sorting" %}</label>
         <select name="orderBy" id="orderBy" class="form-control">
             <option value="asc">A-Z</option>
             <option value="desc">Z-A</option>
@@ -19,32 +20,19 @@
 
     <div class="form-group">
         <select name="filterRegion" id="filterRegion" class="form-control">
-            <option value="">Все регионы</option>
+            <option value="">{% trans "All regions" %}</option>
         {% for r in regions %}
             <option value="{{r.id}}" {% if current_id == r.id %}'selected'{% endif %}>{{r.name}}</option>
         {% endfor %}
         </select>
     </div>
 
-            <h4 class="mt10">Категории</h4>
+    <h4 class="mt10">{% trans "Categories" %}</h4>
     <div class="form-group"> 
-        <input type="text" name="filterString" id="filterString" class="form-control" placeholder="Введите здесь текст для поиска" />
+        <input type="text" name="filterString" id="filterString" class="form-control" placeholder="{% trans "Please provide at least one search term" %}" />
     </div>
    
     <div class="panel-footer">
         <input type="submit" id="filterSubmit"  class="btn rynda-btn-default form-control" name="filterSubmit" value="Обновить поиск" />
     </div>
-    {% comment %}
-    <?php if(!empty($filterPersistVars)) {
-        foreach((array)$filterPersistVars as $varName => $value) {
-            if(is_array($value)) {
-                foreach($value as $arrElementValue) {?>
-    <input type="hidden" class="filterPersistVar" name="<?php echo $varName;?>[]" value="<?php echo $arrElementValue;?>" />
-    <?php       }
-            } else {?>
-    <input type="hidden" class="filterPersistVar" name="<?php echo $varName;?>" value="<?php echo $value;?>" />
-    <?php   }
-        }
-    }?>
-    {% endcomment %}
 </form>
