@@ -8,31 +8,29 @@ from django.utils.translation import ugettext_lazy as _
 class Region(models.Model):
 
     """
-    Географический регион.
+    A georegion.
 
-    Обобщенный георегион, описывающий произвольную геообласть на карте.
-    Сообщения могут быть сгруппированы по этому признаку.
-    TODO: use django-mptt
-    TODO: make nested regions
-    TODO: link message to nested regions
+    An abstract georegion, that describes map geozone. Any messages can be
+    clustered by this item.
+    TODO: auto link Location to regions
 
     """
 
     class Meta:
         ordering = ['order']
-        verbose_name = _('region')
-        verbose_name_plural = _('regions')
+        verbose_name = _('Region')
+        verbose_name_plural = _('Regions')
 
     # Region number
     name = models.CharField(
-        max_length=200, verbose_name=_("region name"))
+        max_length=200, verbose_name=_("Region name"))
     # Region slug
     slug = models.SlugField(_("slug"))
     # Region center coordinates
-    center = models.PointField(_("map center"), null=True)
+    center = models.PointField(_("Map center"), null=True)
     # Region map default zoom
-    zoom = models.SmallIntegerField(_("map zoom"))
-    order = models.IntegerField(_("order"))
+    zoom = models.SmallIntegerField(_("Map zoom"))
+    order = models.IntegerField(_("Order"))
     objects = models.GeoManager()
 
     def __unicode__(self):
@@ -53,11 +51,11 @@ class Location(models.Model):
     """
 
     class Meta:
-        verbose_name = _('location')
-        verbose_name_plural = _('locations')
+        verbose_name = _('Location')
+        verbose_name_plural = _('Locations')
 
     name = models.CharField(
-        max_length=250, default='Location', verbose_name=_("name"))
+        max_length=250, default='Location', verbose_name=_("Name"))
     # Geocoordinates
     coordinates = models.GeometryCollectionField(
         null=True,
@@ -65,7 +63,7 @@ class Location(models.Model):
     # Optional link for region
     region = models.ForeignKey(
         Region,
-        verbose_name=_("region"),
+        verbose_name=_("Region"),
         blank=True, null=True,
     )
     # Short description or address
