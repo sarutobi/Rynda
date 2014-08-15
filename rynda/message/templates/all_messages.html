@@ -18,7 +18,7 @@
 
 {% block listcontent %}
 
-{% for m in object_list %}
+{% for m in filter %}
 <li class="list-group-item">
     <div class="list_content">
         <a href="/message/{{ m.id }}" class="darkRed">
