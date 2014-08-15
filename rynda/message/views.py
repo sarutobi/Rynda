@@ -161,7 +161,7 @@ class MessageList(RyndaListView):
     template_name = 'all_messages.html'
     context_object_name = 'messages'
     paginator_url = '/message/page/'
-    list_title_short = 'Список сообщений'
+    list_title_short = _('Message list')
 
     def get_context_data(self, **kwargs):
         context = super(MessageList, self).get_context_data(**kwargs)
