@@ -53,14 +53,14 @@
     </div>
 
     <section class="main">
-        <div class="row clearfix" id="header">
+        <div class="row" id="header">
             {%block buttons%}
             <a href="/message/pomogu/dobavit" class="btn rynda-btn-head rynda-btn-wh" title="{% trans "Create offer for help" %}">{% trans "I want to help" %}</a>
             <a href="/message/pomogite/dobavit" class="btn rynda-btn-head rynda-btn-nh" title="{% trans "Create request for help" %}">{% trans "Help needed" %}</a>
             {%endblock%}
             <h1 class="text-hide"><a href="{% url "main-index" %}" title="{% blocktrans %}{{ SITE_NAME }} — portal for volunteers{% endblocktrans %}">Rynda</a></h1>
         </div>
-        <div class='clearfix navbar'>
+        <div class='navbar'>
             <ul class="nav navbar-nav">
                 <li><a href="http://vkontakte.ru/club25595604" title="Виртуальная рында во Вконтакте" class="vk text-hide">Вконтакте</a></li>
                 <li><a href="http://www.facebook.com/pages/Ryndaorg/163264230398695?created" title="Виртуальная рында в Фейсбуке" class="fb text-hide">Фейсбук</a></li>
