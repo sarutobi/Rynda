@@ -84,6 +84,7 @@ class SaveGeoDataMixin():
         location = loc_form.save()
         instance.linked_location = location
         instance.save()
+        form.save_m2m()
         return redirect(self.success_url)
 
 
