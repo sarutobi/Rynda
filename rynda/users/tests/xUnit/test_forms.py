@@ -3,7 +3,7 @@
 from django.test import TestCase
 from django.utils.translation import ugettext as _
 
-from users.forms import (SimpleRegistrationForm, ForgotPasswordForm)
+from users.forms import SimpleRegistrationForm
 from users.models import Profile
 from test.factories import UserFactory
 
@@ -78,29 +78,3 @@ class SimpleRegistrationFormTest(TestCase):
         self.assertFalse(form.is_valid())
         self.assertEqual([_(u'The password fields did not match'), ],
                          form.errors['__all__'])
-
-
-class TestForgotPasswordForm(TestCase):
-    '''
-    First step reset password functionality - validate email 
-    '''
-
-    def setUp(self):
-        self.user = UserFactory()
-
-    def tearDown(self):
-        self.user.delete()
-
-    def test_reset_password(self):
-        data = {'email': self.user.email}
-        form = ForgotPasswordForm(data)
-        self.assertTrue(form.is_bound)
-        self.assertTrue(form.is_valid())
-
-    def test_unknown_email(self):
-        data = {'email': 'mail@unexist.host',}
-        form = ForgotPasswordForm(data)
-        self.assertTrue(form.is_bound)
-        self.assertFalse(form.is_valid())
-        self.assertEqual([_(u'This email isn\'t registered'),],
-            form['email'].errors)
