@@ -1,4 +1,3 @@
-#distribute==0.6.24
 Django==1.6.5
 South==0.8.4
 argparse==1.2.1
@@ -13,7 +12,7 @@ django-social-auth==0.7.28
 django-widget-tweaks==1.3
 djangorestframework==2.3.13
 dnspython==1.10.0
-jsonfield==0.9.22
+# jsonfield==0.9.22
 lxml==3.0.1
 mimeparse==0.1.3
 psycopg2==2.4.5
