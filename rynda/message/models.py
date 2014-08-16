@@ -6,6 +6,7 @@ from django.contrib.gis.db.models.query import GeoQuerySet
 from django.utils.translation import ugettext_lazy as _
 
 import django_filters
+import floppyforms.__future__ as forms
 from jsonfield import JSONField
 
 from geozones.models import Location
@@ -32,6 +33,7 @@ class Category(models.Model):
 
     def __unicode__(self):
         return self.name
+
 
 class PassThroughGeoManager(PassThroughManagerMixin, models.GeoManager):
     pass
@@ -103,8 +105,8 @@ class Message(models.Model):
         verbose_name=_('Title'),
         blank=True)
     message = models.TextField(verbose_name=_('Message'))
-    # Additional message information. This is important for message, but useless
-    # for engine.
+    # Additional message information. This is important for message, but
+    # useless for engine.
     additional_info = JSONField(
         blank=True, default='', verbose_name=_("Additional info"))
     # Message type. Only moderator can change this type.
@@ -203,9 +205,35 @@ class Message(models.Model):
 
 
 class MessageSideFilter(django_filters.FilterSet):
+    """ Message list side filter """
     class Meta:
         model = Message
-        fields = ['messageType', 'category']
+        fields = ['mtype', 'category', 'urgent', 'q', ]
+
+    URGENCY_CHOICES = (
+        ('', _('Any')),
+        (1, _('Urgent')),
+        (0, _('Regular'))
+    )
+
+    mtype = django_filters.MultipleChoiceFilter(
+        name='messageType',
+        label=_("Message type"),
+        choices=Message.TYPES_CHOICE,
+        widget=forms.CheckboxSelectMultiple()
+    )
+
+    urgent = django_filters.BooleanFilter(
+        name="is_important",
+        label=_("Urgent"),
+        widget=forms.NullBooleanSelect()
+    )
+
+    q = django_filters.CharFilter(
+        name='message',
+        label=_("Keywords"),
+        lookup_type="icontains",
+    )
 
 
 class MessageIndexFilter(django_filters.FilterSet):

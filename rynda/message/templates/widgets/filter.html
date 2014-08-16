@@ -1,19 +1,11 @@
 {% load widget_tweaks %}
 {% load i18n %}
+{% load floppyforms %}
 
 <form id="filterForm" action="" method='get'>
     <div class="form-group">
-        {{ filter.form.messageType.label_tag }}
-        {{ filter.form.messageType|add_class:"form-control" }}
-    </div>
-    <div class="form-group">
-        {{ filter.form.georegion.label_tag }}
-        {{ filter.form.georegion|add_class:"form-control" }}
-    </div>
-
-    <div class="form-group">
-        {{ filter.form.subdomain.label_tag }}
-        {{ filter.form.subdomain|add_class:"form-control" }}
+        {{ filter.form.mtype.label_tag }}
+        {{ filter.form.mtype|add_class:"form-control" }}
     </div>
 
     <div class="form-group">
@@ -22,16 +14,14 @@
     </div>
 
     <div class="form-group">
-        <label for="filterUntimed">{% trans "Urgency" %}</label>
-        <select class="form-control" name="untimed" id="filterUntimed">
-            <option value="-1">{% trans "Any" %}</option>
-            <option value="0">{% trans "Urgent" %}</option>
-            <option value="1">{% trans "Regular" %}</option>
-        </select>
-    </div>
-    <div class="form-group">
-        <input type="text" class="form-control" name="filterString" id="filterString" placeholder="{% trans "Please provide at least one search term" %}" />
+        {{ filter.form.urgent.label_tag }}
+        {{ filter.form.urgent|add_class:"form-control" }}
     </div>
 
-    <input type="submit" id="filterSubmit" class="btn btn-rynda-default form-control" name="filterSubmit" value="{% trans "Search" %}" />
+    <div class="form-group">
+        {{ filter.form.q.label_tag }}
+        {{ filter.form.q|add_class:"form-control" }}
+    </div>
+
+    <input type="submit" id="filterSubmit" class="btn btn-rynda-default form-control" text="{% trans "Search" %}" />
 </form>
