@@ -210,17 +210,18 @@ class MessageSideFilter(django_filters.FilterSet):
         model = Message
         fields = ['mtype', 'category', 'urgent', 'q', ]
 
-    URGENCY_CHOICES = (
-        ('', _('Any')),
-        (1, _('Urgent')),
-        (0, _('Regular'))
-    )
-
     mtype = django_filters.MultipleChoiceFilter(
         name='messageType',
         label=_("Message type"),
         choices=Message.TYPES_CHOICE,
         widget=forms.CheckboxSelectMultiple()
+    )
+
+    category = django_filters.ModelMultipleChoiceFilter(
+        name="category",
+        label=_("Category"),
+        widget=forms.CheckboxSelectMultiple(),
+        queryset=Category.objects.all()
     )
 
     urgent = django_filters.BooleanFilter(
