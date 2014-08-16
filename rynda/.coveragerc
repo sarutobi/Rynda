@@ -7,4 +7,5 @@ include =
 omit =
     */migrations/*
     */tests/*
+    */lib/*
 
