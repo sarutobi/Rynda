@@ -1,7 +1,5 @@
 # coding: utf-8
 
-from django.utils.translation import ugettext_lazy as _
-
 from django_webtest import WebTest
 
 from django.core.urlresolvers import reverse
@@ -23,7 +21,7 @@ class TestMessagesList(WebTest):
         self.assertEqual(200, self.page.status_code)
 
     def test_list_title(self):
-        self.page.mustcontain(u"Список сообщений")
+        self.page.mustcontain("Message list")
 
 
 class TestMessagePaginator(WebTest):
