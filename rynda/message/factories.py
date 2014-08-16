@@ -3,7 +3,6 @@
 import factory
 from factory import django, fuzzy
 from test.factories import UserFactory
-from test.utils import FuzzyText
 
 from geozones.factories import LocationFactory
 from .models import Message
@@ -13,15 +12,15 @@ class MessageFactory(django.DjangoModelFactory):
     """ Factory for messages. """
     FACTORY_FOR = Message
 
-    title = FuzzyText()
-    message = FuzzyText(length=200)
+    title = fuzzy.FuzzyText()
+    message = fuzzy.FuzzyText(length=200)
     messageType = fuzzy.FuzzyChoice(
         (Message.REQUEST, Message.OFFER, Message.INFO))
     is_anonymous = True
     allow_feedback = True
     is_virtual = fuzzy.FuzzyChoice((True, False))
     user = factory.SubFactory(UserFactory)
-    source = fuzzy.FuzzyChoice(("", FuzzyText()))
+    source = fuzzy.FuzzyChoice(("", fuzzy.FuzzyText()))
     is_active = False
     is_important = False
     is_removed = False
