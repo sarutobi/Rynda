@@ -19,7 +19,7 @@
 
 <div class="col-md-8" id="content">
     <!-- Left pane -->
-    <div class="panel panel-default" id="vm_1_column">
+    <div class="panel panel-primary" id="vm_1_column">
         <div class="panel-heading">
             <div class="pull-right">
             {% if message.status >= 3 %}
@@ -32,13 +32,7 @@
             </h2>
         </div>
         <div class="panel-body">
-            <div class="vm_main_text rounded_all">{{ message.message|safe }}</div>
-            <div class="vm_categories">
-                {% trans "Categories" %}:
-            {% for c in message.category.all %}
-                <span class="btn btn-info btn-xs disabled">{{ c.name }}</span>
-            {% endfor %}
-            </div>
+            {{ message.message }}
             {% if message.photos %}
             <div class="vm_pics">
                 {% for p in message.photo %}
@@ -49,6 +43,13 @@
             </div>
             {% endif %}
             {% include 'external/vk_comments.html' %}
+        </div>
+        <div class="panel-footer">
+            <span class="glyphicon glyphicon-tags"></span>
+            {% trans "Categories" %}:
+            {% for c in message.category.all %}
+                <span class="btn btn-primary btn-xs disabled">{{ c.name }}</span>
+            {% endfor %}
         </div>
     </div>
 </div>
