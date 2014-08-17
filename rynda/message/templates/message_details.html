@@ -126,7 +126,7 @@ window.addEventListener("map:init", function(e){
     var detail = e.detail;
     var layer = L.geoJson({{ message.linked_location.coordinates.json|safe }}).addTo(detail.map);
     detail.map.fitBounds(layer.getBounds());
-    //detail.map.setZoom(12);
+    detail.map.setZoom(12);
 });
 </script>
 {% endblock %}
