@@ -31,7 +31,7 @@
         <span class="darkGrey fs10">
             {{m.date_add|date:"SHORT_DATE_FORMAT"}} | <a href="/message/?georegion={{ m.georegion }}" title="{% blocktrans with geoname=m.georegion__name %}All messages from «{{ geoname }}»{% endblocktrans %}">{{ m.georegion__name }}</a>
             {% for c in m.category.all %}
-            <a href='#' class="label label-info">{{ c }}</a>
+            <a href='#' class="rynda-tag">{{ c }}</a>
             {% endfor %}
         </span>
     </div>

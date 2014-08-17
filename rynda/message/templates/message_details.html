@@ -46,7 +46,7 @@
             <span class="glyphicon glyphicon-tags"></span>
             {% trans "Categories" %}:
             {% for c in message.category.all %}
-                <span class="btn btn-primary btn-xs disabled">{{ c.name }}</span>
+                <span class="rynda-tag">{{ c.name }}</span>
             {% endfor %}
         </div>
     </div>
