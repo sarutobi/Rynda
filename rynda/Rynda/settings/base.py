@@ -174,7 +174,6 @@ INSTALLED_APPS = (
     'message',
     'users',
     'geozones',
-    'feed',
     'api',
 )
 

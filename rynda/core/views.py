@@ -2,12 +2,32 @@
 
 from django.shortcuts import render
 
+from django.contrib.syndication.views import Feed
+from django.core.urlresolvers import reverse_lazy
+from django.utils.translation import ugettext_lazy as _
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, FormView
 from django.views.generic.list import ListView
 
 from core.mixins import (
     PaginatorMixin, QueryStringMixin, ExternalScriptsMixin)
+
+from message.models import Message
+
+
+class NewMessagesFeed(Feed):
+    title = _("Last messages")
+    description = _("Latest messages")
+    link = reverse_lazy("messages-list")
+
+    def item_title(self, item):
+        return item.title
+
+    def item_description(self, item):
+        return item.message
+
+    def items(self):
+        return Message.objects.active().all()[:10]
 
 
 class RyndaCreateView(CreateView):

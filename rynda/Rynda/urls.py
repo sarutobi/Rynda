@@ -3,6 +3,7 @@
 from django.conf.urls import patterns, include, url
 from django.contrib import admin
 
+from core.views import NewMessagesFeed
 from users.views import CreateUser
 
 admin.autodiscover()
@@ -12,6 +13,10 @@ urlpatterns = patterns('',
     url(r'', include('social_auth.urls')),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^grappelli/', include('grappelli.urls')),
+)
+
+urlpatterns = patterns('core.views',
+    url(r'^feed/$', NewMessagesFeed(),),
 )
 
 # Rynda-related patterns

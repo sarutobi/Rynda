@@ -3,6 +3,7 @@
 from django.contrib.auth.models import User
 from django.contrib.gis.db import models
 from django.contrib.gis.db.models.query import GeoQuerySet
+from django.core.urlresolvers import reverse_lazy
 from django.utils.translation import ugettext_lazy as _
 
 import django_filters
@@ -212,6 +213,9 @@ class Message(models.Model):
             return "%s %s." % (first_name, last_name[0])
         else:
             return "%s %s" % (first_name, last_name)
+
+    def get_absolute_url(self):
+        return reverse_lazy("message-details", args=[str(self.id)])
 
 
 class MessageSideFilter(django_filters.FilterSet):
