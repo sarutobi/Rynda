@@ -203,6 +203,16 @@ class Message(models.Model):
         self.full_clean()
         super(Message, self).save(*args, **kwargs)
 
+    def get_sender_name(self):
+        """ Format sender name based on is_anonymous flag """
+
+        first_name = self.additional_info['first_name'].capitalize()
+        last_name = self.additional_info['last_name'].capitalize()
+        if self.is_anonymous:
+            return "%s %s." % (first_name, last_name[0])
+        else:
+            return "%s %s" % (first_name, last_name)
+
 
 class MessageSideFilter(django_filters.FilterSet):
     """ Message list side filter """
