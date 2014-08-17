@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load i18n %}
+{% load leaflet_tags %}
 
 {% block hubs %}
     {% include 'widgets/base_hub.html' with part='message' %} 
@@ -20,17 +21,17 @@
     <!-- Left pane -->
     <div class="panel panel-default" id="vm_1_column">
         <div class="panel-heading">
-            <h2 class="h24 allcaps mb10">
+            <div class="pull-right">
+            {% if message.status >= 3 %}
+                <span class="glyphicon glyphicon-check"></span>
+            {% endif %}	
+            {{ message.get_status_display }}
+            </div>
+            <h3 class="panel-title">
                 {{ message.title }}
             </h2>
-            {% if message.status >= 3 %}
-                <div id="messageVerified">{{ message.get_status_display }}</div>
-            {% elif message.status == 2 %}
-                <div id="messageUnverified">{{ message.get_status_display }}</div>
-            {% endif %}	
         </div>
         <div class="panel-body">
-            <div class="grey">{{ message.date_add|date:"d.m.Y г. H:i (e)" }}</div>
             <div class="vm_main_text rounded_all">{{ message.message|safe }}</div>
             <div class="vm_categories">
                 {% trans "Categories" %}:
@@ -55,59 +56,77 @@
 
 <!-- Right pane -->
 <div class="col-md-4">
-    <div class="panel panel-default" id="vm_2_column">
-        <div class="panel-body">
-            <ul class="list-group">
-                <li class="list-group-item">
-                    {% trans "From:" as from %}
-                    {% if not message.is_anonymous %}
-                    {{ from }}
-                        <strong>
-                            {{ message.additional_info.first_name|capfirst }} {{ message.additional_info.last_name|capfirst }}
-                        </strong>
-                        <div id="contactsData">
-                            <span class="phone-ico mr10"></span>{{ message.additional_info.phone }}<br />
-                            <span class="glyphicon glyphicon-envelope"></span>
-                            <a href="mailto:{{ message.contact_mail }}">{{ message.additional_info.email }}</a>
-                        </div>
-                    {% else %}
-                        {{ from }}
-                        <strong>
-                            {{ message.additional_info.first_name|capfirst }} {{message.additional_info.last_name|capfirst|slice:":1" }}.
-                        </strong>
-                        <br />
+    <div class="panel-group" id="vm_2_column">
+        <div class="panel panel-default">
+            <div class="panel-body">
+                <ul class="list-group">
+                    <li class="list-group-item">
+                        <strong>{% trans "Received:" %}</strong> {{ message.date_add }}
+                    </li>
+                    <li class="list-group-item">
+                        <strong>{% trans "From:" %}</strong> {{ message.get_sender_name }}
+                    </li>
+
+                    {% if message.is_anonymous %}
+                    <li class="list-group-item">
                         {% blocktrans %}
                         This user preferred to hide contacts. You can use comments to communicate with him.
                         {% endblocktrans %}
+                    </li>
+                    {% else %}
+                    <li class="list-group-item">
+                        <span class="glyphicon glyphicon-earphone"></span>
+                        {{ message.additional_info.phone }}
+                    </li>
+                    <li class="list-group-item">
+                        <span class="glyphicon glyphicon-envelope"></span>
+                        <a href="mailto:{{ message.additional_info.email }}">{{ message.additional_info.email }}</a>
+                    </li>
                     {%endif%}
-                    <br />
-                </li>
-            </ul>
-        </div>
-        {% if message.location.name or message.location.regionId %}
-            <strong>{% trans "On map:" %}</strong>
-            {{message.locationId.name}} {{message.locationId.regionId}}
-        {% endif %}
-
-        {% trans "Region:" %} {{ message.georegion }}<br />
-        {% trans "Address:" %} {{ message.address }}<br />
-            <div id="locationMap">
-                <div id="locationMapCanvas" class="mt10" style="width: 410px; height: 250px;"></div>
+                </ul>
             </div>
-            <div id="messageLat" style="display:none;">{{ message.locationId.latitude}}</div>
-            <div id="messageLng" style="display:none;">{{ message.locationId.longitude}}</div>
+        </div>
+
+        {% if not message.is_virtual %}
+        <div class="panel panel-default">
+            <div class="panel-heading">
+                <h3 class="panel-title">{% trans "On map" %}</h3>
+            </div>
+
+            <div class="panel-body">
+                <ul class="list-group">
+                    <li class="list-group-item">
+                        <strong>{% trans "Region:" %}</strong>
+                        {{ message.location.region|default:"Unknown" }}
+                    </li>
+                    <li class="list-group-item">
+                        <strong>{% trans "Address:" %}</strong>
+                        {{ message.linked_location.name }}
+                    </li>
+
+                    <li class="list-group-item">
+                        <div id="messagemap">{% leaflet_map "messagemap" %}</div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        {% endif %}
+        </div>
     </div>
     <!-- Right pane finished -->
 </div>
 {%endblock%}
 
 {% block scripts %}
+{% leaflet_js %}
+{% leaflet_css %}
+
 <script type='text/javascript'>
-$(function(){
-    Rynda.map.createMap('locationMapCanvas');
-    var geopos = new L.LatLng({{ message.location.y|stringformat:"f" }}, {{ message.location.x|stringformat:"f" }});
-    Rynda.map.centerMap(geopos);
-    Rynda.map.addMarker(geopos);
+window.addEventListener("map:init", function(e){
+    var detail = e.detail;
+    var layer = L.geoJson({{ message.linked_location.coordinates.json|safe }}).addTo(detail.map);
+    detail.map.fitBounds(layer.getBounds());
+    //detail.map.setZoom(12);
 });
 </script>
 {% endblock %}
