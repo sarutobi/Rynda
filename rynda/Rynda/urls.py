@@ -15,7 +15,7 @@ urlpatterns = patterns('',
     url(r'^grappelli/', include('grappelli.urls')),
 )
 
-urlpatterns = patterns('core.views',
+urlpatterns += patterns('core.views',
     url(r'^feed/$', NewMessagesFeed(),),
 )
 
