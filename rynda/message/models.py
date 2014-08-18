@@ -209,13 +209,12 @@ class Message(models.Model):
 
         first_name = self.additional_info['first_name'].capitalize()
         last_name = self.additional_info['last_name'].capitalize()
-        if self.is_anonymous:
-            return "%s %s." % (first_name, last_name[0])
-        else:
-            return "%s %s" % (first_name, last_name)
+        if self.is_anonymous and last_name:
+            last_name = last_name[0]
+        return "%s %s" % (first_name, last_name)
 
     def get_absolute_url(self):
-        return reverse_lazy("message-details", args=[str(self.id)])
+        return reverse_lazy("message-details", args=[str(self.pk)])
 
 
 class MessageSideFilter(django_filters.FilterSet):
