@@ -40,7 +40,6 @@
                 {% endfor %}
             </div>
             {% endif %}
-            {% include 'external/vk_comments.html' %}
         </div>
         <div class="panel-footer">
             <span class="glyphicon glyphicon-tags"></span>
@@ -50,6 +49,16 @@
             {% endfor %}
         </div>
     </div>
+    {% if message.allow_feedback %}
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">{% trans "Comments" %}</h3>
+        </div>
+        <div class="panel-body">
+            {% include 'external/vk_comments.html' %}
+        </div>
+    </div>
+    {% endif %}
 </div>
 <!-- Left pane finished-->
 
