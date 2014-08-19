@@ -8,6 +8,16 @@ from django.db import models
 class Migration(SchemaMigration):
 
     def forwards(self, orm):
+        # Adding model 'Category'
+        db.create_table(u'message_category', (
+            (u'id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
+            ('name', self.gf('django.db.models.fields.CharField')(max_length=200, db_column='name')),
+            ('description', self.gf('django.db.models.fields.TextField')(db_column='description', blank=True)),
+            ('slug', self.gf('django.db.models.fields.SlugField')(max_length=255, db_column='slug', blank=True)),
+            ('order', self.gf('django.db.models.fields.SmallIntegerField')(db_column='order')),
+        ))
+        db.send_create_signal(u'message', ['Category'])
+
         # Adding model 'Message'
         db.create_table(u'message_message', (
             (u'id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
@@ -30,7 +40,6 @@ class Migration(SchemaMigration):
             ('edit_key', self.gf('django.db.models.fields.CharField')(max_length=40, blank=True)),
             ('sender_ip', self.gf('django.db.models.fields.IPAddressField')(max_length=15, null=True, blank=True)),
             ('linked_location', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['geozones.Location'], null=True, blank=True)),
-            ('subdomain', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['core.Subdomain'], null=True, db_column='subdomain_id', blank=True)),
         ))
         db.send_create_signal(u'message', ['Message'])
 
@@ -39,7 +48,7 @@ class Migration(SchemaMigration):
         db.create_table(m2m_table_name, (
             ('id', models.AutoField(verbose_name='ID', primary_key=True, auto_created=True)),
             ('message', models.ForeignKey(orm[u'message.message'], null=False)),
-            ('category', models.ForeignKey(orm[u'category.category'], null=False))
+            ('category', models.ForeignKey(orm[u'message.category'], null=False))
         ))
         db.create_unique(m2m_table_name, ['message_id', 'category_id'])
 
@@ -56,6 +65,9 @@ class Migration(SchemaMigration):
 
 
     def backwards(self, orm):
+        # Deleting model 'Category'
+        db.delete_table(u'message_category')
+
         # Deleting model 'Message'
         db.delete_table(u'message_message')
 
@@ -96,24 +108,6 @@ class Migration(SchemaMigration):
             'user_permissions': ('django.db.models.fields.related.ManyToManyField', [], {'symmetrical': 'False', 'related_name': "u'user_set'", 'blank': 'True', 'to': u"orm['auth.Permission']"}),
             'username': ('django.db.models.fields.CharField', [], {'unique': 'True', 'max_length': '30'})
         },
-        u'category.category': {
-            'Meta': {'ordering': "['order']", 'object_name': 'Category'},
-            'color': ('django.db.models.fields.CharField', [], {'default': "'#000000'", 'max_length': '7', 'db_column': "'color'"}),
-            'description': ('django.db.models.fields.TextField', [], {'db_column': "'description'", 'blank': 'True'}),
-            'group': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['category.CategoryGroup']", 'null': 'True', 'blank': 'True'}),
-            'icon': ('django.db.models.fields.CharField', [], {'max_length': '255', 'null': 'True', 'db_column': "'icon'", 'blank': 'True'}),
-            u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-            'name': ('django.db.models.fields.CharField', [], {'max_length': '200', 'db_column': "'name'"}),
-            'order': ('django.db.models.fields.SmallIntegerField', [], {'db_column': "'order'"}),
-            'slug': ('django.db.models.fields.SlugField', [], {'max_length': '255', 'db_column': "'slug'", 'blank': 'True'}),
-            'subdomain': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['core.Subdomain']", 'null': 'True', 'db_column': "'subdomain_id'", 'blank': 'True'})
-        },
-        u'category.categorygroup': {
-            'Meta': {'ordering': "['order']", 'object_name': 'CategoryGroup'},
-            u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-            'name': ('django.db.models.fields.CharField', [], {'max_length': '200'}),
-            'order': ('django.db.models.fields.IntegerField', [], {})
-        },
         u'contenttypes.contenttype': {
             'Meta': {'ordering': "('name',)", 'unique_together': "(('app_label', 'model'),)", 'object_name': 'ContentType', 'db_table': "'django_content_type'"},
             'app_label': ('django.db.models.fields.CharField', [], {'max_length': '100'}),
@@ -121,25 +115,13 @@ class Migration(SchemaMigration):
             'model': ('django.db.models.fields.CharField', [], {'max_length': '100'}),
             'name': ('django.db.models.fields.CharField', [], {'max_length': '100'})
         },
-        u'core.subdomain': {
-            'Meta': {'ordering': "['order']", 'object_name': 'Subdomain'},
-            'disclaimer': ('django.db.models.fields.TextField', [], {'blank': 'True'}),
-            u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-            'isCurrent': ('django.db.models.fields.BooleanField', [], {'db_column': "'is_current'"}),
-            'order': ('django.db.models.fields.IntegerField', [], {}),
-            'status': ('django.db.models.fields.SmallIntegerField', [], {}),
-            'title': ('django.db.models.fields.CharField', [], {'max_length': '50'}),
-            'url': ('django.db.models.fields.CharField', [], {'max_length': '50', 'null': 'True', 'blank': 'True'})
-        },
         u'geozones.location': {
             'Meta': {'object_name': 'Location'},
-            'coordinates': ('django.contrib.gis.db.models.fields.MultiPolygonField', [], {'null': 'True'}),
-            'description': ('django.db.models.fields.CharField', [], {'max_length': '200'}),
+            'coordinates': ('django.contrib.gis.db.models.fields.GeometryCollectionField', [], {'null': 'True'}),
+            'description': ('django.db.models.fields.CharField', [], {'max_length': '200', 'blank': 'True'}),
             u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-            'latitude': ('django.db.models.fields.FloatField', [], {}),
-            'longitude': ('django.db.models.fields.FloatField', [], {'db_column': "'longitude'"}),
             'name': ('django.db.models.fields.CharField', [], {'default': "'Location'", 'max_length': '250'}),
-            'region': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['geozones.Region']"})
+            'region': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['geozones.Region']", 'null': 'True', 'blank': 'True'})
         },
         u'geozones.region': {
             'Meta': {'ordering': "['order']", 'object_name': 'Region'},
@@ -150,11 +132,19 @@ class Migration(SchemaMigration):
             'slug': ('django.db.models.fields.SlugField', [], {'max_length': '50'}),
             'zoom': ('django.db.models.fields.SmallIntegerField', [], {})
         },
+        u'message.category': {
+            'Meta': {'ordering': "['order']", 'object_name': 'Category'},
+            'description': ('django.db.models.fields.TextField', [], {'db_column': "'description'", 'blank': 'True'}),
+            u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
+            'name': ('django.db.models.fields.CharField', [], {'max_length': '200', 'db_column': "'name'"}),
+            'order': ('django.db.models.fields.SmallIntegerField', [], {'db_column': "'order'"}),
+            'slug': ('django.db.models.fields.SlugField', [], {'max_length': '255', 'db_column': "'slug'", 'blank': 'True'})
+        },
         u'message.message': {
             'Meta': {'ordering': "['-date_add']", 'object_name': 'Message'},
             'additional_info': ('jsonfield.fields.JSONField', [], {'default': "''", 'blank': 'True'}),
             'allow_feedback': ('django.db.models.fields.BooleanField', [], {'default': 'True'}),
-            'category': ('django.db.models.fields.related.ManyToManyField', [], {'symmetrical': 'False', 'to': u"orm['category.Category']", 'null': 'True', 'blank': 'True'}),
+            'category': ('django.db.models.fields.related.ManyToManyField', [], {'symmetrical': 'False', 'to': u"orm['message.Category']", 'null': 'True', 'blank': 'True'}),
             'date_add': ('django.db.models.fields.DateTimeField', [], {'auto_now_add': 'True', 'db_column': "'date_add'", 'blank': 'True'}),
             'edit_key': ('django.db.models.fields.CharField', [], {'max_length': '40', 'blank': 'True'}),
             'expired_date': ('django.db.models.fields.DateTimeField', [], {'null': 'True', 'blank': 'True'}),
@@ -171,7 +161,6 @@ class Migration(SchemaMigration):
             'sender_ip': ('django.db.models.fields.IPAddressField', [], {'max_length': '15', 'null': 'True', 'blank': 'True'}),
             'source': ('django.db.models.fields.CharField', [], {'max_length': '255', 'blank': 'True'}),
             'status': ('django.db.models.fields.SmallIntegerField', [], {'default': '1', 'null': 'True', 'blank': 'True'}),
-            'subdomain': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['core.Subdomain']", 'null': 'True', 'db_column': "'subdomain_id'", 'blank': 'True'}),
             'title': ('django.db.models.fields.CharField', [], {'max_length': '200', 'blank': 'True'}),
             'user': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['auth.User']", 'db_column': "'user_id'"})
         },
