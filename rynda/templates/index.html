@@ -50,14 +50,14 @@ $(function(){
 
 window.addEventListener("map:init", function(e){
     var detail = e.detail;
-    var layer = L.geoJson().addTo(detail.map);
     $.ajax({
-        url: '{% url "get-map-markers" %}',
-        context: layer 
+        url: '{% url "get-map-markers" %}'
     }).done(function(data) {
         var that = this;
         $.each(data, function(i, item) {
-            that.addData(item.location);     
+            var layer = L.geoJson(item.location).addTo(detail.map);
+            var msg = "<a href='/message/" + item.id + "'>" + item.title + "</a>";
+            layer.bindPopup(msg);
         });      
     });
 });
