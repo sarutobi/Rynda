@@ -141,6 +141,7 @@ class CreateOffer(SaveGeoDataMixin, RyndaCreateView):
     template_name = "offer_form.html"
     model = Message
     form_class = OfferForm
+    success_url = reverse_lazy('messages-list')
 
 
 class MessageView(RyndaDetailView):
