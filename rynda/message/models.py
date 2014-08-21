@@ -250,14 +250,6 @@ class MessageSideFilter(django_filters.FilterSet):
     )
 
 
-class MessageIndexFilter(django_filters.FilterSet):
-    class Meta:
-        model = Message
-        fields = ['date_add', ]
-
-    date_add = django_filters.DateRangeFilter()
-
-
 class MessageNotes(models.Model):
     """ Moderator notes for message """
 
