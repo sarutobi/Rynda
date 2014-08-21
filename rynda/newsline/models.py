@@ -9,6 +9,10 @@ from django.utils.translation import ugettext_lazy as _
 
 class Post(models.Model):
     """ One site news item """
+    class Meta:
+        verbose_name = _("Post")
+        verbose_name_plural = _("Posts")
+        ordering = ["-publish", ]
 
     DRAFT = 0
     PUBLISHED = 1
