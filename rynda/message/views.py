@@ -14,7 +14,7 @@ from core.views import (RyndaCreateView, RyndaDetailView, RyndaFormView,
 from geozones.forms import LocationForm
 from geozones.models import Region
 from message.forms import RequestForm, OfferForm
-from message.models import Message, MessageIndexFilter, MessageSideFilter
+from message.models import Message, MessageSideFilter, MapMessageFilter
 
 MAX_PANE_MESSAGES = 5
 
@@ -56,11 +56,10 @@ def list(request, slug='all'):
         'index.html',
         {
             'regions': Region.objects.filter(id__gt=0),
-            'filter': MessageIndexFilter(
-                request.GET, Message.objects.active().list().all()),
             'requests': last_requests,
             'offers': last_offers,
             'completed': last_completed,
+            'filter': MapMessageFilter()
         },)
 
 

@@ -250,6 +250,27 @@ class MessageSideFilter(django_filters.FilterSet):
     )
 
 
+class MapMessageFilter(django_filters.FilterSet):
+    """ Main page map messages filter """
+    class Meta:
+        model = Message
+        fields = ['mtype', 'category', ]
+
+    mtype = django_filters.MultipleChoiceFilter(
+        name='messageType',
+        label=_("Message type"),
+        choices=Message.TYPES_CHOICE,
+        widget=forms.CheckboxSelectMultiple()
+    )
+
+    category = django_filters.ModelMultipleChoiceFilter(
+        name="category",
+        label=_("Category"),
+        widget=forms.CheckboxSelectMultiple(),
+        queryset=Category.objects.all()
+    )
+
+
 class MessageNotes(models.Model):
     """ Moderator notes for message """
 
