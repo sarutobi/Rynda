@@ -22,3 +22,6 @@ class Post(models.Model):
     publish = models.DateTimeField(_("Publish"), default=datetime.datetime.now)
     status = models.IntegerField(_("Status"), choices=STATUS)
     author = models.ForeignKey(User, verbose_name=_("Author"),)
+
+    def __unicode__(self):
+        return self.title

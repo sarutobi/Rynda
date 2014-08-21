@@ -3,4 +3,10 @@
 from django.contrib import admin
 from .models import Post
 
-admin.site.register(Post)
+
+class PostAdmin(admin.ModelAdmin):
+    list_display = ('title', 'author', 'status', 'publish', )
+    list_filter = ('status', 'publish')
+    search_fields = ('title', 'post')
+
+admin.site.register(Post, PostAdmin)
