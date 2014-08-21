@@ -16,7 +16,7 @@ urlpatterns = patterns('',
 )
 
 urlpatterns += patterns('core.views',
-    url(r'^feed/$', NewMessagesFeed(),),
+    url(r'^feed/$', NewMessagesFeed(), name="feed-new-messages"),
 )
 
 # Rynda-related patterns
