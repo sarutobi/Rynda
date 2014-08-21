@@ -175,6 +175,7 @@ INSTALLED_APPS = (
     'users',
     'geozones',
     'api',
+    'newsline',
 )
 
 AUTHENTICATION_BACKENDS = (
