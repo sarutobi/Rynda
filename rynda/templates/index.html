@@ -17,26 +17,45 @@
         <div class="panel-body"></div>
     </div>
 </div>
-<div id="locationMap" class="mainPageMapCont clearfix">
-    <div id="mapWithoutFilterForm"  class="row" {% if request.session.ryndaorg_main_map_shown == 0 %}style="display:none;"{% endif %}>
-        <div id="locationMapCanvas" class="col-md-9">{% leaflet_map "indexmap" %}</div>
-        <div id='mainPageFilter' class='col-md-3'>
-            <div class="panel panel-default">
-                <div class="panel-body">
-                <div class="form-group">
-                    {{ filter.form.mtype.label_tag }}
-                    {{ filter.form.mtype|add_class:"form-control" }}
-                </div>
+<!-- Map row -->
+<div id="mapWithFilterForm"  class="row" >
+    <div class="panel panel-primary">
+        <div class="panel panel-heading">
+            <h3 class="panel-title">{% trans "Messages on map" %}</h3>
+        </div>
+        <div class="panel-body">
+            <div id="locationMapCanvas" class="col-md-9">{% leaflet_map "indexmap" %}</div>
+            <div id='mainPageFilter' class='col-md-3'>
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">{% trans "Map filters" %}</h3>
+                    </div>
 
-                <div class="form-group">
-                    {{ filter.form.category.label_tag }}
-                    {{ filter.form.category|add_class:"form-control" }}
-                </div>
+                    <div class="panel-body">
+                        <ul class="nav nav-tabs" role="tablist">
+                            <li class="active"><a href="#mtype" role="tab" data-toggle="tab">{% trans "Message type" %}</a></li>
+                            <li><a href="#category" role="tab" data-toggle="tab">{% trans "Category" %}</a></li>
+                        </ul>
+
+                        <div class="tab-content">
+                            <div class="tab-pane active" id="mtype">
+                                <div class="form-group">
+                                    {{ filter.form.mtype|add_class:"form-control" }}
+                                </div>
+                            </div>
+                            <div class="tab-pane" id="category">
+                                <div class="form-group">
+                                    {{ filter.form.category|add_class:"form-control" }}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
+<!-- Map row finished -->
 
 {% if disclaimer %}
 <div id="disclaimer" class="rounded_all g720 clearfix">{{ disclaimer }}</div>
