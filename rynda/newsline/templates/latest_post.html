@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block maincontent %}
+<div class="row">
+    <div class="col-md-10 col-md-offset-1">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h3 class="panel-title">{% trans "Site news" %}</h3>
+            </div>
+
+            <div class="panel-body">
+                {% for m in posts %}
+                <div class="panel panel-default">
+                    <div class="panel-heading">
+                        <h3 class="panel-title">{{ m.title }}</h3>
+                    </div>
+                    <div class="panel-body">{{ m.post }}</div>
+                    <div class="panel-footer">
+                        <strong>{% trans "Posted at:" %}</strong> {{ m.publish }} |
+                        <strong>{% trans "Last edit at:" %}</strong> {{ m.modified }}
+                        <p class="pull-right">
+                            <strong>{% trans "Author:" %}</strong> {{ user.get_full_name }}
+                        </p>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
