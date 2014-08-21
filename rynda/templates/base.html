@@ -99,10 +99,11 @@
             <div class="row">
                 <div id="footer_navigation" class='col-md-12'>
                     <ul class="footer_nav">
-                        <li><a href="{% url "main-index" %}">На главную</a></li>
+                        <li><a href="{% url "main-index" %}">{% trans "Home" %}</a></li>
                         <li><a href="/pomogite/pomogli">{% trans "Help was found" %}</a></li>
                         <li><a href="/org">{% trans "Organizations" %}</a></li>
-                        <li><a class="rss_feed" href="{% url "feed-new-messages" %}">{% trans "RSS feed" %}</a></li>
+                        <li><a href="{% url "feed-new-messages" %}">{% trans "RSS feed" %}</a></li>
+                        <li><a href="{% url "news-list-view" %}">{% trans "Site news" %}</a></li>
                         <li><a href="{% url "infopages" %}">{% trans "About us" %}</a></li>
                     </ul>
                 </div>
