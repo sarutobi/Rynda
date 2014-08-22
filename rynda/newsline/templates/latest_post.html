@@ -20,7 +20,7 @@
                         <strong>{% trans "Posted at:" %}</strong> {{ m.publish }} |
                         <strong>{% trans "Last edit at:" %}</strong> {{ m.modified }}
                         <p class="pull-right">
-                            <strong>{% trans "Author:" %}</strong> {{ user.get_full_name }}
+                            <strong>{% trans "Author:" %}</strong> {{ m.author.get_full_name }}
                         </p>
                     </div>
                 </div>
