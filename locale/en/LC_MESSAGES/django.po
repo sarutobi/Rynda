@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-08-20 21:43+0400\n"
+"POT-Creation-Date: 2014-08-24 19:25+0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -174,6 +174,7 @@ msgid "Additional info"
 msgstr ""
 
 #: rynda/message/models.py:117 rynda/message/models.py:228
+#: rynda/message/models.py:261 rynda/templates/index.html:36
 msgid "Message type"
 msgstr ""
 
@@ -225,7 +226,8 @@ msgstr ""
 msgid "message categories"
 msgstr ""
 
-#: rynda/message/models.py:235
+#: rynda/message/models.py:235 rynda/message/models.py:268
+#: rynda/templates/index.html:37
 msgid "Category"
 msgstr ""
 
@@ -237,23 +239,23 @@ msgstr ""
 msgid "Keywords"
 msgstr ""
 
-#: rynda/message/models.py:265
+#: rynda/message/models.py:278 rynda/newsline/models.py:27
 msgid "Author"
 msgstr ""
 
-#: rynda/message/models.py:266
+#: rynda/message/models.py:279
 msgid "Note"
 msgstr ""
 
-#: rynda/message/models.py:270
+#: rynda/message/models.py:283
 msgid "Created at"
 msgstr ""
 
-#: rynda/message/models.py:274
+#: rynda/message/models.py:287
 msgid "Last edit"
 msgstr ""
 
-#: rynda/message/models.py:277
+#: rynda/message/models.py:290
 #, python-format
 msgid "Note from %(user)s to message %(msgid)d"
 msgstr ""
@@ -270,13 +272,14 @@ msgstr ""
 msgid "Assistance provided"
 msgstr ""
 
-#: rynda/message/views.py:166 rynda/message/templates/all_messages.html:11
+#: rynda/message/views.py:165 rynda/message/templates/all_messages.html:11
 #: rynda/message/templates/message_details.html:12
 msgid "Message list"
 msgstr ""
 
 #: rynda/message/templates/all_messages.html:10
 #: rynda/message/templates/message_details.html:11
+#: rynda/templates/base.html:103
 #: rynda/templates/registration/password_change_form.html:6
 #: rynda/users/templates/user_profile.html:10
 msgid "Home"
@@ -365,6 +368,58 @@ msgstr ""
 msgid "Search"
 msgstr ""
 
+#: rynda/newsline/models.py:12 rynda/newsline/models.py:22
+msgid "Post"
+msgstr ""
+
+#: rynda/newsline/models.py:13
+msgid "Posts"
+msgstr ""
+
+#: rynda/newsline/models.py:19
+msgid "draft"
+msgstr ""
+
+#: rynda/newsline/models.py:19
+msgid "published"
+msgstr ""
+
+#: rynda/newsline/models.py:21
+msgid "title"
+msgstr ""
+
+#: rynda/newsline/models.py:23
+msgid "Created"
+msgstr ""
+
+#: rynda/newsline/models.py:24
+msgid "Modified"
+msgstr ""
+
+#: rynda/newsline/models.py:25
+msgid "Publish"
+msgstr ""
+
+#: rynda/newsline/models.py:26
+msgid "Status"
+msgstr ""
+
+#: rynda/newsline/templates/latest_post.html:9 rynda/templates/base.html:107
+msgid "Site news"
+msgstr ""
+
+#: rynda/newsline/templates/latest_post.html:20
+msgid "Posted at:"
+msgstr ""
+
+#: rynda/newsline/templates/latest_post.html:21
+msgid "Last edit at:"
+msgstr ""
+
+#: rynda/newsline/templates/latest_post.html:23
+msgid "Author:"
+msgstr ""
+
 #: rynda/templates/base.html:14
 msgid "Virtual Bell"
 msgstr ""
@@ -386,48 +441,48 @@ msgstr ""
 msgid "Logout"
 msgstr ""
 
-#: rynda/templates/base.html:58
+#: rynda/templates/base.html:67
 msgid "Create offer for help"
 msgstr ""
 
-#: rynda/templates/base.html:58
+#: rynda/templates/base.html:67
 msgid "I want to help"
 msgstr ""
 
-#: rynda/templates/base.html:59
+#: rynda/templates/base.html:68
 msgid "Create request for help"
 msgstr ""
 
-#: rynda/templates/base.html:59
+#: rynda/templates/base.html:68
 msgid "Help needed"
 msgstr ""
 
-#: rynda/templates/base.html:61
+#: rynda/templates/base.html:70
 #, python-format
 msgid "%(SITE_NAME)s — portal for volunteers"
 msgstr ""
 
-#: rynda/templates/base.html:79
+#: rynda/templates/base.html:91
 msgid "Communications"
 msgstr ""
 
-#: rynda/templates/base.html:92
+#: rynda/templates/base.html:104
 msgid "Help was found"
 msgstr ""
 
-#: rynda/templates/base.html:93 rynda/templates/widgets/base_hub.html:3
+#: rynda/templates/base.html:105 rynda/templates/widgets/base_hub.html:3
 msgid "Organizations"
 msgstr ""
 
-#: rynda/templates/base.html:94
+#: rynda/templates/base.html:106
 msgid "RSS feed"
 msgstr ""
 
-#: rynda/templates/base.html:95
+#: rynda/templates/base.html:108
 msgid "About us"
 msgstr ""
 
-#: rynda/templates/base.html:99
+#: rynda/templates/base.html:112
 msgid "«Virtual Bell - Atlas of Assistance» platform, 2011-2014. License"
 msgstr ""
 
@@ -467,8 +522,16 @@ msgstr ""
 msgid "Next"
 msgstr ""
 
-#: rynda/templates/index.html:15
+#: rynda/templates/index.html:16
 msgid "How it works"
+msgstr ""
+
+#: rynda/templates/index.html:24
+msgid "Messages on map"
+msgstr ""
+
+#: rynda/templates/index.html:31
+msgid "Map filters"
 msgstr ""
 
 #: rynda/templates/infopages_list.html:14
