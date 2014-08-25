@@ -19,12 +19,6 @@ class SimpleRegistrationFormTest(TestCase):
             'password1': '123',
             'password2': '123'
         }
-        self.user = UserFactory()
-
-    def tearDown(self):
-        self.data = None
-        self.user.delete()
-        Profile.objects.all().delete()
 
     def test_user_creation(self):
         form = SimpleRegistrationForm(self.data)
@@ -64,7 +58,8 @@ class SimpleRegistrationFormTest(TestCase):
                          form['last_name'].errors)
 
     def test_existing_email(self):
-        self.data['email'] = self.user.email
+        user = UserFactory()
+        self.data['email'] = user.email
         form = SimpleRegistrationForm(self.data)
         self.assertTrue(form.is_bound)
         self.assertFalse(form.is_valid())
