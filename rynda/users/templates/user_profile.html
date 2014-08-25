@@ -17,8 +17,8 @@
 <div class="col-md-10 col-md-offset-1">
     <div id="user_profile_container" class="panel panel-primary">
         <div class="panel-heading clearfix">
-            <h1 class="panel-title pull-left" style="padding-top:7px;">{% blocktrans with name=u.get_full_name|default:u.email %}User profile for {{ name }}{% endblocktrans %}</h3>
-            {% if user.id = u.id %}
+            <h3 class="panel-title pull-left" style="padding-top:7px;">{% blocktrans with name=u.get_full_name|default:u.email %}User profile for {{ name }}{% endblocktrans %}</h3>
+            {% if user.id=u.id %}
             <div class="pull-right">
                 <a href="/user/edit/{{ user.id }}" class="btn btn-primary">{%trans "Edit profile" %}</a>
             </div>
@@ -34,8 +34,8 @@
                     <div id="user_profile_left_column_shortData">
                         <div class="UP_left_column_shortData_cont">
                             <span class="darkGrey">{% trans "Sex:" %}</span>
-                            {% if u.gender = 1 %}{% trans "Male" %} 
-                            {% elif u.gender = 2 %}{% trans "Female" %}
+                            {% if u.gender=1 %}{% trans "Male" %}
+                            {% elif u.gender=2 %}{% trans "Female" %}
                             {% else %}{% trans "Unknown" %}{% endif %}
                         </div>
                         <br />
@@ -67,7 +67,7 @@
                         </div>
                     </div>
                     <div class="panel panel-default">
-                        <div id="contactsData" {% if u = users %}style="display:none"{% endif %} class="panel-body">
+                        <div id="contactsData" {% if u=users %}style="display:none"{% endif %} class="panel-body">
                             <ul class="list-group">
                                 <li class="list-group-item">
                                     <span class="glyphicon glyphicon-envelope"></span> 
@@ -125,7 +125,7 @@
                             </div>
                             {% endif %}
 
-                            <h4><span>
+                            <h4>
                                 Сообщения пользователя <div id="messagesCount"></div>
                             </h4>
                             <div id="messageList_container">

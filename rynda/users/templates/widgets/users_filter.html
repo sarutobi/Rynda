@@ -22,7 +22,7 @@
         <select name="filterRegion" id="filterRegion" class="form-control">
             <option value="">{% trans "All regions" %}</option>
         {% for r in regions %}
-            <option value="{{r.id}}" {% if current_id == r.id %}'selected'{% endif %}>{{r.name}}</option>
+            <option value="{{r.id}}" {% if current_id == r.id %}"selected"{% endif %}>{{r.name}}</option>
         {% endfor %}
         </select>
     </div>
