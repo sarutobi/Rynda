@@ -1,0 +1,46 @@
+// Top decorative panels
+#top_panel {
+  z-index: -10;
+  height: 30px;
+  background: #568895 url(../img/auth_bg.png) repeat-x;
+  color: #C8E2E9;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+#navigation_panel {
+    z-index: -10;
+    background: url("../img/navigation.png") repeat scroll 0 0 #FCFDFE;
+    color: #8D8C8C;
+    height: 52px;
+    position: absolute;
+    top: 30px;
+    left: 0;
+    width: 100%;
+}
+
+// Main items
+#navigation {
+    height: 52px;
+    color: #8D8C8C;
+}
+
+#footer_navigation {
+    margin: 10px auto;
+}
+
+ul.footer_nav {
+    margin:0 auto;
+    width: 60%;
+    list-style-type: none;
+    li {
+        padding: 0px 8px;
+        float: left;
+        background: url(../img/top_nav_brdr.png) no-repeat right;
+        &:last-child {
+            background: none;
+        }
+    }
+}
