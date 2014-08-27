@@ -7,3 +7,4 @@
 local_*.py
 htmlcov/
 mailbox/
+node_modules/
