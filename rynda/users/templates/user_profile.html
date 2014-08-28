@@ -26,46 +26,34 @@
         </div>
 
         <div class="panel-body">
-            <div class="row" id="user_profile_warp2_container">
+            <div class="row">
                 <div class="col-md-4">
-                    <div id="avatar_container">
-                        <img class="img-circle" src="{{STATIC_URL}}{{user.url|default:'/img/anonymous.png'}}" />
-                    </div>
-                    <div id="user_profile_left_column_shortData">
-                        <div class="UP_left_column_shortData_cont">
-                            <span class="darkGrey">{% trans "Sex:" %}</span>
-                            {{ u.profile.get_gender_display }}
-                        </div>
-                        <br />
-                        {% if u.about_me %}
-                        <div class="UP_left_column_shortData_cont">
-                            <span class="darkGrey">{% trans "About myself" %}</span>
-                            {{u.about_me}}
-                        </div>
-                        {% endif %}
-                        <br />
-                    </div>
+                    <ul class="list-group">
+                        <li id="avatar_container" class="list-group-item">
+                            <img class="img-circle center-block" src="{{STATIC_URL}}{{user.url|default:'/img/anonymous.png'}}" />
+                        </li>
+                        
+                        <li class="list-group-item">
+                        {% trans "Registration date:" %} {{ u.date_joined|date:"SHORT_DATE_FORMAT" }}</li>
+
+                        <li class="list-group-item">
+                        {% trans "Last login:" %} {{ u.last_login|date:"SHORT_DATE_FORMAT" }}</li>
+                    </ul>
                 </div>
                 <div class="col-md-8">
                     <div class="panel panel-default" id="user_profile_box_container">
                         <div class="panel-heading" id="user_FI_Container">
-                            <h3 class="user_FI">
-                                {{ u.get_full_name|default:u.email }}
-                            </h3>
+                            <h3 class="panel-title">{% trans "About me" %}</h3>
                         </div>
                         <div class="panel-body">
-                            <div class="prof_info_container absolute">
-                                <ul class="list-group">
-                                    <li class="list-group-item">
-                                    {% blocktrans with lastlogin=u.last_login|date:"SHORT_DATE_FORMAT" %}Last login: {{ lastlogin }}{% endblocktrans %}</li>
-                                    <li class="list-group-item">
-                                    {% blocktrans with regdate=u.date_joined|date:"SHORT_DATE_FORMAT" %}Registration date: {{ regdate }}{% endblocktrans %}</li>
-                                </ul>
-                            </div>
+                            {{ u.profile.about_me }}
                         </div>
                     </div>
-                    <div class="panel panel-default">
-                        <div id="contactsData" {% if u = users %}style="display:none"{% endif %} class="panel-body">
+                    <div class="panel panel-info">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">{% trans "User's posts" %}</h3>
+                        </div>
+                        <div class="panel-body">
                             <ul class="list-group">
                                 <li class="list-group-item">
                                     <span class="glyphicon glyphicon-envelope"></span> 
@@ -80,12 +68,13 @@
                                 </li>
                             </ul>
                         </div>
-                        {% if u != user %}
-                        <div id="contactsHidden" class="pl20 mt25 mb10 darkGrey ">
-                            {% trans "Contacts are hidden" %}
-                            <div id="showContacts" class="dotted green mt4">{% trans "Open contacts" %}</div>
-                        </div>
-                        {% endif %}
+                    </div> <!-- Right pane end -->
+                </div>
+            </div> <!-- Row end -->
+        </div>
+    </div>
+</div>
+                        {% comment %}
                             {% if soc_profiles %}
                             <h4><span>В соц.сетях:</span></h4>
                             <div id="socialNet_showContainer">
@@ -139,9 +128,9 @@
                            </div>
                         </div>
                     </div>
-                    <div class="clearfix"></div>
                 </div>
             </div>
     </div>
 </div>
+{% endcomment %}
 {% endblock %}
