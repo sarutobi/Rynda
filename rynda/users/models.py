@@ -10,6 +10,7 @@ from django.conf import settings
 from django.db import models
 from django.db.models.signals import post_save
 from django.contrib.auth.models import User
+from django.utils.translation import ugettext_lazy as _
 
 from post_office import mail
 
@@ -41,7 +42,6 @@ class UserAuthCode(object):
         return "%s%s" % (salt, digest)
 
     def is_valid(self, user, auth_code):
-        #import pdb; pdb.set_trace()
         salt = auth_code[:self.salt_len]
         digest = auth_code[self.salt_len:]
 
@@ -54,11 +54,23 @@ class UserAuthCode(object):
 
 
 class Profile(models.Model):
-    '''
+    """
     User profile
-    '''
-    class Meta():
+    """
+    class Meta:
         ordering = ['user']
+        verbose_name = _("Profile")
+        verbose_name_plural = _("Profiles")
+
+    MALE = 1
+    FEMALE = 2
+    UNKNOWN = 0
+
+    SEX_CHOICES = (
+        (UNKNOWN, _("Unknown")),
+        (MALE, _("Male")),
+        (FEMALE, _("Female")),
+    )
 
     user = models.OneToOneField(User)
     forgotCode = models.CharField(
@@ -73,12 +85,11 @@ class Profile(models.Model):
         db_column='forgotten_password_time',
         editable=False,
         null=True)
-#    ref_type = models.IntegerField(db_column='ref_type', default=0)
     flags = models.IntegerField(db_column='flags', editable=False, default=0)
     phones = models.CharField(max_length=255, blank=True)
     about_me = models.TextField(default='', blank=True)
     birthday = models.DateField(blank=True, null=True)
-    gender = models.IntegerField(default=0)
+    gender = models.IntegerField(_("Gender"), choices=SEX_CHOICES, default=UNKNOWN)
 
     def __unicode__(self):
         return "Profile for %s" % self.user.username

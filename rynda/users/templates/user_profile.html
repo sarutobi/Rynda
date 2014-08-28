@@ -34,9 +34,7 @@
                     <div id="user_profile_left_column_shortData">
                         <div class="UP_left_column_shortData_cont">
                             <span class="darkGrey">{% trans "Sex:" %}</span>
-                            {% if u.gender = 1 %}{% trans "Male" %}
-                            {% elif u.gender = 2 %}{% trans "Female" %}
-                            {% else %}{% trans "Unknown" %}{% endif %}
+                            {{ u.profile.get_gender_display }}
                         </div>
                         <br />
                         {% if u.about_me %}
