@@ -247,6 +247,7 @@ class MessageSideFilter(django_filters.FilterSet):
         name='message',
         label=_("Keywords"),
         lookup_type="icontains",
+        widget=forms.SearchInput(),
     )
 
 

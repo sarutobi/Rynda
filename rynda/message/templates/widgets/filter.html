@@ -1,8 +1,8 @@
-{% load widget_tweaks %}
-{% load i18n %}
-{% load floppyforms %}
+{% load i18n floppyforms %}
 
 <form id="filterForm" action="" method='get'>
+    {% form filter.form %}
+    {% comment %}
     <div class="form-group">
         {{ filter.form.mtype.label_tag }}
         {{ filter.form.mtype|add_class:"form-control" }}
@@ -22,6 +22,6 @@
         {{ filter.form.q.label_tag }}
         {{ filter.form.q|add_class:"form-control" }}
     </div>
-
+    {% endcomment %}
     <input type="submit" id="filterSubmit" class="btn btn-rynda-default form-control" text="{% trans "Search" %}" />
 </form>
