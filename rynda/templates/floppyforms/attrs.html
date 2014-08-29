@@ -1,0 +1,5 @@
+{% if "class" in attrs.keys %}
+{% for name, value in attrs.iteritems %} {{ name }}{% if name == "class" %}="form-control {{ value }}"{% if value != True %}="{{ value }}"{% endif %}{% endif %}{% endfor %}
+{% else %}
+{% for name, value in attrs.iteritems %} {{ name }}{% if value != True %}="{{ value }}"{% endif %}{% endfor %} class="form-control"
+{% endif %} 

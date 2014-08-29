@@ -2,11 +2,11 @@
 
 import dns.exception
 
-from django import forms
 from django.contrib.auth.models import User
 from django.utils.translation import ugettext_lazy as _
 
 import django_filters
+import floppyforms.__future__ as forms
 
 from core.utils import validate_email_domain
 from message.models import Category
