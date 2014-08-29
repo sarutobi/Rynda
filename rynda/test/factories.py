@@ -5,6 +5,15 @@ from factory import django
 
 from django.contrib.auth.models import User
 
+from users.models import Profile
+
+
+class ProfileFactory(django.DjangoModelFactory):
+    class Meta:
+        model = Profile
+
+    user = factory.SubFactory('test.factories.UserFactory', profile=None)
+
 
 class UserFactory(django.DjangoModelFactory):
     FACTORY_FOR = User
@@ -19,3 +28,5 @@ class UserFactory(django.DjangoModelFactory):
     is_active = True
     is_staff = False
     is_superuser = False
+
+    profile = factory.RelatedFactory(ProfileFactory, 'user')
