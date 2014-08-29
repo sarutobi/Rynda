@@ -62,10 +62,7 @@ class Profile(models.Model):
         verbose_name = _("Profile")
         verbose_name_plural = _("Profiles")
 
-    MALE = 1
-    FEMALE = 2
-    UNKNOWN = 0
-
+    MALE, FEMALE, UNKNOWN = (1, 2, 0)
     SEX_CHOICES = (
         (UNKNOWN, _("Unknown")),
         (MALE, _("Male")),
@@ -95,13 +92,6 @@ class Profile(models.Model):
         return "Profile for %s" % self.user.username
 
 
-def create_user_profile(sender, instance, created, **kwargs):
-    if created:
-        Profile.objects.create(user=instance)
-
-post_save.connect(create_user_profile, sender=User)
-
-
 def create_new_user(first_name, last_name, password, email):
     user = User(
         first_name=first_name,
@@ -113,6 +103,7 @@ def create_new_user(first_name, last_name, password, email):
     )
     user.set_password(password),
     user.save()
+    Profile.objects.create(user=user)
     notify_new_user(user)
     return user
 

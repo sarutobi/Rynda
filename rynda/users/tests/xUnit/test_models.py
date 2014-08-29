@@ -16,11 +16,6 @@ class UserAuthCodeTest(TestCase):
         self.encoder = UserAuthCode('secret')
         self.user = UserFactory(is_active=False)
 
-    def tearDown(self):
-        self.encoder = None
-        self.user.delete()
-        self.user = None
-
     def test_user(self):
         self.assertIsNotNone(self.user.date_joined)
         self.assertTrue(self.user.date_joined >= self.user.last_login)
@@ -48,7 +43,7 @@ class UserAuthCodeTest(TestCase):
 
 
 class UserTest(TestCase):
-    '''User-specific tests'''
+    """ User-specific tests """
     def setUp(self):
         self.user = UserFactory.build(
             first_name='Boy',
@@ -105,6 +100,10 @@ class TestUserCreation(TestCase):
             u'Активация учетной записи\n',
             mail.subject
         )
+
+    def test_profile_creation(self):
+        """ User mist have profile """
+        self.assertIsNotNone(self.user.profile)
 
 
 class TestUserActivation(TestCase):
