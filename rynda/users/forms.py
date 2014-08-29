@@ -6,8 +6,10 @@ from django import forms
 from django.contrib.auth.models import User
 from django.utils.translation import ugettext_lazy as _
 
+import django_filters
+
 from core.utils import validate_email_domain
-from users.models import Profile
+from message.models import Category
 
 
 class SimpleRegistrationForm(forms.Form):
@@ -55,3 +57,21 @@ class SimpleRegistrationForm(forms.Form):
         except dns.exception.DNSException, e:
             raise forms.ValidationError(_("Email seems to be wrong"))
         return self.cleaned_data['email']
+
+
+class UserFilter(django_filters.FilterSet):
+    """ Allow filtering user list """
+    class Meta:
+        model = User
+        fields = ['category', ]
+        order_by = (
+            ('get_full_name', 'User Name'),
+            ('date_joined', 'Date joined'),
+        )
+
+    category = django_filters.ModelMultipleChoiceFilter(
+        name="category",
+        label=_("Category"),
+        widget=forms.CheckboxSelectMultiple(),
+        queryset=Category.objects.all()
+    )

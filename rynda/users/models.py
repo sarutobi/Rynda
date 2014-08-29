@@ -8,10 +8,10 @@ import string
 
 from django.conf import settings
 from django.db import models
-from django.db.models.signals import post_save
 from django.contrib.auth.models import User
 from django.utils.translation import ugettext_lazy as _
 
+import django_filters
 from post_office import mail
 
 
@@ -121,13 +121,15 @@ def notify_new_user(user):
     subj = _file_get_contents(file_path % "short.txt")
     text = _file_get_contents(file_path % "email.txt")
     html = _file_get_contents(file_path % "email.html")
+    activation_code = UserAuthCode(settings.SECRET_KEY).auth_code(user)
 
     mail.send(
         [user],
         subject=subj, message=text, html_message=html,
         context={
             'user': user,
-            'activation_code': UserAuthCode(settings.SECRET_KEY).auth_code(user), }
+            'activation_code': activation_code,
+        }
     )
 
 
