@@ -2,6 +2,8 @@
 
 import json
 
+from django.contrib.gis.geos import Point
+
 from rest_framework import serializers
 
 from message.models import Message
@@ -55,7 +57,10 @@ class MapMessageSerializer(serializers.ModelSerializer):
     location = serializers.SerializerMethodField('get_coordinates')
 
     def get_coordinates(self, obj):
+        """ Converts generic geocollection to flat point list """
         if obj.linked_location is not None:
-            coords = obj.linked_location.coordinates.json
-            return json.loads(coords)
+            coords = list()
+            for c in obj.linked_location.coordinates.coords:
+                coords.append(c)
+            return coords
         return None
