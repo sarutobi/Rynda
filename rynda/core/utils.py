@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 import dns.resolver
 
-from django.contrib.auth.models import User
 from post_office import mail
 
 
@@ -20,3 +19,16 @@ def validate_email_domain(email):
     if email != '':
         domain = email.split('@')[1]
         dns.resolver.query(domain, 'MX')
+
+
+def get_client_ip(request):
+    """ Get remote client IP.
+
+    Getting from Froide project https://github.com/stefanw/froide
+    """
+    x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
+    if x_forwarded_for:
+        ip = x_forwarded_for.split(',')[-1].strip()
+    else:
+        ip = request.META.get('REMOTE_ADDR')
+    return ip
