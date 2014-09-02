@@ -1,14 +1,17 @@
+@import "bootstrap/buttons.less";
+@import "bootstrap/utilities.less";
+
 // Site branded buttons
 
 .rynda-btn-default,
 .btn-rynda-default {
-    .button-variant(@white, @rynda-brand-color, darken(@rynda-brand-color, 10%));
+    .button-variant(@white, @rynda-brand-primary, darken(@rynda-brand-primary, 10%));
 }
 
 .rynda-tag {
     .btn();
     .btn-xs();
-    .button-variant(@black, @white, @rynda-brand-color);
+    .button-variant(@black, @white, @rynda-brand-primary);
 }
 
 .rynda-btn-head {
