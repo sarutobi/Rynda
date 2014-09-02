@@ -58,9 +58,8 @@ class MapMessageSerializer(serializers.ModelSerializer):
 
     def get_coordinates(self, obj):
         """ Converts generic geocollection to flat point list """
+        coords = list()
         if obj.linked_location is not None:
-            coords = list()
             for c in obj.linked_location.coordinates.coords:
                 coords.append(c)
-            return coords
-        return None
+        return coords

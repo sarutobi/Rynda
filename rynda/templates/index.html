@@ -89,9 +89,10 @@ window.addEventListener("map:init", function(e){
     }).done(function(data) {
         var that = this;
         $.each(data, function(i, item) {
-            var layer = L.geoJson(item.location).addTo(detail.map);
             var msg = "<a href='/message/" + item.id + "'>" + item.title + "</a>";
-            layer.bindPopup(msg);
+            $.each(item.location, function(i, loc){
+                L.marker(loc).addTo(detail.map).bindPopup(msg);
+            });
         });      
     });
 });
