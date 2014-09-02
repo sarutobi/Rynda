@@ -442,47 +442,6 @@ input[type="button"].btn-block {
   -webkit-transform: translate3d(0, 0, 0);
   transform: translate3d(0, 0, 0);
 }
-.rynda-btn-default {
-  color: #ffffff;
-  background-color: #568895;
-  border-color: #436a75;
-}
-.rynda-btn-default:hover,
-.rynda-btn-default:focus,
-.rynda-btn-default:active,
-.rynda-btn-default.active,
-.open > .dropdown-toggle.rynda-btn-default {
-  color: #ffffff;
-  background-color: #436a75;
-  border-color: #2d474e;
-}
-.rynda-btn-default:active,
-.rynda-btn-default.active,
-.open > .dropdown-toggle.rynda-btn-default {
-  background-image: none;
-}
-.rynda-btn-default.disabled,
-.rynda-btn-default[disabled],
-fieldset[disabled] .rynda-btn-default,
-.rynda-btn-default.disabled:hover,
-.rynda-btn-default[disabled]:hover,
-fieldset[disabled] .rynda-btn-default:hover,
-.rynda-btn-default.disabled:focus,
-.rynda-btn-default[disabled]:focus,
-fieldset[disabled] .rynda-btn-default:focus,
-.rynda-btn-default.disabled:active,
-.rynda-btn-default[disabled]:active,
-fieldset[disabled] .rynda-btn-default:active,
-.rynda-btn-default.disabled.active,
-.rynda-btn-default[disabled].active,
-fieldset[disabled] .rynda-btn-default.active {
-  background-color: #568895;
-  border-color: #436a75;
-}
-.rynda-btn-default .badge {
-  color: #568895;
-  background-color: #ffffff;
-}
 .rynda-tag {
   display: inline-block;
   margin-bottom: 0;
