@@ -442,69 +442,44 @@ input[type="button"].btn-block {
   -webkit-transform: translate3d(0, 0, 0);
   transform: translate3d(0, 0, 0);
 }
-.rynda-btn-default,
-.btn-rynda-default {
+.rynda-btn-default {
   color: #ffffff;
   background-color: #568895;
   border-color: #436a75;
 }
 .rynda-btn-default:hover,
-.btn-rynda-default:hover,
 .rynda-btn-default:focus,
-.btn-rynda-default:focus,
 .rynda-btn-default:active,
-.btn-rynda-default:active,
 .rynda-btn-default.active,
-.btn-rynda-default.active,
-.open > .dropdown-toggle.rynda-btn-default,
-.open > .dropdown-toggle.btn-rynda-default {
+.open > .dropdown-toggle.rynda-btn-default {
   color: #ffffff;
   background-color: #436a75;
   border-color: #2d474e;
 }
 .rynda-btn-default:active,
-.btn-rynda-default:active,
 .rynda-btn-default.active,
-.btn-rynda-default.active,
-.open > .dropdown-toggle.rynda-btn-default,
-.open > .dropdown-toggle.btn-rynda-default {
+.open > .dropdown-toggle.rynda-btn-default {
   background-image: none;
 }
 .rynda-btn-default.disabled,
-.btn-rynda-default.disabled,
 .rynda-btn-default[disabled],
-.btn-rynda-default[disabled],
 fieldset[disabled] .rynda-btn-default,
-fieldset[disabled] .btn-rynda-default,
 .rynda-btn-default.disabled:hover,
-.btn-rynda-default.disabled:hover,
 .rynda-btn-default[disabled]:hover,
-.btn-rynda-default[disabled]:hover,
 fieldset[disabled] .rynda-btn-default:hover,
-fieldset[disabled] .btn-rynda-default:hover,
 .rynda-btn-default.disabled:focus,
-.btn-rynda-default.disabled:focus,
 .rynda-btn-default[disabled]:focus,
-.btn-rynda-default[disabled]:focus,
 fieldset[disabled] .rynda-btn-default:focus,
-fieldset[disabled] .btn-rynda-default:focus,
 .rynda-btn-default.disabled:active,
-.btn-rynda-default.disabled:active,
 .rynda-btn-default[disabled]:active,
-.btn-rynda-default[disabled]:active,
 fieldset[disabled] .rynda-btn-default:active,
-fieldset[disabled] .btn-rynda-default:active,
 .rynda-btn-default.disabled.active,
-.btn-rynda-default.disabled.active,
 .rynda-btn-default[disabled].active,
-.btn-rynda-default[disabled].active,
-fieldset[disabled] .rynda-btn-default.active,
-fieldset[disabled] .btn-rynda-default.active {
+fieldset[disabled] .rynda-btn-default.active {
   background-color: #568895;
   border-color: #436a75;
 }
-.rynda-btn-default .badge,
-.btn-rynda-default .badge {
+.rynda-btn-default .badge {
   color: #568895;
   background-color: #ffffff;
 }
