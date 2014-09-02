@@ -1,3 +1,9 @@
+body {
+  background-color: #edf8f8;
+}
+.breadcrumb {
+  background-color: #fcfdfe;
+}
 .btn-default,
 .btn-primary,
 .btn-success,
