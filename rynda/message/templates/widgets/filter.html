@@ -2,26 +2,5 @@
 
 <form id="filterForm" action="" method='get'>
     {% form filter.form %}
-    {% comment %}
-    <div class="form-group">
-        {{ filter.form.mtype.label_tag }}
-        {{ filter.form.mtype|add_class:"form-control" }}
-    </div>
-
-    <div class="form-group">
-        {{ filter.form.category.label_tag }}
-        {{ filter.form.category|add_class:"form-control" }}
-    </div>
-
-    <div class="form-group">
-        {{ filter.form.urgent.label_tag }}
-        {{ filter.form.urgent|add_class:"form-control" }}
-    </div>
-
-    <div class="form-group">
-        {{ filter.form.q.label_tag }}
-        {{ filter.form.q|add_class:"form-control" }}
-    </div>
-    {% endcomment %}
-    <input type="submit" id="filterSubmit" class="btn btn-rynda-default form-control" text="{% trans "Search" %}" />
+    <input type="submit" id="filterSubmit" class="btn rynda-btn-default form-control" text="{% trans "Search" %}" />
 </form>
