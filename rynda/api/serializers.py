@@ -61,5 +61,5 @@ class MapMessageSerializer(serializers.ModelSerializer):
         coords = list()
         if obj.linked_location is not None:
             for c in obj.linked_location.coordinates.coords:
-                coords.append(c)
+                coords.append([c[1], c[0]])
         return coords
