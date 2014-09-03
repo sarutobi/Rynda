@@ -5,9 +5,18 @@
 
 
 .rynda-tag {
-    .btn();
-    .btn-xs();
-    .button-variant(@black, @white, @rynda-brand-primary);
+    display: inline-block;
+    margin-bottom: 0; // For input.btn
+    font-weight: @btn-font-weight;
+    text-align: center;
+    vertical-align: middle;
+    background-image: none; // Reset unusual Firefox-on-Android default style; see https://github.com/necolas/normalize.css/issues/214
+    border: 1px solid transparent;
+    white-space: nowrap;
+    .button-size(@padding-xs-vertical; @padding-xs-horizontal; @font-size-small; @line-height-small; @border-radius-small);
+    color: @black;
+    background-color: @white;
+    border-color: @rynda-brand-primary;
 }
 
 .rynda-btn-head {
@@ -17,12 +26,25 @@
     margin-top: 32px;
     text-transform: uppercase;
     font-weight: bold;
+    color: @white;
+    display: inline-block;
+    text-align: center;
+    vertical-align: middle;
+    background-image: none;
+    border: 1px solid transparent;
+    white-space: nowrap;
     .button-size(28px; 10px; 22px; @line-height-base; @border-radius-base);
     .pull-right();
+
+    &:hover {
+        color: @white;
+        text-decoration: none;
+    }
 }
 
 .rynda-btn-nh {
-    .button-variant(@white, @rynda-btn-nh, darken(@rynda-btn-nh, 10%));
+    background-color: @rynda-btn-nh;
+    border-color: darken(@rynda-btn-nh, 10%);
     #gradient > .vertical(@start-color: @rynda-btn-nh-light; @end-color: @rynda-btn-nh-dark);
 
     &:hover {
@@ -31,7 +53,8 @@
 }
 
 .rynda-btn-wh {
-    .button-variant(@white, @rynda-btn-wh, darken(@rynda-btn-wh, 10%));
+    background-color: @rynda-btn-wh;
+    border-color: darken(@rynda-btn-wh, 10%);
     #gradient > .vertical(@start-color: @rynda-btn-wh-light; @end-color: @rynda-btn-wh-dark);
 
     &:hover {
