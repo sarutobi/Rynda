@@ -1,5 +1,5 @@
 {% if "class" in attrs.keys %}
-{% for name, value in attrs.iteritems %} {{ name }}{% if name == "class" %}="form-control {{ value }}"{% if value != True %}="{{ value }}"{% endif %}{% endif %}{% endfor %}
+{% for name, value in attrs.iteritems %} {{ name }}{% if name == "class" %}="{% if type != "checkbox" %}form-control {% endif %}{{ value }}"{% if value|stringformat:"s" != "True" or value != 1 %}="{{ value }}"{% endif %}{% endif %}{% endfor %}
 {% else %}
-{% for name, value in attrs.iteritems %} {{ name }}{% if value != True %}="{{ value }}"{% endif %}{% endfor %} class="form-control"
+{% for name, value in attrs.iteritems %} {{ name }}{% if value|stringformat:"s" != "True" or value != 1 %}="{{ value }}"{% endif %}{% endfor %} {% if type != "checkbox" %}class="form-control"{% endif %}
 {% endif %} 

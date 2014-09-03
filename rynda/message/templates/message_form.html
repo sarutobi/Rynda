@@ -1,8 +1,5 @@
 {% extends 'base.html'%}
-{% load i18n %}
-
-{% load widget_tweaks %}
-{% load leaflet_tags %}
+{% load i18n leaflet_tags %}
 
 {% block hubs %}
     {% include "widgets/base_hub.html"  with part='message' %}
@@ -47,7 +44,7 @@
                             <div class="form-group has-success">
                         {% endif %}
                                 {{ form.title.label_tag }}
-                                {{ form.title|add_class:"form-control" }}
+                                {{ form.title }}
                             </div>
 
                         {% if form.message.errors %}
@@ -56,7 +53,7 @@
                             <div class="form-group has-success">
                         {% endif %}
                                 *{{ form.message.label_tag }}
-                                {{ form.message|add_class:"form-control" }}
+                                {{ form.message }}
                                 {% if form.message.errors %}
                                 <div id="messageTextError" class="alert alert-danger">{{ form.message.errors }}</div>
                                 {% endif %}
@@ -78,7 +75,7 @@
                         </div>
                         <div class="panel-body">
                             <div class="form-group">
-                                {{ form.category|add_class:"form-control" }}
+                                {{ form.category }}
                             </div>
                         </div>
                     </div>
@@ -94,25 +91,25 @@
                 <div class="panel-body">
                     <div class="form-group">
                         *{{ form.first_name.label_tag }}
-                        {{ form.first_name|add_class:"form-control" }}
+                        {{ form.first_name }}
                     </div>
                     <div id="firstNameError" class="validationError">{{ form.first_name.errors }}</div>
                     
                     <div class="form-group">
                         *{{ form.last_name.label_tag }}
-                        {{ form.last_name|add_class:"form-control" }}
+                        {{ form.last_name }}
                     </div>
                     <div id="lastNameError" class="validationError">{{form.contact_last_name.errors}}</div>
                     
                     <div class="form-group">
                         *{{ form.email.label_tag }}
-                        {{ form.email|add_class:"form-control" }}
+                        {{ form.email }}
                     </div>
                     <div id="emailError" class="validationError">{{ form.email.errors }}</div>
 
                     <div class="form-group">
                         {{ form.phone.label_tag }}
-                        {{ form.phone|add_class:"form-control" }}
+                        {{ form.phone }}
                     </div>
                     <div class="validationError">{{ form.phone.errors }}</div>
 
@@ -130,7 +127,7 @@
                 </div>
                 <div class="panel-body">
                     {{ form.address.label_tag }}
-                    {{ form.address|add_class:"form-control" }}
+                    {{ form.address }}
                     <div class="validationError">{{ form.address.error }}</div>
                     <br />
                     <br />
