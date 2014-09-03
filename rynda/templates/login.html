@@ -1,17 +1,17 @@
 {% extends 'base.html' %}
 {% load url from future %}
-{% load widget_tweaks %}
+{% load i18n widget_tweaks %}
 
 {% block hubs %}
     {% include "widgets/base_hub.html"  with part='user' %}
 {% endblock %}
 
 {% block maincontent %}
-<!-- Контент окна для аутентификации: -->
+<!-- Authentication page -->
 <div class="col-md-6 col-md-offset-3">
     <div class="panel panel-primary">
         <div class="panel-heading">
-            <h2 class="panel-title">Вход в систему</h2>
+            <h2 class="panel-title">{% trans "Login" %}</h2>
         </div>
         <div class="panel-body">
             {% if form.non_field_errors %}
@@ -35,21 +35,21 @@
                         {{ form.password|add_class:"form-control" }}
                         <span class="input-group-addon">
                             <label for="rememberField">
-                                <input tabindex="3" type="checkbox" name="rememberField" id="rememberField" value="1" checked /> Помнить меня
+                                <input tabindex="3" type="checkbox" name="rememberField" id="rememberField" value="1" checked />{% trans "Remember me" %} 
                             </label>
                         </span>
                     </div>
-                    <p class="form-control-static"><a href='/password/reset' >Я забыл пароль</a></p>
+                    <p class="form-control-static"><a href='/password/reset' >{% trans "Password remainder" %}</a></p>
                 </div>
 
                 <div class="panel-footer">
                     <div class="row">
-                        <input tabindex="4" type="submit" id="loginSubmit" class="btn rynda-btn-default btn-block" value="ВОЙТИ" />
+                        <input tabindex="4" type="submit" id="loginSubmit" class="btn rynda-btn-default btn-block" value="{% trans "Login" %}" />
                     </div>
                 </div>
             </form>
         </div>
     </div>
 </div>
-<!-- Контент окна для аутентификации - завершён -->
+<!-- Authentication page end -->
 {%endblock%}
