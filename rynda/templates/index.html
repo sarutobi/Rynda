@@ -1,7 +1,5 @@
 {% extends 'base.html' %}
-{% load i18n %}
-{% load widget_tweaks %}
-{% load leaflet_tags %}
+{% load i18n leaflet_tags %}
 
 {% block hubs %}
     {% include "widgets/base_hub.html"  with part='base' %}
@@ -40,12 +38,12 @@
                         <div class="tab-content">
                             <div class="tab-pane active" id="mtype">
                                 <div class="form-group">
-                                    {{ filter.form.mtype|add_class:"form-control" }}
+                                    {{ filter.form.mtype }}
                                 </div>
                             </div>
                             <div class="tab-pane" id="category">
                                 <div class="form-group">
-                                    {{ filter.form.category|add_class:"form-control" }}
+                                    {{ filter.form.category }}
                                 </div>
                             </div>
                         </div>
