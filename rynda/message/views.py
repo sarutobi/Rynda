@@ -13,8 +13,9 @@ from core.views import (RyndaCreateView, RyndaDetailView, RyndaFormView,
                         RyndaListView)
 from geozones.forms import LocationForm
 from geozones.models import Region
-from message.forms import RequestForm, OfferForm
-from message.models import Message, MessageSideFilter, MapMessageFilter
+from message.forms import (RequestForm, OfferForm,
+                           MessageSideFilter, MapMessageFilter)
+from message.models import Message
 
 MAX_PANE_MESSAGES = 5
 

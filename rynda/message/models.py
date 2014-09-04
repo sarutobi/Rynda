@@ -217,61 +217,6 @@ class Message(models.Model):
         return reverse_lazy("message-details", args=[str(self.pk)])
 
 
-class MessageSideFilter(django_filters.FilterSet):
-    """ Message list side filter """
-    class Meta:
-        model = Message
-        fields = ['mtype', 'category', 'urgent', 'q', ]
-
-    mtype = django_filters.MultipleChoiceFilter(
-        name='messageType',
-        label=_("Message type"),
-        choices=Message.TYPES_CHOICE,
-        widget=forms.CheckboxSelectMultiple()
-    )
-
-    category = django_filters.ModelMultipleChoiceFilter(
-        name="category",
-        label=_("Category"),
-        widget=forms.CheckboxSelectMultiple(),
-        queryset=Category.objects.all()
-    )
-
-    urgent = django_filters.BooleanFilter(
-        name="is_important",
-        label=_("Urgent"),
-        widget=forms.NullBooleanSelect()
-    )
-
-    q = django_filters.CharFilter(
-        name='message',
-        label=_("Keywords"),
-        lookup_type="icontains",
-        widget=forms.SearchInput(),
-    )
-
-
-class MapMessageFilter(django_filters.FilterSet):
-    """ Main page map messages filter """
-    class Meta:
-        model = Message
-        fields = ['mtype', 'category', ]
-
-    mtype = django_filters.MultipleChoiceFilter(
-        name='messageType',
-        label=_("Message type"),
-        choices=Message.TYPES_CHOICE,
-        widget=forms.CheckboxSelectMultiple()
-    )
-
-    category = django_filters.ModelMultipleChoiceFilter(
-        name="category",
-        label=_("Category"),
-        widget=forms.CheckboxSelectMultiple(),
-        queryset=Category.objects.all()
-    )
-
-
 class MessageNotes(models.Model):
     """ Moderator notes for message """
 

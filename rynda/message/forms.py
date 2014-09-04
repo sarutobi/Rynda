@@ -5,10 +5,11 @@ from django.core.exceptions import ValidationError
 from django.forms.util import ErrorList
 from django.utils.translation import ugettext as _
 
+import django_filters
 import floppyforms.__future__ as forms
 from leaflet.forms.widgets import LeafletWidget
 
-from message.models import Message
+from message.models import Message, Category
 
 
 class VirtualMessageFormMixin(forms.ModelForm):
@@ -147,3 +148,58 @@ class AdminMessageForm(MessageForm):
 
     def clean_messageType(self):
         return self.cleaned_data['message_type']
+
+
+class MessageSideFilter(django_filters.FilterSet):
+    """ Message list side filter """
+    class Meta:
+        model = Message
+        fields = ['mtype', 'category', 'urgent', 'q', ]
+
+    mtype = django_filters.MultipleChoiceFilter(
+        name='messageType',
+        label=_("Message type"),
+        choices=Message.TYPES_CHOICE,
+        widget=forms.CheckboxSelectMultiple()
+    )
+
+    category = django_filters.ModelMultipleChoiceFilter(
+        name="category",
+        label=_("Category"),
+        widget=forms.CheckboxSelectMultiple(),
+        queryset=Category.objects.all()
+    )
+
+    urgent = django_filters.BooleanFilter(
+        name="is_important",
+        label=_("Urgent"),
+        widget=forms.NullBooleanSelect()
+    )
+
+    q = django_filters.CharFilter(
+        name='message',
+        label=_("Keywords"),
+        lookup_type="icontains",
+        widget=forms.SearchInput(),
+    )
+
+
+class MapMessageFilter(django_filters.FilterSet):
+    """ Main page map messages filter """
+    class Meta:
+        model = Message
+        fields = ['mtype', 'category', ]
+
+    mtype = django_filters.MultipleChoiceFilter(
+        name='messageType',
+        label=_("Message type"),
+        choices=Message.TYPES_CHOICE,
+        widget=forms.CheckboxSelectMultiple()
+    )
+
+    category = django_filters.ModelMultipleChoiceFilter(
+        name="category",
+        label=_("Category"),
+        widget=forms.CheckboxSelectMultiple(),
+        queryset=Category.objects.all()
+    )
