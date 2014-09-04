@@ -6,8 +6,6 @@ from django.contrib.gis.db.models.query import GeoQuerySet
 from django.core.urlresolvers import reverse_lazy
 from django.utils.translation import ugettext_lazy as _
 
-import django_filters
-import floppyforms.__future__ as forms
 from jsonfield import JSONField
 
 from geozones.models import Location
