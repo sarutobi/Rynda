@@ -3,34 +3,6 @@
 
 <form id="filterForm" action="#">
     {% form filter.form %}
-    {% comment %}
-    <div class="form-group">
-        <label for="filterTypeId">{% trans "Order by" %}</label>
-        <select name="filterTypeId" id="filterTypeId" class="form-control">
-            <option value="dateAdd">{%trans "Registration date" %}</option>
-            <option value="dateAdd">{% trans "User name" %}</option>
-        </select>
-    </div>
-
-    <div class="form-group">
-        <label for="orderBy">{% trans "Sorting" %}</label>
-        <select name="orderBy" id="orderBy" class="form-control">
-            <option value="asc">A-Z</option>
-            <option value="desc">Z-A</option>
-        </select>
-    </div>
-
-    <div class="form-group">
-        <select name="filterRegion" id="filterRegion" class="form-control">
-            <option value="">{% trans "All regions" %}</option>
-        {% for r in regions %}
-            <option value="{{r.id}}" {% if current_id == r.id %}"selected"{% endif %}>{{r.name}}</option>
-        {% endfor %}
-        </select>
-    </div>
-
-    <h4 class="mt10">{% trans "Categories" %}</h4>
-    {% endcomment %}
    
     <div class="panel-footer">
         <input type="submit" id="filterSubmit"  class="btn rynda-btn-default form-control" name="filterSubmit" value="{% trans "Search" %}" />

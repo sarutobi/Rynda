@@ -88,3 +88,24 @@ class UserFilter(django_filters.FilterSet):
         if order_value == "full_name":
             return ["last_name", "first_name", ]
         return super(UserFilter, self).get_order_by(order_value)
+
+    def get_ordering_field(self):
+        if self._meta.order_by:
+            if isinstance(self._meta.order_by, (list, tuple)):
+                if isinstance(self._meta.order_by[0], (list, tuple)):
+                    # e.g. (('field', 'Display name'), ...)
+                    choices = [(f[0], f[1]) for f in self._meta.order_by]
+                else:
+                    choices = [(f, _('%s (descending)' % capfirst(f[1:])) if f[0] == '-' else capfirst(f))
+                               for f in self._meta.order_by]
+            else:
+                # add asc and desc field names
+                # use the filter's label if provided
+                choices = []
+                for f, fltr in self.filters.items():
+                    choices.extend([
+                        (fltr.name or f, fltr.label or capfirst(f)),
+                        ("-%s" % (fltr.name or f), _('%s (descending)' % (fltr.label or capfirst(f))))
+                    ])
+            return forms.ChoiceField(label="Ordering", required=False,
+                                     choices=choices)
