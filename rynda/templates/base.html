@@ -37,11 +37,11 @@
         <section id="auth">
             <!-- Authentication -->
             {% if not user.is_authenticated %}
-            <a id="authLogIn" href="/login" class="btn btn-sm rynda-btn-default">{% trans "Sign in" %}</a> |
-            <a id="authRegister" class="btn btn-sm rynda-btn-default" href="/register">{% trans "Registration" %}</a>
+            <a id="authLogIn" href="{% url "user-login" %}" class="btn btn-sm rynda-btn-default">{% trans "Sign in" %}</a> |
+            <a id="authRegister" class="btn btn-sm rynda-btn-default" href="{% url "user-creation" %}">{% trans "Registration" %}</a>
             {% else %}
-            <span class="auth_text">{% trans "Logged in as" %} <a href="/user/{{user.id}}" class="auth_text">{{ user.get_full_name|default:user.email }}</a> |</span>
-                <a id="authLogout" href="/logout" class="auth_text">{% trans "Logout" %}</a>
+            <span class="auth_text">{% trans "Logged in as" %} <a href="{% url "user-details" user.id %}" class="auth_text">{{ user.get_full_name|default:user.email }}</a> |</span>
+            <a id="authLogout" href="{% url "user-logout" %}" >{% trans "Logout" %}</a>
             {% endif %}
             <!-- Authentication end -->
         </section> 
@@ -65,8 +65,8 @@
     <section class="main">
         <div id="header">
             {%block buttons%}
-            <a href="/message/pomogu/dobavit" class="rynda-btn-head rynda-btn-wh" title="{% trans "Create offer for help" %}">{% trans "I want to help" %}</a>
-            <a href="/message/pomogite/dobavit" class="rynda-btn-head rynda-btn-nh" title="{% trans "Create request for help" %}">{% trans "Help needed" %}</a>
+            <a href="{% url "message-create-request" %}" class="rynda-btn-head rynda-btn-wh" title="{% trans "Create offer for help" %}">{% trans "I want to help" %}</a>
+            <a href="{% url "message-create-offer" %}" class="rynda-btn-head rynda-btn-nh" title="{% trans "Create request for help" %}">{% trans "Help needed" %}</a>
             {%endblock%}
             <h1 class="text-hide"><a href="{% url "main-index" %}" title="{% blocktrans %}{{ SITE_NAME }} — portal for volunteers{% endblocktrans %}">Rynda</a></h1>
         </div>
@@ -124,14 +124,6 @@
 
 <script src="{{STATIC_URL}}js/plugins.js"></script>
 <script src="{{STATIC_URL}}js/script.js"></script>
-{% if messages %}
-<script type='text/javascript'>
-//Show popup message
-$(function(){
-new Messi('{% for message in messages %} {{ message }} {% endfor %}');
-});
-</script>
-{% endif %}
 {% block scripts %}{% endblock %}
 <!-- end scripts -->
 </html>
