@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-08-24 19:25+0400\n"
+"POT-Creation-Date: 2014-09-05 12:36+0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -37,7 +37,7 @@ msgstr ""
 msgid "Region name"
 msgstr ""
 
-#: rynda/geozones/models.py:28 rynda/message/models.py:32
+#: rynda/geozones/models.py:28 rynda/message/models.py:30
 msgid "slug"
 msgstr ""
 
@@ -75,212 +75,212 @@ msgstr ""
 msgid "Enter valid JSON"
 msgstr ""
 
-#: rynda/message/forms.py:47
+#: rynda/message/forms.py:48
 msgid "Unknown message type!"
 msgstr ""
 
-#: rynda/message/forms.py:64
+#: rynda/message/forms.py:65
 msgid "First name"
 msgstr ""
 
-#: rynda/message/forms.py:65
+#: rynda/message/forms.py:66
 msgid "Last name"
 msgstr ""
 
-#: rynda/message/forms.py:66
+#: rynda/message/forms.py:67
 msgid "Contact email"
 msgstr ""
 
-#: rynda/message/forms.py:67
+#: rynda/message/forms.py:68
 msgid "Contact phone"
 msgstr ""
 
-#: rynda/message/forms.py:68
+#: rynda/message/forms.py:69
 msgid "Address"
 msgstr ""
 
-#: rynda/message/forms.py:71
+#: rynda/message/forms.py:72
 msgid "Coordinates"
 msgstr ""
 
-#: rynda/message/forms.py:98 rynda/message/forms.py:101
-#: rynda/message/forms.py:104
+#: rynda/message/forms.py:99 rynda/message/forms.py:102
+#: rynda/message/forms.py:105
 msgid "You must provide at least one from contact email or phone!"
 msgstr ""
 
-#: rynda/message/models.py:21
-msgid "category"
-msgstr ""
-
-#: rynda/message/models.py:22
-msgid "categories"
-msgstr ""
-
-#: rynda/message/models.py:26
-msgid "name"
-msgstr ""
-
-#: rynda/message/models.py:29
-msgid "description"
-msgstr ""
-
-#: rynda/message/models.py:73 rynda/message/models.py:108
-#: rynda/message/templates/message_form.html:40
-msgid "Message"
-msgstr ""
-
-#: rynda/message/models.py:74 rynda/templates/widgets/base_hub.html:2
-msgid "Messages"
-msgstr ""
-
-#: rynda/message/models.py:82
-msgid "Request message"
-msgstr ""
-
-#: rynda/message/models.py:83
-msgid "Offer message"
-msgstr ""
-
-#: rynda/message/models.py:84
-msgid "Informatial message"
-msgstr ""
-
-#: rynda/message/models.py:94
-msgid "New"
-msgstr ""
-
-#: rynda/message/models.py:95
-msgid "Unverified"
-msgstr ""
-
-#: rynda/message/models.py:96
-msgid "Verified"
-msgstr ""
-
-#: rynda/message/models.py:97
-msgid "Pending"
-msgstr ""
-
-#: rynda/message/models.py:98
-msgid "Closed"
-msgstr ""
-
-#: rynda/message/models.py:106
-msgid "Title"
-msgstr ""
-
-#: rynda/message/models.py:112
-msgid "Additional info"
-msgstr ""
-
-#: rynda/message/models.py:117 rynda/message/models.py:228
-#: rynda/message/models.py:261 rynda/templates/index.html:36
+#: rynda/message/forms.py:161 rynda/message/forms.py:195
+#: rynda/message/models.py:115 rynda/templates/index.html:34
 msgid "Message type"
 msgstr ""
 
-#: rynda/message/models.py:123
-msgid "User"
-msgstr ""
-
-#: rynda/message/models.py:132
-msgid "source"
-msgstr ""
-
-#: rynda/message/models.py:137
-msgid "Is virtual"
-msgstr ""
-
-#: rynda/message/models.py:144
-msgid "active"
-msgstr ""
-
-#: rynda/message/models.py:148
-msgid "important"
-msgstr ""
-
-#: rynda/message/models.py:151
-msgid "hide contacts"
-msgstr ""
-
-#: rynda/message/models.py:154
-msgid "removed"
-msgstr ""
-
-#: rynda/message/models.py:157
-msgid "allow feedback"
-msgstr ""
-
-#: rynda/message/models.py:162
-msgid "status"
-msgstr ""
-
-#: rynda/message/models.py:178
-msgid "expired at"
-msgstr ""
-
-#: rynda/message/models.py:185
-msgid "sender IP"
-msgstr ""
-
-#: rynda/message/models.py:196
-msgid "message categories"
-msgstr ""
-
-#: rynda/message/models.py:235 rynda/message/models.py:268
-#: rynda/templates/index.html:37
+#: rynda/message/forms.py:168 rynda/message/forms.py:202
+#: rynda/templates/index.html:35 rynda/users/forms.py:75
 msgid "Category"
 msgstr ""
 
-#: rynda/message/models.py:242
+#: rynda/message/forms.py:175
 msgid "Urgent"
 msgstr ""
 
-#: rynda/message/models.py:248
+#: rynda/message/forms.py:181 rynda/users/forms.py:82
 msgid "Keywords"
 msgstr ""
 
-#: rynda/message/models.py:278 rynda/newsline/models.py:27
+#: rynda/message/models.py:19
+msgid "category"
+msgstr ""
+
+#: rynda/message/models.py:20
+msgid "categories"
+msgstr ""
+
+#: rynda/message/models.py:24
+msgid "name"
+msgstr ""
+
+#: rynda/message/models.py:27
+msgid "description"
+msgstr ""
+
+#: rynda/message/models.py:71 rynda/message/models.py:106
+#: rynda/message/templates/message_form.html:37
+msgid "Message"
+msgstr ""
+
+#: rynda/message/models.py:72 rynda/templates/widgets/base_hub.html:2
+msgid "Messages"
+msgstr ""
+
+#: rynda/message/models.py:80
+msgid "Request message"
+msgstr ""
+
+#: rynda/message/models.py:81
+msgid "Offer message"
+msgstr ""
+
+#: rynda/message/models.py:82
+msgid "Informatial message"
+msgstr ""
+
+#: rynda/message/models.py:92
+msgid "New"
+msgstr ""
+
+#: rynda/message/models.py:93
+msgid "Unverified"
+msgstr ""
+
+#: rynda/message/models.py:94
+msgid "Verified"
+msgstr ""
+
+#: rynda/message/models.py:95
+msgid "Pending"
+msgstr ""
+
+#: rynda/message/models.py:96
+msgid "Closed"
+msgstr ""
+
+#: rynda/message/models.py:104
+msgid "Title"
+msgstr ""
+
+#: rynda/message/models.py:110
+msgid "Additional info"
+msgstr ""
+
+#: rynda/message/models.py:121
+msgid "User"
+msgstr ""
+
+#: rynda/message/models.py:130
+msgid "source"
+msgstr ""
+
+#: rynda/message/models.py:135
+msgid "Is virtual"
+msgstr ""
+
+#: rynda/message/models.py:142
+msgid "active"
+msgstr ""
+
+#: rynda/message/models.py:146
+msgid "important"
+msgstr ""
+
+#: rynda/message/models.py:149
+msgid "hide contacts"
+msgstr ""
+
+#: rynda/message/models.py:152
+msgid "removed"
+msgstr ""
+
+#: rynda/message/models.py:155
+msgid "allow feedback"
+msgstr ""
+
+#: rynda/message/models.py:160
+msgid "status"
+msgstr ""
+
+#: rynda/message/models.py:176
+msgid "expired at"
+msgstr ""
+
+#: rynda/message/models.py:183
+msgid "sender IP"
+msgstr ""
+
+#: rynda/message/models.py:194
+msgid "message categories"
+msgstr ""
+
+#: rynda/message/models.py:222 rynda/newsline/models.py:27
 msgid "Author"
 msgstr ""
 
-#: rynda/message/models.py:279
+#: rynda/message/models.py:223
 msgid "Note"
 msgstr ""
 
-#: rynda/message/models.py:283
+#: rynda/message/models.py:227
 msgid "Created at"
 msgstr ""
 
-#: rynda/message/models.py:287
+#: rynda/message/models.py:231
 msgid "Last edit"
 msgstr ""
 
-#: rynda/message/models.py:290
+#: rynda/message/models.py:234
 #, python-format
 msgid "Note from %(user)s to message %(msgid)d"
 msgstr ""
 
-#: rynda/message/views.py:37
+#: rynda/message/views.py:38
 msgid "Help requests"
 msgstr ""
 
-#: rynda/message/views.py:43
+#: rynda/message/views.py:44
 msgid "Offer of assistance"
 msgstr ""
 
-#: rynda/message/views.py:49
+#: rynda/message/views.py:50
 msgid "Assistance provided"
 msgstr ""
 
-#: rynda/message/views.py:165 rynda/message/templates/all_messages.html:11
+#: rynda/message/views.py:166 rynda/message/templates/all_messages.html:11
 #: rynda/message/templates/message_details.html:12
 msgid "Message list"
 msgstr ""
 
 #: rynda/message/templates/all_messages.html:10
 #: rynda/message/templates/message_details.html:11
-#: rynda/templates/base.html:103
-#: rynda/templates/registration/password_change_form.html:6
+#: rynda/templates/base.html:104
+#: rynda/templates/registration/password_change_form.html:10
 #: rynda/users/templates/user_profile.html:10
 msgid "Home"
 msgstr ""
@@ -295,7 +295,6 @@ msgid "Messages on page:"
 msgstr ""
 
 #: rynda/message/templates/message_details.html:46
-#: rynda/users/templates/widgets/users_filter.html:30
 msgid "Categories"
 msgstr ""
 
@@ -327,11 +326,11 @@ msgstr ""
 msgid "Address:"
 msgstr ""
 
-#: rynda/message/templates/message_form.html:15
+#: rynda/message/templates/message_form.html:12
 msgid "New message"
 msgstr ""
 
-#: rynda/message/templates/message_form.html:20
+#: rynda/message/templates/message_form.html:17
 msgid ""
 "\n"
 "                Please note, that fields marked with &#39;*&#39; are "
@@ -339,11 +338,11 @@ msgid ""
 "                "
 msgstr ""
 
-#: rynda/message/templates/message_form.html:91
+#: rynda/message/templates/message_form.html:88
 msgid "About yourself"
 msgstr ""
 
-#: rynda/message/templates/message_form.html:129
+#: rynda/message/templates/message_form.html:126
 msgid "Geoposition"
 msgstr ""
 
@@ -361,11 +360,6 @@ msgstr ""
 
 #: rynda/message/templates/request_form.html:9
 msgid "Problem description"
-msgstr ""
-
-#: rynda/message/templates/widgets/filter.html:26
-#: rynda/users/templates/widgets/users_filter.html:36
-msgid "Search"
 msgstr ""
 
 #: rynda/newsline/models.py:12 rynda/newsline/models.py:22
@@ -404,7 +398,7 @@ msgstr ""
 msgid "Status"
 msgstr ""
 
-#: rynda/newsline/templates/latest_post.html:9 rynda/templates/base.html:107
+#: rynda/newsline/templates/latest_post.html:9 rynda/templates/base.html:108
 msgid "Site news"
 msgstr ""
 
@@ -424,65 +418,65 @@ msgstr ""
 msgid "Virtual Bell"
 msgstr ""
 
-#: rynda/templates/base.html:39
+#: rynda/templates/base.html:40
 msgid "Sign in"
 msgstr ""
 
-#: rynda/templates/base.html:40
-#: rynda/users/templates/registerform_simple.html:10
+#: rynda/templates/base.html:41
+#: rynda/users/templates/registerform_simple.html:13
 msgid "Registration"
 msgstr ""
 
-#: rynda/templates/base.html:42
+#: rynda/templates/base.html:43
 msgid "Logged in as"
 msgstr ""
 
-#: rynda/templates/base.html:43
+#: rynda/templates/base.html:44
 msgid "Logout"
 msgstr ""
 
-#: rynda/templates/base.html:67
+#: rynda/templates/base.html:68
 msgid "Create offer for help"
 msgstr ""
 
-#: rynda/templates/base.html:67
+#: rynda/templates/base.html:68
 msgid "I want to help"
 msgstr ""
 
-#: rynda/templates/base.html:68
+#: rynda/templates/base.html:69
 msgid "Create request for help"
 msgstr ""
 
-#: rynda/templates/base.html:68
+#: rynda/templates/base.html:69
 msgid "Help needed"
 msgstr ""
 
-#: rynda/templates/base.html:70
+#: rynda/templates/base.html:71
 #, python-format
 msgid "%(SITE_NAME)s — portal for volunteers"
 msgstr ""
 
-#: rynda/templates/base.html:91
+#: rynda/templates/base.html:92
 msgid "Communications"
 msgstr ""
 
-#: rynda/templates/base.html:104
+#: rynda/templates/base.html:105
 msgid "Help was found"
 msgstr ""
 
-#: rynda/templates/base.html:105 rynda/templates/widgets/base_hub.html:3
+#: rynda/templates/base.html:106 rynda/templates/widgets/base_hub.html:3
 msgid "Organizations"
 msgstr ""
 
-#: rynda/templates/base.html:106
+#: rynda/templates/base.html:107
 msgid "RSS feed"
 msgstr ""
 
-#: rynda/templates/base.html:108
+#: rynda/templates/base.html:109
 msgid "About us"
 msgstr ""
 
-#: rynda/templates/base.html:112
+#: rynda/templates/base.html:113
 msgid "«Virtual Bell - Atlas of Assistance» platform, 2011-2014. License"
 msgstr ""
 
@@ -522,15 +516,15 @@ msgstr ""
 msgid "Next"
 msgstr ""
 
-#: rynda/templates/index.html:16
+#: rynda/templates/index.html:14
 msgid "How it works"
 msgstr ""
 
-#: rynda/templates/index.html:24
+#: rynda/templates/index.html:22
 msgid "Messages on map"
 msgstr ""
 
-#: rynda/templates/index.html:31
+#: rynda/templates/index.html:29
 msgid "Map filters"
 msgstr ""
 
@@ -540,6 +534,18 @@ msgstr ""
 
 #: rynda/templates/infopages_list.html:24
 msgid "Information pages not found"
+msgstr ""
+
+#: rynda/templates/login.html:14 rynda/templates/login.html.py:47
+msgid "Login"
+msgstr ""
+
+#: rynda/templates/login.html:38
+msgid "Remember me"
+msgstr ""
+
+#: rynda/templates/login.html:42
+msgid "Password reminder"
 msgstr ""
 
 #: rynda/templates/not_implemented.html:12
@@ -568,103 +574,103 @@ msgstr ""
 msgid "Log in again"
 msgstr ""
 
-#: rynda/templates/registration/password_change_done.html:5
-#: rynda/templates/registration/password_change_done.html:10
+#: rynda/templates/registration/password_change_done.html:8
+#: rynda/templates/registration/password_change_done.html:13
 msgid "Password change successful"
 msgstr ""
 
-#: rynda/templates/registration/password_change_done.html:14
+#: rynda/templates/registration/password_change_done.html:17
 msgid "Your password was changed."
 msgstr ""
 
-#: rynda/templates/registration/password_change_form.html:7
-#: rynda/templates/registration/password_change_form.html:10
-#: rynda/templates/registration/password_change_form.html:15
+#: rynda/templates/registration/password_change_form.html:11
+#: rynda/templates/registration/password_change_form.html:14
+#: rynda/templates/registration/password_change_form.html:19
 msgid "Password change"
 msgstr ""
 
-#: rynda/templates/registration/password_change_form.html:19
+#: rynda/templates/registration/password_change_form.html:23
 msgid ""
 "Please enter your old password, for security's sake, and then enter your new "
 "password twice so we can verify you typed it in correctly."
 msgstr ""
 
-#: rynda/templates/registration/password_change_form.html:24
+#: rynda/templates/registration/password_change_form.html:28
 msgid "Old password"
 msgstr ""
 
-#: rynda/templates/registration/password_change_form.html:31
+#: rynda/templates/registration/password_change_form.html:35
 msgid "New password"
 msgstr ""
 
-#: rynda/templates/registration/password_change_form.html:38
+#: rynda/templates/registration/password_change_form.html:42
 msgid "Password (again)"
 msgstr ""
 
-#: rynda/templates/registration/password_change_form.html:47
-#: rynda/templates/registration/password_reset_confirm.html:29
+#: rynda/templates/registration/password_change_form.html:51
+#: rynda/templates/registration/password_reset_confirm.html:33
 msgid "Change my password"
 msgstr ""
 
 #: rynda/templates/registration/password_reset_complete.html:4
-#: rynda/templates/registration/password_reset_complete.html:10
+#: rynda/templates/registration/password_reset_complete.html:14
 msgid "Password reset complete"
 msgstr ""
 
-#: rynda/templates/registration/password_reset_complete.html:13
+#: rynda/templates/registration/password_reset_complete.html:17
 msgid "Your password has been set.  You may go ahead and log in now."
 msgstr ""
 
-#: rynda/templates/registration/password_reset_complete.html:14
+#: rynda/templates/registration/password_reset_complete.html:18
 msgid "Log in"
 msgstr ""
 
 #: rynda/templates/registration/password_reset_confirm.html:4
-#: rynda/templates/registration/password_reset_confirm.html:11
+#: rynda/templates/registration/password_reset_confirm.html:15
 msgid "Enter new password"
 msgstr ""
 
 #: rynda/templates/registration/password_reset_confirm.html:4
-#: rynda/templates/registration/password_reset_confirm.html:37
+#: rynda/templates/registration/password_reset_confirm.html:41
 msgid "Password reset unsuccessful"
 msgstr ""
 
-#: rynda/templates/registration/password_reset_confirm.html:15
+#: rynda/templates/registration/password_reset_confirm.html:19
 msgid ""
 "Please enter your new password twice so we can verify you typed it in "
 "correctly."
 msgstr ""
 
-#: rynda/templates/registration/password_reset_confirm.html:18
+#: rynda/templates/registration/password_reset_confirm.html:22
 msgid "New password:"
 msgstr ""
 
-#: rynda/templates/registration/password_reset_confirm.html:23
+#: rynda/templates/registration/password_reset_confirm.html:27
 msgid "Confirm password:"
 msgstr ""
 
-#: rynda/templates/registration/password_reset_confirm.html:26
+#: rynda/templates/registration/password_reset_confirm.html:30
 msgid "Enter the same password as above, for verification."
 msgstr ""
 
-#: rynda/templates/registration/password_reset_confirm.html:41
+#: rynda/templates/registration/password_reset_confirm.html:45
 msgid ""
 "The password reset link was invalid, possibly because it has already been "
 "used.  Please request a new password reset."
 msgstr ""
 
 #: rynda/templates/registration/password_reset_done.html:4
-#: rynda/templates/registration/password_reset_done.html:11
+#: rynda/templates/registration/password_reset_done.html:15
 msgid "Password reset successful"
 msgstr ""
 
-#: rynda/templates/registration/password_reset_done.html:15
+#: rynda/templates/registration/password_reset_done.html:19
 msgid ""
 "We've emailed you instructions for setting your password. You should be "
 "receiving them shortly."
 msgstr ""
 
-#: rynda/templates/registration/password_reset_done.html:16
+#: rynda/templates/registration/password_reset_done.html:20
 msgid ""
 "If you don't receive an email, please make sure you've entered the address "
 "you registered with, and check your spam folder."
@@ -695,21 +701,21 @@ msgid "The %(site_name)s team"
 msgstr ""
 
 #: rynda/templates/registration/password_reset_form.html:4
-#: rynda/templates/registration/password_reset_form.html:10
+#: rynda/templates/registration/password_reset_form.html:14
 msgid "Password reset"
 msgstr ""
 
-#: rynda/templates/registration/password_reset_form.html:14
+#: rynda/templates/registration/password_reset_form.html:18
 msgid ""
 "Forgotten your password? Enter your email address below, and we'll email "
 "instructions for setting a new one."
 msgstr ""
 
-#: rynda/templates/registration/password_reset_form.html:17
+#: rynda/templates/registration/password_reset_form.html:21
 msgid "Email address:"
 msgstr ""
 
-#: rynda/templates/registration/password_reset_form.html:22
+#: rynda/templates/registration/password_reset_form.html:26
 msgid "Reset my password"
 msgstr ""
 
@@ -719,6 +725,10 @@ msgstr ""
 
 #: rynda/templates/widgets/base_hub.html:5
 msgid "About"
+msgstr ""
+
+#: rynda/templates/widgets/filter.html:5
+msgid "Search"
 msgstr ""
 
 #: rynda/templates/widgets/message_pane.html:21
@@ -734,44 +744,73 @@ msgstr ""
 msgid "No messages found"
 msgstr ""
 
-#: rynda/users/forms.py:19
+#: rynda/users/forms.py:21
 msgid "First Name"
 msgstr ""
 
-#: rynda/users/forms.py:22
+#: rynda/users/forms.py:24
 msgid "Last Name"
 msgstr ""
 
-#: rynda/users/forms.py:23
+#: rynda/users/forms.py:25
 msgid "Email"
 msgstr ""
 
-#: rynda/users/forms.py:26
+#: rynda/users/forms.py:28
 msgid "Password"
 msgstr ""
 
-#: rynda/users/forms.py:29
+#: rynda/users/forms.py:31
 msgid "Password(retype)"
 msgstr ""
 
-#: rynda/users/forms.py:35 rynda/users/tests/xUnit/test_forms.py:79
+#: rynda/users/forms.py:37
 msgid "The password fields did not match"
 msgstr ""
 
-#: rynda/users/forms.py:40 rynda/users/tests/xUnit/test_forms.py:47
+#: rynda/users/forms.py:42
 msgid "You must provide a first name!"
 msgstr ""
 
-#: rynda/users/forms.py:45 rynda/users/tests/xUnit/test_forms.py:63
+#: rynda/users/forms.py:47
 msgid "You must provide a last name!"
 msgstr ""
 
-#: rynda/users/forms.py:52 rynda/users/tests/xUnit/test_forms.py:71
+#: rynda/users/forms.py:55
 msgid "This email already registered"
 msgstr ""
 
-#: rynda/users/forms.py:56
+#: rynda/users/forms.py:59
 msgid "Email seems to be wrong"
+msgstr ""
+
+#: rynda/users/forms.py:99 rynda/users/forms.py:108
+#, python-format
+msgid "%s (descending)"
+msgstr ""
+
+#: rynda/users/models.py:62
+msgid "Profile"
+msgstr ""
+
+#: rynda/users/models.py:63
+msgid "Profiles"
+msgstr ""
+
+#: rynda/users/models.py:67
+msgid "Unknown"
+msgstr ""
+
+#: rynda/users/models.py:68
+msgid "Male"
+msgstr ""
+
+#: rynda/users/models.py:69
+msgid "Female"
+msgstr ""
+
+#: rynda/users/models.py:89
+msgid "Gender"
 msgstr ""
 
 #: rynda/users/views.py:26 rynda/users/templates/user_profile.html:11
@@ -791,73 +830,22 @@ msgstr ""
 msgid "Edit profile"
 msgstr ""
 
-#: rynda/users/templates/user_profile.html:36
-msgid "Sex:"
-msgstr ""
-
 #: rynda/users/templates/user_profile.html:37
-msgid "Male"
+msgid "Registration date:"
 msgstr ""
 
-#: rynda/users/templates/user_profile.html:38
-msgid "Female"
+#: rynda/users/templates/user_profile.html:40
+msgid "Last login:"
 msgstr ""
 
-#: rynda/users/templates/user_profile.html:39
-msgid "Unknown"
+#: rynda/users/templates/user_profile.html:46
+msgid "About me"
 msgstr ""
 
-#: rynda/users/templates/user_profile.html:44
-msgid "About myself"
+#: rynda/users/templates/user_profile.html:54
+msgid "User's posts"
 msgstr ""
 
-#: rynda/users/templates/user_profile.html:62
-#, python-format
-msgid "Last login: %(lastlogin)s"
-msgstr ""
-
-#: rynda/users/templates/user_profile.html:64
-#, python-format
-msgid "Registration date: %(regdate)s"
-msgstr ""
-
-#: rynda/users/templates/user_profile.html:74
+#: rynda/users/templates/user_profile.html:60
 msgid "Write email"
-msgstr ""
-
-#: rynda/users/templates/user_profile.html:87
-msgid "Contacts are hidden"
-msgstr ""
-
-#: rynda/users/templates/user_profile.html:88
-msgid "Open contacts"
-msgstr ""
-
-#: rynda/users/templates/widgets/users_filter.html:6
-msgid "Order by"
-msgstr ""
-
-#: rynda/users/templates/widgets/users_filter.html:8
-msgid "Registration date"
-msgstr ""
-
-#: rynda/users/templates/widgets/users_filter.html:9
-msgid "User name"
-msgstr ""
-
-#: rynda/users/templates/widgets/users_filter.html:14
-msgid "Sorting"
-msgstr ""
-
-#: rynda/users/templates/widgets/users_filter.html:23
-msgid "All regions"
-msgstr ""
-
-#: rynda/users/templates/widgets/users_filter.html:32
-msgid "Please provide at least one search term"
-msgstr ""
-
-#: rynda/users/tests/xUnit/test_forms.py:39
-#: rynda/users/tests/xUnit/test_forms.py:55
-msgid "This field is required."
 msgstr ""
