@@ -9,7 +9,7 @@
 {% endblock %}
 
 {% block listcontent %}
-{% for u in users %}
+{% for u in filter %}
 <li class="list-group-item">
     <div class="list_content">
         <strong>{{ u.get_full_name }}</strong>
