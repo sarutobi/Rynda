@@ -22,7 +22,7 @@ class UserList(RyndaListView):
     context_object_name = 'users'
     queryset = User.objects.select_related().exclude(
         pk=settings.ANONYMOUS_USER_ID).filter(
-        is_active=True).order_by('date_joined')
+            is_active=True).order_by('date_joined')
     list_title_short = _("User list")
     paginator_url = '/user/page/'
     paginate_by = 10
