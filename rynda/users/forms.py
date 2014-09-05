@@ -48,6 +48,7 @@ class SimpleRegistrationForm(forms.Form):
         return self.cleaned_data['last_name']
 
     def clean_email(self):
+        # TODO Use mailgun flanker
         existing = User.objects.filter(
             email__iexact=self.cleaned_data['email'])
         if existing.exists():
@@ -63,7 +64,7 @@ class UserFilter(django_filters.FilterSet):
     """ Allow filtering user list """
     class Meta:
         model = User
-        fields = ['category', ]
+        fields = ['category', 'q']
         order_by = (
             ('full_name', 'User Name'),
             ('date_joined', 'Date joined'),
@@ -74,6 +75,13 @@ class UserFilter(django_filters.FilterSet):
         label=_("Category"),
         widget=forms.CheckboxSelectMultiple(),
         queryset=Category.objects.all()
+    )
+
+    q = django_filters.CharFilter(
+        name='message',
+        label=_("Keywords"),
+        lookup_type="icontains",
+        widget=forms.SearchInput(),
     )
 
     def get_order_by(self, order_value):

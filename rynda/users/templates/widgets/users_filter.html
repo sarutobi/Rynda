@@ -1,7 +1,9 @@
 {% load widget_tweaks %}
-{% load i18n %}
+{% load i18n floppyforms %}
 
 <form id="filterForm" action="#">
+    {% form filter.form %}
+    {% comment %}
     <div class="form-group">
         <label for="filterTypeId">{% trans "Order by" %}</label>
         <select name="filterTypeId" id="filterTypeId" class="form-control">
@@ -28,9 +30,7 @@
     </div>
 
     <h4 class="mt10">{% trans "Categories" %}</h4>
-    <div class="form-group"> 
-        <input type="text" name="filterString" id="filterString" class="form-control" placeholder="{% trans "Please provide at least one search term" %}" />
-    </div>
+    {% endcomment %}
    
     <div class="panel-footer">
         <input type="submit" id="filterSubmit"  class="btn rynda-btn-default form-control" name="filterSubmit" value="{% trans "Search" %}" />
