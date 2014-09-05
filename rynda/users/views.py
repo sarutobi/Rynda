@@ -7,7 +7,7 @@ from django.utils.translation import ugettext_lazy as _
 from django.views.generic.detail import DetailView
 
 from core.views import RyndaFormView, RyndaListView
-from users.forms import SimpleRegistrationForm
+from users.forms import SimpleRegistrationForm, UserFilter
 from users.models import create_new_user
 
 
@@ -29,7 +29,8 @@ class UserList(RyndaListView):
 
     def get_context_data(self, **kwargs):
         context = super(UserList, self).get_context_data(**kwargs)
-        count = self.get_queryset().count()
+        context['filter'] = UserFilter(self.request.GET, self.queryset)
+        count = self.queryset.count()
         context['count'] = count
         return context
 
