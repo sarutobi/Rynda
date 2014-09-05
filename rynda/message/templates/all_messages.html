@@ -21,7 +21,7 @@
 {% for m in filter %}
 <li class="list-group-item">
     <div class="list_content">
-        <a href="/message/{{ m.id }}" class="darkRed">
+        <a href="{% url "message-details" m.id %}" class="darkRed">
             {{ m.get_messageType_display|capfirst }} #{{ m.id }}{% if m.title %}: {{ m.title }} {% endif %}
         </a>
         <br />
@@ -29,9 +29,9 @@
         <br />
         <br />
         <span class="darkGrey fs10">
-            {{m.date_add|date:"SHORT_DATE_FORMAT"}} | <a href="/message/?georegion={{ m.georegion }}" title="{% blocktrans with geoname=m.georegion__name %}All messages from «{{ geoname }}»{% endblocktrans %}">{{ m.georegion__name }}</a>
+            {{m.date_add|date:"SHORT_DATE_FORMAT"}} | 
             {% for c in m.category.all %}
-            <a href='#' class="rynda-tag">{{ c }}</a>
+            <a href="{% url "messages-list" %}?category={{ c.id }}" class="rynda-tag">{{ c }}</a>
             {% endfor %}
         </span>
     </div>
@@ -44,6 +44,4 @@
 <div class="alignright"><span class="darkGrey">{% trans "Messages on page:" %}</span>
     <span class="badge">10</span>
 </div>
-<div class="clearfix "></div>
 {% endblock %}
-
