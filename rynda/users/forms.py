@@ -65,7 +65,7 @@ class UserFilter(django_filters.FilterSet):
         model = User
         fields = ['category', ]
         order_by = (
-            ('get_full_name', 'User Name'),
+            ('full_name', 'User Name'),
             ('date_joined', 'Date joined'),
         )
 
@@ -75,3 +75,8 @@ class UserFilter(django_filters.FilterSet):
         widget=forms.CheckboxSelectMultiple(),
         queryset=Category.objects.all()
     )
+
+    def get_order_by(self, order_value):
+        if order_value == "full_name":
+            return ["last_name", "first_name", ]
+        return super(UserFilter, self).get_order_by(order_value)
