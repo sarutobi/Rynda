@@ -161,13 +161,11 @@ INSTALLED_APPS = (
     'django.contrib.gis',
     'django_filters',
     'rest_framework',
-    'south',
     'social_auth',
     'widget_tweaks',
     'post_office',
     'floppyforms',
     'jsonfield',
-    # 'olwidget',
     'leaflet',
     # Project applications
     'core',
