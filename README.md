@@ -1,5 +1,6 @@
 Rynda
 =====
+[![Build Status](https://travis-ci.org/sarutobi/Rynda.svg?branch=master)](https://travis-ci.org/sarutobi/Rynda)
 http://rynda.org
 
 Requirements
