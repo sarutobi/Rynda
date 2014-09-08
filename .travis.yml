@@ -4,7 +4,13 @@ python:
 # command to install dependencies, e.g. pip install -r requirements.txt --use-mirrors
 install: "pip install -r requirements.txt"
 # # command to run tests, e.g. python setup.py test
-# script:  PLEASE CHANGE ME
 before_script:
   - psql -c 'create database rynda;' -U postgres
   - psql -c 'create extension postgis' -U postgres
+  - sed -i -e "s/'PASSWORD': 'devrynda'/'PASSWORD': 'postgres'/" rynda/Rynda/settings/test.py
+  - cd rynda
+  - python manage.py migrate
+script:
+  - cd rynda
+  - python manage.py test --settings=Rynda.settings.test
+
