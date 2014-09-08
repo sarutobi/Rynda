@@ -19,11 +19,11 @@ TEMPLATE_DEBUG = DEBUG
 
 PRODUCTION = False
 
-ADMINS = (
-    # ('Your Name', 'your_email@example.com'),
-)
+# ADMINS = (
+    # # ('Your Name', 'your_email@example.com'),
+# )
 
-MANAGERS = ADMINS
+# MANAGERS = ADMINS
 
 DATABASES = {
     'default': {
@@ -49,7 +49,7 @@ TIME_ZONE = 'Europe/Moscow'
 # http://www.i18nguy.com/unicode/language-identifiers.html
 LANGUAGE_CODE = 'ru'
 
-SITE_ID = 1
+# SITE_ID = 1
 
 # If you set this to False, Django will make some optimizations so as not
 # to load the internationalization machinery.
@@ -100,12 +100,6 @@ STATICFILES_FINDERS = (
 # Make this unique, and don't share it with anybody.
 SECRET_KEY = 'l(39jm())q%720m2@p%wz)bep@lrfb*7k+66%+epnwes!pcbh2'
 
-# List of callables that know how to import templates from various sources.
-TEMPLATE_LOADERS = (
-    'django.template.loaders.filesystem.Loader',
-    'django.template.loaders.app_directories.Loader',
-#     'django.template.loaders.eggs.Loader',
-)
 
 TEMPLATE_CONTEXT_PROCESSORS = (
     # default template context processors
@@ -126,8 +120,7 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
-    # Uncomment the next line for simple clickjacking protection:
-    # 'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
 
 ROOT_URLCONF = 'Rynda.urls'
@@ -150,11 +143,6 @@ INSTALLED_APPS = (
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'django.contrib.flatpages',
-    #
-    # 'admin_tools',
-    # 'admin_tools.theming',
-    # 'admin_tools.menu',
-    # 'admin_tools.dashboard',
     #
     'grappelli',
     'django.contrib.admin',
@@ -184,7 +172,6 @@ AUTHENTICATION_BACKENDS = (
     'django.contrib.auth.backends.ModelBackend',
 )
 
-ADMIN_TOOLS_THEMING_CSS = 'admin_tools/css/theming.css'
 AUTH_PROFILE_MODULE = 'users.users'
 EMAIL_BACKEND = 'post_office.EmailBackend'
 DEFAULT_FROM_EMAIL = 'noreply@local.host'
