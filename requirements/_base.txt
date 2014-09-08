@@ -1,5 +1,4 @@
-Django==1.6.6
-South==1.0
+Django==1.7
 argparse==1.2.1
 cssutils==1.0
 django-filter==0.7
@@ -12,7 +11,7 @@ django-social-auth==0.7.28
 django-widget-tweaks==1.3
 djangorestframework==2.3.13
 dnspython==1.11.1
-# jsonfield==0.9.22
+jsonfield==1.0.0
 mimeparse==0.1.3
 psycopg2==2.5.3
 pynliner==0.4.0

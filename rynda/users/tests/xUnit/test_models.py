@@ -97,7 +97,7 @@ class TestUserCreation(TestCase):
         mail = Email.objects.get()
         self.assertEqual(
             mail.subject,
-            u'Активация учетной записи\n',
+            u'Account activation',
             mail.subject
         )
 

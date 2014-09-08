@@ -11,7 +11,6 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.utils.translation import ugettext_lazy as _
 
-import django_filters
 from post_office import mail
 
 
@@ -117,15 +116,16 @@ def _file_get_contents(fname):
 
 def notify_new_user(user):
     """ Уведомляем нового пользователя о регистрации """
-    file_path = "templates/emails/registration_confirm/%s"
-    subj = _file_get_contents(file_path % "short.txt")
-    text = _file_get_contents(file_path % "email.txt")
-    html = _file_get_contents(file_path % "email.html")
+    # file_path = "templates/emails/registration_confirm/%s"
+    # subj = _file_get_contents(file_path % "short.txt")
+    # text = _file_get_contents(file_path % "email.txt")
+    # html = _file_get_contents(file_path % "email.html")
     activation_code = UserAuthCode(settings.SECRET_KEY).auth_code(user)
 
     mail.send(
         [user],
-        subject=subj, message=text, html_message=html,
+        # subject=subj, message=text, html_message=html,
+        template="registration confirmation",
         context={
             'user': user,
             'activation_code': activation_code,

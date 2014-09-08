@@ -1,61 +1,51 @@
 # -*- coding: utf-8 -*-
-from south.utils import datetime_utils as datetime
-from south.db import db
-from south.v2 import SchemaMigration
-from django.db import models
+from __future__ import unicode_literals
+
+from django.db import models, migrations
+import django.contrib.gis.db.models.fields
 
 
-class Migration(SchemaMigration):
+class Migration(migrations.Migration):
 
-    def forwards(self, orm):
-        # Adding model 'Region'
-        db.create_table(u'geozones_region', (
-            (u'id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
-            ('name', self.gf('django.db.models.fields.CharField')(max_length=200)),
-            ('slug', self.gf('django.db.models.fields.SlugField')(max_length=50)),
-            ('center', self.gf('django.contrib.gis.db.models.fields.PointField')(null=True)),
-            ('zoom', self.gf('django.db.models.fields.SmallIntegerField')()),
-            ('order', self.gf('django.db.models.fields.IntegerField')()),
-        ))
-        db.send_create_signal(u'geozones', ['Region'])
+    dependencies = [
+    ]
 
-        # Adding model 'Location'
-        db.create_table(u'geozones_location', (
-            (u'id', self.gf('django.db.models.fields.AutoField')(primary_key=True)),
-            ('name', self.gf('django.db.models.fields.CharField')(default='Location', max_length=250)),
-            ('coordinates', self.gf('django.contrib.gis.db.models.fields.GeometryCollectionField')(null=True)),
-            ('region', self.gf('django.db.models.fields.related.ForeignKey')(to=orm['geozones.Region'], null=True, blank=True)),
-            ('description', self.gf('django.db.models.fields.CharField')(max_length=200, blank=True)),
-        ))
-        db.send_create_signal(u'geozones', ['Location'])
-
-
-    def backwards(self, orm):
-        # Deleting model 'Region'
-        db.delete_table(u'geozones_region')
-
-        # Deleting model 'Location'
-        db.delete_table(u'geozones_location')
-
-
-    models = {
-        u'geozones.location': {
-            'Meta': {'object_name': 'Location'},
-            'coordinates': ('django.contrib.gis.db.models.fields.GeometryCollectionField', [], {'null': 'True'}),
-            'description': ('django.db.models.fields.CharField', [], {'max_length': '200', 'blank': 'True'}),
-            u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-            'name': ('django.db.models.fields.CharField', [], {'default': "'Location'", 'max_length': '250'}),
-            'region': ('django.db.models.fields.related.ForeignKey', [], {'to': u"orm['geozones.Region']", 'null': 'True', 'blank': 'True'})
-        },
-        u'geozones.region': {
-            'Meta': {'ordering': "['order']", 'object_name': 'Region'},
-            'center': ('django.contrib.gis.db.models.fields.PointField', [], {'null': 'True'}),
-            u'id': ('django.db.models.fields.AutoField', [], {'primary_key': 'True'}),
-            'name': ('django.db.models.fields.CharField', [], {'max_length': '200'}),
-            'order': ('django.db.models.fields.IntegerField', [], {}),
-            'slug': ('django.db.models.fields.SlugField', [], {'max_length': '50'}),
-            'zoom': ('django.db.models.fields.SmallIntegerField', [], {})
-        }
-    }
-
-    complete_apps = ['geozones']
+    operations = [
+        migrations.CreateModel(
+            name='Location',
+            fields=[
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('name', models.CharField(default=b'Location', max_length=250, verbose_name='Name')),
+                ('coordinates', django.contrib.gis.db.models.fields.GeometryCollectionField(srid=4326, null=True, verbose_name='On map')),
+                ('description', models.CharField(max_length=200, blank=True)),
+            ],
+            options={
+                'verbose_name': 'Location',
+                'verbose_name_plural': 'Locations',
+            },
+            bases=(models.Model,),
+        ),
+        migrations.CreateModel(
+            name='Region',
+            fields=[
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('name', models.CharField(max_length=200, verbose_name='Region name')),
+                ('slug', models.SlugField(verbose_name='slug')),
+                ('center', django.contrib.gis.db.models.fields.PointField(srid=4326, null=True, verbose_name='Map center')),
+                ('zoom', models.SmallIntegerField(verbose_name='Map zoom')),
+                ('order', models.IntegerField(verbose_name='Order')),
+            ],
+            options={
+                'ordering': ['order'],
+                'verbose_name': 'Region',
+                'verbose_name_plural': 'Regions',
+            },
+            bases=(models.Model,),
+        ),
+        migrations.AddField(
+            model_name='location',
+            name='region',
+            field=models.ForeignKey(verbose_name='Region', blank=True, to='geozones.Region', null=True),
+            preserve_default=True,
+        ),
+    ]
