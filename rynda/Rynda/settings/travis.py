@@ -6,7 +6,7 @@ from .base import *
 DATABASES = {
     'default': {
         'ENGINE': 'django.contrib.gis.db.backends.postgis',
-        'NAME': 'devrynda',
+        'NAME': 'rynda',
         'USER': 'postgres',
         'PASSWORD': '',
         'HOST': 'localhost',
