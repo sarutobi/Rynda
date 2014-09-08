@@ -6,7 +6,7 @@ install: "pip install -r requirements.txt"
 # # command to run tests, e.g. python setup.py test
 before_script:
   - psql -c 'create database rynda;' -U postgres
-  - psql -c 'create extension postgis' -U postgres
+  - psql -c 'create extension postgis' -U postgres -d rynda
   - cd rynda
   - python manage.py migrate --settings=Rynda.settings.travis
 
