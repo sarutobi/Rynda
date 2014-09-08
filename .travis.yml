@@ -7,10 +7,10 @@ install: "pip install -r requirements.txt"
 before_script:
   - psql -c 'create database rynda;' -U postgres
   - psql -c 'create extension postgis' -U postgres
-  - sed -i -e "s/'PASSWORD': 'devrynda'/'PASSWORD': 'postgres'/" rynda/Rynda/settings/test.py
   - cd rynda
-  - python manage.py migrate
+  - python manage.py migrate --settings=Rynda.settings.travis
+
 script:
   - cd rynda
-  - python manage.py test --settings=Rynda.settings.test
+  - python manage.py test --settings=Rynda.settings.travis
 

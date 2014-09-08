@@ -7,14 +7,9 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.contrib.gis.db.backends.postgis',
         'NAME': 'devrynda',
-        'USER': 'devrynda',
-        'PASSWORD': 'devrynda',
+        'USER': 'postgres',
+        'PASSWORD': '',
         'HOST': 'localhost',
         'PORT': '',
     }
 }
-
-try:
-    from local_test import *
-except:
-    pass
