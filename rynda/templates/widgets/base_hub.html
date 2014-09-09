@@ -1,6 +1,5 @@
 {% load i18n %}
 {% trans "Messages" as msgs %}
-{% trans "Organizations" as orgs %}
 {% trans "Users" as users %}
 {% trans "About" as about %}
 <div id='hub_tabs'>
@@ -17,12 +16,6 @@
         <li><div class='tabLink_container'><a href='{% url "messages-list" %}'>{{ msgs }}</a></div></li>
         {% endif %}
 
-        {% if part == 'organization' %}
-            <li class='tab_active'><div class='tabLink_container'>{{ orgs }}</div></li>
-        {% else %}
-            <li><div class='tabLink_container'><a href='/organization'>{{ orgs }}</a></div></li>
-        {% endif %}
-        
         {% if part == 'user' %}
             <li class='tab_active'><div class='tabLink_container'>{{ users }}</div></li>
         {% else %}
