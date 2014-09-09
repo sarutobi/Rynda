@@ -16,6 +16,7 @@ here = lambda *x: os.path.join(os.path.abspath(os.path.dirname(__file__)), *x)
 SITE_ROOT = here('..', '..')
 DEBUG = False
 TEMPLATE_DEBUG = DEBUG
+SITE_ID = 1
 
 PRODUCTION = False
 
