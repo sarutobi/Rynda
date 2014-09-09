@@ -8,5 +8,6 @@ local_*.py
 htmlcov/
 mailbox/
 node_modules/
+docs/build/
 **/bootstrap-theme.css
 **/default.css
