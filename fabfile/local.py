@@ -4,7 +4,6 @@ from functools import wraps
 
 from fabric.api import *
 
-import fabfile
 
 # Localhost virtualenvwrapper activation
 LOCAL_VIRT_ACTIVATE = 'source ~/.zshrc'
@@ -24,7 +23,7 @@ def inside_virtualenv(func):
 
 @task
 def manage(command='help'):
-    local("python manage.py " + command, shell='/bin/zsh')
+    local("python manage.py " + command, shell='/bin/bash')
 
 
 @task
@@ -41,13 +40,10 @@ def test(app=''):
 
 
 @task
-def pip(req_file='', upgrade=False):
-    if upgrade:
-        key = "-U"
-    else:
-        key = ""
-    command = 'pip install -r %(file)s %(key)s' % {'file': req_file, 'key': key}
-    local(command, shell='/bin/zsh')
+@inside_virtualenv
+def pip(req_file=''):
+    command = 'pip install -r %s' % req_file
+    local(command, shell='/bin/bash')
 
 
 @task
@@ -59,3 +55,14 @@ def install_req(req_file='', upgrade=False):
 @task
 def stage():
     manage("runserver 0.0.0.0:8000 --settings=Rynda.settings.local_stage")
+
+
+@task
+@inside_virtualenv
+def coverage():
+    local(
+        "coverage run manage.py test --settings=Rynda.settings.test",
+        shell="/bin/bash"
+    )
+    local("coverage html", shell="/bin/bash")
+    local("coverage report", shell="/bin/bash")
