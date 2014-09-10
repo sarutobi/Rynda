@@ -1,3 +1,4 @@
 -r _base.txt
 django-debug-toolbar==1.2.1
 Fabric==1.9.1
+-r test.txt
