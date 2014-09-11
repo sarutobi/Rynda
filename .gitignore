@@ -4,7 +4,7 @@
 *.db
 *.mo
 *.log
-local_*.py
+local_*
 htmlcov/
 mailbox/
 node_modules/
