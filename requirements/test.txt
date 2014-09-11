@@ -1,7 +1,5 @@
 -r _base.txt
-factory-boy==2.4.1
-WebTest==2.0.15
-django-webtest==1.7.7
+-r _test.txt
 # Hints for pysqlite:
 # pip install --no-install pysqlite
 # fix setup.cfg - commit line OMIT_LOAD_EXTENSION
