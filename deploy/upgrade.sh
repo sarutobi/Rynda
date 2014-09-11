@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Load local settings
+. local_settings.sh
+
 cur_dir=`pwd`
 cd ..
 # Fetch latest from repo
