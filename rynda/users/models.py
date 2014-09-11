@@ -81,7 +81,7 @@ class Profile(models.Model):
         db_column='forgotten_password_time',
         editable=False,
         null=True)
-    flags = models.IntegerField(db_column='flags', editable=False, default=0)
+    is_public = models.BooleanField(_("Public"), default=False)
     phones = models.CharField(max_length=255, blank=True)
     about_me = models.TextField(default='', blank=True)
     birthday = models.DateField(blank=True, null=True)
