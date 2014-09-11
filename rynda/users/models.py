@@ -69,18 +69,6 @@ class Profile(models.Model):
     )
 
     user = models.OneToOneField(User)
-    forgotCode = models.CharField(
-        max_length=40,
-        editable=False,
-        db_column='forgotten_password_code', null=True)
-    rememberCode = models.CharField(
-        max_length=40,
-        editable=False,
-        db_column='remember_code', null=True)
-    forgotten_time = models.DateTimeField(
-        db_column='forgotten_password_time',
-        editable=False,
-        null=True)
     is_public = models.BooleanField(_("Public"), default=False)
     phones = models.CharField(max_length=255, blank=True)
     about_me = models.TextField(default='', blank=True)
