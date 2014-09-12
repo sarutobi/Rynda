@@ -13,7 +13,10 @@ from test.factories import UserFactory
 
 
 class MessageDataMixin():
+    """  Provide additional message data, fill and send form """
+
     def generate_message(self):
+        """ Populate factory-generated data with custom fields """
         contacts = {
             'first_name': 'test',
             'last_name': 'user',
@@ -24,13 +27,12 @@ class MessageDataMixin():
             'coordinates': FuzzyGeometryCollection().fuzz(),
             'address': 'test address',
         }
-        data = MessageFactory.attributes(create=False)
-        data.update(contacts)
-        data.update(loc_data)
-        return data
+        self.data = MessageFactory.attributes(create=False)
+        self.data.update(contacts)
+        self.data.update(loc_data)
 
     def fill_form(self):
-        """ Вспомогательный метод заполнения формы данными """
+        """ Fill form and send it """
         form = self.page.forms['mainForm']
         form['title'] = self.data['title']
         form['message'] = self.data['message']
@@ -39,84 +41,69 @@ class MessageDataMixin():
         form['email'] = self.data['email']
         form['address'] = self.data['address']
         form['coordinates'] = self.data['coordinates']
-        return form
+        form.submit()
 
 
 class TestAnonymousMessage(WebTest, MessageDataMixin):
-    """ Отправка сообщения незарегистрированным пользователем """
+    """ Anonymous message """
 
     def setUp(self):
         self.page = self.app.get(reverse('message-create-request'))
-        self.data = self.generate_message()
+        self.generate_message()
 
     def test_store_anonymous_message(self):
-        """ Проверка сохранения данных анонимного сообщения """
+        """ Anonymous message has been stored """
         before = Message.objects.count()
-        form = self.fill_form()
-        form.submit()
+        self.fill_form()
         self.assertEquals(before + 1, Message.objects.count())
 
-    def test_creator_data(self):
-        form = self.fill_form()
-        form.submit()
-        msg = Message.objects.get()
-        self.assertEqual(msg.user_id, settings.ANONYMOUS_USER_ID)
-
     def test_message_is_anonymous(self):
-        form = self.fill_form()
-        form.submit()
+        """ This message has been sent by anonymous """
+        self.fill_form()
         msg = Message.objects.get()
         self.assertEqual(msg.user_id, settings.ANONYMOUS_USER_ID)
 
 
 class TestSendRequestMessage(WebTest, MessageDataMixin):
-    """ Функционал создания просьбы о помощи """
+    """ Request form """
 
     def setUp(self):
         self.user = UserFactory()
-        self.page = self.app.get(reverse('message-create-request'),
+        self.page = self.app.get(
+            reverse('message-create-request'),
             user=self.user.username)
-        self.data = self.generate_message()
-
-    def test_get_form(self):
-        form = self.page.forms['mainForm']
-        self.assertIsNotNone(form)
+        self.generate_message()
 
     def test_message_saved(self):
         before = Message.objects.count()
-        form = self.fill_form()
-        form.submit()
+        self.fill_form()
         self.assertEquals(before + 1, Message.objects.count())
+
+    def test_message_type(self):
+        self.fill_form()
+        msg = Message.objects.get()
+        self.assertEqual(Message.REQUEST, msg.messageType)
 
 
 class TestRequestMessageParameters(WebTest, MessageDataMixin):
     """ Tests for new request parameters """
     def setUp(self):
         self.user = UserFactory()
-        self.data = self.generate_message()
-        self.form = self.app.get(
-            reverse('message-create-request'), user=self.user.username
-        ).forms['mainForm']
-
-    def send_form(self):
-        self.form['title'] = self.data['title']
-        self.form['message'] = self.data['message']
-        self.form['is_anonymous'] = self.data['is_anonymous']
-        self.form['allow_feedback'] = self.data['allow_feedback']
-        self.form['email'] = self.data['email']
-        self.form['address'] = self.data['address']
-        self.form['coordinates'] = self.data['coordinates']
-        self.form.submit()
+        self.page = self.app.get(
+            reverse('message-create-request'),
+            user=self.user.username
+        )
+        self.generate_message()
 
     def test_message_user(self):
         """ Test message author """
-        self.send_form()
+        self.fill_form()
         msg = Message.objects.get()
         self.assertEquals(msg.user, self.user)
 
     def test_message_flags(self):
         """ Test default message flags """
-        self.send_form()
+        self.fill_form()
         msg = Message.objects.get()
         self.assertEquals(Message.NEW, msg.status)
         self.assertFalse(msg.is_removed)
@@ -129,18 +116,18 @@ class TestRequestMessageParameters(WebTest, MessageDataMixin):
     def test_nonanonymous_message(self):
         """ Send non-anonymous message """
         self.data['is_anonymous'] = False
-        self.send_form()
+        self.fill_form()
         msg = Message.objects.get()
         self.assertFalse(msg.is_anonymous)
 
     def test_no_feedback(self):
         """ Send message and do not want feedback """
         self.data['allow_feedback'] = False
-        self.send_form()
+        self.fill_form()
         msg = Message.objects.get()
         self.assertFalse(msg.allow_feedback)
 
     def test_message_location(self):
         loc_cnt = Location.objects.count()
-        self.send_form()
+        self.fill_form()
         self.assertEqual(loc_cnt + 1, Location.objects.count())
