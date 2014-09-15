@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from django.shortcuts import redirect
+from django.shortcuts import redirect, render
 from django.conf import settings
 from django.contrib.auth.models import User
 from django.utils.translation import ugettext_lazy as _
@@ -37,7 +37,7 @@ class UserList(RyndaListView):
 
 class CreateUser(RyndaFormView):
     """
-    New user regiatration.
+    New user registration.
     If registration form is valid, create a new deactivated user,
     new user profile (via signal) and send activation email to user.
     """
@@ -53,7 +53,10 @@ class CreateUser(RyndaFormView):
             email=ce['email'],
             password=ce['password1'],
         )
-        return redirect(self.success_url)
+        return render(
+            self.request,
+            "registration_success.html",
+        )
 
 
 def activate_profile(request, pk, key):

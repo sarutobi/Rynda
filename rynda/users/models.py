@@ -9,6 +9,7 @@ import string
 from django.conf import settings
 from django.db import models
 from django.contrib.auth.models import User
+from django.contrib.sites.models import Site
 from django.utils.translation import ugettext_lazy as _
 
 from post_office import mail
@@ -117,6 +118,7 @@ def notify_new_user(user):
         context={
             'user': user,
             'activation_code': activation_code,
+            'site': Site.objects.get(id=1)
         }
     )
 
