@@ -1,7 +1,16 @@
 {% extends 'base.html' %}
+{% load i18n %}
 
 {% block hubs %}
     {% include "widgets/base_hub.html"  with part='about' %}
+{% endblock %}
+
+{% block navigation %}
+<ul class="breadcrumb">
+    <li><a href="/">{% trans "Home" %}</a></li>
+    <li><a href="/info">{% trans "Information pages" %}</a></li>
+    <li>{{ flatpage.title }}</li>
+</ul>
 {% endblock %}
 
 {% block maincontent %}

@@ -5,6 +5,13 @@
     {% include "widgets/base_hub.html"  with part='about' %}
 {% endblock %}
 
+{% block navigation %}
+<ul class="breadcrumb">
+    <li><a href="/">{% trans "Home" %}</a></li>
+    <li>{% trans "Information pages" %}</li>
+</ul>
+{% endblock %}
+
 {% block maincontent %}
 <div class="col-md-10 col-md-offset-1">
     <div class="panel panel-primary">
