@@ -2,6 +2,7 @@
 
 from django.shortcuts import redirect, render
 from django.conf import settings
+from django.contrib import messages
 from django.contrib.auth.models import User
 from django.utils.translation import ugettext_lazy as _
 from django.views.generic.detail import DetailView
@@ -62,6 +63,7 @@ class CreateUser(RyndaFormView):
 def activate_profile(request, pk, key):
     user = User.objects.get(id=pk)
     if activate_user(user, key):
+        messages.add_message(request, messages.SUCCESS, "OK!")
         return render(
             request,
             'activation_success.html')
