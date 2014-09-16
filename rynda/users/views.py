@@ -8,7 +8,7 @@ from django.views.generic.detail import DetailView
 
 from core.views import RyndaFormView, RyndaListView
 from users.forms import SimpleRegistrationForm, UserFilter
-from users.models import create_new_user
+from users.models import create_new_user, activate_user
 
 
 class UserDetail(DetailView):
@@ -61,11 +61,8 @@ class CreateUser(RyndaFormView):
 
 def activate_profile(request, pk, key):
     user = User.objects.get(id=pk)
-    p = user.get_profile()
-    if p.activCode == key:
-        user.is_active = True
-        user.save()
-        p.activCode = ''
-        p.save()
-        redirect('/login')
-    redirect('/')
+    if activate_user(user, key):
+        return render(
+            request,
+            'activation_success.html')
+    return redirect('/')

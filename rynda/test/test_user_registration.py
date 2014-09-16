@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 
+from django.conf import settings
 from django.contrib.auth.models import User
 from django.contrib.sites.models import Site
 from django.core.urlresolvers import reverse
@@ -8,6 +9,7 @@ from django_webtest import WebTest
 from post_office.models import Email
 
 from test.factories import UserFactory
+from users.models import UserAuthCode
 
 
 class TestUserRegistration(WebTest):
@@ -48,3 +50,15 @@ class TestUserRegistration(WebTest):
         self.assertIn(
             activation_string, mail.message, mail.message.encode('utf-8'))
         self.assertIn(activation_string, mail.html_message)
+
+    def test_activation_link(self):
+        """ Click on auto-activation link """
+        self.action_registration()
+        user = User.objects.all().order_by('-id')[0]
+        self.assertFalse(user.is_active)
+        activation_code = UserAuthCode(settings.SECRET_KEY).auth_code(user)
+        activation_url = "/user/activate/{0}/{1}/".format(user.id, activation_code)
+        page = self.app.get(activation_url)
+        self.assertEqual(200, page.status_code)
+        self.assertTrue(User.objects.get(id=user.id).is_active)
+        self.assertTemplateUsed("activation_success.html")

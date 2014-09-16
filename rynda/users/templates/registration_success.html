@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% load i18n %}
+
+{% block page_title %}{% trans "Registration success" %}{% endblock %}
+
+{% block hubs %}
+    {% include "widgets/base_hub.html"  with part='main' %}
+{% endblock %}
+
+{% block maincontent %}
+<div class="col-md-6 col-md-offset-3">
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <h1 class="panel-title">{% trans 'You successfully registered!' %}</h1>
+        </div>
+        <div class="panel-body">
+            <p>{% trans "Congratulations!" %}</p>
+            <p>{% blocktrans %}
+            Your registration is almost done. Please, check your emails for a mail from us with a confirmation link.{% endblocktrans %}
+            </p>
+        </div>
+    </div>
+</div>
+{% endblock %}

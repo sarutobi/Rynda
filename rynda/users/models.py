@@ -96,13 +96,6 @@ def create_new_user(first_name, last_name, password, email):
     return user
 
 
-def _file_get_contents(fname):
-    abs_path = os.path.dirname(__file__)
-    file_path = os.path.join(abs_path, fname)
-    with open(file_path, 'r') as f:
-        return f.read()
-
-
 def notify_new_user(user):
     """ Уведомляем нового пользователя о регистрации """
     # file_path = "templates/emails/registration_confirm/%s"
