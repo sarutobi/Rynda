@@ -160,7 +160,7 @@ class MessageView(RyndaDetailView):
 class MessageList(RyndaListView):
     queryset = Message.objects.active().prefetch_related('user', 'category').all()
     paginate_by = 10
-    template_name = 'all_messages.html'
+    template_name = 'messages_list.html'
     context_object_name = 'messages'
     paginator_url = '/message/page/'
     list_title_short = _('Message list')
