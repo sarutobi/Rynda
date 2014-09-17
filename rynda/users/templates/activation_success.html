@@ -1,0 +1,9 @@
+{% extends "base_message.html" %}
+{% load i18n %}
+
+{% block message-pane-title %}{% trans "Profile has been activated" %}{% endblock %}
+
+{% block message-pane-body %}
+<p>Welcome!</p>
+<p>Your account has been successfully activated. Now you can <a href="{% url "user-login" %}">Log in</a> and start to work.</p>
+{% endblock %}

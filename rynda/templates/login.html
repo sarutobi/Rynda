@@ -1,55 +1,44 @@
-{% extends 'base.html' %}
+{% extends 'base_singlepane.html' %}{# login form template #}
 {% load url from future %}
 {% load i18n widget_tweaks %}
 
-{% block hubs %}
-    {% include "widgets/base_hub.html"  with part='user' %}
-{% endblock %}
+{% block pane-title %}{% trans "Login" %}{% endblock %}
 
-{% block maincontent %}
-<!-- Authentication page -->
-<div class="col-md-6 col-md-offset-3">
-    <div class="panel panel-primary">
-        <div class="panel-heading">
-            <h2 class="panel-title">{% trans "Login" %}</h2>
-        </div>
-        <div class="panel-body">
-            {% if form.non_field_errors %}
-            <div class="alert alert-warning">
-                {% for e in form.non_field_errors %}
-                {{ e }}
-                {% endfor %}
-            </div>
-            {% endif %}
-            <form id="loginForm" action="{% url 'django.contrib.auth.views.login' %}" method="post">
-                {% csrf_token %}
-                <div class="form-group {% if form.username.errors %}has-error{% endif %}">
-                    {{ form.username.label_tag }}
-                    {% for e in form.username.errors %}{{ e }}{% endfor %}
-                    {{ form.username|add_class:"form-control" }}
-                </div>
-                <div class="form-group {% if form.password.errors %}has-error{% endif %}">
-                    {{ form.password.label_tag }}
-                    {% for e in form.password.errors %}{{ e }}{% endfor %}
-                    <div class="input-group">
-                        {{ form.password|add_class:"form-control" }}
-                        <span class="input-group-addon">
-                            <label for="rememberField">
-                                <input tabindex="3" type="checkbox" name="rememberField" id="rememberField" value="1" checked />{% trans "Remember me" %} 
-                            </label>
-                        </span>
-                    </div>
-                    <p class="form-control-static"><a href='/password/reset' >{% trans "Password reminder" %}</a></p>
-                </div>
-
-                <div class="panel-footer">
-                    <div class="row">
-                        <input tabindex="4" type="submit" id="loginSubmit" class="btn rynda-btn-default btn-block" value="{% trans "Login" %}" />
-                    </div>
-                </div>
-            </form>
-        </div>
-    </div>
+{% block pane-body %}
+<!-- Authentication form -->
+{% if form.non_field_errors %}
+<div class="alert alert-warning">
+    {% for e in form.non_field_errors %}
+        {{ e }}
+    {% endfor %}
 </div>
-<!-- Authentication page end -->
-{%endblock%}
+{% endif %}
+
+<form id="loginForm" action="{% url 'django.contrib.auth.views.login' %}" method="post">
+{% csrf_token %}
+<div class="form-group {% if form.username.errors %}has-error{% endif %}">
+    {{ form.username.label_tag }}
+    {% for e in form.username.errors %}{{ e }}{% endfor %}
+    {{ form.username|add_class:"form-control" }}
+</div>
+
+<div class="form-group {% if form.password.errors %}has-error{% endif %}">
+    {{ form.password.label_tag }}
+    {% for e in form.password.errors %}{{ e }}{% endfor %}
+    <div class="input-group">
+        {{ form.password|add_class:"form-control" }}
+        <span class="input-group-addon">
+            <label for="rememberField">
+                <input tabindex="3" type="checkbox" name="rememberField" id="rememberField" value="1" checked /> {% trans "Remember me" %} 
+            </label>
+        </span>
+    </div>
+    <p class="form-control-static"><a href='/password/reset' >{% trans "Password reminder" %}</a></p>
+</div>
+
+<div class="form-group">
+    <input tabindex="4" type="submit" id="loginSubmit" class="btn rynda-btn-default btn-block" value="{% trans "Login" %}" />
+</div>
+</form>
+<!-- Authentication form end -->
+{% endblock %}

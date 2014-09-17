@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{# Base template to show singlepaned pages #}
+
+{% block hubs %}
+    {% include "widgets/base_hub.html"  with part='base' %}
+{% endblock %}
+
+{% block maincontent %}
+<div class="{% block pane-width %}col-md-6 col-md-offset-3{% endblock %}">
+    <div class="panel {% block pane-type %}panel-primary{% endblock %}">
+        <div class="panel-heading">
+            <h1 class="panel-title">
+                {% block pane-title %}{% endblock %} 
+            </h1>
+        </div>
+
+        <div class="panel-body">
+            {% block pane-body %}{% endblock %}
+        </div>
+    </div>
+</div>
+{% endblock %}
