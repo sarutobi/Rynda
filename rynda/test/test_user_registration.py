@@ -35,6 +35,7 @@ class TestUserRegistration(WebTest):
         return response
 
     def test_registration_page(self):
+        """ User create account """
         users = User.objects.count()
         page = self.action_registration()
         self.assertEqual(200, page.status_code)
@@ -58,7 +59,7 @@ class TestUserRegistration(WebTest):
         self.assertFalse(user.is_active)
         activation_code = UserAuthCode(settings.SECRET_KEY).auth_code(user)
         activation_url = "/user/activate/{0}/{1}/".format(user.id, activation_code)
-        page = self.app.get(activation_url)
+        page = self.app.get(activation_url).follow()
         self.assertEqual(200, page.status_code)
         self.assertTrue(User.objects.get(id=user.id).is_active)
-        self.assertTemplateUsed("activation_success.html")
+        self.assertTemplateUsed("login.html")
