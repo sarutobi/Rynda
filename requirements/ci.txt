@@ -1,2 +1,0 @@
--r test.txt
-django-jenkins==0.14.0
