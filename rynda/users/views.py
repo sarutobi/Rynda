@@ -15,12 +15,12 @@ from users.models import create_new_user, activate_user
 
 class UserDetail(DetailView):
     model = User
-    template_name = 'user_profile.html'
+    template_name = 'user_details.html'
     context_object_name = 'u'
 
 
 class UserList(RyndaListView):
-    template_name = 'userlist.html'
+    template_name = 'user_list.html'
     context_object_name = 'users'
     queryset = User.objects.select_related().exclude(
         pk=settings.ANONYMOUS_USER_ID).filter(
@@ -43,7 +43,7 @@ class CreateUser(RyndaFormView):
     If registration form is valid, create a new deactivated user,
     new user profile (via signal) and send activation email to user.
     """
-    template_name = 'registerform_simple.html'
+    template_name = 'registration_form.html'
     form_class = SimpleRegistrationForm
     success_url = '/'
 
@@ -64,6 +64,7 @@ class CreateUser(RyndaFormView):
 def activate_profile(request, pk, key):
     user = User.objects.get(id=pk)
     if activate_user(user, key):
+        # TODO Add correct message
         messages.add_message(request, messages.SUCCESS, "OK!")
         return redirect(reverse("user-login"))
     return redirect('/')
