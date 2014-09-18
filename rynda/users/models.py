@@ -97,16 +97,12 @@ def create_new_user(first_name, last_name, password, email):
 
 
 def notify_new_user(user):
-    """ Уведомляем нового пользователя о регистрации """
-    # file_path = "templates/emails/registration_confirm/%s"
-    # subj = _file_get_contents(file_path % "short.txt")
-    # text = _file_get_contents(file_path % "email.txt")
-    # html = _file_get_contents(file_path % "email.html")
+    """ Send to new user activation link """
+
     activation_code = UserAuthCode(settings.SECRET_KEY).auth_code(user)
 
     mail.send(
         [user],
-        # subject=subj, message=text, html_message=html,
         template="registration confirmation",
         context={
             'user': user,
@@ -117,9 +113,19 @@ def notify_new_user(user):
 
 
 def activate_user(user, code):
+    """ Checks activation code, activate user and send email notification """
+
     encoder = UserAuthCode(settings.SECRET_KEY)
     if encoder.is_valid(user, code):
         user.is_active = True
         user.save()
+        mail.send(
+            [user],
+            template="registration complete",
+            context={
+                'user': user,
+                'site': Site.objects.get(id=1),
+            }
+        )
         return True
     return False
