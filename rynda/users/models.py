@@ -100,14 +100,13 @@ def notify_new_user(user):
     """ Send to new user activation link """
 
     activation_code = UserAuthCode(settings.SECRET_KEY).auth_code(user)
-
     mail.send(
         [user],
         template="registration confirmation",
         context={
             'user': user,
             'activation_code': activation_code,
-            'site': Site.objects.get(id=1)
+            'site': Site.objects.get()
         }
     )
 
@@ -124,7 +123,7 @@ def activate_user(user, code):
             template="registration complete",
             context={
                 'user': user,
-                'site': Site.objects.get(id=1),
+                'site': Site.objects.get(),
             }
         )
         return True
