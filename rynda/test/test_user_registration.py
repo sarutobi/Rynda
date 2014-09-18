@@ -63,3 +63,10 @@ class TestUserRegistration(WebTest):
         self.assertEqual(200, page.status_code)
         self.assertTrue(User.objects.get(id=user.id).is_active)
         self.assertTemplateUsed("login.html")
+
+    def test_logged_in(self):
+        """ Logged in user attempts to get registration form """
+        user = UserFactory.create(is_active=True)
+        page = self.app.get(reverse("user-creation"), user=user)
+        self.assertRedirects(
+            page, reverse("user-details", kwargs={'pk': user.id, }))

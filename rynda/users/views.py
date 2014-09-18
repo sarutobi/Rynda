@@ -47,6 +47,13 @@ class CreateUser(RyndaFormView):
     form_class = SimpleRegistrationForm
     success_url = '/'
 
+    def get(self, request, *args, **kwargs):
+        """ Registered user can't get access to registration form """
+        if request.user.is_authenticated():
+            return redirect(reverse(
+                "user-details", kwargs={"pk": request.user.id, }))
+        return super(CreateUser, self).get(request, *args, **kwargs)
+
     def form_valid(self, form):
         ce = form.cleaned_data
         create_new_user(
