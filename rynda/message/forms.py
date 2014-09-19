@@ -13,7 +13,6 @@ from message.models import Message, Category
 
 
 class VirtualMessageFormMixin(forms.ModelForm):
-
     """ Virtual messages isn't required presence to make smth """
 
     def __init__(self, *args, **kwargs):
@@ -28,7 +27,6 @@ class VirtualMessageFormMixin(forms.ModelForm):
 
 
 class MessageForm(forms.ModelForm):
-
     """ Base message form """
 
     class Meta:
@@ -68,7 +66,7 @@ class UserMessageForm(forms.ModelForm):
     phone = forms.CharField(label=_('Contact phone'), required=False)
     address = forms.CharField(label=_('Address'))
     # TODO MultiPointField
-    coordinates = geoforms.GeometryCollectionField(
+    coordinates = geoforms.PointField(
         label=_('Coordinates'),
         widget=LeafletWidget(),)
 

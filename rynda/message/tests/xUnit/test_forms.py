@@ -4,7 +4,7 @@ from django.test import TestCase
 
 import floppyforms.__future__ as forms
 
-from core.factories import FuzzyGeometryCollection
+from core.factories import FuzzyGeometryCollection, FuzzyPoint
 from message.factories import MessageFactory
 from message.forms import (
     MessageForm, UserMessageForm, RequestForm, OfferForm, InformationForm)
@@ -45,7 +45,8 @@ class MessageDataGenerator(TestCase):
             'phone': '1234567890',
         }
         loc_data = {
-            'coordinates': FuzzyGeometryCollection().fuzz(),
+            # 'coordinates': FuzzyGeometryCollection().fuzz(),
+            'coordinates': FuzzyPoint().fuzz(),
             'address': 'test address',
         }
         self.data = MessageFactory.attributes(create=False)

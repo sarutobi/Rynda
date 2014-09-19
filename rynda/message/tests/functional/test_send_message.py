@@ -5,7 +5,7 @@ from django.core.urlresolvers import reverse
 
 from django_webtest import WebTest
 
-from core.factories import FuzzyGeometryCollection
+from core.factories import FuzzyGeometryCollection, FuzzyPoint
 from geozones.models import Location
 from message.models import Message
 from message.factories import MessageFactory
@@ -24,7 +24,7 @@ class MessageDataMixin():
             'phone': '1234567890',
         }
         loc_data = {
-            'coordinates': FuzzyGeometryCollection().fuzz(),
+            'coordinates': FuzzyPoint().fuzz(),
             'address': 'test address',
         }
         self.data = MessageFactory.attributes(create=False)

@@ -3,6 +3,7 @@
 from django.conf import settings
 from django.contrib.auth import logout
 from django.contrib.auth.models import User
+from django.contrib.gis.geos import fromstr, GeometryCollection
 from django.core.urlresolvers import reverse_lazy
 from django.shortcuts import redirect, render
 from django.template.loader import render_to_string
@@ -77,9 +78,12 @@ class SaveGeoDataMixin():
             instance.user = self.request.user
         else:
             instance.user = User.objects.get(pk=settings.ANONYMOUS_USER_ID)
+
+        point = fromstr(self.request.POST['coordinates'])
+        gc = GeometryCollection(point).wkt
         data = {
             'name': self.request.POST['address'],
-            'coordinates': self.request.POST['coordinates'], }
+            'coordinates': gc, }
         loc_form = LocationForm(data=data)
         location = loc_form.save()
         instance.linked_location = location
