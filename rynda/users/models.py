@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 
-import os
 import random
 import base64
 import hashlib
@@ -101,7 +100,7 @@ def notify_new_user(user):
 
     activation_code = UserAuthCode(settings.SECRET_KEY).auth_code(user)
     mail.send(
-        [user],
+        [user.email],
         template="registration confirmation",
         context={
             'user': user,
@@ -119,7 +118,7 @@ def activate_user(user, code):
         user.is_active = True
         user.save()
         mail.send(
-            [user],
+            [user.email],
             template="registration complete",
             context={
                 'user': user,

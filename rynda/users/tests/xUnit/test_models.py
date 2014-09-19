@@ -112,12 +112,8 @@ class TestUserActivation(TestCase):
         self.user = UserFactory(is_active=False)
         self.code = encoder.auth_code(self.user)
 
-    def tearDown(self):
-        self.user.delete()
-        self.code = None
-
     def test_user_activation(self):
-        self.assertTrue(activate_user(self.user, self.code))
+        self.assertTrue(activate_user(self.user, self.code), self.user.email)
         self.assertTrue(self.user.is_active)
 
     def test_wrong_code(self):
