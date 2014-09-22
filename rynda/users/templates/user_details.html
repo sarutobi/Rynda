@@ -20,7 +20,7 @@
             <h3 class="panel-title pull-left" style="padding-top:7px;">{% blocktrans with name=u.get_full_name|default:u.email %}User profile for {{ name }}{% endblocktrans %}</h3>
             {% if user.id = u.id %}
             <div class="pull-right">
-                <a href="/user/edit/{{ user.id }}" class="btn btn-primary">{%trans "Edit profile" %}</a>
+                <a href="{% url "user-profile-edit" %}" class="btn btn-primary">{%trans "Edit profile" %}</a>
             </div>
             {% endif %}
         </div>

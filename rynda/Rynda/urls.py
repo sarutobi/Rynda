@@ -27,7 +27,7 @@ urlpatterns += patterns('',
     url(r'^user/', include('users.urls')),
     url(r'^news/', include('newsline.urls')),
     url(r'^t/(?P<slug>[a-z_0-9-]+)$', 'message.views.list'),
-    url(r'^t/(?P<slug>)message/', include('message.urls')),
+    # url(r'^t/(?P<slug>)message/', include('message.urls')),
 )
 
 # Project description patterns

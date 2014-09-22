@@ -10,6 +10,7 @@ import floppyforms.__future__ as forms
 
 from core.utils import validate_email_domain
 from message.models import Category
+from .models import Profile
 
 
 class SimpleRegistrationForm(forms.Form):
@@ -109,3 +110,10 @@ class UserFilter(django_filters.FilterSet):
                     ])
             return forms.ChoiceField(label="Ordering", required=False,
                                      choices=choices)
+
+
+class EditProfileForm(forms.ModelForm):
+    """ Allow editing user profile """
+    class Meta:
+        model = Profile
+        fields = ('is_public', 'about_me', 'birthday', 'gender')

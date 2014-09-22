@@ -7,10 +7,11 @@ from django.contrib.auth.models import User
 from django.core.urlresolvers import reverse
 from django.utils.translation import ugettext_lazy as _
 from django.views.generic.detail import DetailView
+from django.views.generic.edit import UpdateView
 
 from core.views import RyndaFormView, RyndaListView
-from users.forms import SimpleRegistrationForm, UserFilter
-from users.models import create_new_user, activate_user
+from users.forms import SimpleRegistrationForm, UserFilter, EditProfileForm
+from users.models import create_new_user, activate_user, Profile
 
 
 class UserDetail(DetailView):
@@ -67,6 +68,37 @@ class CreateUser(RyndaFormView):
             "registration_success.html",
         )
 
+
+class EditProfile(UpdateView):
+    """ Allow registered user edit self profile """
+    template_name = "edit_profile_form.html"
+    form_class = EditProfileForm
+
+    def form_valid(self, form):
+        # form.save()
+        # obj = form.save(commit=False)
+        # obj.user = self.request.user
+        # obj.update()
+        messages.add_message(
+            self.request,
+            messages.SUCCESS,
+            _("Profile was updated successfully!")
+        )
+        return super(EditProfile, self).form_valid(form)
+
+    def get_object(self):
+        """ Get current user profile data """
+        if not self.request.user.is_authenticated():
+            messages.add_message(
+                self.request,
+                messages.WARNING,
+                _("Please log in to edit your profile")
+            )
+        return Profile.objects.get(user=self.request.user)
+
+    def get_success_url(self):
+        return reverse(
+            'user-details', kwargs={'pk': self.request.user.pk})
 
 def activate_profile(request, pk, key):
     user = User.objects.get(id=pk)

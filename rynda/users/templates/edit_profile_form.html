@@ -1,0 +1,26 @@
+{% extends 'base.html'%}
+{% load i18n floppyforms %}
+
+{% block hubs %}
+    {% include "widgets/base_hub.html"  with part='user' %}
+{% endblock %}
+
+{% block maincontent %}
+<div class="col-md-6 col-md-offset-3">
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <h3 class="panel-title">{% trans "Edit profile" %}</h3>
+        </div>
+
+        <div class="panel-body">
+            <form id="registration_form" action="" method="post">
+            {% csrf_token%}
+            {% form form %}
+            <div class="panel-footer">
+                <input type="submit" class="btn rynda-btn-default form-control">
+            </div>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}
