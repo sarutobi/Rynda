@@ -7,9 +7,9 @@ from django.contrib.auth.models import User
 from django.core.urlresolvers import reverse
 from django.utils.translation import ugettext_lazy as _
 from django.views.generic.detail import DetailView
-from django.views.generic.edit import UpdateView
+from django.views.generic.edit import FormView, UpdateView
 
-from core.views import RyndaFormView, RyndaListView
+from core.views import RyndaListView
 from users.forms import SimpleRegistrationForm, UserFilter, EditProfileForm
 from users.models import create_new_user, activate_user, Profile
 
@@ -38,7 +38,7 @@ class UserList(RyndaListView):
         return context
 
 
-class CreateUser(RyndaFormView):
+class CreateUser(FormView):
     """
     New user registration.
     If registration form is valid, create a new deactivated user,

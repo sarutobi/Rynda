@@ -8,10 +8,10 @@ from django.core.urlresolvers import reverse_lazy
 from django.shortcuts import redirect, render
 from django.template.loader import render_to_string
 from django.utils.translation import ugettext_lazy as _
+from django.views.generic.detail import DetailView
+from django.views.generic.edit import CreateView, FormView
 
-from core.mixins import MultipleFormsView
-from core.views import (RyndaCreateView, RyndaDetailView, RyndaFormView,
-                        RyndaListView)
+from core.views import RyndaListView
 from geozones.forms import LocationForm
 from geozones.models import Region
 from message.forms import (RequestForm, OfferForm,
@@ -92,7 +92,7 @@ class SaveGeoDataMixin():
         return redirect(self.success_url)
 
 
-class CreateRequest(SaveGeoDataMixin, RyndaFormView):
+class CreateRequest(SaveGeoDataMixin, FormView):
     template_name = "request_form.html"
     model = Message
     form_class = RequestForm
@@ -108,57 +108,24 @@ class CreateRequest(SaveGeoDataMixin, RyndaFormView):
         return initial
 
 
-class CreateRequestM(MultipleFormsView):
-    """ Handler for multiple forms """
-    template_name = "request_form_simple.html"
-    model = Message
-    form_classes = {
-        'message': RequestForm,
-        'location': LocationForm,
-    }
-    success_url = reverse_lazy('message_list')
-
-    def get_initial(self):
-        initial = {}
-        if self.request.user.is_authenticated():
-            initial['contact_first_name'] = self.request.user.first_name
-            initial['contact_last_name'] = self.request.user.last_name
-            initial['contact_mail'] = self.request.user.email
-            initial['contact_phone'] = self.request.user.profile.phones
-        return initial
-
-    def forms_valid(self, forms):
-        location = forms['location'].save(commit=False)
-        location.region_id = 64
-        location.save()
-        message = forms['message'].save(commit=False)
-        message.linked_location = location
-        if self.request.user.is_authenticated():
-            message.user = self.request.user
-        else:
-            message.user = User.objects.get(pk=settings.ANONYMOUS_USER_ID)
-        message.save()
-        return super(CreateRequestM, self).forms_valid(forms)
-
-
-class CreateOffer(SaveGeoDataMixin, RyndaCreateView):
+class CreateOffer(SaveGeoDataMixin, CreateView):
     template_name = "offer_form.html"
     model = Message
     form_class = OfferForm
     success_url = reverse_lazy('messages-list')
 
 
-class MessageView(RyndaDetailView):
+class MessageView(DetailView):
     model = Message
     template_name = "message_details.html"
     context_object_name = "message"
 
-    def get_context_data(self, **kwargs):
-        context = super(RyndaDetailView, self).get_context_data(**kwargs)
-        if self.allow_external():
-            external = {'VK_APP_ID':  settings.VK_APP_ID, }
-            context['external'] = external
-        return context
+    # def get_context_data(self, **kwargs):
+        # context = super(RyndaDetailView, self).get_context_data(**kwargs)
+        # if self.allow_external():
+            # external = {'VK_APP_ID':  settings.VK_APP_ID, }
+            # context['external'] = external
+        # return context
 
 
 class MessageList(RyndaListView):
