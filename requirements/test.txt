@@ -1,6 +1,2 @@
 -r _base.txt
 -r _test.txt
-# Hints for pysqlite:
-# pip install --no-install pysqlite
-# fix setup.cfg - commit line OMIT_LOAD_EXTENSION
-# pip install --no-download pysqlite
