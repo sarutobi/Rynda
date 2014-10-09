@@ -14,9 +14,11 @@
     <title>{%block page_title%}{%endblock%} {% trans "Virtual Bell" %}</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width">
+    {% if debug %}
     <link rel="stylesheet" href="{{STATIC_URL}}css/bootstrap.css">
     <link rel="stylesheet" href="{{STATIC_URL}}css/bootstrap-theme.css">
     <link rel="stylesheet" href="{{STATIC_URL}}css/default.css">
+    {% endif %}
 
     <script src="{{STATIC_URL}}js/libs/modernizr-2.5.3.min.js"></script>
 </head>
