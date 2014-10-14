@@ -10,7 +10,7 @@ admin.autodiscover()
 
 # Include external apps views
 urlpatterns = patterns('',
-    url(r'', include('social_auth.urls')),
+    url(r'', include('social.apps.django_app.urls', namespace="social")),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^grappelli/', include('grappelli.urls')),
 )

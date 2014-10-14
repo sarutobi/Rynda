@@ -150,7 +150,7 @@ INSTALLED_APPS = (
     'django.contrib.gis',
     'django_filters',
     'rest_framework',
-    'social_auth',
+    'social.apps.django_app.default',
     'widget_tweaks',
     'post_office',
     'floppyforms',
