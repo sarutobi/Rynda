@@ -166,8 +166,6 @@ INSTALLED_APPS = (
 )
 
 AUTHENTICATION_BACKENDS = (
-    'social_auth.backends.OpenIDBackend',
-    'social_auth.backends.contrib.livejournal.LiveJournalBackend',
     'core.backends.IonAuth',
     'core.backends.EmailAuthBackend',
     'django.contrib.auth.backends.ModelBackend',
