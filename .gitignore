@@ -5,6 +5,7 @@
 *.mo
 *.log
 local_*
+build/
 htmlcov/
 mailbox/
 node_modules/
