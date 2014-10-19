@@ -79,7 +79,7 @@ class Message(models.Model):
     TYPES_CHOICE = (
         (REQUEST, _("Request message")),
         (OFFER, _("Offer message")),
-        (INFO, _("Informatial message"))
+        # (INFO, _("Informatial message"))
     )
 
     # Message status
