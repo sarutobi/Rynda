@@ -8,11 +8,20 @@
 {% block navigation %}
 {% endblock %}
 
+{% block css %}<link rel="stylesheet" href="{{STATIC_URL}}css/flexslider.css">{% endblock %}
+
 {% block maincontent %}
 <div class="row">
     <div id="topwidget" class="panel panel-primary">
         <div class='panel-heading'>{% trans "How it works" %}</div>
-        <div class="panel-body"></div>
+        <div class="panel-body">
+            <div class="flexslider">
+                <ul class="slides">
+                    <li>Item one</li>
+                    <li>Item two</li>
+                </ul>
+            </div>
+        </div>
     </div>
 </div>
 <!-- Map row -->
@@ -75,9 +84,13 @@
 <link rel='stylesheet' href='{{ STATIC_URL }}/css/MarkerCluster.css' />
 <link rel='stylesheet' href='{{ STATIC_URL }}/css/MarkerCluster.Default.css' />
 <!-- [if lte IE 8]><link rel='stylesheet' href='{{ STATIC_URL }}/css/MarkerCluster.Default.ie.css' /><![endif]-->
+<script src="{{STATIC_URL}}js/libs/jquery.flexslider-min.js"></script>
 <script type='text/javascript' >
 $(function(){
     Rynda.sameheight($('.message_pane'));
+    $('.flexslider').flexslider({
+        animation: "slide"
+    });
 });
 
 window.addEventListener("map:init", function(e){

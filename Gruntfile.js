@@ -32,6 +32,12 @@ module.exports = function(grunt){
             sourcejs: {
                 files:[
                     {expand: true, cwd:"assets/javascript/", src:["*.js"], dest: "rynda/static/js/", filter: "isFile"} 
+                ]},
+
+            // Css files
+            css: {
+                files: [
+                    {expand: true, cwd:"assets/css/", src:["*.css"], dest: "rynda/static/css/", filter: "isFile"} 
                 ]}
         },
 
@@ -45,5 +51,5 @@ module.exports = function(grunt){
     grunt.loadNpmTasks("grunt-contrib-copy");
     grunt.loadNpmTasks("grunt-contrib-clean");
     grunt.registerTask("default", ["jshint", "copy:libs"]);
-    grunt.registerTask("develop", ["jshint", "clean", "less:development", "copy:libs", "copy:sourcejs"]);
+    grunt.registerTask("develop", ["jshint", "clean", "less:development", "copy:libs", "copy:sourcejs", "copy:css"]);
 };
