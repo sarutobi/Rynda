@@ -72,7 +72,7 @@
             <a href="{% url "message-create-offer" %}" class="rynda-btn-head rynda-btn-wh" title="{% trans "Create offer for help" %}">{% trans "I want to help" %}</a>
             <a href="{% url "message-create-request" %}" class="rynda-btn-head rynda-btn-nh" title="{% trans "Create request for help" %}">{% trans "Help needed" %}</a>
             {%endblock%}
-            <h1 class="text-hide"><a href="{% url "main-index" %}" title="{% blocktrans %}{{ SITE_NAME }} — portal for volunteers{% endblocktrans %}">Rynda</a></h1>
+            <h1 class="text-hide"><a href="{% url "main-index" %}" title="{{ current_site.name|capfirst }} — {% blocktrans %}portal for volunteers{% endblocktrans %}">{{ current_site }}</a></h1>
         </div>
         {% comment %}
         <div class='navbar'>
