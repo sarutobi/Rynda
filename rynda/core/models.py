@@ -9,6 +9,9 @@ from django.utils.translation import ugettext_lazy as _
 
 class SocialLinkType(models.Model):
     """ Social link type description """
+    class Meta:
+        verbose_name = _("Contact type")
+        verbose_name_plural = _("Contact types")
 
     name = models.CharField(_("Name"), max_length=200)
     symbol = models.CharField(_("Symbol"), max_length=200, blank=True)
@@ -21,8 +24,8 @@ class SiteSocialLinks(models.Model):
     """ Site specific social links """
     class Meta:
         ordering = ['ordering', ]
-        verbose_name = _("Social link")
-        verbose_name_plural = _("Social links")
+        verbose_name = _("Site contact")
+        verbose_name_plural = _("Site contacts")
 
     site = models.ForeignKey(Site, verbose_name=_("Site name"))
     social_link_type = models.ForeignKey(SocialLinkType, verbose_name=_('Link type'))
