@@ -114,6 +114,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     # required by django-admin-tools
     'django.core.context_processors.request',
     'core.context_processors.production_context',
+    'core.context_processors.current_site',
 )
 MIDDLEWARE_CLASSES = (
     'django.middleware.common.CommonMiddleware',

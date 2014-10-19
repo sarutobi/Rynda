@@ -95,9 +95,9 @@
                 <div id="feedback" class="panel panel-primary">
                     <div class='panel-heading'>{% trans "Communications" %}</div>
                     <ul class="list-inline">
-                        <li>EMAIL: <a href="mailto:a@rynda.org">a@rynda.org</a></li>
-                        <li>TWITTER: <a href="http://twitter.com/#!/Ryndaorg" target="blank">@Ryndaorg</a></li>
-                        <li>SKYPE: <a href="skype:ryndaorg?chat">ryndaorg</a></li>
+                        {% for c in contacts %}
+                        <li>{{ c.social_link_type.name }}: <a href="{{ c.url }}">{{ c.help_title }}</a></li>
+                        {% endfor %}
                     </ul>
                     <div id="bottom_border"></div>
                 </div>
