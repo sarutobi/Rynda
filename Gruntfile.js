@@ -8,7 +8,6 @@ module.exports = function(grunt){
         less: {
             development: {
                 files: {
-                    // "rynda/static/css/bootstrap.css": "assets/css/bootstrap/bootstrap.less",
                     "rynda/static/css/bootstrap-theme.css": "assets/css/rynda-theme.less",
                     "rynda/static/css/default.css": "assets/css/rynda.less"    
                 }
