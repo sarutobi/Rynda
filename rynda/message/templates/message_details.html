@@ -23,7 +23,7 @@
         <div class="panel-heading">
             <div class="pull-right">
             {% if message.status >= 3 %}
-                <span class="glyphicon glyphicon-check"></span>
+                <span class="fa fa-check-square-o"></span>
             {% endif %}	
             {{ message.get_status_display }}
             </div>
@@ -42,7 +42,7 @@
             {% endif %}
         </div>
         <div class="panel-footer">
-            <span class="glyphicon glyphicon-tags"></span>
+            <span class="fa fa-tags"></span>
             {% trans "Categories" %}:
             {% for c in message.category.all %}
                 <span class="rynda-tag">{{ c.name }}</span>
@@ -83,11 +83,11 @@
                     </li>
                     {% else %}
                     <li class="list-group-item">
-                        <span class="glyphicon glyphicon-earphone"></span>
+                        <span class="fa fa-phone"></span>
                         {{ message.additional_info.phone }}
                     </li>
                     <li class="list-group-item">
-                        <span class="glyphicon glyphicon-envelope"></span>
+                        <span class="fa fa-envelope"></span>
                         <a href="mailto:{{ message.additional_info.email }}">{{ message.additional_info.email }}</a>
                     </li>
                     {%endif%}
@@ -99,7 +99,7 @@
         <div class="panel panel-default">
             <div class="panel-heading">
                 <h3 class="panel-title">
-                    <span class="glyphicon glyphicon-globe"></span>
+                    <span class="fa fa-globe"></span>
                     {% trans "On map" %}</h3>
             </div>
 
