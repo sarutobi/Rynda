@@ -128,9 +128,9 @@ class TestFormTypes(MessageDataGenerator):
         self.assertTrue(form.is_valid())
         self.assertEqual(Message.OFFER, form.cleaned_data['messageType'])
 
-    def test_info_form(self):
-        form = InformationForm()
-        self.assertEqual(Message.INFO, form.fields['messageType'].initial)
-        form = InformationForm(self.data)
-        self.assertTrue(form.is_valid())
-        self.assertEqual(Message.INFO, form.cleaned_data['messageType'])
+    # def test_info_form(self):
+        # form = InformationForm()
+        # self.assertEqual(Message.INFO, form.fields['messageType'].initial)
+        # form = InformationForm(self.data)
+        # self.assertTrue(form.is_valid())
+        # self.assertEqual(Message.INFO, form.cleaned_data['messageType'])

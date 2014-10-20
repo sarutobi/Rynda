@@ -15,7 +15,7 @@ class MessageFactory(django.DjangoModelFactory):
     title = fuzzy.FuzzyText()
     message = fuzzy.FuzzyText(length=200)
     messageType = fuzzy.FuzzyChoice(
-        (Message.REQUEST, Message.OFFER, Message.INFO))
+        (Message.REQUEST, Message.OFFER, ))
     is_anonymous = True
     allow_feedback = True
     is_virtual = fuzzy.FuzzyChoice((True, False))
