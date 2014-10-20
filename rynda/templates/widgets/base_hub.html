@@ -5,9 +5,9 @@
 <div id='hub_tabs'>
     <ul class="hr tabs">
         {% if part == 'base' %}
-            <li class='tab_active'><div class='tabLink_container'>&nbsp;</div></li>
+            <li class='tab_active'><div class='tabLink_container'><i class="fa fa-home"></i></div></li>
         {% else %}
-        <li><div class='tabLink_container'><a href='{% url "main-index" %}'>&nbsp;</a></div></li>
+            <li><div class='tabLink_container'><a href='{% url "main-index" %}'><i class="fa fa-home"></i></a></div></li>
         {% endif %}
 
         {% if part == 'message' %}
