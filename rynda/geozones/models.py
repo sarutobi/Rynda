@@ -23,7 +23,7 @@ class Region(models.Model):
 
     # Region number
     name = models.CharField(
-        max_length=200, verbose_name=_("Region name"))
+        max_length=200, verbose_name=_("Region"))
     # Region slug
     slug = models.SlugField(_("slug"))
     # Region center coordinates

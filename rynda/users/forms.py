@@ -19,10 +19,10 @@ class SimpleRegistrationForm(forms.Form):
     """
     first_name = forms.CharField(
         max_length=30,
-        label=_("First Name"))
+        label=_("First name"))
     last_name = forms.CharField(
         max_length=30,
-        label=_("Last Name"))
+        label=_("Last name"))
     email = forms.EmailField(label=_("Email"))
     password1 = forms.CharField(
         max_length=128, widget=forms.PasswordInput(),

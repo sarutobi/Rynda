@@ -13,7 +13,7 @@ from message.models import Message
 
 
 class NewMessagesFeed(Feed):
-    title = _("Last messages")
+    title = _("Latest messages")
     description = _("Latest messages")
     link = reverse_lazy("messages-list")
 

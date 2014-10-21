@@ -17,7 +17,7 @@
         <br />
         <a href="{% url "user-details" u.id %}" >{% trans "More info" %}</a>
         <div class="well well-sm">
-            {% trans "Registered at:" %}&nbsp;{{ u.date_joined|date:"DATETIME_FORMAT" }} | {% trans "Last login at:" %}&nbsp;{{ u.last_login|date:"SHORT_DATE_FORMAT" }}
+            {% trans "Registered at:" %}&nbsp;{{ u.date_joined|date:"DATETIME_FORMAT" }} | {% trans "Last login:" %}&nbsp;{{ u.last_login|date:"SHORT_DATE_FORMAT" }}
         </div>
     </div>
 </li>

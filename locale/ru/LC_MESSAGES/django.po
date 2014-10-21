@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-10-20 13:50+0400\n"
+"POT-Creation-Date: 2014-10-21 13:44+0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -67,24 +67,18 @@ msgstr ""
 msgid "Ordering"
 msgstr ""
 
-#: rynda/core/views.py:16
-msgid "Last messages"
-msgstr ""
-
-#: rynda/core/views.py:17
+#: rynda/core/views.py:16 rynda/core/views.py:17
 msgid "Latest messages"
 msgstr ""
 
-#: rynda/geozones/models.py:21 rynda/geozones/models.py:66
+#: rynda/geozones/models.py:21 rynda/geozones/models.py:26
+#: rynda/geozones/models.py:66
+#: rynda/message/templates/message_details.html:107
 msgid "Region"
 msgstr ""
 
 #: rynda/geozones/models.py:22
 msgid "Regions"
-msgstr ""
-
-#: rynda/geozones/models.py:26
-msgid "Region name"
 msgstr ""
 
 #: rynda/geozones/models.py:28 rynda/message/models.py:30
@@ -112,7 +106,7 @@ msgid "Locations"
 msgstr ""
 
 #: rynda/geozones/models.py:62
-#: rynda/message/templates/message_details.html:103
+#: rynda/message/templates/message_details.html:101
 msgid "On map"
 msgstr ""
 
@@ -120,11 +114,11 @@ msgstr ""
 msgid "Unknown message type!"
 msgstr ""
 
-#: rynda/message/forms.py:63
+#: rynda/message/forms.py:63 rynda/users/forms.py:22
 msgid "First name"
 msgstr ""
 
-#: rynda/message/forms.py:64
+#: rynda/message/forms.py:64 rynda/users/forms.py:25
 msgid "Last name"
 msgstr ""
 
@@ -136,7 +130,7 @@ msgstr ""
 msgid "Contact phone"
 msgstr ""
 
-#: rynda/message/forms.py:67
+#: rynda/message/forms.py:67 rynda/message/templates/message_details.html:111
 msgid "Address"
 msgstr ""
 
@@ -155,7 +149,8 @@ msgid "Message type"
 msgstr ""
 
 #: rynda/message/forms.py:166 rynda/message/forms.py:200
-#: rynda/templates/index.html:44 rynda/users/forms.py:76
+#: rynda/message/models.py:19 rynda/templates/index.html:44
+#: rynda/users/forms.py:76
 msgid "Category"
 msgstr ""
 
@@ -167,12 +162,8 @@ msgstr ""
 msgid "Keywords"
 msgstr ""
 
-#: rynda/message/models.py:19
-msgid "category"
-msgstr ""
-
-#: rynda/message/models.py:20
-msgid "categories"
+#: rynda/message/models.py:20 rynda/message/templates/message_details.html:46
+msgid "Categories"
 msgstr ""
 
 #: rynda/message/models.py:24
@@ -184,7 +175,7 @@ msgid "description"
 msgstr ""
 
 #: rynda/message/models.py:71 rynda/message/models.py:106
-#: rynda/message/templates/message_form.html:37
+#: rynda/message/templates/message_form.html:35
 msgid "Message"
 msgstr ""
 
@@ -220,8 +211,8 @@ msgstr ""
 msgid "Closed"
 msgstr ""
 
-#: rynda/message/models.py:104
-msgid "Title"
+#: rynda/message/models.py:104 rynda/newsline/models.py:21
+msgid "title"
 msgstr ""
 
 #: rynda/message/models.py:110
@@ -260,7 +251,7 @@ msgstr ""
 msgid "allow feedback"
 msgstr ""
 
-#: rynda/message/models.py:160
+#: rynda/message/models.py:160 rynda/newsline/models.py:26
 msgid "status"
 msgstr ""
 
@@ -277,6 +268,7 @@ msgid "message categories"
 msgstr ""
 
 #: rynda/message/models.py:222 rynda/newsline/models.py:27
+#: rynda/newsline/templates/post_list.html:23
 msgid "Author"
 msgstr ""
 
@@ -311,36 +303,22 @@ msgstr ""
 msgid "Message list"
 msgstr ""
 
-#: rynda/message/templates/message_details.html:46
-msgid "Categories"
-msgstr ""
-
 #: rynda/message/templates/message_details.html:55
 msgid "Comments"
 msgstr ""
 
 #: rynda/message/templates/message_details.html:72
-msgid "Received:"
+msgid "Received"
 msgstr ""
 
 #: rynda/message/templates/message_details.html:75
-msgid "From:"
+msgid "From"
 msgstr ""
 
 #: rynda/message/templates/message_details.html:80
 msgid ""
-"\n"
-"                        This user preferred to hide contacts. You can use "
-"comments to communicate with him.\n"
-"                        "
-msgstr ""
-
-#: rynda/message/templates/message_details.html:109
-msgid "Region:"
-msgstr ""
-
-#: rynda/message/templates/message_details.html:113
-msgid "Address:"
+"This user preferred to hide contacts. You can use comments to communicate "
+"with him."
 msgstr ""
 
 #: rynda/message/templates/message_form.html:12
@@ -348,18 +326,14 @@ msgid "New message"
 msgstr ""
 
 #: rynda/message/templates/message_form.html:17
-msgid ""
-"\n"
-"                Please note, that fields marked with &#39;*&#39; are "
-"required.\n"
-"                "
+msgid "Please note, that fields marked with &#39;*&#39; are required."
 msgstr ""
 
-#: rynda/message/templates/message_form.html:88
+#: rynda/message/templates/message_form.html:86
 msgid "About yourself"
 msgstr ""
 
-#: rynda/message/templates/message_form.html:126
+#: rynda/message/templates/message_form.html:124
 msgid "Geoposition"
 msgstr ""
 
@@ -375,8 +349,8 @@ msgstr ""
 msgid "Tell us about your opportunities"
 msgstr ""
 
-#: rynda/message/templates/request_form.html:5
-msgid "Help needed?"
+#: rynda/message/templates/request_form.html:5 rynda/templates/base.html:73
+msgid "Help needed"
 msgstr ""
 
 #: rynda/message/templates/request_form.html:9
@@ -407,12 +381,9 @@ msgstr ""
 msgid "draft"
 msgstr ""
 
-#: rynda/newsline/models.py:19
-msgid "published"
-msgstr ""
-
-#: rynda/newsline/models.py:21
-msgid "title"
+#: rynda/newsline/models.py:19 rynda/newsline/models.py:25
+#: rynda/newsline/templates/post_list.html:20
+msgid "Published"
 msgstr ""
 
 #: rynda/newsline/models.py:23
@@ -423,28 +394,12 @@ msgstr ""
 msgid "Modified"
 msgstr ""
 
-#: rynda/newsline/models.py:25
-msgid "Publish"
-msgstr ""
-
-#: rynda/newsline/models.py:26
-msgid "Status"
-msgstr ""
-
 #: rynda/newsline/templates/post_list.html:9 rynda/templates/base.html:114
 msgid "Site news"
 msgstr ""
 
-#: rynda/newsline/templates/post_list.html:20
-msgid "Posted at:"
-msgstr ""
-
 #: rynda/newsline/templates/post_list.html:21
 msgid "Last edit at:"
-msgstr ""
-
-#: rynda/newsline/templates/post_list.html:23
-msgid "Author:"
 msgstr ""
 
 #: rynda/templates/admin/base_site.html:4
@@ -486,10 +441,6 @@ msgstr ""
 
 #: rynda/templates/base.html:73
 msgid "Create request for help"
-msgstr ""
-
-#: rynda/templates/base.html:73
-msgid "Help needed"
 msgstr ""
 
 #: rynda/templates/base.html:75
@@ -629,6 +580,7 @@ msgid "Old password"
 msgstr ""
 
 #: rynda/templates/registration/password_change_form.html:35
+#: rynda/templates/registration/password_reset_confirm.html:12
 msgid "New password"
 msgstr ""
 
@@ -669,10 +621,6 @@ msgid ""
 "correctly."
 msgstr ""
 
-#: rynda/templates/registration/password_reset_confirm.html:12
-msgid "New password:"
-msgstr ""
-
 #: rynda/templates/registration/password_reset_confirm.html:17
 msgid "Confirm password:"
 msgstr ""
@@ -704,30 +652,6 @@ msgid ""
 "you registered with, and check your spam folder."
 msgstr ""
 
-#: rynda/templates/registration/password_reset_email.html:2
-#, python-format
-msgid ""
-"You're receiving this email because you requested a password reset for your "
-"user account at %(site_name)s."
-msgstr ""
-
-#: rynda/templates/registration/password_reset_email.html:4
-msgid "Please go to the following page and choose a new password:"
-msgstr ""
-
-#: rynda/templates/registration/password_reset_email.html:8
-msgid "Your username, in case you've forgotten:"
-msgstr ""
-
-#: rynda/templates/registration/password_reset_email.html:10
-msgid "Thanks for using our site!"
-msgstr ""
-
-#: rynda/templates/registration/password_reset_email.html:12
-#, python-format
-msgid "The %(site_name)s team"
-msgstr ""
-
 #: rynda/templates/registration/password_reset_form.html:4
 #: rynda/templates/registration/password_reset_form.html:6
 msgid "Password reset"
@@ -740,7 +664,8 @@ msgid ""
 msgstr ""
 
 #: rynda/templates/registration/password_reset_form.html:12
-msgid "Email address:"
+#: rynda/users/forms.py:26
+msgid "Email"
 msgstr ""
 
 #: rynda/templates/registration/password_reset_form.html:17
@@ -770,18 +695,6 @@ msgstr ""
 
 #: rynda/templates/widgets/message_pane.html:34
 msgid "No messages found"
-msgstr ""
-
-#: rynda/users/forms.py:22
-msgid "First Name"
-msgstr ""
-
-#: rynda/users/forms.py:25
-msgid "Last Name"
-msgstr ""
-
-#: rynda/users/forms.py:26
-msgid "Email"
 msgstr ""
 
 #: rynda/users/forms.py:29
@@ -887,6 +800,7 @@ msgid "Registration date:"
 msgstr ""
 
 #: rynda/users/templates/user_details.html:40
+#: rynda/users/templates/user_list.html:20
 msgid "Last login:"
 msgstr ""
 
@@ -908,10 +822,6 @@ msgstr ""
 
 #: rynda/users/templates/user_list.html:20
 msgid "Registered at:"
-msgstr ""
-
-#: rynda/users/templates/user_list.html:20
-msgid "Last login at:"
 msgstr ""
 
 #: rynda/users/templates/user_list.html:28

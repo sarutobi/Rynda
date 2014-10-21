@@ -16,8 +16,8 @@ class Category(models.Model):
     """ Message categories """
     class Meta:
         ordering = ['order']
-        verbose_name = _('category')
-        verbose_name_plural = _('categories')
+        verbose_name = _('Category')
+        verbose_name_plural = _('Categories')
 
     name = models.CharField(
         max_length=200, db_column='name',
@@ -101,7 +101,7 @@ class Message(models.Model):
     # Main message fields
     title = models.CharField(
         max_length=200,
-        verbose_name=_('Title'),
+        verbose_name=_('title'),
         blank=True)
     message = models.TextField(verbose_name=_('Message'))
     # Additional message information. This is important for message, but

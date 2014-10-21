@@ -69,17 +69,15 @@
             <div class="panel-body">
                 <ul class="list-group">
                     <li class="list-group-item">
-                        <strong>{% trans "Received:" %}</strong> {{ message.date_add }}
+                        <strong>{% trans "Received" %}:</strong> {{ message.date_add }}
                     </li>
                     <li class="list-group-item">
-                        <strong>{% trans "From:" %}</strong> {{ message.get_sender_name }}
+                        <strong>{% trans "From" %}:</strong> {{ message.get_sender_name }}
                     </li>
 
                     {% if message.is_anonymous %}
                     <li class="list-group-item">
-                        {% blocktrans %}
-                        This user preferred to hide contacts. You can use comments to communicate with him.
-                        {% endblocktrans %}
+                        {% blocktrans %}This user preferred to hide contacts. You can use comments to communicate with him.{% endblocktrans %}
                     </li>
                     {% else %}
                     <li class="list-group-item">
@@ -106,11 +104,11 @@
             <div class="panel-body">
                 <ul class="list-group">
                     <li class="list-group-item">
-                        <strong>{% trans "Region:" %}</strong>
+                        <strong>{% trans "Region" %}:</strong>
                         {{ message.location.region|default:"Unknown" }}
                     </li>
                     <li class="list-group-item">
-                        <strong>{% trans "Address:" %}</strong>
+                        <strong>{% trans "Address" %}:</strong>
                         {{ message.linked_location.name }}
                     </li>
 

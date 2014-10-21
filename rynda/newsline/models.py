@@ -16,14 +16,14 @@ class Post(models.Model):
     DRAFT = 0
     PUBLISHED = 1
 
-    STATUS = ((DRAFT, _("draft")), (PUBLISHED, _("published")))
+    STATUS = ((DRAFT, _("draft")), (PUBLISHED, _("Published")))
 
     title = models.CharField(max_length=200, verbose_name=_("title"))
     post = models.TextField(verbose_name=_("Post"))
     created = models.DateTimeField(_("Created"), auto_now_add=True)
     modified = models.DateTimeField(_("Modified"), auto_now=True)
-    publish = models.DateTimeField(_("Publish"), default=timezone.now)
-    status = models.IntegerField(_("Status"), choices=STATUS)
+    publish = models.DateTimeField(_("Published"), default=timezone.now)
+    status = models.IntegerField(_("status"), choices=STATUS)
     author = models.ForeignKey(User, verbose_name=_("Author"),)
 
     def __unicode__(self):
