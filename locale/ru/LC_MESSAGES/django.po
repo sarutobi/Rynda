@@ -6,13 +6,13 @@
 #, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
+"Project-Id-Version: rynda\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2014-10-21 13:44+0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Last-Translator: Valery Ilychev <ilychev@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
+"Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -21,31 +21,31 @@ msgstr ""
 
 #: rynda/core/models.py:13
 msgid "Contact type"
-msgstr ""
+msgstr "Тип контакта"
 
 #: rynda/core/models.py:14
 msgid "Contact types"
-msgstr ""
+msgstr "Типы контактов"
 
 #: rynda/core/models.py:16 rynda/geozones/models.py:58
 msgid "Name"
-msgstr ""
+msgstr "Наименование"
 
 #: rynda/core/models.py:17
 msgid "Symbol"
-msgstr ""
+msgstr "Иконка"
 
 #: rynda/core/models.py:27
 msgid "Site contact"
-msgstr ""
+msgstr "Контактная информация"
 
 #: rynda/core/models.py:28
 msgid "Site contacts"
-msgstr ""
+msgstr "Контактная информация"
 
 #: rynda/core/models.py:30
 msgid "Site name"
-msgstr ""
+msgstr "Наименование сайта"
 
 #: rynda/core/models.py:31
 msgid "Link type"
@@ -53,33 +53,33 @@ msgstr ""
 
 #: rynda/core/models.py:32
 msgid "Link title"
-msgstr ""
+msgstr "Текст ссылки"
 
 #: rynda/core/models.py:34
 msgid "Link url"
-msgstr ""
+msgstr "Адрес ссылки"
 
 #: rynda/core/models.py:35
 msgid "Include protocol, ex. 'mailto:email@host' for email"
-msgstr ""
+msgstr "Включая протокол, например 'mailto:email@host' для эл.почты"
 
 #: rynda/core/models.py:37
 msgid "Ordering"
-msgstr ""
+msgstr "Номер для сортировки"
 
 #: rynda/core/views.py:16 rynda/core/views.py:17
 msgid "Latest messages"
-msgstr ""
+msgstr "Последние сообщения"
 
 #: rynda/geozones/models.py:21 rynda/geozones/models.py:26
 #: rynda/geozones/models.py:66
 #: rynda/message/templates/message_details.html:107
 msgid "Region"
-msgstr ""
+msgstr "Регион"
 
 #: rynda/geozones/models.py:22
 msgid "Regions"
-msgstr ""
+msgstr "Регионы"
 
 #: rynda/geozones/models.py:28 rynda/message/models.py:30
 msgid "slug"
@@ -87,202 +87,202 @@ msgstr ""
 
 #: rynda/geozones/models.py:30
 msgid "Map center"
-msgstr ""
+msgstr "Координаты центра карты"
 
 #: rynda/geozones/models.py:32
 msgid "Map zoom"
-msgstr ""
+msgstr "Масштаб карты"
 
 #: rynda/geozones/models.py:33
 msgid "Order"
-msgstr ""
+msgstr "Номер для сортировки"
 
 #: rynda/geozones/models.py:54
 msgid "Location"
-msgstr ""
+msgstr "Местоположение"
 
 #: rynda/geozones/models.py:55
 msgid "Locations"
-msgstr ""
+msgstr "Местоположения"
 
 #: rynda/geozones/models.py:62
 #: rynda/message/templates/message_details.html:101
 msgid "On map"
-msgstr ""
+msgstr "На карте"
 
 #: rynda/message/forms.py:46
 msgid "Unknown message type!"
-msgstr ""
+msgstr "Неизвестный тип сообщения!"
 
 #: rynda/message/forms.py:63 rynda/users/forms.py:22
 msgid "First name"
-msgstr ""
+msgstr "Имя"
 
 #: rynda/message/forms.py:64 rynda/users/forms.py:25
 msgid "Last name"
-msgstr ""
+msgstr "Фамилия"
 
 #: rynda/message/forms.py:65
 msgid "Contact email"
-msgstr ""
+msgstr "Эл.почта"
 
 #: rynda/message/forms.py:66
 msgid "Contact phone"
-msgstr ""
+msgstr "Контактный телефон"
 
 #: rynda/message/forms.py:67 rynda/message/templates/message_details.html:111
 msgid "Address"
-msgstr ""
+msgstr "Адрес"
 
 #: rynda/message/forms.py:70
 msgid "Coordinates"
-msgstr ""
+msgstr "Координаты"
 
 #: rynda/message/forms.py:97 rynda/message/forms.py:100
 #: rynda/message/forms.py:103
 msgid "You must provide at least one from contact email or phone!"
-msgstr ""
+msgstr "Укажите эл.почту или телефон для связи!"
 
 #: rynda/message/forms.py:159 rynda/message/forms.py:193
 #: rynda/message/models.py:115 rynda/templates/index.html:43
 msgid "Message type"
-msgstr ""
+msgstr "Тип сообщения"
 
 #: rynda/message/forms.py:166 rynda/message/forms.py:200
 #: rynda/message/models.py:19 rynda/templates/index.html:44
 #: rynda/users/forms.py:76
 msgid "Category"
-msgstr ""
+msgstr "Категория"
 
 #: rynda/message/forms.py:173
 msgid "Urgent"
-msgstr ""
+msgstr "Срочность"
 
 #: rynda/message/forms.py:179 rynda/users/forms.py:83
 msgid "Keywords"
-msgstr ""
+msgstr "Ключевые слова"
 
 #: rynda/message/models.py:20 rynda/message/templates/message_details.html:46
 msgid "Categories"
-msgstr ""
+msgstr "Категории"
 
 #: rynda/message/models.py:24
 msgid "name"
-msgstr ""
+msgstr "Наименование"
 
 #: rynda/message/models.py:27
 msgid "description"
-msgstr ""
+msgstr "описание"
 
 #: rynda/message/models.py:71 rynda/message/models.py:106
 #: rynda/message/templates/message_form.html:35
 msgid "Message"
-msgstr ""
+msgstr "Сообщение"
 
 #: rynda/message/models.py:72 rynda/templates/widgets/base_hub.html:2
 msgid "Messages"
-msgstr ""
+msgstr "Сообщения"
 
 #: rynda/message/models.py:80
 msgid "Request message"
-msgstr ""
+msgstr "Просьба о помощи"
 
 #: rynda/message/models.py:81
 msgid "Offer message"
-msgstr ""
+msgstr "Предложение помощи"
 
 #: rynda/message/models.py:92
 msgid "New"
-msgstr ""
+msgstr "Новое"
 
 #: rynda/message/models.py:93
 msgid "Unverified"
-msgstr ""
+msgstr "Не проверено"
 
 #: rynda/message/models.py:94
 msgid "Verified"
-msgstr ""
+msgstr "Проверено"
 
 #: rynda/message/models.py:95
 msgid "Pending"
-msgstr ""
+msgstr "В работе"
 
 #: rynda/message/models.py:96
 msgid "Closed"
-msgstr ""
+msgstr "Закрыто"
 
 #: rynda/message/models.py:104 rynda/newsline/models.py:21
 msgid "title"
-msgstr ""
+msgstr "заголовок"
 
 #: rynda/message/models.py:110
 msgid "Additional info"
-msgstr ""
+msgstr "Дополнительная информация"
 
 #: rynda/message/models.py:121
 msgid "User"
-msgstr ""
+msgstr "Пользователь"
 
 #: rynda/message/models.py:130
 msgid "source"
-msgstr ""
+msgstr "источник"
 
 #: rynda/message/models.py:135
 msgid "Is virtual"
-msgstr ""
+msgstr "Виртуальное"
 
 #: rynda/message/models.py:142
 msgid "active"
-msgstr ""
+msgstr "активно"
 
 #: rynda/message/models.py:146
 msgid "important"
-msgstr ""
+msgstr "важное"
 
 #: rynda/message/models.py:149
 msgid "hide contacts"
-msgstr ""
+msgstr "скрыть контакты"
 
 #: rynda/message/models.py:152
 msgid "removed"
-msgstr ""
+msgstr "удалено"
 
 #: rynda/message/models.py:155
 msgid "allow feedback"
-msgstr ""
+msgstr "разрешить комментарии"
 
 #: rynda/message/models.py:160 rynda/newsline/models.py:26
 msgid "status"
-msgstr ""
+msgstr "статус"
 
 #: rynda/message/models.py:176
 msgid "expired at"
-msgstr ""
+msgstr "срок до"
 
 #: rynda/message/models.py:183
 msgid "sender IP"
-msgstr ""
+msgstr "IP отправителя"
 
 #: rynda/message/models.py:194
 msgid "message categories"
-msgstr ""
+msgstr "категории сообщения"
 
 #: rynda/message/models.py:222 rynda/newsline/models.py:27
 #: rynda/newsline/templates/post_list.html:23
 msgid "Author"
-msgstr ""
+msgstr "Автор"
 
 #: rynda/message/models.py:223
 msgid "Note"
-msgstr ""
+msgstr "Заметка"
 
 #: rynda/message/models.py:227
 msgid "Created at"
-msgstr ""
+msgstr "Создано"
 
 #: rynda/message/models.py:231
 msgid "Last edit"
-msgstr ""
+msgstr "Последнее редактирование"
 
 #: rynda/message/models.py:234
 #, python-format
@@ -296,42 +296,43 @@ msgstr ""
 #: rynda/templates/registration/password_change_form.html:10
 #: rynda/users/templates/user_details.html:10
 msgid "Home"
-msgstr ""
+msgstr "Домой"
 
 #: rynda/message/templates/message_details.html:12
 #: rynda/message/templates/messages_list.html:11 rynda/message/views.py:137
 msgid "Message list"
-msgstr ""
+msgstr "Список сообщений"
 
 #: rynda/message/templates/message_details.html:55
 msgid "Comments"
-msgstr ""
+msgstr "Комментарии"
 
 #: rynda/message/templates/message_details.html:72
 msgid "Received"
-msgstr ""
+msgstr "Получено"
 
 #: rynda/message/templates/message_details.html:75
 msgid "From"
-msgstr ""
+msgstr "От"
 
 #: rynda/message/templates/message_details.html:80
 msgid ""
 "This user preferred to hide contacts. You can use comments to communicate "
 "with him."
-msgstr ""
+msgstr "Этот пользователь скрыл котактные данные. вы можете использовать "
+"комментарии для связи с ним."
 
 #: rynda/message/templates/message_form.html:12
 msgid "New message"
-msgstr ""
+msgstr "Новое сообщение"
 
 #: rynda/message/templates/message_form.html:17
 msgid "Please note, that fields marked with &#39;*&#39; are required."
-msgstr ""
+msgstr "Обратите внимание, что поля, помеченные &#39;*&#39; являются обязательными."
 
 #: rynda/message/templates/message_form.html:86
 msgid "About yourself"
-msgstr ""
+msgstr "Расскажите о себе"
 
 #: rynda/message/templates/message_form.html:124
 msgid "Geoposition"
@@ -339,68 +340,68 @@ msgstr ""
 
 #: rynda/message/templates/messages_list.html:44
 msgid "Messages on page:"
-msgstr ""
+msgstr "Сообщений на странице:"
 
 #: rynda/message/templates/offer_form.html:5
 msgid "Can you help?"
-msgstr ""
+msgstr "Вы можете помочь?"
 
 #: rynda/message/templates/offer_form.html:9
 msgid "Tell us about your opportunities"
-msgstr ""
+msgstr "Расскажите о своих возможностях"
 
 #: rynda/message/templates/request_form.html:5 rynda/templates/base.html:73
 msgid "Help needed"
-msgstr ""
+msgstr "Нужна помощь"
 
 #: rynda/message/templates/request_form.html:9
 msgid "Problem description"
-msgstr ""
+msgstr "Описание проблемы"
 
 #: rynda/message/views.py:39
 msgid "Help requests"
-msgstr ""
+msgstr "Просьба о помощи"
 
 #: rynda/message/views.py:45
 msgid "Offer of assistance"
-msgstr ""
+msgstr "Предложение помощи"
 
 #: rynda/message/views.py:51
 msgid "Assistance provided"
-msgstr ""
+msgstr "Помощь оказана"
 
 #: rynda/newsline/models.py:12 rynda/newsline/models.py:22
 msgid "Post"
-msgstr ""
+msgstr "Запись"
 
 #: rynda/newsline/models.py:13
 msgid "Posts"
-msgstr ""
+msgstr "Записи"
 
 #: rynda/newsline/models.py:19
 msgid "draft"
-msgstr ""
+msgstr "черновик"
 
 #: rynda/newsline/models.py:19 rynda/newsline/models.py:25
 #: rynda/newsline/templates/post_list.html:20
 msgid "Published"
-msgstr ""
+msgstr "Опубликовано"
 
 #: rynda/newsline/models.py:23
 msgid "Created"
-msgstr ""
+msgstr "Создано"
 
 #: rynda/newsline/models.py:24
 msgid "Modified"
-msgstr ""
+msgstr "Изменено"
 
 #: rynda/newsline/templates/post_list.html:9 rynda/templates/base.html:114
 msgid "Site news"
-msgstr ""
+msgstr "Новости сайта"
 
 #: rynda/newsline/templates/post_list.html:21
 msgid "Last edit at:"
-msgstr ""
+msgstr "Последняя редакция:"
 
 #: rynda/templates/admin/base_site.html:4
 msgid "Rynda site manager"
@@ -412,48 +413,48 @@ msgstr ""
 
 #: rynda/templates/base.html:14
 msgid "Virtual Bell"
-msgstr ""
+msgstr "Виртуальная рында"
 
 #: rynda/templates/base.html:41
 msgid "Sign in"
-msgstr ""
+msgstr "Вход"
 
 #: rynda/templates/base.html:42
 #: rynda/users/templates/registration_form.html:13
 msgid "Registration"
-msgstr ""
+msgstr "Регистрация"
 
 #: rynda/templates/base.html:44
 msgid "Logged in as"
-msgstr ""
+msgstr "Пользователь"
 
 #: rynda/templates/base.html:45
 msgid "Logout"
-msgstr ""
+msgstr "Выход"
 
 #: rynda/templates/base.html:72
 msgid "Create offer for help"
-msgstr ""
+msgstr "Создать предложение помощи"
 
 #: rynda/templates/base.html:72
 msgid "I want to help"
-msgstr ""
+msgstr "Я хочу помочь"
 
 #: rynda/templates/base.html:73
 msgid "Create request for help"
-msgstr ""
+msgstr "Новая просьа о помощи"
 
 #: rynda/templates/base.html:75
 msgid "portal for volunteers"
-msgstr ""
+msgstr "портал волонтеров"
 
 #: rynda/templates/base.html:99
 msgid "Communications"
-msgstr ""
+msgstr "Наши контакты"
 
 #: rynda/templates/base.html:112
 msgid "Help was found"
-msgstr ""
+msgstr "Помощь оказана"
 
 #: rynda/templates/base.html:113
 msgid "RSS feed"
@@ -461,7 +462,7 @@ msgstr ""
 
 #: rynda/templates/base.html:115
 msgid "About us"
-msgstr ""
+msgstr "О нас"
 
 #: rynda/templates/base.html:119
 msgid "«Virtual Bell - Atlas of Assistance» platform, 2011-2014. License"
@@ -469,73 +470,73 @@ msgstr ""
 
 #: rynda/templates/base_list.html:11
 msgid "Search criteria"
-msgstr ""
+msgstr "Поиск и фильтрация"
 
 #: rynda/templates/base_list.html:24
 msgid "Total:"
-msgstr ""
+msgstr "Всего:"
 
 #: rynda/templates/base_list.html:30
 msgid "Today"
-msgstr ""
+msgstr "Сегодня"
 
 #: rynda/templates/base_list.html:31
 msgid "Past 3 days"
-msgstr ""
+msgstr "За 3 дня"
 
 #: rynda/templates/base_list.html:32
 msgid "Last week"
-msgstr ""
+msgstr "За неделю"
 
 #: rynda/templates/base_list.html:33
 msgid "Last month"
-msgstr ""
+msgstr "За месяц"
 
 #: rynda/templates/base_list.html:34
 msgid "All time"
-msgstr ""
+msgstr "За все время"
 
 #: rynda/templates/base_list.html:46 rynda/templates/base_list.html.py:48
 msgid "Previous"
-msgstr ""
+msgstr "Назад"
 
 #: rynda/templates/base_list.html:82 rynda/templates/base_list.html.py:84
 msgid "Next"
-msgstr ""
+msgstr "Вперед"
 
 #: rynda/templates/flatpages/default.html:11
 #: rynda/templates/infopages_list.html:11
 #: rynda/templates/infopages_list.html:19
 msgid "Information pages"
-msgstr ""
+msgstr "Информационные страницы"
 
 #: rynda/templates/index.html:16
 msgid "How it works"
-msgstr ""
+msgstr "Принципы работы"
 
 #: rynda/templates/index.html:31
 msgid "Messages on map"
-msgstr ""
+msgstr "Сообщения на карте"
 
 #: rynda/templates/index.html:38
 msgid "Map filters"
-msgstr ""
+msgstr "Фильтрация карты"
 
 #: rynda/templates/infopages_list.html:27
 msgid "Information pages not found"
-msgstr ""
+msgstr "Нет информации"
 
 #: rynda/templates/login.html:5 rynda/templates/login.html.py:40
 msgid "Login"
-msgstr ""
+msgstr "Вход"
 
 #: rynda/templates/login.html:32
 msgid "Remember me"
-msgstr ""
+msgstr "Запомнить меня"
 
 #: rynda/templates/login.html:36
 msgid "Password reminder"
-msgstr ""
+msgstr "Напомнить пароль"
 
 #: rynda/templates/not_implemented.html:12
 msgid "Not implemented"
@@ -577,16 +578,16 @@ msgstr ""
 
 #: rynda/templates/registration/password_change_form.html:28
 msgid "Old password"
-msgstr ""
+msgstr "Старый пароль"
 
 #: rynda/templates/registration/password_change_form.html:35
 #: rynda/templates/registration/password_reset_confirm.html:12
 msgid "New password"
-msgstr ""
+msgstr "Новый пароль"
 
 #: rynda/templates/registration/password_change_form.html:42
 msgid "Password (again)"
-msgstr ""
+msgstr "Повторите новый пароль"
 
 #: rynda/templates/registration/password_change_form.html:51
 #: rynda/templates/registration/password_reset_confirm.html:23
@@ -682,7 +683,7 @@ msgstr ""
 
 #: rynda/templates/widgets/filter.html:5
 msgid "Search"
-msgstr ""
+msgstr "Поиск"
 
 #: rynda/templates/widgets/message_pane.html:21
 #, python-format
@@ -732,23 +733,23 @@ msgstr ""
 
 #: rynda/users/models.py:61
 msgid "Profile"
-msgstr ""
+msgstr "Профиль"
 
 #: rynda/users/models.py:62
 msgid "Profiles"
-msgstr ""
+msgstr "Профили"
 
 #: rynda/users/models.py:66
 msgid "Unknown"
-msgstr ""
+msgstr "Неизвестно"
 
 #: rynda/users/models.py:67
 msgid "Male"
-msgstr ""
+msgstr "Мужской"
 
 #: rynda/users/models.py:68
 msgid "Female"
-msgstr ""
+msgstr "Женский"
 
 #: rynda/users/models.py:72
 msgid "Public"
@@ -756,12 +757,12 @@ msgstr ""
 
 #: rynda/users/models.py:76
 msgid "Gender"
-msgstr ""
+msgstr "Пол"
 
 #: rynda/users/templates/edit_profile_form.html:12
 #: rynda/users/templates/user_details.html:23
 msgid "Edit profile"
-msgstr ""
+msgstr "Редактировать профиль"
 
 #: rynda/users/templates/registration_success.html:4
 msgid "Registration success"
@@ -810,7 +811,7 @@ msgstr ""
 
 #: rynda/users/templates/user_details.html:54
 msgid "User's posts"
-msgstr ""
+msgstr "Сообщения пользователя"
 
 #: rynda/users/templates/user_details.html:60
 msgid "Write email"
