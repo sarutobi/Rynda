@@ -8,7 +8,7 @@ from django.utils.translation import ugettext_lazy as _
 
 from jsonfield import JSONField
 
-from geozones.models import Location
+from rynda.geozones.models import Location
 from model_utils.managers import PassThroughManagerMixin
 
 

@@ -1,8 +1,8 @@
 # -*- coding: utf-8 -*-
 
 from django.utils import timezone
-from core.views import RyndaListView
 
+from rynda.core.views import RyndaListView
 from .models import Post
 
 

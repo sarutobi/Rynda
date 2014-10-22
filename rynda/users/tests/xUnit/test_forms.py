@@ -3,9 +3,9 @@
 from django.test import TestCase
 from django.utils.translation import ugettext as _
 
-from users.forms import SimpleRegistrationForm
-from users.models import Profile
-from test.factories import UserFactory
+from rynda.users.forms import SimpleRegistrationForm
+from rynda.users.models import Profile
+from rynda.test.factories import UserFactory
 
 
 class SimpleRegistrationFormTest(TestCase):

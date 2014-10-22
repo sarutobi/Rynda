@@ -5,7 +5,7 @@ from factory import django
 
 from django.contrib.auth.models import User
 
-from users.models import Profile
+from rynda.users.models import Profile
 
 
 class ProfileFactory(django.DjangoModelFactory):

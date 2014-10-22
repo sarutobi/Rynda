@@ -7,9 +7,9 @@ from django.core.urlresolvers import reverse_lazy
 from django.utils.translation import ugettext_lazy as _
 from django.views.generic.list import ListView
 
-from core.mixins import PaginatorMixin, QueryStringMixin
+from rynda.core.mixins import PaginatorMixin, QueryStringMixin
 
-from message.models import Message
+from rynda.message.models import Message
 
 
 class NewMessagesFeed(Feed):

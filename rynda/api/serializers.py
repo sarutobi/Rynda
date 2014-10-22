@@ -6,8 +6,8 @@ from django.contrib.gis.geos import Point
 
 from rest_framework import serializers
 
-from message.models import Message
-from geozones.models import Location
+from rynda.message.models import Message
+from rynda.geozones.models import Location
 
 
 class JSONField(serializers.Field):

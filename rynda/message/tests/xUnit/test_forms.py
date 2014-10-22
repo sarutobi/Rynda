@@ -4,13 +4,13 @@ from django.test import TestCase
 
 import floppyforms.__future__ as forms
 
-from core.factories import FuzzyGeometryCollection, FuzzyPoint
-from message.factories import MessageFactory
-from message.forms import (
+from rynda.core.factories import FuzzyGeometryCollection, FuzzyPoint
+from rynda.message.factories import MessageFactory
+from rynda.message.forms import (
     MessageForm, UserMessageForm, RequestForm, OfferForm, InformationForm)
-from message.models import Message
+from rynda.message.models import Message
 
-from test.factories import UserFactory
+from rynda.test.factories import UserFactory
 
 
 class TestBaseMessageForm(TestCase):

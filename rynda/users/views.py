@@ -9,9 +9,9 @@ from django.utils.translation import ugettext_lazy as _
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import FormView, UpdateView
 
-from core.views import RyndaListView
-from users.forms import SimpleRegistrationForm, UserFilter, EditProfileForm
-from users.models import create_new_user, activate_user, Profile
+from rynda.core.views import RyndaListView
+from rynda.users.forms import SimpleRegistrationForm, UserFilter, EditProfileForm
+from rynda.users.models import create_new_user, activate_user, Profile
 
 
 class UserDetail(DetailView):

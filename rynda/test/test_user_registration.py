@@ -8,8 +8,8 @@ from django.core.urlresolvers import reverse
 from django_webtest import WebTest
 from post_office.models import Email
 
-from test.factories import UserFactory
-from users.models import UserAuthCode
+from rynda.test.factories import UserFactory
+from rynda.users.models import UserAuthCode
 
 
 class TestUserRegistration(WebTest):

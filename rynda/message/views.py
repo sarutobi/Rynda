@@ -11,12 +11,12 @@ from django.utils.translation import ugettext_lazy as _
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, FormView
 
-from core.views import RyndaListView
-from geozones.forms import LocationForm
-from geozones.models import Region
-from message.forms import (RequestForm, OfferForm,
-                           MessageSideFilter, MapMessageFilter)
-from message.models import Message
+from rynda.core.views import RyndaListView
+from rynda.geozones.forms import LocationForm
+from rynda.geozones.models import Region
+from .forms import (RequestForm, OfferForm,
+                    MessageSideFilter, MapMessageFilter)
+from .models import Message
 
 MAX_PANE_MESSAGES = 5
 

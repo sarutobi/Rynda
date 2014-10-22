@@ -2,9 +2,9 @@
 
 from django.test import TestCase
 
-from test.factories import UserFactory
+from rynda.test.factories import UserFactory
 
-from core.backends import IonAuth, EmailAuthBackend
+from rynda.core.backends import IonAuth, EmailAuthBackend
 
 
 class IonTest(TestCase):

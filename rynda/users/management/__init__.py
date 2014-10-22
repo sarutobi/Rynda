@@ -4,7 +4,7 @@ from django.conf import settings
 from django.contrib.auth import get_user_model
 from django.db.models import signals
 
-from users import models as users_app
+from rynda.users import models as users_app
 
 
 def create_anonymous_user(sender, **kwargs):

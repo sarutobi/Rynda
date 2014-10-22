@@ -2,7 +2,7 @@
 
 from rest_framework import serializers
 
-from message.models import Category
+from rynda.message.models import Category
 
 
 class CategorySerializer(serializers.ModelSerializer):

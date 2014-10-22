@@ -1,6 +1,6 @@
 from django.conf.urls import patterns, url
 
-from message.views import MessageView, CreateRequest, MessageList,\
+from .views import MessageView, CreateRequest, MessageList,\
     CreateOffer
 
 urlpatterns = patterns('',

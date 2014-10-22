@@ -5,10 +5,9 @@ from rest_framework.decorators import api_view
 from rest_framework.reverse import reverse
 from rest_framework.response import Response
 
-from message.models import Message
-# from message.serializers import
-from message.models import Category
-from core.serializers import CategorySerializer
+from rynda.message.models import Message
+from rynda.message.models import Category
+from rynda.core.serializers import CategorySerializer
 
 from .serializers import MessageSerializer, MapMessageSerializer
 

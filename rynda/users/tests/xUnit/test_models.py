@@ -5,9 +5,10 @@ from django.contrib.auth.models import User
 from django.utils import timezone
 from django.test import TestCase
 
-from test.factories import UserFactory
-from users.models import UserAuthCode, create_new_user, activate_user
 from post_office.models import Email
+
+from rynda.test.factories import UserFactory
+from rynda.users.models import UserAuthCode, create_new_user, activate_user
 
 
 class UserAuthCodeTest(TestCase):

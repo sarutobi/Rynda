@@ -3,8 +3,8 @@
 from django.conf.urls import patterns, include, url
 from django.contrib import admin
 
-from core.views import NewMessagesFeed
-from users.views import CreateUser
+from rynda.core.views import NewMessagesFeed
+from rynda.users.views import CreateUser
 
 admin.autodiscover()
 
@@ -21,19 +21,19 @@ urlpatterns += patterns('core.views',
 
 # Rynda-related patterns
 urlpatterns += patterns('',
-    url(r'^$', 'message.views.list', name='main-index'),
-    url(r'^api/', include('api.urls')),
-    url(r'^message/', include('message.urls')),
-    url(r'^user/', include('users.urls')),
-    url(r'^news/', include('newsline.urls')),
-    url(r'^t/(?P<slug>[a-z_0-9-]+)$', 'message.views.list'),
+    url(r'^$', 'rynda.message.views.list', name='main-index'),
+    url(r'^api/', include('rynda.api.urls')),
+    url(r'^message/', include('rynda.message.urls')),
+    url(r'^user/', include('rynda.users.urls')),
+    url(r'^news/', include('rynda.newsline.urls')),
+    url(r'^t/(?P<slug>[a-z_0-9-]+)$', 'rynda.message.views.list'),
     # url(r'^t/(?P<slug>)message/', include('message.urls')),
 )
 
 # Project description patterns
 urlpatterns += patterns(
     '',
-    url(r'^info/$', 'core.views.infopages', name="infopages"),
+    url(r'^info/$', 'rynda.core.views.infopages', name="infopages"),
     url(r'^(?P<url>.*)/$', 'django.contrib.flatpages.views.flatpage', ),
 )
 

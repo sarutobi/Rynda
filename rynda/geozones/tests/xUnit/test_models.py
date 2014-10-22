@@ -3,7 +3,7 @@
 from django.contrib.gis.geos import Point, GeometryCollection
 from django.test import TestCase
 
-from geozones.factories import RegionFactory, LocationFactory
+from rynda.geozones.factories import RegionFactory, LocationFactory
 
 
 class TestRegion(TestCase):

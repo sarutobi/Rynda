@@ -5,11 +5,11 @@ from django.core.urlresolvers import reverse
 
 from django_webtest import WebTest
 
-from core.factories import FuzzyGeometryCollection, FuzzyPoint
-from geozones.models import Location
-from message.models import Message
-from message.factories import MessageFactory
-from test.factories import UserFactory
+from rynda.core.factories import FuzzyGeometryCollection, FuzzyPoint
+from rynda.geozones.models import Location
+from rynda.message.models import Message
+from rynda.message.factories import MessageFactory
+from rynda.test.factories import UserFactory
 
 
 class MessageDataMixin():

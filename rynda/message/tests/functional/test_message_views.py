@@ -3,10 +3,10 @@
 from django_webtest import WebTest
 
 from django.core.urlresolvers import reverse
-from message.factories import MessageFactory
-from message.models import Message
+from rynda.message.factories import MessageFactory
+from rynda.message.models import Message
 
-from test.factories import UserFactory
+from rynda.test.factories import UserFactory
 
 
 class TestMessagesList(WebTest):

@@ -2,7 +2,7 @@
 
 from django.test import TestCase
 
-from core.factories import CategoryFactory
+from rynda.core.factories import CategoryFactory
 
 
 class TestCategory(TestCase):

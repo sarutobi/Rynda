@@ -5,7 +5,7 @@ import random
 
 from factory import django
 
-from core.factories import FuzzyPoint, FuzzyGeometryCollection
+from rynda.core.factories import FuzzyPoint, FuzzyGeometryCollection
 from .models import Location, Region
 
 

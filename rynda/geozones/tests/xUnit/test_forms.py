@@ -2,8 +2,8 @@
 
 from django.test import TestCase
 
-from geozones.factories import LocationFactory, RegionFactory
-from geozones.forms import LocationForm
+from rynda.geozones.factories import LocationFactory, RegionFactory
+from rynda.geozones.forms import LocationForm
 
 
 class TestLocationForm(TestCase):

@@ -2,11 +2,11 @@
 
 from django.test import TestCase
 
-from core.factories import CategoryFactory
-from geozones.factories import RegionFactory
-from message.factories import MessageFactory
-from message.models import Message
-from test.factories import UserFactory
+from rynda.core.factories import CategoryFactory
+from rynda.geozones.factories import RegionFactory
+from rynda.message.factories import MessageFactory
+from rynda.message.models import Message
+from rynda.test.factories import UserFactory
 
 
 class TestMessage(TestCase):

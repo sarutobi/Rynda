@@ -2,9 +2,9 @@
 
 import factory
 from factory import django, fuzzy
-from test.factories import UserFactory
+from rynda.test.factories import UserFactory
 
-from geozones.factories import LocationFactory
+from rynda.geozones.factories import LocationFactory
 from .models import Message
 
 

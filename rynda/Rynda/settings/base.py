@@ -113,8 +113,8 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     'django.contrib.messages.context_processors.messages',
     # required by django-admin-tools
     'django.core.context_processors.request',
-    'core.context_processors.production_context',
-    'core.context_processors.current_site',
+    'rynda.core.context_processors.production_context',
+    'rynda.core.context_processors.current_site',
 )
 MIDDLEWARE_CLASSES = (
     'django.middleware.common.CommonMiddleware',
@@ -125,10 +125,10 @@ MIDDLEWARE_CLASSES = (
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
 
-ROOT_URLCONF = 'Rynda.urls'
+ROOT_URLCONF = 'rynda.Rynda.urls'
 
 # Python dotted path to the WSGI application used by Django's runserver.
-WSGI_APPLICATION = 'Rynda.wsgi.application'
+WSGI_APPLICATION = 'rynda.Rynda.wsgi.application'
 
 TEMPLATE_DIRS = (
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
@@ -158,17 +158,17 @@ INSTALLED_APPS = (
     'jsonfield',
     'leaflet',
     # Project applications
-    'core',
-    'message',
-    'users',
-    'geozones',
-    'api',
-    'newsline',
+    'rynda.core',
+    'rynda.message',
+    'rynda.users',
+    'rynda.geozones',
+    'rynda.api',
+    'rynda.newsline',
 )
 
 AUTHENTICATION_BACKENDS = (
-    'core.backends.IonAuth',
-    'core.backends.EmailAuthBackend',
+    'rynda.core.backends.IonAuth',
+    'rynda.core.backends.EmailAuthBackend',
     'django.contrib.auth.backends.ModelBackend',
 )
 

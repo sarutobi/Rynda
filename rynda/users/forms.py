@@ -8,8 +8,8 @@ from django.utils.translation import ugettext_lazy as _
 import django_filters
 import floppyforms.__future__ as forms
 
-from core.utils import validate_email_domain
-from message.models import Category
+from rynda.core.utils import validate_email_domain
+from rynda.message.models import Category
 from .models import Profile
 
 

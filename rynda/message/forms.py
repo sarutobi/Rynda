@@ -9,7 +9,7 @@ import django_filters
 import floppyforms.__future__ as forms
 from leaflet.forms.widgets import LeafletWidget
 
-from message.models import Message, Category
+from .models import Message, Category
 
 
 class VirtualMessageFormMixin(forms.ModelForm):
