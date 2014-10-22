@@ -100,6 +100,7 @@ class EditProfile(UpdateView):
         return reverse(
             'user-details', kwargs={'pk': self.request.user.pk})
 
+
 def activate_profile(request, pk, key):
     user = User.objects.get(id=pk)
     if activate_user(user, key):
