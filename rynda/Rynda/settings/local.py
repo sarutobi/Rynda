@@ -9,7 +9,7 @@ TEMPLATE_DEBUG = True
 DATABASES = {
     'default': {
         'ENGINE': 'django.contrib.gis.db.backends.spatialite',
-        'NAME': 'devrynda.db',
+        'NAME': 'rynda.db',
     }
 }
 

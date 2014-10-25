@@ -6,7 +6,7 @@ from .base import *
 DATABASES = {
     'default': {
         'ENGINE': 'django.contrib.gis.db.backends.spatialite',
-        'NAME': 'devrynda.db',
+        'NAME': 'rynda.db',
     }
 }
 
