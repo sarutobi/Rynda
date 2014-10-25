@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-10-21 13:44+0400\n"
+"POT-Creation-Date: 2014-10-25 11:06+0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -703,19 +703,19 @@ msgstr ""
 msgid "Password(retype)"
 msgstr ""
 
-#: rynda/users/forms.py:38
+#: rynda/users/forms.py:38 rynda/users/tests/xUnit/test_forms.py:74
 msgid "The password fields did not match"
 msgstr ""
 
-#: rynda/users/forms.py:43
+#: rynda/users/forms.py:43 rynda/users/tests/xUnit/test_forms.py:41
 msgid "You must provide a first name!"
 msgstr ""
 
-#: rynda/users/forms.py:48
+#: rynda/users/forms.py:48 rynda/users/tests/xUnit/test_forms.py:57
 msgid "You must provide a last name!"
 msgstr ""
 
-#: rynda/users/forms.py:56
+#: rynda/users/forms.py:56 rynda/users/tests/xUnit/test_forms.py:66
 msgid "This email already registered"
 msgstr ""
 
@@ -824,6 +824,11 @@ msgstr ""
 
 #: rynda/users/templates/user_list.html:28
 msgid "Users on page:"
+msgstr ""
+
+#: rynda/users/tests/xUnit/test_forms.py:33
+#: rynda/users/tests/xUnit/test_forms.py:49
+msgid "This field is required."
 msgstr ""
 
 #: rynda/users/views.py:85
