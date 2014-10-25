@@ -8,12 +8,8 @@ DEBUG = True
 TEMPLATE_DEBUG = True
 DATABASES = {
     'default': {
-        'ENGINE': 'django.contrib.gis.db.backends.postgis',
-        'NAME': 'devrynda',
-        'USER': 'devrynda',
-        'PASSWORD': 'devrynda',
-        'HOST': 'localhost',
-        'PORT': '',
+        'ENGINE': 'django.contrib.gis.db.backends.spatialite',
+        'NAME': 'devrynda.db',
     }
 }
 
