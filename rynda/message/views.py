@@ -37,21 +37,16 @@ def list(request, slug='all'):
     """ Main page """
     last_requests = generate_message_pane(
         _("Help requests"),
-        Message.objects.active().type_is(
-            Message.REQUEST).values(
-                'id', 'title', 'date_add')[:MAX_PANE_MESSAGES + 1],
+        Message.objects.active().type_is(Message.REQUEST)[:MAX_PANE_MESSAGES + 1],
         reverse_lazy("messages-list"))
     last_offers = generate_message_pane(
         _("Offer of assistance"),
-        Message.objects.active().type_is(
-            Message.OFFER).values(
-                'id', 'title', 'date_add')[:MAX_PANE_MESSAGES + 1],
+        Message.objects.active().type_is(Message.OFFER)[:MAX_PANE_MESSAGES + 1],
         reverse_lazy("messages-list"))
     last_completed = generate_message_pane(
         _("Assistance provided"),
         Message.objects.type_is(
-            Message.REQUEST).closed().values(
-                'id', 'title', 'date_add')[:MAX_PANE_MESSAGES + 1],
+            Message.REQUEST).closed()[:MAX_PANE_MESSAGES + 1],
         "/message/pomogli")
     return render(
         request,
