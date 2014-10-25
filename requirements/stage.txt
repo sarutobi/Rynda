@@ -1,3 +1,4 @@
 -r _base.txt
+psycopg2==2.5.3
 gunicorn==0.19.1.1
 supervisor==3.0b1
