@@ -5,6 +5,7 @@
 *.mo
 *.log
 local_*
+mysettings.py
 build/
 htmlcov/
 mailbox/
