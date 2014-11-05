@@ -28,5 +28,3 @@ class UserFactory(django.DjangoModelFactory):
     is_active = True
     is_staff = False
     is_superuser = False
-
-    profile = factory.RelatedFactory(ProfileFactory, 'user')
