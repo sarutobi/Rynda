@@ -1,0 +1,3 @@
+# -*- coding: utf-8 -*-
+
+from rynda.Rynda.settings.local import *
