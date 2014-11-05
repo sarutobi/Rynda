@@ -10,7 +10,7 @@ Requirements
 - spatialite
 - GEOS
 - PROJ.4
-- Virtualenv (optional)
+- Virtualenv (optional, but strongly recommended)
 
 Quickstart
 ------------
@@ -32,16 +32,19 @@ $ cd Rynda
 ```
 $ pip install -r requirements\test.txt
 ```
-4. Create database structure:
+4. Copy mysettings.py.example to mysettings.py
+5. Create database structure and superuser password:
 ```
-$ python manage.py migrate
+$ bash createdb.sh 
 ```
-5. Run the local server:
+Enter superuser password twice.
+defauit superuser name: admin
+6. Run the local server:
 ```
 $ python manage.py runserver
 ```
-6. Point your browser to [http://localhost:8000](http://localhost:8000)
-7. To make tests, type:
+7. Point your browser to [http://localhost:8000](http://localhost:8000)
+8. To make tests, type:
 ```
 $ python manage.py test
 ```
