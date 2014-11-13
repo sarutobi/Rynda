@@ -16,35 +16,52 @@ Quickstart
 ------------
 
 (Optional) Create and activate virtualenv:
-```
-$ virtualenv rynda
-$ source rynda/bin/activate
-```
+    
+    ```
+    $ virtualenv rynda
+    $ source rynda/bin/activate
+    ```
+
 1. Clone the repository:
-```
-$ git clone https://github.com/sarutobi/Rynda.git
-```
+
+    ```
+    $ git clone https://github.com/sarutobi/Rynda.git
+    ```
+
 2. cd to cloned repository:
-```
-$ cd Rynda
-```
+
+    ```
+    $ cd Rynda
+    ```
+
 3. Install all requirements:
-```
-$ pip install -r requirements\test.txt
-```
+
+    ```
+    $ pip install -r requirements\test.txt
+    ```
+
 4. Copy mysettings.py.example to mysettings.py
+
 5. Create database structure and superuser password:
-```
-$ bash createdb.sh 
-```
-Enter superuser password twice.
-defauit superuser name: admin
+
+    ```
+    $ bash createdb.sh 
+    ```
+
+    Enter superuser password twice.
+
+    defauit superuser name: admin
+
 6. Run the local server:
-```
-$ python manage.py runserver
-```
+
+    ```
+    $ python manage.py runserver
+    ```
+
 7. Point your browser to [http://localhost:8000](http://localhost:8000)
+
 8. To make tests, type:
-```
-$ python manage.py test
-```
+
+    ```
+    $ python manage.py test
+    ```
