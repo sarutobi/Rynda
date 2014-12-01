@@ -46,6 +46,7 @@ $ pip install -r requirements/test.txt
 5. Задаем структуру базы данных и пароль суперпользователя:
 
 ```
+$ chmod +x createdb.sh
 $ bash createdb.sh 
 ```
 
@@ -109,14 +110,13 @@ $ pip install -r requirements/test.txt
 4. Copy mysettings.py.example to mysettings.py
 
 5. Create database structure and superuser password:
-
 ```
+a) edit createdb.sh to set proper admin username and email address
+b) Set execution mode for createdb.sh
+$ chmod +x createdb.sh
+c) Execute the script. Enter superuser password twice.
 $ bash createdb.sh 
 ```
-
-Enter superuser password twice.
-
-defauit superuser name: admin
 
 6. Run the local server:
 
