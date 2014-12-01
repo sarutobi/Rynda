@@ -103,7 +103,7 @@ $ cd Rynda
 3. Install all requirements:
 
 ```
-$ pip install -r requirements\test.txt
+$ pip install -r requirements/test.txt
 ```
 
 4. Copy mysettings.py.example to mysettings.py
