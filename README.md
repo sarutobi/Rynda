@@ -38,7 +38,7 @@ $ cd Rynda
 3. Устанавливаем все зависимости:
 
 ```
-$ pip install -r requirements\test.txt
+$ pip install -r requirements/test.txt
 ```
 
 4. Копируем mysettings.py.example в mysettings.py
