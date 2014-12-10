@@ -121,7 +121,7 @@
 
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <h3 class="panel-title">{% trans "Geoposition" %}</h3>
+                    <h3 class="panel-title">{% trans "Location" %}</h3>
                 </div>
                 <div class="panel-body">
                     {{ form.address.label_tag }}
@@ -129,6 +129,7 @@
                     <div class="validationError">{{ form.address.error }}</div>
                     <br />
                     <br />
+                    {% trans "Please, click on the pin button and drop it on your city" %}
                     {{ form.coordinates }}
                 </div>
             </div>

@@ -40,11 +40,11 @@ def list(request, slug='all'):
         Message.objects.active().type_is(Message.REQUEST)[:MAX_PANE_MESSAGES + 1],
         reverse_lazy("messages-list"))
     last_offers = generate_message_pane(
-        _("Offer of assistance"),
+        _("Offers to help"),
         Message.objects.active().type_is(Message.OFFER)[:MAX_PANE_MESSAGES + 1],
         reverse_lazy("messages-list"))
     last_completed = generate_message_pane(
-        _("Assistance provided"),
+        _("Successful connections"),
         Message.objects.type_is(
             Message.REQUEST).closed()[:MAX_PANE_MESSAGES + 1],
         "/message/pomogli")

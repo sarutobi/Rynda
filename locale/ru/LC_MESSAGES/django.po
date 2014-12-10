@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: rynda\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-10-25 11:06+0400\n"
+"POT-Creation-Date: 2014-12-10 09:53+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Valery Ilychev <ilychev@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -97,7 +97,7 @@ msgstr "Масштаб карты"
 msgid "Order"
 msgstr "Номер для сортировки"
 
-#: rynda/geozones/models.py:54
+#: rynda/geozones/models.py:54 rynda/message/templates/message_form.html:124
 msgid "Location"
 msgstr "Местоположение"
 
@@ -183,13 +183,13 @@ msgstr "Сообщение"
 msgid "Messages"
 msgstr "Сообщения"
 
-#: rynda/message/models.py:80
-msgid "Request message"
+#: rynda/message/models.py:80 rynda/message/views.py:39
+msgid "Help requests"
 msgstr "Просьба о помощи"
 
 #: rynda/message/models.py:81
-msgid "Offer message"
-msgstr "Предложение помощи"
+msgid "Help offers"
+msgstr ""
 
 #: rynda/message/models.py:92
 msgid "New"
@@ -299,7 +299,7 @@ msgid "Home"
 msgstr "Домой"
 
 #: rynda/message/templates/message_details.html:12
-#: rynda/message/templates/messages_list.html:11 rynda/message/views.py:137
+#: rynda/message/templates/messages_list.html:11 rynda/message/views.py:132
 msgid "Message list"
 msgstr "Список сообщений"
 
@@ -336,8 +336,8 @@ msgstr ""
 msgid "About yourself"
 msgstr "Расскажите о себе"
 
-#: rynda/message/templates/message_form.html:124
-msgid "Geoposition"
+#: rynda/message/templates/message_form.html:132
+msgid "Please, click on the pin button and drop it on your city"
 msgstr ""
 
 #: rynda/message/templates/messages_list.html:44
@@ -349,7 +349,9 @@ msgid "Can you help?"
 msgstr "Вы можете помочь?"
 
 #: rynda/message/templates/offer_form.html:9
-msgid "Tell us about your opportunities"
+#, fuzzy
+#| msgid "Tell us about your opportunities"
+msgid "Tell us about what you want to offer"
 msgstr "Расскажите о своих возможностях"
 
 #: rynda/message/templates/request_form.html:5 rynda/templates/base.html:73
@@ -360,17 +362,15 @@ msgstr "Нужна помощь"
 msgid "Problem description"
 msgstr "Описание проблемы"
 
-#: rynda/message/views.py:39
-msgid "Help requests"
-msgstr "Просьба о помощи"
+#: rynda/message/views.py:43
+#, fuzzy
+#| msgid "Create offer for help"
+msgid "Offers to help"
+msgstr "Создать предложение помощи"
 
-#: rynda/message/views.py:45
-msgid "Offer of assistance"
-msgstr "Предложение помощи"
-
-#: rynda/message/views.py:51
-msgid "Assistance provided"
-msgstr "Помощь оказана"
+#: rynda/message/views.py:47
+msgid "Successful connections"
+msgstr ""
 
 #: rynda/newsline/models.py:12 rynda/newsline/models.py:22
 msgid "Post"
@@ -422,9 +422,10 @@ msgid "Sign in"
 msgstr "Вход"
 
 #: rynda/templates/base.html:42
-#: rynda/users/templates/registration_form.html:13
-msgid "Registration"
-msgstr "Регистрация"
+#, fuzzy
+#| msgid "Sign in"
+msgid "Sign up"
+msgstr "Вход"
 
 #: rynda/templates/base.html:44
 msgid "Logged in as"
@@ -708,19 +709,19 @@ msgstr ""
 msgid "Password(retype)"
 msgstr ""
 
-#: rynda/users/forms.py:38 rynda/users/tests/xUnit/test_forms.py:74
+#: rynda/users/forms.py:38
 msgid "The password fields did not match"
 msgstr ""
 
-#: rynda/users/forms.py:43 rynda/users/tests/xUnit/test_forms.py:41
+#: rynda/users/forms.py:43
 msgid "You must provide a first name!"
 msgstr ""
 
-#: rynda/users/forms.py:48 rynda/users/tests/xUnit/test_forms.py:57
+#: rynda/users/forms.py:48
 msgid "You must provide a last name!"
 msgstr ""
 
-#: rynda/users/forms.py:56 rynda/users/tests/xUnit/test_forms.py:66
+#: rynda/users/forms.py:56
 msgid "This email already registered"
 msgstr ""
 
@@ -733,31 +734,31 @@ msgstr ""
 msgid "%s (descending)"
 msgstr ""
 
-#: rynda/users/models.py:61
+#: rynda/users/models.py:62
 msgid "Profile"
 msgstr "Профиль"
 
-#: rynda/users/models.py:62
+#: rynda/users/models.py:63
 msgid "Profiles"
 msgstr "Профили"
 
-#: rynda/users/models.py:66
+#: rynda/users/models.py:67
 msgid "Unknown"
 msgstr "Неизвестно"
 
-#: rynda/users/models.py:67
+#: rynda/users/models.py:68
 msgid "Male"
 msgstr "Мужской"
 
-#: rynda/users/models.py:68
+#: rynda/users/models.py:69
 msgid "Female"
 msgstr "Женский"
 
-#: rynda/users/models.py:72
+#: rynda/users/models.py:73
 msgid "Public"
 msgstr ""
 
-#: rynda/users/models.py:76
+#: rynda/users/models.py:77
 msgid "Gender"
 msgstr "Пол"
 
@@ -765,6 +766,10 @@ msgstr "Пол"
 #: rynda/users/templates/user_details.html:23
 msgid "Edit profile"
 msgstr "Редактировать профиль"
+
+#: rynda/users/templates/registration_form.html:13
+msgid "Registration"
+msgstr "Регистрация"
 
 #: rynda/users/templates/registration_success.html:4
 msgid "Registration success"
@@ -831,11 +836,6 @@ msgstr ""
 msgid "Users on page:"
 msgstr ""
 
-#: rynda/users/tests/xUnit/test_forms.py:33
-#: rynda/users/tests/xUnit/test_forms.py:49
-msgid "This field is required."
-msgstr ""
-
 #: rynda/users/views.py:85
 msgid "Profile was updated successfully!"
 msgstr ""
@@ -843,3 +843,15 @@ msgstr ""
 #: rynda/users/views.py:95
 msgid "Please log in to edit your profile"
 msgstr ""
+
+#~ msgid "Request message"
+#~ msgstr "Просьба о помощи"
+
+#~ msgid "Offer message"
+#~ msgstr "Предложение помощи"
+
+#~ msgid "Offer of assistance"
+#~ msgstr "Предложение помощи"
+
+#~ msgid "Assistance provided"
+#~ msgstr "Помощь оказана"
