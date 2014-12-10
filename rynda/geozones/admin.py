@@ -6,6 +6,10 @@ from leaflet.admin import LeafletGeoAdmin
 from .models import Region, Location
 
 
-admin.site.register(Region, LeafletGeoAdmin)
+class RegionAdmin(LeafletGeoAdmin):
+    prepopulated_fields = {"slug": ("name", ), }
+
+
+admin.site.register(Region, RegionAdmin)
 
 admin.site.register(Location, LeafletGeoAdmin)
