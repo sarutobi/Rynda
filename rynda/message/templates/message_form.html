@@ -58,8 +58,8 @@
                             </div>
 
                             <div class="checkbox">
-                                <label for="{{ form.allow_feedback.id_for_label }}">
-                                    {{ form.allow_feedback.label }}{{ form.allow_feedback }}
+                                <label>
+                                    {{ form.allow_feedback }}{{ form.allow_feedback.label }}
                                 </label>
                             </div>
                         </div>
@@ -112,7 +112,9 @@
                     <div class="validationError">{{ form.phone.errors }}</div>
 
                     <div class="checkbox">
-                        {{ form.is_anonymous.label_tag }}{{ form.is_anonymous }}
+                        <label>
+                        {{ form.is_anonymous }}{{ form.is_anonymous.label }}
+                        </label>
                     </div>
                    <div id="contactsError" class="validationError" style="display:none;"></div>
                     <br />
