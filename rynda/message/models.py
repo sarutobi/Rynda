@@ -77,8 +77,8 @@ class Message(models.Model):
     INFO = 3
 
     TYPES_CHOICE = (
-        (REQUEST, _("Request message")),
-        (OFFER, _("Offer message")),
+        (REQUEST, _("Help requests")),
+        (OFFER, _("Help offers")),
         # (INFO, _("Informatial message"))
     )
 
