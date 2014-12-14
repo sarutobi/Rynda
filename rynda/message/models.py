@@ -183,6 +183,15 @@ class Message(models.Model):
         verbose_name=_("sender IP")
     )
 
+    address = models.CharField(
+        verbose_name=_('Address'),
+        max_length=250,
+        blank=True)
+
+    location = models.MultiPointField(
+        verbose_name=_('On map'),
+        blank=True, null=True)
+
     # Links to core models
     linked_location = models.ForeignKey(
         Location,
