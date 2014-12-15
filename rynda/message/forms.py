@@ -58,6 +58,7 @@ class UserMessageForm(forms.ModelForm):
         widgets = {
             'messageType': forms.HiddenInput(),
             'category': forms.CheckboxSelectMultiple(),
+            'location': LeafletWidget(),
         }
 
     first_name = forms.CharField(label=_('First name'), required=False)
