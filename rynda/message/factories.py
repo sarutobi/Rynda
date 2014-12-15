@@ -5,7 +5,6 @@ from factory import django, fuzzy
 from rynda.core.factories import FuzzyMultiPoint
 from rynda.test.factories import UserFactory
 
-# from rynda.geozones.factories import LocationFactory
 from .models import Message
 
 

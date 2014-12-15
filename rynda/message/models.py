@@ -8,7 +8,6 @@ from django.utils.translation import ugettext_lazy as _
 
 from jsonfield import JSONField
 
-from rynda.geozones.models import Location
 from model_utils.managers import PassThroughManagerMixin
 
 
@@ -193,10 +192,6 @@ class Message(models.Model):
         blank=True, null=True)
 
     # Links to core models
-    # linked_location = models.ForeignKey(
-        # Location,
-        # null=True, blank=True
-    # )
     category = models.ManyToManyField(
         Category,
         symmetrical=False,

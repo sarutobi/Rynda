@@ -3,7 +3,7 @@
 from django.contrib import admin
 from leaflet.admin import LeafletGeoAdmin
 
-from .models import Region, Location
+from .models import Region
 
 
 class RegionAdmin(LeafletGeoAdmin):
@@ -11,5 +11,3 @@ class RegionAdmin(LeafletGeoAdmin):
 
 
 admin.site.register(Region, RegionAdmin)
-
-admin.site.register(Location, LeafletGeoAdmin)

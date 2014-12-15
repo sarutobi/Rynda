@@ -2,12 +2,9 @@
 
 import json
 
-from django.contrib.gis.geos import Point
-
 from rest_framework import serializers
 
 from rynda.message.models import Message
-from rynda.geozones.models import Location
 
 
 class JSONField(serializers.Field):
@@ -22,19 +19,6 @@ class JSONField(serializers.Field):
         return val
 
 
-class LocationSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Location
-
-
-class CoordinatesSerializer(serializers.ModelSerializer):
-    """ Serialize only coordinates from location """
-    class Meta:
-        model = Location
-
-    coordinates = serializers.Field(source='coordinates.json')
-
-
 class MessageSerializer(serializers.ModelSerializer):
     class Meta:
         model = Message
@@ -44,7 +28,6 @@ class MessageSerializer(serializers.ModelSerializer):
         )
 
     additional_info = JSONField()
-    # linked_location = LocationSerializer()
 
 
 class MapMessageSerializer(serializers.ModelSerializer):
