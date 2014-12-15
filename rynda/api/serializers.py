@@ -40,11 +40,11 @@ class MessageSerializer(serializers.ModelSerializer):
         model = Message
         fields = (
             'id', 'title', 'message', 'messageType', 'date_add',
-            'additional_info', 'linked_location',
+            'additional_info', 'location',
         )
 
     additional_info = JSONField()
-    linked_location = LocationSerializer()
+    # linked_location = LocationSerializer()
 
 
 class MapMessageSerializer(serializers.ModelSerializer):
@@ -59,7 +59,7 @@ class MapMessageSerializer(serializers.ModelSerializer):
     def get_coordinates(self, obj):
         """ Converts generic geocollection to flat point list """
         coords = list()
-        if obj.linked_location is not None:
-            for c in obj.linked_location.coordinates.coords:
+        if obj.location is not None:
+            for c in obj.location.coords:
                 coords.append([c[1], c[0]])
         return coords

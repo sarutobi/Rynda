@@ -74,16 +74,16 @@ class SaveGeoDataMixin():
         else:
             instance.user = User.objects.get(pk=settings.ANONYMOUS_USER_ID)
 
-        point = fromstr(self.request.POST['coordinates'])
-        gc = GeometryCollection(point).wkt
-        data = {
-            'name': self.request.POST['address'],
-            'coordinates': gc, }
-        loc_form = LocationForm(data=data)
-        location = loc_form.save()
-        instance.linked_location = location
+        # point = fromstr(self.request.POST['coordinates'])
+        # gc = GeometryCollection(point).wkt
+        # data = {
+            # 'name': self.request.POST['address'],
+            # 'coordinates': gc, }
+        # loc_form = LocationForm(data=data)
+        # location = loc_form.save()
+        # instance.linked_location = location
         instance.save()
-        form.save_m2m()
+        # form.save_m2m()
         return redirect(self.success_url)
 
 

@@ -193,10 +193,10 @@ class Message(models.Model):
         blank=True, null=True)
 
     # Links to core models
-    linked_location = models.ForeignKey(
-        Location,
-        null=True, blank=True
-    )
+    # linked_location = models.ForeignKey(
+        # Location,
+        # null=True, blank=True
+    # )
     category = models.ManyToManyField(
         Category,
         symmetrical=False,

@@ -109,7 +109,7 @@
                     </li>
                     <li class="list-group-item">
                         <strong>{% trans "Address" %}:</strong>
-                        {{ message.linked_location.name }}
+                        {{ message.address }}
                     </li>
 
                     <li class="list-group-item">
@@ -132,7 +132,7 @@
 <script type='text/javascript'>
 window.addEventListener("map:init", function(e){
     var detail = e.detail;
-    var layer = L.geoJson({{ message.linked_location.coordinates.json|safe }}).addTo(detail.map);
+    var layer = L.geoJson({{ message.location.json|safe }}).addTo(detail.map);
     detail.map.fitBounds(layer.getBounds());
     detail.map.setZoom(12);
 });

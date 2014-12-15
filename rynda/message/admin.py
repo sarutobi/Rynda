@@ -48,7 +48,7 @@ class MessageAdmin(LeafletGeoAdmin):
         ("Contact", {"fields": ((get_full_name, "is_anonymous"),
                                 (get_phone, get_email), ("user", "sender_ip"), )}),
         ("Flags", {"fields": (("is_active", "is_removed", "is_important"),)}),
-        ("Position", {"fields": ("linked_location", )})
+        ("Position", {"fields": ("address", "location", )})
     )
     # form = AdminMessageForm
 
