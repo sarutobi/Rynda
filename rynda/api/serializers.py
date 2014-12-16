@@ -34,9 +34,9 @@ class MapMessageSerializer(serializers.ModelSerializer):
     """ Serialize message data for map markers """
     class Meta:
         model = Message
-        fields = ('id', 'title', 'messageType', 'location')
+        fields = ('id', 'title', 'messageType', 'messageType_name', 'location')
 
-    messageType = serializers.ChoiceField(source='get_messageType_display')
+    messageType_name = serializers.SerializerMethodField()
     location = serializers.SerializerMethodField('get_coordinates')
 
     def get_coordinates(self, obj):
@@ -46,3 +46,6 @@ class MapMessageSerializer(serializers.ModelSerializer):
             for c in obj.location.coords:
                 coords.append([c[1], c[0]])
         return coords
+
+    def get_messageType_name(self, obj):
+        return obj.get_messageType_display()
