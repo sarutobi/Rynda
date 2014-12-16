@@ -53,6 +53,8 @@ class MessageAdmin(LeafletGeoAdmin):
     # form = AdminMessageForm
 
 
-admin.site.register(Message, MessageAdmin)
+class CategoryAdmin(admin.ModelAdmin):
+    prepopulated_fields = {'slug': ('name', )}
 
-admin.site.register(Category)
+admin.site.register(Message, MessageAdmin)
+admin.site.register(Category, CategoryAdmin)
