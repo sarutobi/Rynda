@@ -66,6 +66,9 @@ $ python manage.py runserver
 ```
 $ python manage.py test
 ```
+
+[Документация на русском языке](http://rynda.readthedocs.org/ru/latest/production.html)
+
 -------
 http://rynda.org
 http://openrynda.te-st.ru/
@@ -131,4 +134,4 @@ $ python manage.py runserver
 ```
 $ python manage.py test
 ```
-
+[Russian documentation](http://rynda.readthedocs.org/ru/latest/production.html)
