@@ -135,3 +135,8 @@ def activate_user(user, code):
         )
         return True
     return False
+
+
+def list_public_users():
+    """ Returns query for select only active users with public profile flag """
+    return User.objects.select_related().filter(is_active=True, profile__is_public=True)
