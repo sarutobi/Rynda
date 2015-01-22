@@ -2,15 +2,6 @@
 
 import os
 
-from django.core.exceptions import ImproperlyConfigured
-
-
-def get_env_var(name):
-    try:
-        return os.environ[name]
-    except KeyError:
-        raise ImproperlyConfigured("Set the %s env variable" % name)
-
 here = lambda *x: os.path.join(os.path.abspath(os.path.dirname(__file__)), *x)
 
 SITE_ROOT = here('..', '..')
@@ -19,6 +10,13 @@ TEMPLATE_DEBUG = DEBUG
 SITE_ID = 1
 
 PRODUCTION = False
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.contrib.gis.db.backends.spatialite',
+        'NAME': 'rynda.db',
+    }
+}
 
 # Local time zone for this installation. Choices can be found here:
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name

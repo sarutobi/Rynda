@@ -6,12 +6,6 @@ from .base import *
 
 DEBUG = True
 TEMPLATE_DEBUG = True
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.contrib.gis.db.backends.spatialite',
-        'NAME': 'rynda.db',
-    }
-}
 
 LEAFLET_CONFIG = {
     'DEFAULT_CENTER': (56.0, 45.0),
