@@ -2,9 +2,9 @@
 
 import factory
 from factory import django, fuzzy
+from rynda.core.factories import FuzzyMultiPoint
 from rynda.test.factories import UserFactory
 
-from rynda.geozones.factories import LocationFactory
 from .models import Message
 
 
@@ -27,12 +27,16 @@ class MessageFactory(django.DjangoModelFactory):
     status = Message.NEW
 
     @factory.lazy_attribute
-    def linked_location(self):
-        if self.is_virtual:
-            ret = None
-        else:
-            ret = LocationFactory()
-        return ret
+    def address(self):
+        if not self.is_virtual:
+            return fuzzy.FuzzyText()
+        return ''
+
+    @factory.lazy_attribute
+    def location(self):
+        if not self.is_virtual:
+            return FuzzyMultiPoint().fuzz()
+        return None
 
     @factory.post_generation
     def category(self, create, extracted, **kwargs):

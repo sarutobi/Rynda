@@ -2,12 +2,9 @@
 
 import json
 
-from django.contrib.gis.geos import Point
-
 from rest_framework import serializers
 
 from rynda.message.models import Message
-from rynda.geozones.models import Location
 
 
 class JSONField(serializers.Field):
@@ -22,44 +19,33 @@ class JSONField(serializers.Field):
         return val
 
 
-class LocationSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = Location
-
-
-class CoordinatesSerializer(serializers.ModelSerializer):
-    """ Serialize only coordinates from location """
-    class Meta:
-        model = Location
-
-    coordinates = serializers.Field(source='coordinates.json')
-
-
 class MessageSerializer(serializers.ModelSerializer):
     class Meta:
         model = Message
         fields = (
             'id', 'title', 'message', 'messageType', 'date_add',
-            'additional_info', 'linked_location',
+            'additional_info', 'location',
         )
 
     additional_info = JSONField()
-    linked_location = LocationSerializer()
 
 
 class MapMessageSerializer(serializers.ModelSerializer):
     """ Serialize message data for map markers """
     class Meta:
         model = Message
-        fields = ('id', 'title', 'messageType', 'location')
+        fields = ('id', 'title', 'messageType', 'messageType_name', 'location')
 
-    messageType = serializers.ChoiceField(source='get_messageType_display')
+    messageType_name = serializers.SerializerMethodField()
     location = serializers.SerializerMethodField('get_coordinates')
 
     def get_coordinates(self, obj):
         """ Converts generic geocollection to flat point list """
         coords = list()
-        if obj.linked_location is not None:
-            for c in obj.linked_location.coordinates.coords:
+        if obj.location is not None:
+            for c in obj.location.coords:
                 coords.append([c[1], c[0]])
         return coords
+
+    def get_messageType_name(self, obj):
+        return obj.get_messageType_display()

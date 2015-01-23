@@ -6,8 +6,8 @@ from rynda.message.models import Category
 
 
 class CategorySerializer(serializers.ModelSerializer):
-    parentId = serializers.RelatedField(source='parentId')
+    # parentId = serializers.RelatedField(source='parentId')
 
     class Meta:
         model = Category
-        fields = ('id', 'name', 'parentId')
+        fields = ('id', 'name', )

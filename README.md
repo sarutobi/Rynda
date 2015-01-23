@@ -62,11 +62,14 @@ $ python manage.py runserver
 
 7. Открываем в браузере [http://localhost:8000](http://localhost:8000)
 
-8. Что бы протестировать систему запускаем:
+8. Чтобы протестировать систему запускаем:
 
 ```
 $ python manage.py test
 ```
+
+[Документация на русском языке](http://rynda.readthedocs.org/ru/latest/production.html)
+
 -------
 http://rynda.org
 http://openrynda.te-st.ru/
@@ -131,4 +134,4 @@ $ python manage.py runserver
 ```
 $ python manage.py test
 ```
-
+[Russian documentation](http://rynda.readthedocs.org/ru/latest/production.html)

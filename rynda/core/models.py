@@ -4,6 +4,7 @@
 
 from django.contrib.sites.models import Site
 from django.db import models
+from django.contrib.gis.db import models as geomodels
 from django.utils.translation import ugettext_lazy as _
 
 
@@ -38,3 +39,13 @@ class SiteSocialLinks(models.Model):
 
     def __unicode__(self):
         return self.social_link_type.name
+
+
+class SiteMapOptions(geomodels.Model):
+    """ Site specific map options """
+    class Meta:
+        verbose_name = _("Site map options")
+
+    site = geomodels.OneToOneField(Site, verbose_name=_("Site name"))
+    zoom = geomodels.SmallIntegerField(verbose_name=_("Map zoom"), default=3)
+    center = geomodels.PointField(verbose_name=_("Default map center"))

@@ -3,7 +3,6 @@
 from django.conf import settings
 from django.contrib.auth import logout
 from django.contrib.auth.models import User
-from django.contrib.gis.geos import fromstr, GeometryCollection
 from django.core.urlresolvers import reverse_lazy
 from django.shortcuts import redirect, render
 from django.template.loader import render_to_string
@@ -12,7 +11,6 @@ from django.views.generic.detail import DetailView
 from django.views.generic.edit import CreateView, FormView
 
 from rynda.core.views import RyndaListView
-from rynda.geozones.forms import LocationForm
 from rynda.geozones.models import Region
 from .forms import (RequestForm, OfferForm,
                     MessageSideFilter, MapMessageFilter)
@@ -40,11 +38,11 @@ def list(request, slug='all'):
         Message.objects.active().type_is(Message.REQUEST)[:MAX_PANE_MESSAGES + 1],
         reverse_lazy("messages-list"))
     last_offers = generate_message_pane(
-        _("Offer of assistance"),
+        _("Offers to help"),
         Message.objects.active().type_is(Message.OFFER)[:MAX_PANE_MESSAGES + 1],
         reverse_lazy("messages-list"))
     last_completed = generate_message_pane(
-        _("Assistance provided"),
+        _("Successful connections"),
         Message.objects.type_is(
             Message.REQUEST).closed()[:MAX_PANE_MESSAGES + 1],
         "/message/pomogli")
@@ -74,16 +72,7 @@ class SaveGeoDataMixin():
         else:
             instance.user = User.objects.get(pk=settings.ANONYMOUS_USER_ID)
 
-        point = fromstr(self.request.POST['coordinates'])
-        gc = GeometryCollection(point).wkt
-        data = {
-            'name': self.request.POST['address'],
-            'coordinates': gc, }
-        loc_form = LocationForm(data=data)
-        location = loc_form.save()
-        instance.linked_location = location
         instance.save()
-        form.save_m2m()
         return redirect(self.success_url)
 
 
@@ -114,13 +103,6 @@ class MessageView(DetailView):
     model = Message
     template_name = "message_details.html"
     context_object_name = "message"
-
-    # def get_context_data(self, **kwargs):
-        # context = super(RyndaDetailView, self).get_context_data(**kwargs)
-        # if self.allow_external():
-            # external = {'VK_APP_ID':  settings.VK_APP_ID, }
-            # context['external'] = external
-        # return context
 
 
 class MessageList(RyndaListView):

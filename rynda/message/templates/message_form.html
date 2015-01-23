@@ -59,7 +59,7 @@
 
                             <div class="checkbox">
                                 <label for="{{ form.allow_feedback.id_for_label }}">
-                                    {{ form.allow_feedback.label }}{{ form.allow_feedback }}
+                                    {{ form.allow_feedback }}{{ form.allow_feedback.label }}
                                 </label>
                             </div>
                         </div>
@@ -112,7 +112,9 @@
                     <div class="validationError">{{ form.phone.errors }}</div>
 
                     <div class="checkbox">
-                        {{ form.is_anonymous.label_tag }}{{ form.is_anonymous }}
+                        <label for="{{ form.is_anonymous.id_for_label }}">
+                            {{ form.is_anonymous }}{{ form.is_anonymous.label }}
+                        </label>
                     </div>
                    <div id="contactsError" class="validationError" style="display:none;"></div>
                     <br />
@@ -121,7 +123,7 @@
 
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <h3 class="panel-title">{% trans "Geoposition" %}</h3>
+                    <h3 class="panel-title">{% trans "Location" %}</h3>
                 </div>
                 <div class="panel-body">
                     {{ form.address.label_tag }}
@@ -129,7 +131,8 @@
                     <div class="validationError">{{ form.address.error }}</div>
                     <br />
                     <br />
-                    {{ form.coordinates }}
+                    {% trans "Please, click on the pin button and drop it on your city" %}
+                    {{ form.location }}
                 </div>
             </div>
                 <div class="panel-footer">

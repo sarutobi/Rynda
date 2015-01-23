@@ -5,8 +5,6 @@ from django.core.urlresolvers import reverse
 
 from django_webtest import WebTest
 
-from rynda.core.factories import FuzzyGeometryCollection, FuzzyPoint
-from rynda.geozones.models import Location
 from rynda.message.models import Message
 from rynda.message.factories import MessageFactory
 from rynda.test.factories import UserFactory
@@ -23,13 +21,8 @@ class MessageDataMixin():
             'email': 'me@local.host',
             'phone': '1234567890',
         }
-        loc_data = {
-            'coordinates': FuzzyPoint().fuzz(),
-            'address': 'test address',
-        }
         self.data = MessageFactory.attributes(create=False)
         self.data.update(contacts)
-        self.data.update(loc_data)
 
     def fill_form(self):
         """ Fill form and send it """
@@ -40,7 +33,7 @@ class MessageDataMixin():
         form['allow_feedback'] = self.data['allow_feedback']
         form['email'] = self.data['email']
         form['address'] = self.data['address']
-        form['coordinates'] = self.data['coordinates']
+        form['location'] = self.data['location']
         form.submit()
 
 
@@ -126,8 +119,3 @@ class TestRequestMessageParameters(WebTest, MessageDataMixin):
         self.fill_form()
         msg = Message.objects.get()
         self.assertFalse(msg.allow_feedback)
-
-    def test_message_location(self):
-        loc_cnt = Location.objects.count()
-        self.fill_form()
-        self.assertEqual(loc_cnt + 1, Location.objects.count())

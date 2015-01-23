@@ -8,7 +8,6 @@ from django.utils.translation import ugettext_lazy as _
 
 from jsonfield import JSONField
 
-from rynda.geozones.models import Location
 from model_utils.managers import PassThroughManagerMixin
 
 
@@ -77,8 +76,8 @@ class Message(models.Model):
     INFO = 3
 
     TYPES_CHOICE = (
-        (REQUEST, _("Request message")),
-        (OFFER, _("Offer message")),
+        (REQUEST, _("Help requests")),
+        (OFFER, _("Help offers")),
         # (INFO, _("Informatial message"))
     )
 
@@ -183,11 +182,16 @@ class Message(models.Model):
         verbose_name=_("sender IP")
     )
 
+    address = models.CharField(
+        verbose_name=_('Address'),
+        max_length=250,
+        blank=True)
+
+    location = models.MultiPointField(
+        verbose_name=_('On map'),
+        blank=True, null=True)
+
     # Links to core models
-    linked_location = models.ForeignKey(
-        Location,
-        null=True, blank=True
-    )
     category = models.ManyToManyField(
         Category,
         symmetrical=False,

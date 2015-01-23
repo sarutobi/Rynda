@@ -8,7 +8,8 @@ from django.test import TestCase
 from post_office.models import Email
 
 from rynda.test.factories import UserFactory
-from rynda.users.models import UserAuthCode, create_new_user, activate_user
+from rynda.users.models import (
+    UserAuthCode, create_new_user, activate_user, list_public_users)
 
 
 class UserAuthCodeTest(TestCase):
@@ -120,3 +121,30 @@ class TestUserActivation(TestCase):
     def test_wrong_code(self):
         self.assertFalse(activate_user(self.user, 'self.code'))
         self.assertFalse(self.user.is_active)
+
+
+class TestPublicUsers(TestCase):
+    """ Tests for select only public users """
+    def setUp(self):
+        for x in xrange(10):
+            u = UserFactory(is_active=True)
+            u.profile.is_public = True
+            u.profile.save()
+
+    def test_active_public(self):
+        """ Select only active and public """
+        self.assertEquals(10, len(list_public_users()))
+
+    def test_not_public(self):
+        """ Do not show active users without public flag """
+        u = UserFactory(is_active=True)
+        u.profile.is_public = False
+        u.profile.save()
+        u.save()
+        self.assertEquals(10, len(list_public_users()))
+
+    def test_not_active(self):
+        u = UserFactory(is_active=False)
+        u.profile.is_public = True
+        u.profile.save()
+        self.assertEquals(10, len(list_public_users()))

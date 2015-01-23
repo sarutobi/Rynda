@@ -3,9 +3,11 @@
 from django.contrib import admin
 from leaflet.admin import LeafletGeoAdmin
 
-from .models import Region, Location
+from .models import Region
 
 
-admin.site.register(Region, LeafletGeoAdmin)
+class RegionAdmin(LeafletGeoAdmin):
+    prepopulated_fields = {"slug": ("name", ), }
 
-admin.site.register(Location, LeafletGeoAdmin)
+
+admin.site.register(Region, RegionAdmin)

@@ -33,7 +33,7 @@ class MessageForm(forms.ModelForm):
         model = Message
         fields = (
             'title', 'message', 'messageType',
-            'category',
+            'category', 'address', 'location',
             'is_anonymous', 'allow_feedback', 'is_virtual',
         )
         widgets = {
@@ -52,23 +52,24 @@ class UserMessageForm(forms.ModelForm):
         model = Message
         fields = (
             'title', 'message', 'messageType',
-            'category',
+            'category', 'address', 'location',
             'is_anonymous', 'allow_feedback', 'is_virtual',
         )
         widgets = {
             'messageType': forms.HiddenInput(),
             'category': forms.CheckboxSelectMultiple(),
+            'location': LeafletWidget(),
         }
 
     first_name = forms.CharField(label=_('First name'), required=False)
     last_name = forms.CharField(label=_('Last name'), required=False)
     email = forms.EmailField(label=_('Contact email'), required=False)
     phone = forms.CharField(label=_('Contact phone'), required=False)
-    address = forms.CharField(label=_('Address'))
+    # address = forms.CharField(label=_('Address'))
     # TODO MultiPointField
-    coordinates = geoforms.PointField(
-        label=_('Coordinates'),
-        widget=LeafletWidget(),)
+    # coordinates = geoforms.PointField(
+        # label=_('Coordinates'),
+        # widget=LeafletWidget(),)
 
     def save(self, force_insert=False, force_update=False, commit=True):
         msg = super(UserMessageForm, self).save(commit=False)
