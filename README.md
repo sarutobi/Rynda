@@ -70,6 +70,10 @@ $ python manage.py test
 
 [Документация на русском языке](http://rynda.readthedocs.org/ru/latest/production.html)
 
+
+Если вам нужна помощь волонтеров в установке и настройке - создайте задачу на https://itv.te-st.ru
+
+
 -------
 http://rynda.org
 http://openrynda.te-st.ru/
