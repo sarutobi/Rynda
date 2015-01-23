@@ -38,7 +38,7 @@ $ cd Rynda
 3. Устанавливаем все зависимости:
 
 ```
-$ pip install -r requirements\test.txt
+$ pip install -r requirements/test.txt
 ```
 
 4. Копируем mysettings.py.example в mysettings.py
@@ -46,6 +46,7 @@ $ pip install -r requirements\test.txt
 5. Задаем структуру базы данных и пароль суперпользователя:
 
 ```
+$ chmod +x createdb.sh
 $ bash createdb.sh 
 ```
 
@@ -68,6 +69,10 @@ $ python manage.py test
 ```
 
 [Документация на русском языке](http://rynda.readthedocs.org/ru/latest/production.html)
+
+
+Если вам нужна помощь волонтеров в установке и настройке - создайте задачу на https://itv.te-st.ru
+
 
 -------
 http://rynda.org
@@ -106,20 +111,19 @@ $ cd Rynda
 3. Install all requirements:
 
 ```
-$ pip install -r requirements\test.txt
+$ pip install -r requirements/test.txt
 ```
 
 4. Copy mysettings.py.example to mysettings.py
 
 5. Create database structure and superuser password:
-
 ```
+a) edit createdb.sh to set proper admin username and email address
+b) Set execution mode for createdb.sh
+$ chmod +x createdb.sh
+c) Execute the script. Enter superuser password twice.
 $ bash createdb.sh 
 ```
-
-Enter superuser password twice.
-
-defauit superuser name: admin
 
 6. Run the local server:
 
