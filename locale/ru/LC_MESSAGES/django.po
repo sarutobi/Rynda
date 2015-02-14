@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: rynda\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2014-12-10 09:53+0300\n"
+"POT-Creation-Date: 2015-02-14 21:09+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: Valery Ilychev <ilychev@gmail.com>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -19,278 +19,276 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
 
-#: rynda/core/models.py:13
+#: rynda/core/models.py:14
 msgid "Contact type"
 msgstr "Тип контакта"
 
-#: rynda/core/models.py:14
+#: rynda/core/models.py:15
 msgid "Contact types"
 msgstr "Типы контактов"
 
-#: rynda/core/models.py:16 rynda/geozones/models.py:58
+#: rynda/core/models.py:17
 msgid "Name"
 msgstr "Наименование"
 
-#: rynda/core/models.py:17
+#: rynda/core/models.py:18
 msgid "Symbol"
 msgstr "Иконка"
 
-#: rynda/core/models.py:27
+#: rynda/core/models.py:28
 msgid "Site contact"
 msgstr "Контактная информация"
 
-#: rynda/core/models.py:28
+#: rynda/core/models.py:29
 msgid "Site contacts"
 msgstr "Контактная информация"
 
-#: rynda/core/models.py:30
+#: rynda/core/models.py:31 rynda/core/models.py:49
 msgid "Site name"
 msgstr "Наименование сайта"
 
-#: rynda/core/models.py:31
+#: rynda/core/models.py:32
 msgid "Link type"
 msgstr ""
 
-#: rynda/core/models.py:32
+#: rynda/core/models.py:33
 msgid "Link title"
 msgstr "Текст ссылки"
 
-#: rynda/core/models.py:34
+#: rynda/core/models.py:35
 msgid "Link url"
 msgstr "Адрес ссылки"
 
-#: rynda/core/models.py:35
+#: rynda/core/models.py:36
 msgid "Include protocol, ex. 'mailto:email@host' for email"
 msgstr "Включая протокол, например 'mailto:email@host' для эл.почты"
 
-#: rynda/core/models.py:37
+#: rynda/core/models.py:38
 msgid "Ordering"
 msgstr "Номер для сортировки"
+
+#: rynda/core/models.py:47
+msgid "Site map options"
+msgstr ""
+
+#: rynda/core/models.py:50 rynda/geozones/models.py:31
+msgid "Map zoom"
+msgstr "Масштаб карты"
+
+#: rynda/core/models.py:51
+#, fuzzy
+#| msgid "Map center"
+msgid "Default map center"
+msgstr "Координаты центра карты"
 
 #: rynda/core/views.py:16 rynda/core/views.py:17
 msgid "Latest messages"
 msgstr "Последние сообщения"
 
-#: rynda/geozones/models.py:21 rynda/geozones/models.py:26
-#: rynda/geozones/models.py:66
+#: rynda/geozones/models.py:20 rynda/geozones/models.py:25
 #: rynda/message/templates/message_details.html:107
 msgid "Region"
 msgstr "Регион"
 
-#: rynda/geozones/models.py:22
+#: rynda/geozones/models.py:21
 msgid "Regions"
 msgstr "Регионы"
 
-#: rynda/geozones/models.py:28 rynda/message/models.py:30
+#: rynda/geozones/models.py:27 rynda/message/models.py:29
 msgid "slug"
 msgstr ""
 
-#: rynda/geozones/models.py:30
+#: rynda/geozones/models.py:29
 msgid "Map center"
 msgstr "Координаты центра карты"
 
 #: rynda/geozones/models.py:32
-msgid "Map zoom"
-msgstr "Масштаб карты"
-
-#: rynda/geozones/models.py:33
 msgid "Order"
 msgstr "Номер для сортировки"
-
-#: rynda/geozones/models.py:54 rynda/message/templates/message_form.html:124
-msgid "Location"
-msgstr "Местоположение"
-
-#: rynda/geozones/models.py:55
-msgid "Locations"
-msgstr "Местоположения"
-
-#: rynda/geozones/models.py:62
-#: rynda/message/templates/message_details.html:101
-msgid "On map"
-msgstr "На карте"
 
 #: rynda/message/forms.py:46
 msgid "Unknown message type!"
 msgstr "Неизвестный тип сообщения!"
 
-#: rynda/message/forms.py:63 rynda/users/forms.py:22
+#: rynda/message/forms.py:64 rynda/users/forms.py:22
 msgid "First name"
 msgstr "Имя"
 
-#: rynda/message/forms.py:64 rynda/users/forms.py:25
+#: rynda/message/forms.py:65 rynda/users/forms.py:25
 msgid "Last name"
 msgstr "Фамилия"
 
-#: rynda/message/forms.py:65
+#: rynda/message/forms.py:66
 msgid "Contact email"
 msgstr "Эл.почта"
 
-#: rynda/message/forms.py:66
+#: rynda/message/forms.py:67
 msgid "Contact phone"
 msgstr "Контактный телефон"
 
-#: rynda/message/forms.py:67 rynda/message/templates/message_details.html:111
-msgid "Address"
-msgstr "Адрес"
-
-#: rynda/message/forms.py:70
-msgid "Coordinates"
-msgstr "Координаты"
-
-#: rynda/message/forms.py:97 rynda/message/forms.py:100
-#: rynda/message/forms.py:103
+#: rynda/message/forms.py:98 rynda/message/forms.py:101
+#: rynda/message/forms.py:104
 msgid "You must provide at least one from contact email or phone!"
 msgstr "Укажите эл.почту или телефон для связи!"
 
-#: rynda/message/forms.py:159 rynda/message/forms.py:193
-#: rynda/message/models.py:115 rynda/templates/index.html:43
+#: rynda/message/forms.py:160 rynda/message/forms.py:194
+#: rynda/message/models.py:114 rynda/templates/index.html:43
 msgid "Message type"
 msgstr "Тип сообщения"
 
-#: rynda/message/forms.py:166 rynda/message/forms.py:200
-#: rynda/message/models.py:19 rynda/templates/index.html:44
+#: rynda/message/forms.py:167 rynda/message/forms.py:201
+#: rynda/message/models.py:18 rynda/templates/index.html:44
 #: rynda/users/forms.py:76
 msgid "Category"
 msgstr "Категория"
 
-#: rynda/message/forms.py:173
+#: rynda/message/forms.py:174
 msgid "Urgent"
 msgstr "Срочность"
 
-#: rynda/message/forms.py:179 rynda/users/forms.py:83
+#: rynda/message/forms.py:180 rynda/users/forms.py:83
 msgid "Keywords"
 msgstr "Ключевые слова"
 
-#: rynda/message/models.py:20 rynda/message/templates/message_details.html:46
+#: rynda/message/models.py:19 rynda/message/templates/message_details.html:46
 msgid "Categories"
 msgstr "Категории"
 
-#: rynda/message/models.py:24
+#: rynda/message/models.py:23
 msgid "name"
 msgstr "Наименование"
 
-#: rynda/message/models.py:27
+#: rynda/message/models.py:26
 msgid "description"
 msgstr "описание"
 
-#: rynda/message/models.py:71 rynda/message/models.py:106
+#: rynda/message/models.py:70 rynda/message/models.py:105
 #: rynda/message/templates/message_form.html:35
 msgid "Message"
 msgstr "Сообщение"
 
-#: rynda/message/models.py:72 rynda/templates/widgets/base_hub.html:2
+#: rynda/message/models.py:71 rynda/templates/widgets/base_hub.html:2
 msgid "Messages"
 msgstr "Сообщения"
 
-#: rynda/message/models.py:80 rynda/message/views.py:39
+#: rynda/message/models.py:79 rynda/message/views.py:37
 msgid "Help requests"
 msgstr "Просьба о помощи"
 
-#: rynda/message/models.py:81
+#: rynda/message/models.py:80
 msgid "Help offers"
 msgstr ""
 
-#: rynda/message/models.py:92
+#: rynda/message/models.py:91
 msgid "New"
 msgstr "Новое"
 
-#: rynda/message/models.py:93
+#: rynda/message/models.py:92
 msgid "Unverified"
 msgstr "Не проверено"
 
-#: rynda/message/models.py:94
+#: rynda/message/models.py:93
 msgid "Verified"
 msgstr "Проверено"
 
-#: rynda/message/models.py:95
+#: rynda/message/models.py:94
 msgid "Pending"
 msgstr "В работе"
 
-#: rynda/message/models.py:96
+#: rynda/message/models.py:95
 msgid "Closed"
 msgstr "Закрыто"
 
-#: rynda/message/models.py:104 rynda/newsline/models.py:21
+#: rynda/message/models.py:103 rynda/newsline/models.py:21
 msgid "title"
 msgstr "заголовок"
 
-#: rynda/message/models.py:110
+#: rynda/message/models.py:109
 msgid "Additional info"
 msgstr "Дополнительная информация"
 
-#: rynda/message/models.py:121
+#: rynda/message/models.py:120
 msgid "User"
 msgstr "Пользователь"
 
-#: rynda/message/models.py:130
+#: rynda/message/models.py:129
 msgid "source"
 msgstr "источник"
 
-#: rynda/message/models.py:135
+#: rynda/message/models.py:134
 msgid "Is virtual"
 msgstr "Виртуальное"
 
-#: rynda/message/models.py:142
+#: rynda/message/models.py:141
 msgid "active"
 msgstr "активно"
 
-#: rynda/message/models.py:146
+#: rynda/message/models.py:145
 msgid "important"
 msgstr "важное"
 
-#: rynda/message/models.py:149
+#: rynda/message/models.py:148
 msgid "hide contacts"
 msgstr "скрыть контакты"
 
-#: rynda/message/models.py:152
+#: rynda/message/models.py:151
 msgid "removed"
 msgstr "удалено"
 
-#: rynda/message/models.py:155
+#: rynda/message/models.py:154
 msgid "allow feedback"
 msgstr "разрешить комментарии"
 
-#: rynda/message/models.py:160 rynda/newsline/models.py:26
+#: rynda/message/models.py:159 rynda/newsline/models.py:26
 msgid "status"
 msgstr "статус"
 
-#: rynda/message/models.py:176
+#: rynda/message/models.py:175
 msgid "expired at"
 msgstr "срок до"
 
-#: rynda/message/models.py:183
+#: rynda/message/models.py:182
 msgid "sender IP"
 msgstr "IP отправителя"
 
-#: rynda/message/models.py:194
+#: rynda/message/models.py:186
+#: rynda/message/templates/message_details.html:111
+msgid "Address"
+msgstr "Адрес"
+
+#: rynda/message/models.py:191
+#: rynda/message/templates/message_details.html:101
+msgid "On map"
+msgstr "На карте"
+
+#: rynda/message/models.py:198
 msgid "message categories"
 msgstr "категории сообщения"
 
-#: rynda/message/models.py:222 rynda/newsline/models.py:27
+#: rynda/message/models.py:226 rynda/newsline/models.py:27
 #: rynda/newsline/templates/post_list.html:23
 msgid "Author"
 msgstr "Автор"
 
-#: rynda/message/models.py:223
+#: rynda/message/models.py:227
 msgid "Note"
 msgstr "Заметка"
 
-#: rynda/message/models.py:227
+#: rynda/message/models.py:231
 msgid "Created at"
 msgstr "Создано"
 
-#: rynda/message/models.py:231
+#: rynda/message/models.py:235
 msgid "Last edit"
 msgstr "Последнее редактирование"
 
-#: rynda/message/models.py:234
+#: rynda/message/models.py:238
 #, python-format
 msgid "Note from %(user)s to message %(msgid)d"
 msgstr ""
 
 #: rynda/message/templates/message_details.html:11
-#: rynda/message/templates/messages_list.html:10 rynda/templates/base.html:111
+#: rynda/message/templates/messages_list.html:10 rynda/templates/base.html:87
 #: rynda/templates/flatpages/default.html:10
 #: rynda/templates/infopages_list.html:10
 #: rynda/templates/registration/password_change_form.html:10
@@ -299,7 +297,7 @@ msgid "Home"
 msgstr "Домой"
 
 #: rynda/message/templates/message_details.html:12
-#: rynda/message/templates/messages_list.html:11 rynda/message/views.py:132
+#: rynda/message/templates/messages_list.html:11 rynda/message/views.py:114
 msgid "Message list"
 msgstr "Список сообщений"
 
@@ -336,7 +334,11 @@ msgstr ""
 msgid "About yourself"
 msgstr "Расскажите о себе"
 
-#: rynda/message/templates/message_form.html:132
+#: rynda/message/templates/message_form.html:126
+msgid "Location"
+msgstr "Местоположение"
+
+#: rynda/message/templates/message_form.html:134
 msgid "Please, click on the pin button and drop it on your city"
 msgstr ""
 
@@ -354,7 +356,7 @@ msgstr "Вы можете помочь?"
 msgid "Tell us about what you want to offer"
 msgstr "Расскажите о своих возможностях"
 
-#: rynda/message/templates/request_form.html:5 rynda/templates/base.html:73
+#: rynda/message/templates/request_form.html:5 rynda/templates/base.html:61
 msgid "Help needed"
 msgstr "Нужна помощь"
 
@@ -362,13 +364,13 @@ msgstr "Нужна помощь"
 msgid "Problem description"
 msgstr "Описание проблемы"
 
-#: rynda/message/views.py:43
+#: rynda/message/views.py:41
 #, fuzzy
 #| msgid "Create offer for help"
 msgid "Offers to help"
 msgstr "Создать предложение помощи"
 
-#: rynda/message/views.py:47
+#: rynda/message/views.py:45
 msgid "Successful connections"
 msgstr ""
 
@@ -397,7 +399,7 @@ msgstr "Создано"
 msgid "Modified"
 msgstr "Изменено"
 
-#: rynda/newsline/templates/post_list.html:9 rynda/templates/base.html:114
+#: rynda/newsline/templates/post_list.html:9 rynda/templates/base.html:90
 msgid "Site news"
 msgstr "Новости сайта"
 
@@ -408,14 +410,6 @@ msgstr "Последняя редакция:"
 #: rynda/templates/admin/base_site.html:4
 msgid "Rynda site manager"
 msgstr ""
-
-#: rynda/templates/admin/base_site.html:7
-msgid "Rynda management"
-msgstr ""
-
-#: rynda/templates/base.html:14
-msgid "Virtual Bell"
-msgstr "Виртуальная рында"
 
 #: rynda/templates/base.html:41
 msgid "Sign in"
@@ -435,39 +429,39 @@ msgstr "Пользователь"
 msgid "Logout"
 msgstr "Выход"
 
-#: rynda/templates/base.html:72
+#: rynda/templates/base.html:60
 msgid "Create offer for help"
 msgstr "Создать предложение помощи"
 
-#: rynda/templates/base.html:72
+#: rynda/templates/base.html:60
 msgid "I want to help"
 msgstr "Я хочу помочь"
 
-#: rynda/templates/base.html:73
+#: rynda/templates/base.html:61
 msgid "Create request for help"
 msgstr "Новая просьа о помощи"
 
-#: rynda/templates/base.html:75
+#: rynda/templates/base.html:63
 msgid "portal for volunteers"
 msgstr "портал волонтеров"
 
-#: rynda/templates/base.html:99
+#: rynda/templates/base.html:75
 msgid "Communications"
 msgstr "Наши контакты"
 
-#: rynda/templates/base.html:112
+#: rynda/templates/base.html:88
 msgid "Help was found"
 msgstr "Помощь оказана"
 
-#: rynda/templates/base.html:113
+#: rynda/templates/base.html:89
 msgid "RSS feed"
 msgstr ""
 
-#: rynda/templates/base.html:115
+#: rynda/templates/base.html:91
 msgid "About us"
 msgstr "О нас"
 
-#: rynda/templates/base.html:119
+#: rynda/templates/base.html:95
 msgid "«Virtual Bell - Atlas of Assistance» platform, 2011-2014. License"
 msgstr ""
 
@@ -709,19 +703,19 @@ msgstr ""
 msgid "Password(retype)"
 msgstr ""
 
-#: rynda/users/forms.py:38
+#: rynda/users/forms.py:38 rynda/users/tests/xUnit/test_forms.py:74
 msgid "The password fields did not match"
 msgstr ""
 
-#: rynda/users/forms.py:43
+#: rynda/users/forms.py:43 rynda/users/tests/xUnit/test_forms.py:41
 msgid "You must provide a first name!"
 msgstr ""
 
-#: rynda/users/forms.py:48
+#: rynda/users/forms.py:48 rynda/users/tests/xUnit/test_forms.py:57
 msgid "You must provide a last name!"
 msgstr ""
 
-#: rynda/users/forms.py:56
+#: rynda/users/forms.py:56 rynda/users/tests/xUnit/test_forms.py:66
 msgid "This email already registered"
 msgstr ""
 
@@ -836,6 +830,11 @@ msgstr ""
 msgid "Users on page:"
 msgstr ""
 
+#: rynda/users/tests/xUnit/test_forms.py:33
+#: rynda/users/tests/xUnit/test_forms.py:49
+msgid "This field is required."
+msgstr ""
+
 #: rynda/users/views.py:85
 msgid "Profile was updated successfully!"
 msgstr ""
@@ -843,15 +842,3 @@ msgstr ""
 #: rynda/users/views.py:95
 msgid "Please log in to edit your profile"
 msgstr ""
-
-#~ msgid "Request message"
-#~ msgstr "Просьба о помощи"
-
-#~ msgid "Offer message"
-#~ msgstr "Предложение помощи"
-
-#~ msgid "Offer of assistance"
-#~ msgstr "Предложение помощи"
-
-#~ msgid "Assistance provided"
-#~ msgstr "Помощь оказана"
