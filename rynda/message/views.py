@@ -119,3 +119,7 @@ class MessageList(RyndaListView):
         count = self.queryset.count()
         context['count'] = count
         return context
+
+
+class ClosedMessageList(MessageList):
+    queryset = Message.objects.closed().prefetch_related('user', 'category').all()
