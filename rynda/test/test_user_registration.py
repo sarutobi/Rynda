@@ -6,7 +6,7 @@ from django.contrib.sites.models import Site
 from django.core.urlresolvers import reverse
 
 from django_webtest import WebTest
-from post_office.models import Email
+from post_office.models import Email, EmailTemplate
 
 from rynda.test.factories import UserFactory
 from rynda.users.models import UserAuthCode
@@ -20,6 +20,18 @@ class TestUserRegistration(WebTest):
         self.site.domain = "example.com"
         self.site.name = "Example site"
         self.site.save()
+        confirm = EmailTemplate(
+            name='registration confirmation',
+            subject='Account activation',
+            content='http://{{site.domain}}/user/activate/{{user.id}}/{{activation_code}}',
+            html_content='http://{{site.domain}}/user/activate/{{user.id}}/{{activation_code}}',
+        )
+        confirm.save()
+        complete = EmailTemplate(
+            name='registration complete',
+            subject='Welcome to team !',
+        )
+        complete.save()
 
     def action_registration(self):
         """ User fills registration form """
@@ -64,7 +76,7 @@ class TestUserRegistration(WebTest):
         self.assertTrue(User.objects.get(id=user.id).is_active)
         self.assertTemplateUsed("login.html")
         email = Email.objects.all().order_by("-id")[0]
-        self.assertEqual(user.email, email.to)
+        self.assertEqual(user.email, email.to[0])
         self.assertEqual(u"Welcome to team !", email.subject)
 
     def test_logged_in(self):

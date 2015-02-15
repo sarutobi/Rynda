@@ -5,7 +5,7 @@ from django.contrib.auth.models import User
 from django.utils import timezone
 from django.test import TestCase
 
-from post_office.models import Email
+from post_office.models import Email, EmailTemplate
 
 from rynda.test.factories import UserFactory
 from rynda.users.models import (
@@ -66,8 +66,14 @@ class UserTest(TestCase):
 
 
 class TestUserCreation(TestCase):
+
     def setUp(self):
         user = UserFactory.build()
+        confirm = EmailTemplate(
+            name='registration confirmation',
+            subject='Account activation',
+        )
+        confirm.save()
         self.before = User.objects.count()
         self.user = create_new_user(
             first_name=user.first_name,
@@ -113,6 +119,15 @@ class TestUserActivation(TestCase):
         encoder = UserAuthCode(settings.SECRET_KEY)
         self.user = UserFactory(is_active=False)
         self.code = encoder.auth_code(self.user)
+        confirm = EmailTemplate(
+            name='registration confirmation',
+            subject='Account activation',
+        )
+        confirm.save()
+        complete = EmailTemplate(
+            name='registration complete',
+        )
+        complete.save()
 
     def test_user_activation(self):
         self.assertTrue(activate_user(self.user, self.code), self.user.email)

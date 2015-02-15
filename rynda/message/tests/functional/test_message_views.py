@@ -10,7 +10,6 @@ from rynda.test.factories import UserFactory
 
 
 class TestMessagesList(WebTest):
-
     def setUp(self):
         self.page = self.app.get(reverse('messages-list'))
 
