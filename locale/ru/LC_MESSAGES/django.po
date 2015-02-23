@@ -76,8 +76,6 @@ msgid "Map zoom"
 msgstr "Масштаб карты"
 
 #: rynda/core/models.py:51
-#, fuzzy
-#| msgid "Map center"
 msgid "Default map center"
 msgstr "Координаты центра карты"
 
@@ -351,8 +349,6 @@ msgid "Can you help?"
 msgstr "Вы можете помочь?"
 
 #: rynda/message/templates/offer_form.html:9
-#, fuzzy
-#| msgid "Tell us about your opportunities"
 msgid "Tell us about what you want to offer"
 msgstr "Расскажите о своих возможностях"
 
@@ -365,10 +361,8 @@ msgid "Problem description"
 msgstr "Описание проблемы"
 
 #: rynda/message/views.py:41
-#, fuzzy
-#| msgid "Create offer for help"
 msgid "Offers to help"
-msgstr "Создать предложение помощи"
+msgstr "Предложения помощи"
 
 #: rynda/message/views.py:45
 msgid "Successful connections"
@@ -416,10 +410,8 @@ msgid "Sign in"
 msgstr "Вход"
 
 #: rynda/templates/base.html:42
-#, fuzzy
-#| msgid "Sign in"
 msgid "Sign up"
-msgstr "Вход"
+msgstr "Регистрация"
 
 #: rynda/templates/base.html:44
 msgid "Logged in as"
