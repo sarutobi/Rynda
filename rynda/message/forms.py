@@ -2,10 +2,12 @@
 
 from django.contrib.gis import forms as geoforms
 from django.core.exceptions import ValidationError
+from django.db.models import Q
 from django.forms.util import ErrorList
 from django.utils.translation import ugettext as _
 
 import django_filters
+from django_filters.filters import Filter
 import floppyforms.__future__ as forms
 from leaflet.forms.widgets import LeafletWidget
 
@@ -149,6 +151,18 @@ class AdminMessageForm(MessageForm):
         return self.cleaned_data['message_type']
 
 
+class TitleMessageFilter(Filter):
+    """ Search title and body message """
+    field_class = geoforms.CharField
+
+    def filter(self, qs, value):
+        if value:
+            q_object = Q(title__icontains=value)
+            q_object.add(Q(message__icontains=value), Q.OR)
+            return qs.filter(q_object)
+        return qs
+
+
 class MessageSideFilter(django_filters.FilterSet):
     """ Message list side filter """
     class Meta:
@@ -175,10 +189,8 @@ class MessageSideFilter(django_filters.FilterSet):
         widget=forms.NullBooleanSelect()
     )
 
-    q = django_filters.CharFilter(
-        name='message',
+    q = TitleMessageFilter(
         label=_("Keywords"),
-        lookup_type="icontains",
         widget=forms.SearchInput(),
     )
 

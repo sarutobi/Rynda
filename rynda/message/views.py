@@ -80,7 +80,7 @@ class CreateRequest(SaveGeoDataMixin, FormView):
     template_name = "request_form.html"
     model = Message
     form_class = RequestForm
-    success_url = reverse_lazy('messages-list')
+    success_url = reverse_lazy('message-added')
 
     def get_initial(self):
         initial = {}
@@ -96,7 +96,7 @@ class CreateOffer(SaveGeoDataMixin, CreateView):
     template_name = "offer_form.html"
     model = Message
     form_class = OfferForm
-    success_url = reverse_lazy('messages-list')
+    success_url = reverse_lazy('message-added')
 
 
 class MessageView(DetailView):
@@ -106,7 +106,8 @@ class MessageView(DetailView):
 
 
 class MessageList(RyndaListView):
-    queryset = Message.objects.active().prefetch_related('user', 'category').all()
+    queryset = Message.objects.active().prefetch_related(
+        'user', 'category').all()
     paginate_by = 10
     template_name = 'messages_list.html'
     context_object_name = 'messages'
@@ -119,3 +120,15 @@ class MessageList(RyndaListView):
         count = self.queryset.count()
         context['count'] = count
         return context
+
+
+class ClosedMessageList(MessageList):
+    queryset = Message.objects.closed().prefetch_related(
+        'user', 'category').all()
+
+
+def message_added(request):
+    return render(
+        request,
+        'message_success.html'
+    )

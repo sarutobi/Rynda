@@ -1,0 +1,14 @@
+{% extends "base_singlepane.html" %}
+{% load i18n %}
+
+{% block pane-title %}
+{% blocktrans %} Message added successfully! {% endblocktrans %}
+{% endblock %}
+
+{% block pane-body %}
+{% blocktrans %}
+Your message was successfully added and will appear in the public domain after
+checking. We will contact you as soon as possible to figure out the details.
+You can continue viewing the message list.
+{% endblocktrans %}
+{% endblock %}
