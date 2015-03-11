@@ -857,6 +857,11 @@ msgstr "Пользователей на странице:"
 msgid "This field is required."
 msgstr "Это поле заполнять обязательно"
 
+#: rynda/users/tests/xUnit/test_forms.py:33
+#: rynda/users/tests/xUnit/test_forms.py:49
+msgid "This field is required."
+msgstr ""
+
 #: rynda/users/views.py:85
 msgid "Profile was updated successfully!"
 msgstr "Профиль успешно обновлен!"

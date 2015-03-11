@@ -189,3 +189,4 @@ LOGGING = {
 
 LOGIN_REDIRECT_URL = '/'
 ANONYMOUS_USER_ID = -1
+LOCALE_PATHS = (here('..', '..', '..', 'locale', ), )
