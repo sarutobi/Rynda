@@ -11,3 +11,4 @@ htmlcov/
 mailbox/
 node_modules/
 docs/build/
+venv/
