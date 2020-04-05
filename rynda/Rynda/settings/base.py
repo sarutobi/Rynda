@@ -163,8 +163,8 @@ INSTALLED_APPS = (
     'rynda.message',
     'rynda.users',
     'rynda.geozones',
-    #  'rynda.api',
-    #  'rynda.newsline',
+    'rynda.api',
+    'rynda.newsline',
 )
 
 AUTHENTICATION_BACKENDS = (

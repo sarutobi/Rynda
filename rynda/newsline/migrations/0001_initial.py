@@ -23,7 +23,7 @@ class Migration(migrations.Migration):
                 ('modified', models.DateTimeField(auto_now=True, verbose_name='Modified')),
                 ('publish', models.DateTimeField(default=django.utils.timezone.now, verbose_name='Publish')),
                 ('status', models.IntegerField(verbose_name='Status', choices=[(0, 'draft'), (1, 'published')])),
-                ('author', models.ForeignKey(verbose_name='Author', to=settings.AUTH_USER_MODEL)),
+                ('author', models.ForeignKey(verbose_name='Author', to=settings.AUTH_USER_MODEL, on_delete=models.PROTECT)),
             ],
             options={
                 'ordering': ['-publish'],

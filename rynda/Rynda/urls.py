@@ -7,7 +7,7 @@ from django.contrib.auth import views as auth_views
 
 from rynda.core import views as core_views
 from rynda.core.views import NewMessagesFeed
-#  from rynda.users.views import CreateUser
+from rynda.users.views import CreateUser
 
 from rynda.message import views as message_views
 
@@ -30,7 +30,7 @@ urlpatterns += [
     url(r'^api/', include('rynda.api.urls')),
     url(r'^message/', include('rynda.message.urls')),
     url(r'^user/', include('rynda.users.urls')),
-    #  url(r'^news/', include('rynda.newsline.urls')),
+    url(r'^news/', include('rynda.newsline.urls')),
     #  url(r'^t/(?P<slug>[a-z_0-9-]+)$', message_views.list),
     # url(r'^t/(?P<slug>)message/', include('message.urls')),
 ]
@@ -43,7 +43,7 @@ urlpatterns += [
 
 # Account-related patterns
 urlpatterns += [#'django.contrib.auth.views',
-    #  url(r'^register$', CreateUser.as_view(), name='user-creation'),
+    url(r'^register$', CreateUser.as_view(), name='user-creation'),
     #  url(r'^login$', 'login',
         #  {'template_name': 'login.html'}, name='user-login'),
     #  url(r'^logout$', 'logout', name='user-logout'),
