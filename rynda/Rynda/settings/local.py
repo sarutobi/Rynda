@@ -29,7 +29,7 @@ INSTALLED_APPS += (
 )
 
 INTERNAL_IPS = ('127.0.0.1')
-MIDDLEWARE_CLASSES += ('debug_toolbar.middleware.DebugToolbarMiddleware',)
+MIDDLEWARE += ('debug_toolbar.middleware.DebugToolbarMiddleware',)
 DEBUG_TOOLBAR_CONFIG = {
     'SHOW_TOOLBAR_CALLBACK': "rynda.Rynda.settings.local.show_toolbar",
 }

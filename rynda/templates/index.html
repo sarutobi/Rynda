@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% load i18n %}{# load i18n leaflet_tags #}
+{% load i18n static %}{# load i18n leaflet_tags #}
 
 {% block hubs %}
     {% include "widgets/base_hub.html"  with part='base' %}
@@ -8,7 +8,7 @@
 {% block navigation %}
 {% endblock %}
 
-{% block css %}<link rel="stylesheet" href="{{STATIC_URL}}css/flexslider.css">{% endblock %}
+{% block css %}<link rel="stylesheet" href="{% static "css/flexslider.css" %}">{% endblock %}
 
 {% block maincontent %}
 <div class="row">
@@ -77,14 +77,14 @@
 {% endblock %}
 
 {% block scripts %}
-{# leaflet_js %}
-{% leaflet_css #}
+{# leaflet_js #}
+{# leaflet_css #}
 <!-- Leaflet cluster scripts -->
-<script type='text/javascript' src='{{ STATIC_URL }}/js/libs/leaflet.markercluster.js'></script>
-<link rel='stylesheet' href='{{ STATIC_URL }}/css/MarkerCluster.css' />
-<link rel='stylesheet' href='{{ STATIC_URL }}/css/MarkerCluster.Default.css' />
-<!-- [if lte IE 8]><link rel='stylesheet' href='{{ STATIC_URL }}/css/MarkerCluster.Default.ie.css' /><![endif]-->
-<script src="{{STATIC_URL}}js/libs/jquery.flexslider-min.js"></script>
+    <script type='text/javascript' src='{% static "/js/libs/leaflet.markercluster.js" %}'></script>
+    <link rel='stylesheet' href='{% static "/css/MarkerCluster.css" %}' />
+    <link rel='stylesheet' href='{% static "/css/MarkerCluster.Default.css" %}' />
+    <!-- [if lte IE 8]><link rel='stylesheet' href='{% static "/css/MarkerCluster.Default.ie.css" %}' /><![endif]-->
+<script src="{% static "js/libs/jquery.flexslider-min.js" %}"></script>
 <script type='text/javascript' >
 $(function(){
     Rynda.sameheight($('.message_pane'));

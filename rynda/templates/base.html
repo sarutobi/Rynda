@@ -1,4 +1,4 @@
-{% load i18n %}<!doctype html>
+{% load i18n  static %}<!doctype html>
 <!-- paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/ -->
 <!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="{{ LANGUAGE_CODE }}"> <![endif]-->
 <!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8" lang="{{ LANGUAGE_CODE }}"> <![endif]-->
@@ -14,12 +14,12 @@
     <title>{%block page_title%}{%endblock%} {{ current_site.name|capfirst }}</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width">
-    <link rel="stylesheet" href="{{STATIC_URL}}css/bootstrap-theme.css">
-    <link rel="stylesheet" href="{{STATIC_URL}}css/default.css">
+    <link rel="stylesheet" href="{% static "css/bootstrap-theme.css" %}">
+    <link rel="stylesheet" href="{% static "css/default.css" %}">
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
     {% block css %}{% endblock %}
 
-    <script src="{{STATIC_URL}}js/libs/modernizr-2.5.3.min.js"></script>
+    <script src="{% static "js/libs/modernizr-2.5.3.min.js" %}"></script>
 </head>
 
 <body>
@@ -99,14 +99,14 @@
 </body>
 <!-- JavaScript at the bottom for fast page loading -->
 
-<script src="{{STATIC_URL}}js/libs/jquery-1.11.0.min.js"></script>
-<script src="{{ STATIC_URL }}js/libs/bootstrap.min.js"></script>
-<script src="{{STATIC_URL}}js/rynda.js"></script>
+<script src="{% static "js/libs/jquery-1.11.0.min.js" %}"></script>
+<script src="{% static "js/libs/bootstrap.min.js" %}"></script>
+<script src="{% static "js/rynda.js" %}"></script>
 
 <!-- scripts concatenated and minified via build script -->
 
-<script src="{{STATIC_URL}}js/plugins.js"></script>
-<script src="{{STATIC_URL}}js/script.js"></script>
+<script src="{% static "js/plugins.js" %}"></script>
+<script src="{% static "js/script.js" %}"></script>
 {% block scripts %}{% endblock %}
 <!-- end scripts -->
 </html>
