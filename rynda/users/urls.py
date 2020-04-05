@@ -5,7 +5,7 @@ from django.conf.urls import  url
 from rynda.users.views import UserDetail, UserList, EditProfile, activate_profile
 
 
-urlpatterns = ['rynda.users.views',
+urlpatterns = [
     url(r'^$', UserList.as_view(), name="user-list"),
     url(r'^page/(?P<page>\d+)/$', UserList.as_view(), name='user-list'),
     url(r'^(?P<pk>\d+)$', UserDetail.as_view(), name='user-details'),

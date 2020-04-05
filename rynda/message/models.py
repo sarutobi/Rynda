@@ -37,28 +37,28 @@ class Category(models.Model):
     #  pass
 
 
-#  class MessageQueryset(GeoQuerySet):
-    #  def list(self):
-        #  """ Ask only few fields for listing"""
+class MessageQueryset(models.QuerySet):
+    def list(self):
+        """ Ask only few fields for listing"""
 
-        #  return self.values(
-            #  'id', 'title', 'message', 'messageType',
-            #  'date_add', )
+        return self.values(
+            'id', 'title', 'message', 'messageType',
+            'date_add', )
 
-    #  def active(self):
-        #  return self.filter(
-            #  status__gt=Message.NEW, status__lt=Message.CLOSED,
-            #  is_removed=False
-        #  )
+    def active(self):
+        return self.filter(
+            status__gt=Message.NEW, status__lt=Message.CLOSED,
+            is_removed=False
+        )
 
-    #  def closed(self):
-        #  return self.filter(status=Message.CLOSED)
+    def closed(self):
+        return self.filter(status=Message.CLOSED)
 
-    #  def type_is(self, m_type):
-        #  return self.filter(messageType=m_type)
+    def type_is(self, m_type):
+        return self.filter(messageType=m_type)
 
-    #  def is_deleted(self):
-        #  return self.filter(is_removed=True)
+    def is_deleted(self):
+        return self.filter(is_removed=True)
 
 
 class Message(models.Model):
@@ -96,6 +96,7 @@ class Message(models.Model):
 
     # Managers
     #  objects = PassThroughGeoManager.for_queryset_class(MessageQueryset)()
+    objects = MessageQueryset.as_manager()
 
     # Main message fields
     title = models.CharField(
