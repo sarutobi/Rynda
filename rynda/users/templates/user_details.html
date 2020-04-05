@@ -18,7 +18,7 @@
     <div id="user_profile_container" class="panel panel-primary">
         <div class="panel-heading clearfix">
             <h3 class="panel-title pull-left" style="padding-top:7px;">{% blocktrans with name=u.get_full_name|default:u.email %}User profile for {{ name }}{% endblocktrans %}</h3>
-            {% if user.id = u.id %}
+            {% if user.id == u.id %}
             <div class="pull-right">
                 <a href="{% url "user-profile-edit" %}" class="btn btn-primary">{%trans "Edit profile" %}</a>
             </div>
