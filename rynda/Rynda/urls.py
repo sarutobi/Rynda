@@ -11,6 +11,8 @@ from rynda.users.views import CreateUser
 
 from rynda.message import views as message_views
 
+from django.contrib.auth import views as auth_views
+
 admin.autodiscover()
 
 # Include external apps views
@@ -44,8 +46,7 @@ urlpatterns += [
 # Account-related patterns
 urlpatterns += [#'django.contrib.auth.views',
     url(r'^register$', CreateUser.as_view(), name='user-creation'),
-    #  url(r'^login$', 'login',
-        #  {'template_name': 'login.html'}, name='user-login'),
+    url(r'^login$', auth_views.LoginView.as_view(), {'template_name': 'login.html'}, name='user-login'),
     #  url(r'^logout$', 'logout', name='user-logout'),
     #  url(r'^password/reset$', 'password_reset', name='user-password-reset'),
     #  url(r'^password/reset/confirm/(?P<uidb64>[0-9A-Za-z]{1,13})-(?P<token>[0-9A-Za-z]{1,13}-[0-9A-Za-z]{1,20})/$',
