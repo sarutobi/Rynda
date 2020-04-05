@@ -2,7 +2,7 @@ Django==3.0
 django-filter==2.2
 django-floppyforms==1.8.0
 django-grappelli==2.14.1
-django-leaflet==0.20
+-e git+https://github.com/makinacorpus/django-leaflet.git@bd2d5e0780ac85c23b102430990c44370da1e027#egg=django_leaflet
 django-model-utils==4.0.0
 django-post_office==3.3.1
 django-widget-tweaks==1.4.8

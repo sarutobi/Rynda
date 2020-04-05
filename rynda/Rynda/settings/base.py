@@ -156,7 +156,7 @@ INSTALLED_APPS = (
     'widget_tweaks',
     'post_office',
     'jsonfield',
-    #  'leaflet',
+    'leaflet',
     # Project applications
     'rynda.core',
     'rynda.message',

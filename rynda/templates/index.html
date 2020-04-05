@@ -1,5 +1,5 @@
 {% extends 'base.html' %}
-{% load i18n static %}{# load i18n leaflet_tags #}
+{% load i18n static leaflet_tags %}{# load i18n leaflet_tags #}
 
 {% block hubs %}
     {% include "widgets/base_hub.html"  with part='base' %}
@@ -31,7 +31,7 @@
             <h3 class="panel-title">{% trans "Messages on map" %}</h3>
         </div>
         <div class="panel-body">
-            <div id="locationMapCanvas" class="col-md-9">{# leaflet_map "indexmap" #}</div>
+            <div id="locationMapCanvas" class="col-md-9">{% leaflet_map "indexmap" %}</div>
             <div id='mainPageFilter' class='col-md-3'>
                 <div class="panel panel-default">
                     <div class="panel-heading">
@@ -77,8 +77,8 @@
 {% endblock %}
 
 {% block scripts %}
-{# leaflet_js #}
-{# leaflet_css #}
+{% leaflet_js %}
+{% leaflet_css %}
 <!-- Leaflet cluster scripts -->
     <script type='text/javascript' src='{% static "/js/libs/leaflet.markercluster.js" %}'></script>
     <link rel='stylesheet' href='{% static "/css/MarkerCluster.css" %}' />
