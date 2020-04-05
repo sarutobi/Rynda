@@ -19,7 +19,7 @@ class Migration(migrations.Migration):
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
                 ('zoom', models.SmallIntegerField(default=3, verbose_name='Map zoom')),
                 ('center', django.contrib.gis.db.models.fields.PointField(srid=4326, verbose_name='Default map center')),
-                ('site', models.OneToOneField(verbose_name='Site name', to='sites.Site')),
+                ('site', models.OneToOneField(verbose_name='Site name', to='sites.Site', on_delete=models.CASCADE)),
             ],
             options={
                 'verbose_name': 'Site map options',

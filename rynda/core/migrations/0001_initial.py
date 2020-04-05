@@ -18,7 +18,7 @@ class Migration(migrations.Migration):
                 ('help_title', models.CharField(max_length=100, verbose_name='Help title')),
                 ('url', models.CharField(max_length=2000, verbose_name='Link url')),
                 ('ordering', models.IntegerField(verbose_name='Ordering')),
-                ('site', models.ForeignKey(verbose_name='Site name', to='sites.Site')),
+                ('site', models.ForeignKey(verbose_name='Site name', to='sites.Site', on_delete=models.CASCADE)),
             ],
             options={
                 'ordering': ['ordering'],
@@ -41,7 +41,7 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='sitesociallinks',
             name='social_link_type',
-            field=models.ForeignKey(verbose_name='Link type', to='core.SocialLinkType'),
+            field=models.ForeignKey(verbose_name='Link type', to='core.SocialLinkType', on_delete=models.CASCADE),
             preserve_default=True,
         ),
     ]
