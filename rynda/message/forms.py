@@ -170,21 +170,21 @@ class MessageSideFilter(django_filters.FilterSet):
         fields = ['mtype', 'category', 'urgent', 'q', ]
 
     mtype = django_filters.MultipleChoiceFilter(
-        name='messageType',
+        field_name='messageType',
         label=_("Message type"),
         choices=Message.TYPES_CHOICE,
         widget=forms.CheckboxSelectMultiple()
     )
 
     category = django_filters.ModelMultipleChoiceFilter(
-        name="category",
+        field_name="category",
         label=_("Category"),
         widget=forms.CheckboxSelectMultiple(),
         queryset=Category.objects.all()
     )
 
     urgent = django_filters.BooleanFilter(
-        name="is_important",
+        field_name="is_important",
         label=_("Urgent"),
         widget=forms.NullBooleanSelect()
     )
@@ -202,14 +202,14 @@ class MapMessageFilter(django_filters.FilterSet):
         fields = ['mtype', 'category', ]
 
     mtype = django_filters.MultipleChoiceFilter(
-        name='messageType',
+        field_name='messageType',
         label=_("Message type"),
         choices=Message.TYPES_CHOICE,
         widget=forms.CheckboxSelectMultiple()
     )
 
     category = django_filters.ModelMultipleChoiceFilter(
-        name="category",
+        field_name="category",
         label=_("Category"),
         widget=forms.CheckboxSelectMultiple(),
         queryset=Category.objects.all()

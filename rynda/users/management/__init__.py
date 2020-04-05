@@ -20,6 +20,6 @@ def create_anonymous_user(sender, **kwargs):
             **{User.USERNAME_FIELD: ANONYMOUS_DEFAULT_USERNAME})
 
 if hasattr(settings, "ANONYMOUS_USER_ID"):
-    signals.post_syncdb.connect(
+    signals.post_migrate.connect(
         create_anonymous_user, sender=users_app,
         dispatch_uid="users.management.create_anonymous_user")

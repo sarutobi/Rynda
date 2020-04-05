@@ -27,9 +27,9 @@ urlpatterns += [
 # Rynda-related patterns
 urlpatterns += [
     url(r'^$', message_views.list, name='main-index'),
-    #  url(r'^api/', include('rynda.api.urls')),
+    url(r'^api/', include('rynda.api.urls')),
     url(r'^message/', include('rynda.message.urls')),
-    #  url(r'^user/', include('rynda.users.urls')),
+    url(r'^user/', include('rynda.users.urls')),
     #  url(r'^news/', include('rynda.newsline.urls')),
     #  url(r'^t/(?P<slug>[a-z_0-9-]+)$', message_views.list),
     # url(r'^t/(?P<slug>)message/', include('message.urls')),

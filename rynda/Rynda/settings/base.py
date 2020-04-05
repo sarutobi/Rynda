@@ -161,7 +161,7 @@ INSTALLED_APPS = (
     # Project applications
     'rynda.core',
     'rynda.message',
-    #  'rynda.users',
+    'rynda.users',
     'rynda.geozones',
     #  'rynda.api',
     #  'rynda.newsline',

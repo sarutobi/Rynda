@@ -39,10 +39,10 @@
             <!-- Authentication -->
             {% if not user.is_authenticated %}
             <a id="authLogIn" href="{% url "user-login" %}" class="btn btn-sm rynda-btn-default">{% trans "Sign in" %}</a> |
-            <a id="authRegister" class="btn btn-sm rynda-btn-default" href="{% url "user-creation" %}">{% trans "Sign up" %}</a>
+            <a id="authRegister" class="btn btn-sm rynda-btn-default" href="{# url "user-creation" #}">{% trans "Sign up" %}</a>
             {% else %}
             <span class="auth_text">{% trans "Logged in as" %} <a href="{% url "user-details" user.id %}" class="auth_text">{{ user.get_full_name|default:user.email }}</a> |</span>
-            <a id="authLogout" href="{% url "user-logout" %}" >{% trans "Logout" %}</a>
+            <a id="authLogout" href="{# url "user-logout" #}" >{% trans "Logout" %}</a>
             {% endif %}
             <!-- Authentication end -->
         </section> 
@@ -87,7 +87,7 @@
                         <li><a href="{% url "main-index" %}">{% trans "Home" %}</a></li>
                         <li><a href="{% url "closed-message-list" %}">{% trans "Help was found" %}</a></li>
                         <li><a href="{% url "feed-new-messages" %}">{% trans "RSS feed" %}</a></li>
-                        <li><a href="{% url "news-list-view" %}">{% trans "Site news" %}</a></li>
+                        <li><a href="{# url "news-list-view" #}">{% trans "Site news" %}</a></li>
                         <li><a href="{% url "infopages" %}">{% trans "About us" %}</a></li>
                     </ul>
                 </div>
