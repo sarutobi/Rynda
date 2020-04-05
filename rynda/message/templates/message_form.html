@@ -1,5 +1,5 @@
 {% extends 'base.html'%}
-{% load i18n %}
+{% load i18n leaflet_tags %}
 
 {% block hubs %}
     {% include "widgets/base_hub.html"  with part='message' %}
@@ -146,5 +146,7 @@
 {% endblock %}
 
 {% block scripts %}
+{% leaflet_css plugins="forms" %}
+{% leaflet_js plugins="forms" %}
 {{ form.media }}
 {% endblock %}
