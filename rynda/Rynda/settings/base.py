@@ -160,9 +160,9 @@ INSTALLED_APPS = (
     #  'leaflet',
     # Project applications
     'rynda.core',
-    #  'rynda.message',
+    'rynda.message',
     #  'rynda.users',
-    #  'rynda.geozones',
+    'rynda.geozones',
     #  'rynda.api',
     #  'rynda.newsline',
 )

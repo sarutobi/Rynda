@@ -27,6 +27,6 @@ class Migration(migrations.Migration):
         migrations.AlterField(
             model_name='message',
             name='messageType',
-            field=models.IntegerField(verbose_name='Message type', db_column=b'message_type', choices=[(1, 'Help requests'), (2, 'Help offers')]),
+            field=models.IntegerField(verbose_name='Message type', db_column='message_type', choices=[(1, 'Help requests'), (2, 'Help offers')]),
         ),
     ]

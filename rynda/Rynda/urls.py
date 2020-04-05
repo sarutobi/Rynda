@@ -9,7 +9,7 @@ from rynda.core import views as core_views
 from rynda.core.views import NewMessagesFeed
 #  from rynda.users.views import CreateUser
 
-#  from rynda.message import views as message_views
+from rynda.message import views as message_views
 
 admin.autodiscover()
 
@@ -28,7 +28,7 @@ urlpatterns += [
 urlpatterns += [
     #  url(r'^$', message_views.list, name='main-index'),
     #  url(r'^api/', include('rynda.api.urls')),
-    #  url(r'^message/', include('rynda.message.urls')),
+    url(r'^message/', include('rynda.message.urls')),
     #  url(r'^user/', include('rynda.users.urls')),
     #  url(r'^news/', include('rynda.newsline.urls')),
     #  url(r'^t/(?P<slug>[a-z_0-9-]+)$', message_views.list),

@@ -177,7 +177,7 @@ class Message(models.Model):
         blank=True, null=True
     )
     edit_key = models.CharField(max_length=40, blank=True)
-    sender_ip = models.IPAddressField(
+    sender_ip = models.GenericIPAddressField(
         blank=True, null=True,
         editable=False,
         verbose_name=_("sender IP")

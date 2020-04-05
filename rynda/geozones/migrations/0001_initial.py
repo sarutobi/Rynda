@@ -45,7 +45,7 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='location',
             name='region',
-            field=models.ForeignKey(verbose_name='Region', blank=True, to='geozones.Region', null=True),
+            field=models.ForeignKey(verbose_name='Region', blank=True, to='geozones.Region', null=True, on_delete=models.PROTECT),
             preserve_default=True,
         ),
     ]

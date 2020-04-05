@@ -3,7 +3,7 @@ from django.conf.urls import url
 from .views import MessageView, CreateRequest, MessageList,\
     CreateOffer, ClosedMessageList, message_added
 
-urlpatterns = ['',
+urlpatterns = [
     url(r'^$', MessageList.as_view(), name="messages-list"),
     url(r'^page/(?P<page>\d+)/$', MessageList.as_view(), name='message-list-paged'),
     url(r'^(?P<pk>\d+)$', MessageView.as_view(), name='message-details'),
