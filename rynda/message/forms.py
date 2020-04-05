@@ -3,13 +3,13 @@
 from django.contrib.gis import forms as geoforms
 from django.core.exceptions import ValidationError
 from django.db.models import Q
-from django.forms.util import ErrorList
+from django.forms.utils import ErrorList
 from django.utils.translation import ugettext as _
 
 import django_filters
 from django_filters.filters import Filter
-import floppyforms.__future__ as forms
-from leaflet.forms.widgets import LeafletWidget
+from django import forms
+#  from leaflet.forms.widgets import LeafletWidget
 
 from .models import Message, Category
 
@@ -57,11 +57,11 @@ class UserMessageForm(forms.ModelForm):
             'category', 'address', 'location',
             'is_anonymous', 'allow_feedback', 'is_virtual',
         )
-        widgets = {
-            'messageType': forms.HiddenInput(),
-            'category': forms.CheckboxSelectMultiple(),
-            'location': LeafletWidget(),
-        }
+        #  widgets = {
+            #  'messageType': forms.HiddenInput(),
+            #  'category': forms.CheckboxSelectMultiple(),
+            #  'location': LeafletWidget(),
+        #  }
 
     first_name = forms.CharField(label=_('First name'), required=False)
     last_name = forms.CharField(label=_('Last name'), required=False)
@@ -191,7 +191,7 @@ class MessageSideFilter(django_filters.FilterSet):
 
     q = TitleMessageFilter(
         label=_("Keywords"),
-        widget=forms.SearchInput(),
+        #  widget=forms.SearchInput(),
     )
 
 

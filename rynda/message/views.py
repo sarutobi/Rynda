@@ -3,7 +3,7 @@
 from django.conf import settings
 from django.contrib.auth import logout
 from django.contrib.auth.models import User
-from django.core.urlresolvers import reverse_lazy
+from django.urls import reverse_lazy
 from django.shortcuts import redirect, render
 from django.template.loader import render_to_string
 from django.utils.translation import ugettext_lazy as _
@@ -106,8 +106,8 @@ class MessageView(DetailView):
 
 
 class MessageList(RyndaListView):
-    queryset = Message.objects.active().prefetch_related(
-        'user', 'category').all()
+    #  queryset = Message.objects.active().prefetch_related(
+        #  'user', 'category').all()
     paginate_by = 10
     template_name = 'messages_list.html'
     context_object_name = 'messages'
@@ -123,8 +123,9 @@ class MessageList(RyndaListView):
 
 
 class ClosedMessageList(MessageList):
-    queryset = Message.objects.closed().prefetch_related(
-        'user', 'category').all()
+    #  queryset = Message.objects.closed().prefetch_related(
+        #  'user', 'category').all()
+    pass
 
 
 def message_added(request):

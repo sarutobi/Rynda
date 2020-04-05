@@ -2,13 +2,13 @@
 
 from django.contrib.auth.models import User
 from django.contrib.gis.db import models
-from django.contrib.gis.db.models.query import GeoQuerySet
-from django.core.urlresolvers import reverse_lazy
+#  from django.contrib.gis.db.models.query import GeoQuerySet
+from django.urls import reverse_lazy
 from django.utils.translation import ugettext_lazy as _
 
 from jsonfield import JSONField
 
-from model_utils.managers import PassThroughManagerMixin
+#  from model_utils.managers import PassThroughManagerMixin
 
 
 class Category(models.Model):
@@ -33,32 +33,32 @@ class Category(models.Model):
         return self.name
 
 
-class PassThroughGeoManager(PassThroughManagerMixin, models.GeoManager):
-    pass
+#  class PassThroughGeoManager(PassThroughManagerMixin, models.GeoManager):
+    #  pass
 
 
-class MessageQueryset(GeoQuerySet):
-    def list(self):
-        """ Ask only few fields for listing"""
+#  class MessageQueryset(GeoQuerySet):
+    #  def list(self):
+        #  """ Ask only few fields for listing"""
 
-        return self.values(
-            'id', 'title', 'message', 'messageType',
-            'date_add', )
+        #  return self.values(
+            #  'id', 'title', 'message', 'messageType',
+            #  'date_add', )
 
-    def active(self):
-        return self.filter(
-            status__gt=Message.NEW, status__lt=Message.CLOSED,
-            is_removed=False
-        )
+    #  def active(self):
+        #  return self.filter(
+            #  status__gt=Message.NEW, status__lt=Message.CLOSED,
+            #  is_removed=False
+        #  )
 
-    def closed(self):
-        return self.filter(status=Message.CLOSED)
+    #  def closed(self):
+        #  return self.filter(status=Message.CLOSED)
 
-    def type_is(self, m_type):
-        return self.filter(messageType=m_type)
+    #  def type_is(self, m_type):
+        #  return self.filter(messageType=m_type)
 
-    def is_deleted(self):
-        return self.filter(is_removed=True)
+    #  def is_deleted(self):
+        #  return self.filter(is_removed=True)
 
 
 class Message(models.Model):
@@ -95,7 +95,7 @@ class Message(models.Model):
                       (CLOSED, _('Closed')))
 
     # Managers
-    objects = PassThroughGeoManager.for_queryset_class(MessageQueryset)()
+    #  objects = PassThroughGeoManager.for_queryset_class(MessageQueryset)()
 
     # Main message fields
     title = models.CharField(
@@ -120,6 +120,7 @@ class Message(models.Model):
         verbose_name=_("User"),
         editable=False,
         db_column='user_id',
+        on_delete=models.CASCADE
     )
 
     # Optional fields
@@ -222,8 +223,8 @@ class Message(models.Model):
 class MessageNotes(models.Model):
     """ Moderator notes for message """
 
-    message = models.ForeignKey(Message)
-    user = models.ForeignKey(User, editable=False, verbose_name=_("Author"))
+    message = models.ForeignKey(Message, on_delete=models.CASCADE)
+    user = models.ForeignKey(User, editable=False, verbose_name=_("Author"), on_delete=models.CASCADE)
     note = models.TextField(verbose_name=_("Note"))
     date_add = models.DateTimeField(
         auto_now_add=True,

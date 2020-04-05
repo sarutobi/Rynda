@@ -28,8 +28,8 @@ class SiteSocialLinks(models.Model):
         verbose_name = _("Site contact")
         verbose_name_plural = _("Site contacts")
 
-    site = models.ForeignKey(Site, verbose_name=_("Site name"))
-    social_link_type = models.ForeignKey(SocialLinkType, verbose_name=_('Link type'))
+    site = models.ForeignKey(Site, verbose_name=_("Site name"), on_delete=models.CASCADE)
+    social_link_type = models.ForeignKey(SocialLinkType, verbose_name=_('Link type'), on_delete=models.CASCADE)
     help_title = models.CharField(_("Link title"), max_length=100)
     url = models.CharField(
         _("Link url"), max_length=2000,
@@ -46,6 +46,6 @@ class SiteMapOptions(geomodels.Model):
     class Meta:
         verbose_name = _("Site map options")
 
-    site = geomodels.OneToOneField(Site, verbose_name=_("Site name"))
+    site = geomodels.OneToOneField(Site, verbose_name=_("Site name"), on_delete=models.CASCADE)
     zoom = geomodels.SmallIntegerField(verbose_name=_("Map zoom"), default=3)
     center = geomodels.PointField(verbose_name=_("Default map center"))

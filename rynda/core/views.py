@@ -3,13 +3,13 @@
 from django.shortcuts import render
 
 from django.contrib.syndication.views import Feed
-from django.core.urlresolvers import reverse_lazy
+from django.urls import reverse_lazy
 from django.utils.translation import ugettext_lazy as _
 from django.views.generic.list import ListView
 
 from rynda.core.mixins import PaginatorMixin, QueryStringMixin
 
-from rynda.message.models import Message
+#  from rynda.message.models import Message
 
 
 class NewMessagesFeed(Feed):

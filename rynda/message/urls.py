@@ -1,9 +1,9 @@
-from django.conf.urls import patterns, url
+from django.conf.urls import url
 
 from .views import MessageView, CreateRequest, MessageList,\
-    CreateOffer, ClosedMessageList
+    CreateOffer, ClosedMessageList, message_added
 
-urlpatterns = patterns('',
+urlpatterns = ['',
     url(r'^$', MessageList.as_view(), name="messages-list"),
     url(r'^page/(?P<page>\d+)/$', MessageList.as_view(), name='message-list-paged'),
     url(r'^(?P<pk>\d+)$', MessageView.as_view(), name='message-details'),
@@ -13,5 +13,5 @@ urlpatterns = patterns('',
     url('^pomogu/dobavit', CreateOffer.as_view(), name='message-create-offer'),
     url('^pomogite/pomogli/$', ClosedMessageList.as_view(), name='closed-message-list'),
     url('^pomogite/pomogli/page/(?P<page>\d+)/$', ClosedMessageList.as_view()),
-    url(r'^added/$', 'rynda.message.views.message_added', name='message-added',),
-)
+    url(r'^added/$', message_added, name='message-added',),
+]

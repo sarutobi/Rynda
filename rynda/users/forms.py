@@ -6,7 +6,8 @@ from django.contrib.auth.models import User
 from django.utils.translation import ugettext_lazy as _
 
 import django_filters
-import floppyforms.__future__ as forms
+#  import floppyforms.__future__ as forms
+from django import forms
 
 from rynda.core.utils import validate_email_domain
 from rynda.message.models import Category
@@ -56,7 +57,7 @@ class SimpleRegistrationForm(forms.Form):
             raise forms.ValidationError(_("This email already registered"))
         try:
             validate_email_domain(self.cleaned_data['email'])
-        except dns.exception.DNSException, e:
+        except dns.exception.DNSException:
             raise forms.ValidationError(_("Email seems to be wrong"))
         return self.cleaned_data['email']
 
@@ -82,7 +83,7 @@ class UserFilter(django_filters.FilterSet):
         name='message',
         label=_("Keywords"),
         lookup_type="icontains",
-        widget=forms.SearchInput(),
+        #  widget=forms.SearchInput(),
     )
 
     def get_order_by(self, order_value):

@@ -30,7 +30,7 @@ class Region(models.Model):
     # Region map default zoom
     zoom = models.SmallIntegerField(_("Map zoom"))
     order = models.IntegerField(_("Order"))
-    objects = models.GeoManager()
+    #  objects = models.GeoManager()
 
     def __unicode__(self):
         return self.name

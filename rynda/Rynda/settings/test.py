@@ -11,7 +11,7 @@ DATABASES = {
 }
 
 LANGUAGE_CODE = 'en'
-
+DEBUG=True
 try:
     from local_test import *
 except:

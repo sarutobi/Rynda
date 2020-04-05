@@ -24,7 +24,7 @@ class Post(models.Model):
     modified = models.DateTimeField(_("Modified"), auto_now=True)
     publish = models.DateTimeField(_("Published"), default=timezone.now)
     status = models.IntegerField(_("status"), choices=STATUS)
-    author = models.ForeignKey(User, verbose_name=_("Author"),)
+    author = models.ForeignKey(User, verbose_name=_("Author"), on_delete=models.CASCADE)
 
     def __unicode__(self):
         return self.title

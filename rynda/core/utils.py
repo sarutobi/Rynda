@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-import dns.resolver
+#  import dns.resolver
 
 from post_office import mail
 
@@ -18,7 +18,7 @@ def send_templated_email(template_name, user_list):
 def validate_email_domain(email):
     if email != '':
         domain = email.split('@')[1]
-        dns.resolver.query(domain, 'MX')
+        #  dns.resolver.query(domain, 'MX')
 
 
 def get_client_ip(request):

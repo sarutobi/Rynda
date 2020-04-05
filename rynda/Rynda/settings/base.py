@@ -80,22 +80,44 @@ STATICFILES_FINDERS = (
 # Make this unique, and don't share it with anybody.
 SECRET_KEY = 'l(39jm())q%720m2@p%wz)bep@lrfb*7k+66%+epnwes!pcbh2'
 
-
-TEMPLATE_CONTEXT_PROCESSORS = (
-    # default template context processors
-    'django.contrib.auth.context_processors.auth',
-    'django.core.context_processors.debug',
-    'django.core.context_processors.i18n',
-    'django.core.context_processors.media',
-    'django.core.context_processors.static',
-    'django.core.context_processors.tz',
-    'django.contrib.messages.context_processors.messages',
-    # required by django-admin-tools
-    'django.core.context_processors.request',
-    'rynda.core.context_processors.production_context',
-    'rynda.core.context_processors.current_site',
-)
-MIDDLEWARE_CLASSES = (
+TEMPLATES = [
+    {
+        'BACKEND':'django.template.backends.django.DjangoTemplates',
+        'DIRS': os.path.join(SITE_ROOT, 'templates'),
+        'APP_DIRS': True,
+        'OPTIONS': {
+            'context_processors': [
+                # default template context processors
+                'django.contrib.auth.context_processors.auth',
+                'django.core.context_processors.debug',
+                'django.core.context_processors.i18n',
+                'django.core.context_processors.media',
+                'django.core.context_processors.static',
+                'django.core.context_processors.tz',
+                'django.contrib.messages.context_processors.messages',
+                # required by django-admin-tools
+                'django.core.context_processors.request',
+                'rynda.core.context_processors.production_context',
+                'rynda.core.context_processors.current_site',
+            ]
+        }
+    }
+]
+#  TEMPLATE_CONTEXT_PROCESSORS = (
+    #  # default template context processors
+    #  'django.contrib.auth.context_processors.auth',
+    #  'django.core.context_processors.debug',
+    #  'django.core.context_processors.i18n',
+    #  'django.core.context_processors.media',
+    #  'django.core.context_processors.static',
+    #  'django.core.context_processors.tz',
+    #  'django.contrib.messages.context_processors.messages',
+    #  # required by django-admin-tools
+    #  'django.core.context_processors.request',
+    #  'rynda.core.context_processors.production_context',
+    #  'rynda.core.context_processors.current_site',
+#  )
+MIDDLEWARE = (
     'django.middleware.common.CommonMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -109,12 +131,12 @@ ROOT_URLCONF = 'rynda.Rynda.urls'
 # Python dotted path to the WSGI application used by Django's runserver.
 WSGI_APPLICATION = 'rynda.Rynda.wsgi.application'
 
-TEMPLATE_DIRS = (
+#TEMPLATE_DIRS = (
     # Put strings here, like "/home/html/django_templates" or "C:/www/django/templates".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
-    os.path.join(SITE_ROOT, 'templates'),
-)
+    #  os.path.join(SITE_ROOT, 'templates'),
+#  )
 
 INSTALLED_APPS = (
     'django.contrib.auth',
@@ -138,11 +160,11 @@ INSTALLED_APPS = (
     #  'leaflet',
     # Project applications
     'rynda.core',
-    'rynda.message',
-    'rynda.users',
-    'rynda.geozones',
-    'rynda.api',
-    'rynda.newsline',
+    #  'rynda.message',
+    #  'rynda.users',
+    #  'rynda.geozones',
+    #  'rynda.api',
+    #  'rynda.newsline',
 )
 
 AUTHENTICATION_BACKENDS = (

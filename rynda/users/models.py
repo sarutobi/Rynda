@@ -69,7 +69,7 @@ class Profile(models.Model):
         (FEMALE, _("Female")),
     )
 
-    user = models.OneToOneField(User)
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
     is_public = models.BooleanField(_("Public"), default=False)
     phones = models.CharField(max_length=255, blank=True)
     about_me = models.TextField(default='', blank=True)

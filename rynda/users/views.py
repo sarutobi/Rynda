@@ -4,7 +4,7 @@ from django.shortcuts import redirect, render
 from django.conf import settings
 from django.contrib import messages
 from django.contrib.auth.models import User
-from django.core.urlresolvers import reverse
+from django.urls import reverse
 from django.utils.translation import ugettext_lazy as _
 from django.views.generic.detail import DetailView
 from django.views.generic.edit import FormView, UpdateView
