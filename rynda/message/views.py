@@ -84,11 +84,11 @@ class CreateRequest(SaveGeoDataMixin, FormView):
 
     def get_initial(self):
         initial = {}
-        if self.request.user.is_authenticated():
-            initial['contact_first_name'] = self.request.user.first_name
-            initial['contact_last_name'] = self.request.user.last_name
-            initial['contact_mail'] = self.request.user.email
-            initial['contact_phone'] = self.request.user.profile.phones
+        #  if self.request.user.is_authenticated():
+            #  initial['contact_first_name'] = self.request.user.first_name
+            #  initial['contact_last_name'] = self.request.user.last_name
+            #  initial['contact_mail'] = self.request.user.email
+            #  initial['contact_phone'] = self.request.user.profile.phones
         return initial
 
 

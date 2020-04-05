@@ -155,7 +155,6 @@ INSTALLED_APPS = (
     #  'social.apps.django_app.default',
     'widget_tweaks',
     'post_office',
-    #  'floppyforms',
     'jsonfield',
     #  'leaflet',
     # Project applications

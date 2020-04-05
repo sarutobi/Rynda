@@ -73,14 +73,14 @@ class UserFilter(django_filters.FilterSet):
         )
 
     category = django_filters.ModelMultipleChoiceFilter(
-        name="category",
+        field_name="category",
         label=_("Category"),
         widget=forms.CheckboxSelectMultiple(),
         queryset=Category.objects.all()
     )
 
     q = django_filters.CharFilter(
-        name='message',
+        field_name='message',
         label=_("Keywords"),
         lookup_type="icontains",
         #  widget=forms.SearchInput(),
