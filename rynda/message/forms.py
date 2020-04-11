@@ -148,7 +148,7 @@ class AdminMessageForm(MessageForm):
         }
 
     def clean_messageType(self):
-        return self.cleaned_data['message_type']
+        return self.cleaned_data['messageType']
 
 
 class TitleMessageFilter(Filter):
