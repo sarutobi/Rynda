@@ -9,7 +9,7 @@ from django.utils.translation import ugettext as _
 import django_filters
 from django_filters.filters import Filter
 from django import forms
-#  from leaflet.forms.widgets import LeafletWidget
+from leaflet.forms.widgets import LeafletWidget
 
 from .models import Message, Category
 
@@ -57,11 +57,11 @@ class UserMessageForm(forms.ModelForm):
             'category', 'address', 'location',
             'is_anonymous', 'allow_feedback', 'is_virtual',
         )
-        #  widgets = {
-            #  'messageType': forms.HiddenInput(),
-            #  'category': forms.CheckboxSelectMultiple(),
-            #  'location': LeafletWidget(),
-        #  }
+        widgets = {
+            'messageType': forms.HiddenInput(),
+            'category': forms.CheckboxSelectMultiple(),
+            'location': LeafletWidget(),
+        }
 
     first_name = forms.CharField(label=_('First name'), required=False)
     last_name = forms.CharField(label=_('Last name'), required=False)

@@ -50,7 +50,7 @@ class CreateUser(FormView):
 
     def get(self, request, *args, **kwargs):
         """ Registered user can't get access to registration form """
-        if request.user.is_authenticated():
+        if request.user.is_authenticated:
             return redirect(reverse(
                 "user-details", kwargs={"pk": request.user.id, }))
         return super(CreateUser, self).get(request, *args, **kwargs)
@@ -88,7 +88,7 @@ class EditProfile(UpdateView):
 
     def get_object(self):
         """ Get current user profile data """
-        if not self.request.user.is_authenticated():
+        if not self.request.user.is_authenticated:
             messages.add_message(
                 self.request,
                 messages.WARNING,

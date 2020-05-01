@@ -67,7 +67,7 @@ class SaveGeoDataMixin():
     """ Store message and location """
     def form_valid(self, form):
         instance = form.save(commit=False)
-        if self.request.user.is_authenticated():
+        if self.request.user.is_authenticated:
             instance.user = self.request.user
         else:
             instance.user = User.objects.get(pk=settings.ANONYMOUS_USER_ID)
@@ -84,7 +84,7 @@ class CreateRequest(SaveGeoDataMixin, FormView):
 
     def get_initial(self):
         initial = {}
-        #  if self.request.user.is_authenticated():
+        #  if self.request.user.is_authenticated:
             #  initial['contact_first_name'] = self.request.user.first_name
             #  initial['contact_last_name'] = self.request.user.last_name
             #  initial['contact_mail'] = self.request.user.email

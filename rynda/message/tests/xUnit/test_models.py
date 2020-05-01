@@ -19,8 +19,8 @@ class TestMessage(TestCase):
         self.message = MessageFactory(
             user=self.user)
 
-    def test_message_unicode(self):
-        """ Test for message __unicode__ method. """
+    def test_message_title_default(self):
+        """ Test for message __str__ method. """
         self.assertEqual(self.message.title, "%s" % self.message)
 
     def test_message_flags(self):

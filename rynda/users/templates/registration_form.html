@@ -1,6 +1,6 @@
 {% extends 'base.html'%}
 
-{% load i18n floppyforms %}
+{% load i18n %}
 
 {% block hubs %}
     {% include "widgets/base_hub.html"  with part='base' %}
@@ -16,7 +16,10 @@
         <div class="panel-body">
             <form id="registration_form" action="" method="post">
             {% csrf_token%}
-            {% form form %}
+            {% for field in form %}
+            {{ field.label_tag }} {{ field }}
+            {% endfor %}
+            {# form #}
             <div class="panel-footer">
                 <input type="submit" class="btn rynda-btn-default form-control">
             </div>

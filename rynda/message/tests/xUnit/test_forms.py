@@ -2,7 +2,8 @@
 
 from django.test import TestCase
 
-import floppyforms.__future__ as forms
+#  import floppyforms.__future__ as forms
+from django import forms
 
 from rynda.core.factories import FuzzyGeometryCollection, FuzzyPoint
 from rynda.message.factories import MessageFactory

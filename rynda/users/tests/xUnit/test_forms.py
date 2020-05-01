@@ -38,7 +38,7 @@ class SimpleRegistrationFormTest(TestCase):
         form = SimpleRegistrationForm(self.data)
         self.assertTrue(form.is_bound)
         self.assertFalse(form.is_valid())
-        self.assertEqual([_(u'You must provide a first name!'), ],
+        self.assertEqual([_(u'This field is required.'), ],
                          form['first_name'].errors)
 
     def test_lost_lastname(self):
@@ -54,7 +54,7 @@ class SimpleRegistrationFormTest(TestCase):
         form = SimpleRegistrationForm(self.data)
         self.assertTrue(form.is_bound)
         self.assertFalse(form.is_valid())
-        self.assertEqual([_(u'You must provide a last name!'), ],
+        self.assertEqual([_(u'This field is required.'), ],
                          form['last_name'].errors)
 
     def test_existing_email(self):

@@ -20,7 +20,8 @@ class UserAuthCodeTest(TestCase):
 
     def test_user(self):
         self.assertIsNotNone(self.user.date_joined)
-        self.assertTrue(self.user.date_joined >= self.user.last_login)
+        self.assertIsNone(self.user.last_login)
+        #  self.assertTrue(self.user.date_joined >= self.user.last_login)
 
     def test_salt(self):
         salt = self.encoder.salt()
@@ -29,6 +30,16 @@ class UserAuthCodeTest(TestCase):
     def test_auth_code(self):
         code = self.encoder.auth_code(self.user)
         self.assertIsNotNone(code)
+
+    def test_digest(self):
+        d1 = self.encoder.digest(self.user)
+        d2 = self.encoder.digest(self.user)
+        self.assertEquals(d1, d2)
+
+    def test_same_code(self):
+        code1 = self.encoder.auth_code(self.user)
+        code2 = self.encoder.auth_code(self.user)
+        self.assertEqual(code1, code2)
 
     def test_complete_activation(self):
         code = self.encoder.auth_code(self.user)
@@ -141,7 +152,7 @@ class TestUserActivation(TestCase):
 class TestPublicUsers(TestCase):
     """ Tests for select only public users """
     def setUp(self):
-        for x in xrange(10):
+        for x in range(10):
             u = UserFactory(is_active=True)
             u.profile.is_public = True
             u.profile.save()

@@ -2,7 +2,7 @@
 
 from django_webtest import WebTest
 
-from django.core.urlresolvers import reverse
+from django.urls import reverse
 from rynda.message.factories import MessageFactory
 from rynda.message.models import Message
 

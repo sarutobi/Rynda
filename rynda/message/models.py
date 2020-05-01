@@ -29,7 +29,7 @@ class Category(models.Model):
         verbose_name=_('slug'), blank=True)
     order = models.SmallIntegerField(db_column='order')
 
-    def __unicode__(self):
+    def __str__(self):
         return self.name
 
 
@@ -201,7 +201,7 @@ class Message(models.Model):
         null=True, blank=True
     )
 
-    def __unicode__(self):
+    def __str__(self):
         return self.title or "Untitled"
 
     def save(self, *args, **kwargs):
