@@ -15,7 +15,9 @@ addons:
         - postgresql-11-postgis-2.5-scripts
 
 before_script:
+    - sudo add-apt-repository ppa:ubuntugis/ubuntugis-unstable
     - sudo apt-get update
+    - sudo apt-get install libgdal-dev
     - sudo sed -i 's/port = 5433/port = 5432/' /etc/postgresql/11/main/postgresql.conf
     - sudo cp /etc/postgresql/{10,11}/main/pg_hba.conf
     - sudo service postgresql stop
