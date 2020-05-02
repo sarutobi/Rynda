@@ -7,6 +7,12 @@ install: "pip install -r requirements/travis.txt"
 services:
   - postgresql
 
+addons:
+  postgresql:
+    apt:
+      packages:
+        - postgis
+
 before_script:
   - psql -c 'create database rynda;' -U postgres
   - psql -c 'create extension postgis' -U postgres -d rynda
