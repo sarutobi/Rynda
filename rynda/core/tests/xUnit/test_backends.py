@@ -15,7 +15,7 @@ class IonTest(TestCase):
         self.user = UserFactory.build(
             is_active=True
         )
-        self.user.password = self.ion.password_hash('123')
+        self.user.password = self.ion.password_hash('123'.encode())
         self.active_user = UserFactory(is_active=True)
         self.inactive_user = UserFactory(is_active=False)
 
@@ -35,7 +35,7 @@ class IonTest(TestCase):
         self.user.save()
         u2 = self.ion.authenticate(username=self.user.email, password='123')
         self.assertIsNotNone(u2)
-        self.assertFalse(u2.is_anonymous())
+        self.assertFalse(u2.is_anonymous)
         self.assertNotEqual(self.user.password, u2.password)
         self.user.delete()
 

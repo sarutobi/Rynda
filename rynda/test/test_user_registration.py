@@ -15,11 +15,17 @@ from rynda.users.models import UserAuthCode
 class TestUserRegistration(WebTest):
     """ Checks that the user can successfully register and activate account. """
 
+    #  @classmethod
+    #  def setUpTestData(cls):
+        #  anon = UserFactory.create(id=-1)
+
     def setUp(self):
         self.site = Site.objects.get()
         self.site.domain = "example.com"
         self.site.name = "Example site"
         self.site.save()
+        anon = User(id=-1, username='Anonymous')
+        anon.save()
         confirm = EmailTemplate(
             name='registration confirmation',
             subject='Account activation',

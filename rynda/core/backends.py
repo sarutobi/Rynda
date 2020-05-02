@@ -75,8 +75,8 @@ class IonAuth(object):
         """ Generate password salt, similar to ion auth.  """
 
         hasher = hashlib.md5()
-        hasher.update("%f" % random())
-        hasher.update("%d" % time.time())
+        hasher.update("%f".encode() % random())
+        hasher.update("%d".encode() % time.time())
         return hasher.hexdigest()[:self.SALT_LENGTH]
 
     def password_hash(self, password, salt=None):
@@ -85,6 +85,9 @@ class IonAuth(object):
         if salt is None:
             salt = self.gen_salt()
         hasher = hashlib.sha1()
-        hasher.update(salt)
-        hasher.update(password)
+        hasher.update(salt.encode())
+        if isinstance(password, str):
+            hasher.update(password.encode())
+        else:
+            hasher.update(password)
         return "%s%s" % (salt, hasher.hexdigest()[:-self.SALT_LENGTH])

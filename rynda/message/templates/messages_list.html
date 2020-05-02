@@ -18,7 +18,7 @@
 
 {% block listcontent %}
 
-{% for m in filter %}
+{% for m in filter.qs %}
 <li class="list-group-item">
     <div class="list_content">
         <a href="{% url "message-details" m.id %}" class="darkRed">

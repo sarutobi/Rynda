@@ -26,7 +26,7 @@ class TestMessagesList(WebTest):
 class TestMessagePaginator(WebTest):
     def setUp(self):
         self.user = UserFactory()
-        for x in xrange(50):
+        for x in range(50):
             MessageFactory(status=2, user=self.user)
         self.page = self.app.get(reverse('messages-list'))
 

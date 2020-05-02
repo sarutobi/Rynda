@@ -2,6 +2,7 @@
 
 from django.conf import settings
 from django.urls import reverse
+from django.contrib.auth.models import User
 
 from django_webtest import WebTest
 
@@ -41,6 +42,8 @@ class TestAnonymousMessage(WebTest, MessageDataMixin):
     """ Anonymous message """
 
     def setUp(self):
+        anon = User(id=-1, username='Anonymous')
+        anon.save()
         self.page = self.app.get(reverse('message-create-request'))
         self.generate_message()
 
