@@ -10,7 +10,7 @@ services:
 addons:
     apt:
       sources:
-        - ppa:ubuntugis/ubuntugis-unstable
+        - sourceline: "ppa:ubuntugis/ubuntugis-unstable"
       packages:
         - postgresql-11
         - postgresql-11-postgis-2.5
