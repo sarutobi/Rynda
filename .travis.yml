@@ -22,7 +22,7 @@ before_script:
     - sudo service postgresql start 11 
     - psql -c 'create database rynda;' -U postgres
     - psql -c 'create extension postgis' -U postgres -d rynda
-    - python manage.py migrate --settings=Rynda.settings.travis
+    - python manage.py migrate --settings=rynda.Rynda.settings.travis
 
 script:
   - python manage.py test --settings=rynda.Rynda.settings.travis
