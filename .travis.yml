@@ -15,8 +15,12 @@ addons:
         - postgresql-11-postgis-2.5-scripts
 
 before_script:
-  - psql -c 'create database rynda;' -U postgres
-  - psql -c 'create extension postgis' -U postgres -d rynda
+    - sudo sed -i 's/port = 5433/port = 5432/' /etc/postgresql/11/main/postgresql.conf
+    - sudo cp /etc/postgresql/{10,11}/main/pg_hba.conf
+    - sudo service postgresql stop
+    - sudo service postgresql start 11 
+    - psql -c 'create database rynda;' -U postgres
+  # - psql -c 'create extension postgis' -U postgres -d rynda
   # - python manage.py migrate --settings=Rynda.settings.travis
 
 script:
