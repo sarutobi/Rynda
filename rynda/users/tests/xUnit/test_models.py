@@ -23,9 +23,6 @@ class UserAuthCodeTest(TestCase):
         self.assertIsNone(self.user.last_login)
         #  self.assertTrue(self.user.date_joined >= self.user.last_login)
 
-    def test_salt(self):
-        salt = self.encoder.salt()
-        self.assertEqual(8, len(salt))
 
     def test_auth_code(self):
         code = self.encoder.auth_code(self.user)

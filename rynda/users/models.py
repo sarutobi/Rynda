@@ -17,30 +17,35 @@ from post_office import mail
 
 class UserAuthCode(object):
     def __init__(self, secret, salt_len=8, hash=hashlib.sha256):
-        self.secret = secret
+        self.__secret = secret
         self.salt_len = salt_len
         s = [random.choice(string.ascii_letters + string.digits)
              for i in range(self.salt_len)]
-        self._salt = "".join(s)
+        self.__salt = "".join(s)
         self.hash = hash
 
-    def salt(self):
-        return self._salt
+    #  def salt(self):
+        #  return self.__salt
+
 
     def digest(self, user):
+        return self.__digest(user, self.__salt)
+
+
+    def __digest(self, user, salt):
         # Use username, email and date_joined to generate digest
-        auth_message = "".join((self.secret, user.username, user.email,
-                               str(user.date_joined), self._salt))
+        auth_message = "".join((self.__secret, user.username, user.email,
+                               str(user.date_joined), salt))
         md = self.hash()
         md.update(auth_message.encode('utf8'))
 
         return base64.urlsafe_b64encode(md.digest()).rstrip(b'=').decode()
 
     def auth_code(self, user):
-        salt = self.salt()
         digest = self.digest(user)
 
-        return "%s%s" % (self._salt, digest)
+        return "%s%s" % (self.__salt, digest)
+
 
     def is_valid(self, user, auth_code):
         salt = auth_code[:self.salt_len]
@@ -50,10 +55,7 @@ class UserAuthCode(object):
         # profiles.
         if user.last_login is not None and user.last_login >= user.date_joined:
             return False
-        s = self._salt
-        self._salt = salt
-        digest_check = self.digest(user)
-        self._salt = s
+        digest_check = self.__digest(user, salt)
         return digest == digest_check
 
 
